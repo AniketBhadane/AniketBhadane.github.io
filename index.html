@@ -45,12 +45,14 @@
                     <div class="intro-message">
 						<img src="aniketbhadane.png" alt="" class="img-responsive center-block img-circle my_photo">
                         <h1>Aniket Bhadane</h1>
-                        <h3>A Designer. A Developer</h3>
+                        <h3>A Designer. A Developer.</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                                <a href="mailto:aniketbhadane93@gmail.com" target="_top" class="btn btn-default btn-lg"><i class="fa fa-envelope fa-fw"></i> <span class="network-name">Gmail</span></a>
-                            </li>
+                                <!--a id="gmail" href="mailto:aniketbhadane93@gmail.com" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-envelope fa-fw"></i> <span class="network-name">Gmail</span></a-->
+								<button id="gmail" type="button" class="btn btn-default btn-lg"><i class="fa fa-envelope fa-fw"></i> <span class="network-name">Gmail</span></button>
+								
+							</li>
                             <li>
                                 <a href="aniketbhadane.pdf" target="_blank" class="btn btn-default btn-lg"><i class="fa fa-file-text fa-fw"></i> <span class="network-name">My Resume</span></a>
                             </li>
@@ -205,6 +207,41 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
 
+	<script>
+$(document).ready(function(){
+    //$('[data-toggle="popover"]').popover(); 
+	
+	var contentHtml = [
+    '<div>',
+        '<button class="btn btn-default" id="copyToClipboard">Copy</button>',
+        '<button class="btn btn-default" id="sendMail">Send Mail</button>',
+    '</div>'].join('\n');
+	
+	$("#gmail").popover({
+		placement: 'bottom',
+        html: 'true',
+        title : '<input type="text" id="gmail_addr_hidden" value="aniketbhadane93@gmail.com" style="width:200px">',
+        content : contentHtml
+	});
+	
+	$('body').on('click', '#copyToClipboard', function() {
+		document.querySelector("#gmail_addr_hidden").select();
+		document.execCommand('copy');
+		$(this).text("Copied");
+	});
+	
+	$('body').on('click', '#sendMail', function() {
+		window.open("mailto:aniketbhadane93@gmail.com",'_blank');
+	});
+	
+
+	
+	$('body').on('input', function() { 
+    $(this).attr('size', $(this).val().length);
+	});
+});
+</script>
+	
 </body>
 
 </html>

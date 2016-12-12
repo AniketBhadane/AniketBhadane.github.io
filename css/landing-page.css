@@ -17,6 +17,10 @@ h6 {
     font-weight: 700;
 }
 
+.popover {
+	color: black;
+}
+
 .topnav {
     font-size: 14px; 
 }
