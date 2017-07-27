@@ -30,6 +30,7 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+
 </head>
 
 <body>
@@ -37,7 +38,7 @@
     <!--strong>जय महाराष्ट्र</strong-->
 
     <!-- Header -->
-    <a name="about"></a>
+
     <div class="intro-header">
         <div class="container">
 
@@ -86,123 +87,13 @@
 
     <!-- Page Content -->
 
-	<a  name="about"></a>
-
 	<section id="about">
-		<div class="content-section-a">
 
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-5 col-sm-6">
-						<hr class="section-heading-spacer">
-						<div class="clearfix"></div>
-						<h2 class="section-heading">NVIDIA:<br>Former Tools Development Engineer</h2>
-						<p class="lead">Developed Tools Framework for Tegra SoC used in Autonomous Vehicles.</p>
-					</div>
-					<div class="col-lg-5 col-lg-offset-2 col-sm-6">
-						<img class="img-responsive" src="img/n2.png" alt="">
-					</div>
-				</div>
+    </section>
 
-			</div>
-			<!-- /.container -->
-
-		</div>
-		<!-- /.content-section-a -->
-	</section>
-
-    <div class="content-section-b">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">User Authentication using Image-Path Combination</h2>
-                    <p class="lead">Published 2 Patents in the field of Cyber Security. The proposed and developed Authentication system is a replacement for traditional passwords.</p>
-                </div>
-                <!--div class=" col-sm-pull-6  col-sm-4">
-                    <img class="img-responsive" src="img/Capture0.JPG" alt="">
-                </div-->
-                <div class=" col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/patent.JPG" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-b -->
-
-    <div class="content-section-a">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">CMS for Cusrow Wadia Institute</h2>
-                    <p class="lead">Developed Content Sharing and Control System used by Cusrow Wadia Institute of Technology, <!--live at <a target="_blank" href="http://www.cwitpune.com/cms">CWIT site</a>, and--> codebase at <a target="_blank" href="https://github.com/AniketBhadane/cwit">GitHub</a>.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/Capture2.JPG" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-a -->
-
-    <div class="content-section-b">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Taasika - a timetable generation software</h2>
-                    <p class="lead">Software for automated and semi-automated generation of timetable targetted at educational institutes, codebase at <a target="_blank" href="https://gitlab.com/AniketBhadane/taasika">GitLab</a>.</p>
-                </div>
-                <div class=" col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="img/taasika0.JPG" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
-    <!-- /.content-section-b -->
-
-	<!--div class="content-section-a">
-
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-5 col-sm-6">
-                    <hr class="section-heading-spacer">
-                    <div class="clearfix"></div>
-                    <h2 class="section-heading">Password Prediction and Strength Measure</h2>
-                    <p class="lead">Password Prediction Service which shows user the next predictable/likely character as the user is typing, and measures strength of password based on predictable characters chosen, codebase at <a target="_blank"href="https://github.com/AniketBhadane/cwit">GitHub</a>.</p>
-                </div>
-                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="img/passwd_predict.JPG" alt="">
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    <!--/div>
-    <!-- /.content-section-a -->
 
 	<a  name="contact"></a>
+
     <div class="banner">
 
         <div class="container">
@@ -263,7 +154,9 @@
 
 					<!--strong>जय महाराष्ट्र</strong-->
 
-                    <p class="copyright text-muted">Copyright &copy; Aniket Bhadane 2017. All Rights Reserved</p>
+                    <p class="copyright text-muted">
+                        Copyright &copy; Aniket Bhadane 2017. All Rights Reserved
+                    </p>
 
                 </div>
             </div>
@@ -280,46 +173,145 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
 
 	<script>
-$(document).ready(function(){
-    //$('[data-toggle="popover"]').popover();
+    $(document).ready(function(){
+        //$('[data-toggle="popover"]').popover();
 
-	$('a.page-scroll').bind('click', function(event) {
-        var $anchor = $(this);
-        $('html, body').stop().animate({
-            scrollTop: $($anchor.attr('href')).offset().top
-        }, 1500, 'easeInOutExpo');
-        event.preventDefault();
+    	$('a.page-scroll').bind('click', function(event) {
+            var $anchor = $(this);
+            $('html, body').stop().animate({
+                scrollTop: $($anchor.attr('href')).offset().top
+            }, 1500, 'easeInOutExpo');
+            event.preventDefault();
+        });
+
+    	var contentHtml = [
+        '<div>',
+            '<button class="btn btn-default" id="copyToClipboard">Copy</button>',
+            '<button class="btn btn-default" id="sendMail">Send Mail</button>',
+        '</div>'].join('\n');
+
+    	$(".gmail").popover({
+    		placement: 'bottom',
+            html: 'true',
+            title : '<input type="text" id="gmail_addr_hidden" \
+                        value="aniketbhadane93@gmail.com" style="width:200px">',
+            content : contentHtml
+    	});
+
+    	$('body').on('click', '#copyToClipboard', function() {
+    		document.querySelector("#gmail_addr_hidden").select();
+    		document.execCommand('copy');
+    		$(this).text("Copied");
+    	});
+
+    	$('body').on('click', '#sendMail', function() {
+    		window.open("mailto:aniketbhadane93@gmail.com",'_blank');
+    	});
+
+    	$('body').on('input', function() {
+            $(this).attr('size', $(this).val().length);
+    	});
+
+        function addContentSectionA(heading, desc, img) {
+
+            var html = '\
+                <div class="content-section-a">\
+                    <div class="container">\
+                        <div class="row">\
+                            <div class="col-lg-5 col-sm-6">\
+                                <hr class="section-heading-spacer">\
+                                <div class="clearfix"></div>\
+                                <h2 class="section-heading">'
+                                + heading +
+                                '</h2>\
+                                <p class="lead">'
+                                + desc +
+                                '</p>\
+                            </div>\
+                            <div class="col-lg-5 col-lg-offset-2 col-sm-6">\
+                                <img class="img-responsive" src="img/' + img + '" alt="">\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>\
+            ';
+
+            $("#about").append(html);
+        }
+
+        function addContentSectionB(heading, desc, img) {
+
+            var html = '\
+                <div class="content-section-b">\
+                    <div class="container">\
+                        <div class="row">\
+                            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6 col-sm-6">\
+                                <hr class="section-heading-spacer">\
+                                <div class="clearfix"></div>\
+                                <h2 class="section-heading">'
+                                + heading +
+                                '</h2>\
+                                <p class="lead">'
+                                + desc +
+                                '</p>\
+                            </div>\
+                            <div class="col-sm-pull-6 col-sm-6">\
+                                <img class="img-responsive" src="img/' + img + '" alt="">\
+                            </div>\
+                        </div>\
+                    </div>\
+                </div>\
+            ';
+
+            $("#about").append(html);
+        }
+
+        addContentSectionA(
+            "NVIDIA:<br>Tools Development Engineer",
+            "Developed Tools Framework for Tegra SoC used in Autonomous Vehicles.",
+            "n2.png"
+            );
+
+        addContentSectionB(
+            "TCS Innovation Labs (TRDDC):<br/>MTech Project Intern<br/>(Current)",
+            "Design of Method and Tool to Effectively Detect Phishing and Continually Increase User\
+            Awareness on Phishing with Technological and Human-Centric approach.",
+            "Tata_logo1.png"
+            );
+
+        addContentSectionA(
+            "User Authentication using Image-Path Combination",
+            "Published 2 Patents in the field of Cyber Security.\
+            The proposed and developed Authentication system is a replacement for traditional passwords.",
+            "patent.JPG"
+            );
+
+        addContentSectionB(
+            "CMS for Cusrow Wadia Institute",
+            "Developed Content Sharing and Control System used by Cusrow Wadia Institute of Technology,\
+            <!--live at <a target='_blank' href='http://www.cwitpune.com/cms'>CWIT site</a>, and-->\
+            codebase at <a target='_blank' href='https://github.com/AniketBhadane/cwit'>GitHub</a>.",
+            "Capture2.JPG"
+            );
+
+        addContentSectionA(
+            "Taasika - a timetable generation software",
+            "Software for automated and semi-automated generation of timetable targetted at educational\
+            institutes, codebase at <a target='_blank'\
+            href='https://gitlab.com/AniketBhadane/taasika/blob/automate/automate.php'>GitLab</a>.",
+            "taasika0.JPG"
+            );
+
+        addContentSectionB(
+            "Password Prediction and Strength Measure",
+            "Password Prediction Service which shows user the next predictable/likely character as the\
+            user is typing, and measures strength of password based on predictable characters chosen,\
+            codebase at <a target='_blank'\
+            href='https://github.com/AniketBhadane/Password-Predict-and-Strength-Measure'>GitHub</a>.",
+            "passwd_predict.JPG"
+            );
+
     });
-
-	var contentHtml = [
-    '<div>',
-        '<button class="btn btn-default" id="copyToClipboard">Copy</button>',
-        '<button class="btn btn-default" id="sendMail">Send Mail</button>',
-    '</div>'].join('\n');
-
-	$(".gmail").popover({
-		placement: 'bottom',
-        html: 'true',
-        title : '<input type="text" id="gmail_addr_hidden" value="aniketbhadane93@gmail.com" style="width:200px">',
-        content : contentHtml
-	});
-
-	$('body').on('click', '#copyToClipboard', function() {
-		document.querySelector("#gmail_addr_hidden").select();
-		document.execCommand('copy');
-		$(this).text("Copied");
-	});
-
-	$('body').on('click', '#sendMail', function() {
-		window.open("mailto:aniketbhadane93@gmail.com",'_blank');
-	});
-
-
-
-	$('body').on('input', function() {
-    $(this).attr('size', $(this).val().length);
-	});
-});
 </script>
 
 </body>
