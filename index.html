@@ -88,7 +88,7 @@
     <!-- Page Content -->
 
 	<section id="about">
-
+		<!-- JS adds content here -->
     </section>
 
 
@@ -175,6 +175,8 @@
 	<script>
     $(document).ready(function(){
         //$('[data-toggle="popover"]').popover();
+
+        var count = 0;
 
     	$('a.page-scroll').bind('click', function(event) {
             var $anchor = $(this);
@@ -266,27 +268,36 @@
             $("#about").append(html);
         }
 
-        addContentSectionA(
+        function addContentSection(heading, desc, img) {
+
+        	if((count++) % 2 == 0) {
+        		addContentSectionA(heading, desc, img);
+        	} else {
+        		addContentSectionB(heading, desc, img);
+        	}
+
+        }
+
+        addContentSection(
             "NVIDIA:<br>Tools Development Engineer",
             "Developed Tools Framework for Tegra SoC used in Autonomous Vehicles.",
             "n2.png"
             );
 
-        addContentSectionB(
-            "TCS Innovation Labs (TRDDC):<br/>MTech Project Intern<br/>(Current)",
-            "Design of Method and Tool to Effectively Detect Phishing and Continually Increase User\
-            Awareness on Phishing with Technological and Human-Centric approach.",
-            "Tata_logo1.png"
+        addContentSection(
+            "Ongoing MTech Research Project on Phishing",
+            "Will be updated soon...",
+            "phish.JPG"
             );
 
-        addContentSectionA(
+        addContentSection(
             "User Authentication using Image-Path Combination",
             "Published 2 Patents in the field of Cyber Security.\
             The proposed and developed Authentication system is a replacement for traditional passwords.",
             "patent.JPG"
             );
 
-        addContentSectionB(
+        addContentSection(
             "CMS for Cusrow Wadia Institute",
             "Developed Content Sharing and Control System used by Cusrow Wadia Institute of Technology,\
             <!--live at <a target='_blank' href='http://www.cwitpune.com/cms'>CWIT site</a>, and-->\
@@ -294,15 +305,7 @@
             "Capture2.JPG"
             );
 
-        addContentSectionA(
-            "Taasika - a timetable generation software",
-            "Software for automated and semi-automated generation of timetable targetted at educational\
-            institutes, codebase at <a target='_blank'\
-            href='https://gitlab.com/AniketBhadane/taasika/blob/automate/automate.php'>GitLab</a>.",
-            "taasika0.JPG"
-            );
-
-        addContentSectionB(
+        addContentSection(
             "Password Prediction and Strength Measure",
             "Password Prediction Service which shows user the next predictable/likely character as the\
             user is typing, and measures strength of password based on predictable characters chosen,\
@@ -310,6 +313,15 @@
             href='https://github.com/AniketBhadane/Password-Predict-and-Strength-Measure'>GitHub</a>.",
             "passwd_predict.JPG"
             );
+
+        addContentSection(
+            "Taasika - a timetable generation software",
+            "Software for automated and semi-automated generation of timetable targetted at educational\
+            institutes, codebase at <a target='_blank'\
+            href='https://gitlab.com/AniketBhadane/taasika/blob/automate/automate.php'>GitLab</a>.",
+            "taasika0.JPG"
+            );
+
 
     });
 </script>
