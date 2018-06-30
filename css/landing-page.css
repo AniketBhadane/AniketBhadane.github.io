@@ -17,6 +17,16 @@ h6 {
     font-weight: 700;
 }
 
+li.nostyle {
+    list-style-type: none;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
 .btn-circle {
   width: 70px;
   height: 70px;
@@ -88,7 +98,7 @@ h6 {
 }
 
 .topnav {
-    font-size: 14px; 
+    font-size: 14px;
 }
 
 .lead {
@@ -142,15 +152,15 @@ h6 {
 	h3 {
 		margin-top: 10px;
 	}
-	
+
 	hr {
 		margin-top: 0px;
 	}
-	
+
 	.btn-circle {
 	  margin-top: 5px;
 	}
-	
+
     .intro-message {
 		padding-top: 2%;
         padding-bottom: 5%;
@@ -160,7 +170,7 @@ h6 {
 		padding-top: 5px;
 		padding-bottom: 25px;
 	}
-	
+
     .intro-message > h1 {
         font-size: 3em;
     }
@@ -178,7 +188,7 @@ h6 {
     .intro-divider {
         width: 100%;
     }
-	
+
 	.banner h2 {
         margin: 0;
         text-shadow: 2px 2px 3px rgba(0,0,0,0.6);

@@ -13,7 +13,7 @@
     <title>Aniket Bhadane</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-old.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="css/landing-page.css" rel="stylesheet">
@@ -22,14 +22,6 @@
     <!--link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"-->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 
 </head>
 
@@ -47,7 +39,7 @@
                     <div class="intro-message">
 						<img src="img/aniketbhadane.jpg" alt="" class="img-responsive center-block img-circle my_photo">
                         <h1>Aniket Bhadane</h1>
-                        <h3>Student</h3>
+                        <h3>Employee in Avaya</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
 							<li>
@@ -155,7 +147,7 @@
 					<!--strong>जय महाराष्ट्र</strong-->
 
                     <p class="copyright text-muted">
-                        Copyright &copy; Aniket Bhadane 2017. All Rights Reserved
+                        Copyright &copy; Aniket Bhadane 2018. All Rights Reserved
                     </p>
 
                 </div>
@@ -164,10 +156,10 @@
     </footer>
 
     <!-- jQuery -->
-    <script src="js/jquery.js"></script>
+    <script src="js/jquery-old.js"></script>
 
-    <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <!-- Bootstrap JavaScript -->
+    <script src="js/bootstrap-old.js"></script>
 
 	<!-- Plugin JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
@@ -220,7 +212,7 @@
                 <div class="content-section-a">\
                     <div class="container">\
                         <div class="row">\
-                            <div class="col-lg-5 col-sm-6">\
+                            <div class="col-lg-5 col-sm-6 vcenter">\
                                 <hr class="section-heading-spacer">\
                                 <div class="clearfix"></div>\
                                 <h2 class="section-heading">'
@@ -229,8 +221,8 @@
                                 <p class="lead">'
                                 + desc +
                                 '</p>\
-                            </div>\
-                            <div class="col-lg-5 col-lg-offset-2 col-sm-6">\
+                            </div><!--\
+                            --><div class="col-lg-5 col-lg-offset-2 col-sm-6 vcenter">\
                                 <img class="img-responsive" src="img/' + img + '" alt="">\
                             </div>\
                         </div>\
@@ -247,7 +239,7 @@
                 <div class="content-section-b">\
                     <div class="container">\
                         <div class="row">\
-                            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6 col-sm-6">\
+                            <div class="col-lg-5 col-lg-offset-1 col-sm-push-6 col-sm-6 vcenter">\
                                 <hr class="section-heading-spacer">\
                                 <div class="clearfix"></div>\
                                 <h2 class="section-heading">'
@@ -256,8 +248,8 @@
                                 <p class="lead">'
                                 + desc +
                                 '</p>\
-                            </div>\
-                            <div class="col-sm-pull-6 col-sm-6">\
+                            </div><!--\
+                            --><div class="col-sm-pull-6 col-sm-6 vcenter">\
                                 <img class="img-responsive" src="img/' + img + '" alt="">\
                             </div>\
                         </div>\
@@ -279,15 +271,37 @@
         }
 
         addContentSection(
-            "NVIDIA:<br>Tools Development Engineer",
+            "Avaya:<br>Software Engineering Senior Technical Associate",
+            "Current - ...",
+            "Avaya_Logo.png"
+            );
+
+        addContentSection(
+            "Nvidia:<br>Tools Development Engineer",
             "Developed Tools Framework for Tegra SoC used in Autonomous Vehicles.",
             "n2.png"
             );
 
         addContentSection(
-            "Ongoing MTech Research Project on Phishing",
-            "Will be updated soon...",
-            "phish.JPG"
+            "MTech Research Project:<br/>Detecting Lateral Spear Phishing Attacks in Organizations",
+            "<ol start='0'>\
+            <li class='nostyle'>Publications:</li>\
+            <li><a href='#' target='_blank'>Detecting Lateral Spear Phishing Attacks in Organizations</a></li>\
+            <li><a href='#' target='_blank'>State of Research on Phishing and Recent Trends of Attacks</a></li>\
+            <li><a href='#' target='_blank'>State of Research on User Psychology involved in Phishing Attacks</a></li>\
+            <li><a href='#' target='_blank'>State of Research on User Training against Phishing with Recent Trends of Attacks</a></li>\
+            </ol>\
+            <ul>\
+            <li><a href='AB-dissertation-en.pdf' target='_blank'>Dissertation</a></li>\
+            <li><a href='AB-dissertation-mr.pdf' target='_blank'>Dissertation in Marathi</a></li>\
+            </ul>",
+            "mtech.gif"
+            );
+
+        addContentSection(
+            "Crypto Portfolio Tracker",
+            "A cryptocurrency portfolio tracker to quickly take investment decisions and have better view of my portfolio.",
+            "portfolio_obf.PNG"
             );
 
         addContentSection(
@@ -295,14 +309,6 @@
             "Published 2 Patents in the field of Cyber Security.\
             The proposed and developed Authentication system is a replacement for traditional passwords.",
             "patent.JPG"
-            );
-
-        addContentSection(
-            "CMS for Cusrow Wadia Institute",
-            "Developed Content Sharing and Control System used by Cusrow Wadia Institute of Technology,\
-            <!--live at <a target='_blank' href='http://www.cwitpune.com/cms'>CWIT site</a>, and-->\
-            codebase at <a target='_blank' href='https://github.com/AniketBhadane/cwit'>GitHub</a>.",
-            "Capture2.JPG"
             );
 
         addContentSection(
@@ -315,13 +321,20 @@
             );
 
         addContentSection(
+            "CMS for Cusrow Wadia Institute",
+            "Developed Content Sharing and Control System used by Cusrow Wadia Institute of Technology,\
+            <!--live at <a target='_blank' href='http://www.cwitpune.com/cms'>CWIT site</a>, and-->\
+            codebase at <a target='_blank' href='https://github.com/AniketBhadane/cwit'>GitHub</a>.",
+            "Capture2.JPG"
+            );
+
+        addContentSection(
             "Taasika - a timetable generation software",
             "Software for automated and semi-automated generation of timetable targetted at educational\
             institutes, by Abhijit A. M. and Vinay Desai in COEP, codebase at <a target='_blank'\
             href='https://gitlab.com/AniketBhadane/taasika/blob/automate/automate.php'>GitLab</a>.",
-            "taasika0.JPG"
+            "taasika1.JPG"
             );
-
 
     });
 </script>
