@@ -8256,10 +8256,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(MapService, [{
         key: "getLtp",
         value: function getLtp(strike) {
-          if (strike === 'NIFTY50' || strike === 'NIFTY') {
-            return 15183;
-          }
-
           return this.ltpMap.get(strike);
         }
       }, {

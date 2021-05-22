@@ -5364,9 +5364,6 @@ class MapService {
         this.intradayData = new Array();
     }
     getLtp(strike) {
-        if (strike === 'NIFTY50' || strike === 'NIFTY') {
-            return 15183;
-        }
         return this.ltpMap.get(strike);
     }
     setLtp(strike, val) {
