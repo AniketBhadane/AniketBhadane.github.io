@@ -1380,12 +1380,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.oc_instru = 'NIFTY';
         this.oc_year = 2021;
         this.oc_month = 5;
-        this.oc_date = 20;
+        this.oc_date = 27;
         this.is_monthly_expiry = false;
         this.checked_instrument = 'USDINR';
-        this.oc_range_higher = 15500; // 24200
+        this.oc_range_higher = 16000; // 24200
 
-        this.oc_range_lower = 13500; // 21000
+        this.oc_range_lower = 14000; // 21000
 
         this.oc_range_multiple = 50;
         this.oc_strikes = [];
