@@ -5718,7 +5718,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           }
 
           console.log('ltp is: ', ltp);
-          var range = 1000;
+          var range = 2000;
           var increment = 1;
 
           if (this.instru === 'BANKNIFTY') {
@@ -8019,13 +8019,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       '21MAR': new Date(2021, 2, 26),
       '21APR': new Date(2021, 3, 29),
       '21MAY': new Date(2021, 4, 27),
-      '21JUN': new Date(2021, 5, 25),
+      '21JUN': new Date(2021, 5, 24),
       '21JUL': new Date(2021, 6, 29),
       '21AUG': new Date(2021, 7, 27),
-      '21SEP': new Date(2021, 8, 24),
+      '21SEP': new Date(2021, 8, 30),
       '21OCT': new Date(2021, 9, 26),
       '21NOV': new Date(2021, 10, 28),
-      '21DEC': new Date(2021, 11, 27)
+      '21DEC': new Date(2021, 11, 30)
     };
     AppConstants.monthlyExpiryDatesUSDINR = {
       '21JAN': new Date(2021, 0, 27),
