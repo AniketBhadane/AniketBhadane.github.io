@@ -4143,7 +4143,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "getZerodhaMargin",
-        value: function getZerodhaMargin(instru, curr_positions_trades, exchange) {
+        value: function getZerodhaMargin(instru, month, curr_positions_trades, exchange) {
           var formData = new FormData();
           formData.append('action', 'calculate');
           /*
@@ -4189,17 +4189,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
               var exch = 'CDS';
 
-              if (exchange) {
-                exch = exchange;
+              if (exchange.includes('NIFTY')) {
+                exch = 'NFO';
               }
 
-              var scrip = instru + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].year + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].USDINR_FUT_MONTH;
+              var qtyMultiple = 1000;
+
+              if (exchange === 'NIFTY') {
+                qtyMultiple = 1;
+              } else if (exchange === 'BANKNIFTY') {
+                qtyMultiple = 1;
+              }
+
+              var scrip = instru + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].year + month;
               formData.append('exchange[]', exch);
               formData.append('product[]', 'OPT');
               formData.append('scrip[]', scrip);
               formData.append('option_type[]', type);
               formData.append('strike_price[]', pos_strike);
-              formData.append('qty[]', Math.abs(element.qty) / 1000);
+              formData.append('qty[]', Math.abs(element.qty) / qtyMultiple);
               formData.append('trade[]', trade);
             }
           }
@@ -6145,8 +6153,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           error => {
             console.log('getMargin error', error);
           }); */
+          var d = new Date(this.expiryDate); // let month = d.toLocaleString('default', { month: 'short' }).toUpperCase();
+
+          var month = _common_application_constant__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].monthsMapping[d.getMonth() + 1];
+
           console.log('getMargin: ', this.curr_positions_trades);
-          this.appService.getZerodhaMargin(this.instru, this.curr_positions_trades).subscribe(function (res) {
+          this.appService.getZerodhaMargin(this.instru, month, this.curr_positions_trades, this.instru).subscribe(function (res) {
             console.log('getMargin: ', res);
 
             if (res.total) {
@@ -8215,7 +8227,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       'NOV': 3244,
       'DEC': 1421
     };
-    AppConstants.USDINR_FUT_MONTH = 'APR';
+    AppConstants.USDINR_FUT_MONTH = new Date().toLocaleString('default', {
+      month: 'short'
+    }).toUpperCase(); // 'JUL';
+
     AppConstants.abMastersContract = new Map();
     AppConstants.monthsMapping = {
       1: 'JAN',
@@ -8272,12 +8287,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       '21APR': new Date(2021, 3, 28),
       '21MAY': new Date(2021, 4, 27),
       '21JUN': new Date(2021, 5, 25),
-      '21JUL': new Date(2021, 6, 29),
+      '21JUL': new Date(2021, 6, 28),
       '21AUG': new Date(2021, 7, 27),
-      '21SEP': new Date(2021, 8, 24),
+      '21SEP': new Date(2021, 8, 28),
       '21OCT': new Date(2021, 9, 26),
       '21NOV': new Date(2021, 10, 28),
-      '21DEC': new Date(2021, 11, 27)
+      '21DEC': new Date(2021, 11, 29)
     };
     AppConstants.dummyResPos = '{"s":"ok","netPositions":[{"crossCurrency":"N","qty":16,"realized_profit":0,"id":"NSE:JPASSOCIAT-EQ-CNC","unrealized_profit":0.32,"buyQty":16,"sellAvg":0,"sellQty":0,"buyAvg":4.78,"symbol":"NSE:JPASSOCIAT-EQ","fyToken":"101000000011460","slNo":0,"avgPrice":4.78,"segment":"E","dummy":" ","rbiRefRate":1,"side":1,"netQty":16,"pl":0.32,"productType":"CNC","netAvg":4.78,"qtyMulti_com":1},{"crossCurrency":"N","qty":16,"realized_profit":0,"id":"NSE:JPASSOCIAT-EQ-CNC","unrealized_profit":0.32,"buyQty":16,"sellAvg":0,"sellQty":0,"buyAvg":4.78,"symbol":"NSE:JPASSOCIAT-EQ","fyToken":"101000000011460","slNo":0,"avgPrice":4.78,"segment":"E","dummy":" ","rbiRefRate":1,"side":1,"netQty":16,"pl":0.32,"productType":"CNC","netAvg":4.78,"qtyMulti_com":1}],"message":""}';
     AppConstants.dummyResOrd = '{"s":"ok","message":"","orderBook":[{"status":5,"symbol":"NSE:TCSEQ","qty":1,"orderNumStatus":"119050790482:5","dqQtyRem":5,"orderDateTime":"07-May-2019 15:18:04","orderValidity":"IOC","fyToken":"101000000011536","slNo":1,"message":"RMS:119050790482:Not allowed to trade in NSE EQ","segment":"E","id":"119050790482","stopPrice":0,"exchOrdId":0,"remainingQuantity":1,"filledQty":0,"limitPrice":2155,"offlineOrder":"false","instrument":"EQUITY","productType":"CNC","type":1,"side":1,"discloseQty":5,"tradedPrice":0}]}';
