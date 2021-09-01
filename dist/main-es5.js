@@ -8229,7 +8229,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     };
     AppConstants.USDINR_FUT_MONTH = new Date().toLocaleString('default', {
       month: 'short'
-    }).toUpperCase(); // 'JUL';
+    }).toUpperCase().substring(0, 3); // 'JUL';
 
     AppConstants.abMastersContract = new Map();
     AppConstants.monthsMapping = {

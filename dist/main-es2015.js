@@ -5303,7 +5303,7 @@ AppConstants.USDINRFUTCodes = {
     'NOV': 3244,
     'DEC': 1421,
 };
-AppConstants.USDINR_FUT_MONTH = new Date().toLocaleString('default', { month: 'short' }).toUpperCase(); // 'JUL';
+AppConstants.USDINR_FUT_MONTH = new Date().toLocaleString('default', { month: 'short' }).toUpperCase().substring(0, 3); // 'JUL';
 AppConstants.abMastersContract = new Map();
 AppConstants.monthsMapping = {
     1: 'JAN',
