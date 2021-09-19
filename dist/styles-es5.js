@@ -81,7 +81,7 @@
 
     exports.push([module.i, "/* You can add global styles to this file, and also import other style files */", "", {
       "version": 3,
-      "sources": ["E:\\Code\\trades-a/src\\styles.scss"],
+      "sources": ["/Users/aniket/Desktop/general/trades-a-19sep/src/styles.scss"],
       "names": [],
       "mappings": "AAAA,8EAAA",
       "file": "styles.scss",
@@ -527,11 +527,11 @@
   /***/
   function _(module, exports, __webpack_require__) {
     __webpack_require__(
-    /*! E:\Code\trades-a\src\styles.scss */
+    /*! /Users/aniket/Desktop/general/trades-a-19sep/src/styles.scss */
     "./src/styles.scss");
 
     module.exports = __webpack_require__(
-    /*! E:\Code\trades-a\node_modules\bootstrap\dist\css\bootstrap.min.css */
+    /*! /Users/aniket/Desktop/general/trades-a-19sep/node_modules/bootstrap/dist/css/bootstrap.min.css */
     "./node_modules/bootstrap/dist/css/bootstrap.min.css");
     /***/
   }
