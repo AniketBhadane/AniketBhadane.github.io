@@ -675,7 +675,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function AppComponent_div_14_ng_container_20_tr_11_Template(rf, ctx) {
+    function AppComponent_div_14_ng_container_24_tr_15_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "tr");
 
@@ -701,7 +701,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function AppComponent_div_14_ng_container_20_Template(rf, ctx) {
+    function AppComponent_div_14_ng_container_24_Template(rf, ctx) {
       if (rf & 1) {
         var _r11 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
@@ -729,9 +729,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "button", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_div_14_ng_container_20_Template_button_click_9_listener() {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "td");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "td");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "button", 19);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function AppComponent_div_14_ng_container_24_Template_button_click_13_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r11);
 
           var a_r7 = ctx.$implicit;
@@ -741,7 +753,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return ctx_r10.loadChart(a_r7);
         });
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, "Chart");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Chart");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -749,7 +761,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](11, AppComponent_div_14_ng_container_20_tr_11_Template, 4, 7, "tr", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](15, AppComponent_div_14_ng_container_24_tr_15_Template, 4, 7, "tr", 10);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementContainerEnd"]();
       }
@@ -770,6 +782,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](a_r7.currency2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](a_r7.numAboveO);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](a_r7.avgAbove0);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
 
@@ -861,15 +881,27 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](18, "th", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "th", 13);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, "Num Above 0");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "th", 13);
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "Avg above 0");
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](22, "th", 13);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "tbody");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "tbody");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](20, AppComponent_div_14_ng_container_20_Template, 12, 4, "ng-container", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](24, AppComponent_div_14_ng_container_24_Template, 16, 6, "ng-container", 14);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -881,7 +913,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       if (rf & 2) {
         var ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](24);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx_r1.chart_table);
       }
@@ -1202,16 +1234,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "loadChartTable",
         value: function loadChartTable() {
+          var _this4 = this;
+
           // for (let [key, value] of Object.entries(localStorage)) {
           // for (let key of Object.keys(localStorage)) {
           console.log(this.importedData);
 
-          var _iterator = _createForOfIteratorHelper(this.importedData.keys()),
+          var _iterator = _createForOfIteratorHelper(this.importedData),
               _step;
 
           try {
-            for (_iterator.s(); !(_step = _iterator.n()).done;) {
-              var key = _step.value;
+            var _loop = function _loop() {
+              var _step$value = _slicedToArray(_step.value, 2),
+                  key = _step$value[0],
+                  value = _step$value[1];
+
               // console.log(`${key}`);
               var c = new _common_models__WEBPACK_IMPORTED_MODULE_2__["ChartData"]();
               c.key = key;
@@ -1219,8 +1256,36 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               c.pair = keysplit[0];
               c.currency1 = keysplit[1];
               c.currency2 = keysplit[2];
-              this.chart_table.push(c);
-              this.chart_table.sort(function (a, b) {
+              var rois = []; // console.log('value:', value);
+
+              var values = JSON.parse(value);
+              values.forEach(function (e) {
+                if (e[1] > 0) {
+                  rois.push(e[1]);
+                }
+              });
+              var sum = 0;
+              rois.forEach(function (e) {
+                sum += e;
+              });
+              var avg = sum / rois.length;
+              avg = Math.round((avg + 0.00001) * 100) / 100;
+
+              if (isNaN(avg)) {
+                c.avgAbove0 = '-';
+              } else {
+                c.avgAbove0 = avg.toString();
+              }
+
+              if (isNaN(avg)) {
+                c.numAboveO = '-';
+              } else {
+                c.numAboveO = rois.length.toString();
+              }
+
+              _this4.chart_table.push(c);
+
+              _this4.chart_table.sort(function (a, b) {
                 /* if (a.pair === 'inr') {
                   return -1;
                 } */
@@ -1230,6 +1295,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   return 1;
                 }
               });
+            };
+
+            for (_iterator.s(); !(_step = _iterator.n()).done;) {
+              _loop();
             }
           } catch (err) {
             _iterator.e(err);
@@ -1279,8 +1348,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           console.log('exporting: ', export_file_name);
           var str = '';
 
-          for (var _i = 0, _Object$entries = Object.entries(localStorage); _i < _Object$entries.length; _i++) {
-            var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
+          for (var _i2 = 0, _Object$entries = Object.entries(localStorage); _i2 < _Object$entries.length; _i2++) {
+            var _Object$entries$_i = _slicedToArray(_Object$entries[_i2], 2),
                 key = _Object$entries$_i[0],
                 value = _Object$entries$_i[1];
 
@@ -1308,7 +1377,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "importFile",
         value: function importFile(fileInput) {
-          var _this4 = this;
+          var _this5 = this;
 
           var fileReaded = fileInput.target.files[0];
           var reader = new FileReader();
@@ -1317,7 +1386,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           reader.onload = function (e) {
             var text = String(reader.result); // console.log('text:', text);
 
-            _this4.loadImportedData(text);
+            _this5.loadImportedData(text);
           };
         }
       }, {
@@ -1437,7 +1506,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](13, AppComponent_table_13_Template, 21, 1, "table", 9);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, AppComponent_div_14_Template, 21, 1, "div", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](14, AppComponent_div_14_Template, 25, 1, "div", 10);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
