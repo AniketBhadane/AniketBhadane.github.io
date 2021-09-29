@@ -1258,7 +1258,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               c.currency2 = keysplit[2];
               var rois = []; // console.log('value:', value);
 
-              var values = JSON.parse(value);
+              var values = value;
+
+              if (!Array.isArray(value)) {
+                values = JSON.parse(value);
+              }
+
               values.forEach(function (e) {
                 if (e[1] > 0) {
                   rois.push(e[1]);

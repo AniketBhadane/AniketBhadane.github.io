@@ -847,7 +847,10 @@ class AppComponent {
             c.currency2 = keysplit[2];
             let rois = [];
             // console.log('value:', value);
-            let values = JSON.parse(value);
+            let values = value;
+            if (!Array.isArray(value)) {
+                values = JSON.parse(value);
+            }
             values.forEach(e => {
                 if (e[1] > 0) {
                     rois.push(e[1]);
