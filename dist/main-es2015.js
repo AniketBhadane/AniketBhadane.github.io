@@ -3095,7 +3095,13 @@ class ChartComponent {
                 pointRadius: 0
             },
             {
-                borderColor: 'grey',
+                borderColor: '#35A4EB',
+                borderWidth: 2,
+                pointRadius: 0,
+                borderDash: [10, 5]
+            },
+            {
+                borderColor: 'black',
                 borderWidth: 1,
                 pointRadius: 0,
                 borderDash: [10, 5]
@@ -3834,7 +3840,6 @@ class ChartComponent {
         let upper_range = ltp + range;
         let pnlForBreakeven = [];
         let pnlExitedPos = 0;
-        let overlayPos = [];
         let actualPos = [];
         if (this.curr_positions_trades) {
             this.curr_positions_trades.forEach(element => {
@@ -3842,28 +3847,29 @@ class ChartComponent {
                     let pospnl = this.getPnL(element);
                     pnlExitedPos += pospnl;
                 }
-                if (this.payoff_overlay && element.selected === true) {
-                    overlayPos.push(element);
-                }
                 if (this.payoff_overlay && element.selectedActual === true) {
                     actualPos.push(element);
                 }
             });
-            console.log('overlay pos:', overlayPos);
             for (let point = lower_range; point <= upper_range; point += increment) {
                 let pnl = 0;
                 let t0 = 0;
                 let overlayPnL = 0;
+                let overlayT0 = 0;
                 let arr = [];
                 point = (Math.round((point + 0.00001) * 100) / 100); // for USDINR two decimal places
                 if (this.payoff_overlay) {
-                    overlayPnL += this.calculatePnLAtPoint(overlayPos, point, ltp, false)[0];
+                    arr = this.calculatePnLAtPoint(this.curr_positions_trades, point, ltp, true);
+                    overlayPnL += arr[0];
                     overlayPnL += pnlExitedPos;
                     overlayPnL = (Math.round((overlayPnL + 0.00001) * 100) / 100);
-                    arr = this.calculatePnLAtPoint(actualPos, point, ltp, true);
+                    overlayT0 += arr[1];
+                    overlayT0 += pnlExitedPos;
+                    overlayT0 = (Math.round((overlayT0 + 0.00001) * 100) / 100);
+                    arr = this.calculatePnLAtPoint(actualPos, point, ltp, false);
                 }
                 else {
-                    arr = this.calculatePnLAtPoint(this.curr_positions_trades, point, ltp, true);
+                    arr = this.calculatePnLAtPoint(this.curr_positions_trades, point, ltp, false);
                 }
                 pnl += arr[0];
                 pnl += pnlExitedPos;
@@ -3872,7 +3878,7 @@ class ChartComponent {
                 t0 += pnlExitedPos;
                 t0 = (Math.round((t0 + 0.00001) * 100) / 100);
                 pnlForBreakeven.push(pnl);
-                myPayoff.chart.push({ Final: pnl, StockPrice: point, Today: t0, Overlay: overlayPnL });
+                myPayoff.chart.push({ Final: pnl, StockPrice: point, Today: t0, Overlay: overlayPnL, OverlayT0: overlayT0 });
             }
             console.log('myPayoff:', myPayoff);
             this.payOffData = myPayoff;
@@ -3903,7 +3909,7 @@ class ChartComponent {
           console.log('getPayoff error', error);
         }); */
     }
-    calculatePnLAtPoint(positions, point, ltp, t0required) {
+    calculatePnLAtPoint(positions, point, ltp, overlay) {
         let pnl = 0;
         let t0 = 0;
         positions.forEach(element => {
@@ -3938,7 +3944,12 @@ class ChartComponent {
                 let d1 = new Date(expiry); // position expiry
                 let d2 = new Date(this.expiryDate);
                 if (d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate()) {
-                    pnl += this.calculatePnLAtPointForStrike(point, pos_strike, element.qty, element.entry, type);
+                    if (overlay && !element.selected) {
+                        pnl += this.getPnL(element);
+                    }
+                    else {
+                        pnl += this.calculatePnLAtPointForStrike(point, pos_strike, element.qty, element.entry, type);
+                    }
                 }
                 else {
                     let mkt_price = this.getLTP_strike({ scrip: element.scrip }, this.instru, expiry);
@@ -3952,7 +3963,11 @@ class ChartComponent {
                     t0_ = t0_ * element.qty;
                     pnl += t0_;
                 }
-                if (t0required) {
+                // T+0 calculation:
+                if (overlay && !element.selected) {
+                    t0 += this.getPnL(element);
+                }
+                else {
                     let mkt_price = this.getLTP_strike({ scrip: element.scrip }, this.instru, expiry);
                     let iv = this.calculateIV(ltp, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_3__["AppConstants"].INTEREST_RATE, expiry, typet0, mkt_price);
                     // console.log('*** ', pos_strike, typet0, expiry, iv, mkt_price);
@@ -4274,6 +4289,7 @@ class ChartComponent {
             this.labels = [];
             this.pnl = [];
             let overlay = [];
+            let overlayT0 = [];
             let t0 = [];
             this.zeroline = [];
             let count = 0;
@@ -4292,6 +4308,7 @@ class ChartComponent {
                     this.zeroline.push(0);
                     if (this.payoff_overlay) {
                         overlay.push(element.Overlay);
+                        overlayT0.push(element.OverlayT0);
                     }
                     /* overlay.push(10000); */
                 });
@@ -4303,6 +4320,7 @@ class ChartComponent {
                 { data: this.pnl, label: 'PnL' },
                 { data: t0, label: 'T+0', fill: false, },
                 { data: overlay, label: 'Overlay', fill: false, },
+                { data: overlayT0, label: 'OverlayT0', fill: false, },
             ];
             let ltp = 0;
             if (this.instru === 'USDINR') {

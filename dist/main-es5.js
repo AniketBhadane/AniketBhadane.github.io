@@ -5120,7 +5120,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           borderWidth: 1,
           pointRadius: 0
         }, {
-          borderColor: 'grey',
+          borderColor: '#35A4EB',
+          borderWidth: 2,
+          pointRadius: 0,
+          borderDash: [10, 5]
+        }, {
+          borderColor: 'black',
           borderWidth: 1,
           pointRadius: 0,
           borderDash: [10, 5]
@@ -6060,7 +6065,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           var upper_range = ltp + range;
           var pnlForBreakeven = [];
           var pnlExitedPos = 0;
-          var overlayPos = [];
           var actualPos = [];
 
           if (this.curr_positions_trades) {
@@ -6071,30 +6075,30 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 pnlExitedPos += pospnl;
               }
 
-              if (_this21.payoff_overlay && element.selected === true) {
-                overlayPos.push(element);
-              }
-
               if (_this21.payoff_overlay && element.selectedActual === true) {
                 actualPos.push(element);
               }
             });
-            console.log('overlay pos:', overlayPos);
 
             for (var point = lower_range; point <= upper_range; point += increment) {
               var pnl = 0;
               var t0 = 0;
               var overlayPnL = 0;
+              var overlayT0 = 0;
               var arr = [];
               point = Math.round((point + 0.00001) * 100) / 100; // for USDINR two decimal places
 
               if (this.payoff_overlay) {
-                overlayPnL += this.calculatePnLAtPoint(overlayPos, point, ltp, false)[0];
+                arr = this.calculatePnLAtPoint(this.curr_positions_trades, point, ltp, true);
+                overlayPnL += arr[0];
                 overlayPnL += pnlExitedPos;
                 overlayPnL = Math.round((overlayPnL + 0.00001) * 100) / 100;
-                arr = this.calculatePnLAtPoint(actualPos, point, ltp, true);
+                overlayT0 += arr[1];
+                overlayT0 += pnlExitedPos;
+                overlayT0 = Math.round((overlayT0 + 0.00001) * 100) / 100;
+                arr = this.calculatePnLAtPoint(actualPos, point, ltp, false);
               } else {
-                arr = this.calculatePnLAtPoint(this.curr_positions_trades, point, ltp, true);
+                arr = this.calculatePnLAtPoint(this.curr_positions_trades, point, ltp, false);
               }
 
               pnl += arr[0];
@@ -6108,7 +6112,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 Final: pnl,
                 StockPrice: point,
                 Today: t0,
-                Overlay: overlayPnL
+                Overlay: overlayPnL,
+                OverlayT0: overlayT0
               });
             }
 
@@ -6142,7 +6147,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }
       }, {
         key: "calculatePnLAtPoint",
-        value: function calculatePnLAtPoint(positions, point, ltp, t0required) {
+        value: function calculatePnLAtPoint(positions, point, ltp, overlay) {
           var _this22 = this;
 
           var pnl = 0;
@@ -6188,7 +6193,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var d2 = new Date(_this22.expiryDate);
 
               if (d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate()) {
-                pnl += _this22.calculatePnLAtPointForStrike(point, pos_strike, element.qty, element.entry, type);
+                if (overlay && !element.selected) {
+                  pnl += _this22.getPnL(element);
+                } else {
+                  pnl += _this22.calculatePnLAtPointForStrike(point, pos_strike, element.qty, element.entry, type);
+                }
               } else {
                 var mkt_price = _this22.getLTP_strike({
                   scrip: element.scrip
@@ -6206,9 +6215,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 t0_ = t0_ - element.entry;
                 t0_ = t0_ * element.qty;
                 pnl += t0_;
-              }
+              } // T+0 calculation:
 
-              if (t0required) {
+
+              if (overlay && !element.selected) {
+                t0 += _this22.getPnL(element);
+              } else {
                 var _mkt_price2 = _this22.getLTP_strike({
                   scrip: element.scrip
                 }, _this22.instru, expiry);
@@ -6595,6 +6607,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             this.labels = [];
             this.pnl = [];
             var overlay = [];
+            var overlayT0 = [];
             var t0 = [];
             this.zeroline = [];
             var count = 0;
@@ -6620,6 +6633,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
                 if (_this25.payoff_overlay) {
                   overlay.push(element.Overlay);
+                  overlayT0.push(element.OverlayT0);
                 }
                 /* overlay.push(10000); */
 
@@ -6639,6 +6653,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }, {
               data: overlay,
               label: 'Overlay',
+              fill: false
+            }, {
+              data: overlayT0,
+              label: 'OverlayT0',
               fill: false
             }];
             var ltp = 0;
