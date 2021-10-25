@@ -1315,22 +1315,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "loadChart",
         value: function loadChart(a) {
           // let values = JSON.parse(localStorage.getItem(a.key));
-          var values = this.importedData.get(a.key);
-          console.log('values', values);
-          var labels = [];
-          var rois = [];
-          values.forEach(function (e) {
-            labels.push(e[0]); // date
+          if (this.selectedKey === a.key) {
+            this.selectedKey = '';
+          } else {
+            var values = this.importedData.get(a.key);
+            console.log('values', values);
+            var labels = [];
+            var rois = [];
+            values.forEach(function (e) {
+              labels.push(e[0]); // date
 
-            rois.push(e[1]); // roi 
-          });
-          this.i1ChartLabels = labels; // dates
+              rois.push(e[1]); // roi 
+            });
+            this.i1ChartLabels = labels; // dates
 
-          this.i1ChartData = [{
-            data: rois,
-            label: 'ROI'
-          }];
-          this.selectedKey = a.key;
+            this.i1ChartData = [{
+              data: rois,
+              label: 'ROI'
+            }];
+            this.selectedKey = a.key;
+          }
         }
       }, {
         key: "getDateInFormat",
@@ -1450,7 +1454,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       selectors: [["app-root"]],
       decls: 16,
       vars: 5,
-      consts: [[1, "main-content"], [1, "form-check-inline", "mb-3"], ["type", "checkbox", "value", "", "id", "auto-refresh", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "auto-refresh", 1, "form-check-label"], [1, "form-check-inline"], ["type", "radio", "value", "arbitrage", "id", "table-arbitrage", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "table-arbitrage", 1, "form-check-label"], ["type", "radio", "value", "chart", "id", "table-chart", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "table-chart", 1, "form-check-label"], ["class", "table table-sm table-bordered shadow mb-0 text-center", 4, "ngIf"], [4, "ngIf"], [1, "table", "table-sm", "table-bordered", "shadow", "mb-0", "text-center"], [1, "thead-light"], ["scope", "col", 1, "table-col"], [4, "ngFor", "ngForOf"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-2", "mr-2", 3, "click"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-2", 3, "click"], ["type", "file", "name", "File Upload 1", "accept", "*", 2, "display", "none", 3, "change"], ["fileImportInput1", ""], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", 3, "click"], ["colspan", "10"], [1, "chart-chart", 2, "width", "50%"], ["baseChart", "", "width", "2", "height", "1", 3, "datasets", "labels", "options", "colors", "legend", "chartType", "plugins"]],
+      consts: [[1, "main-content"], [1, "form-check-inline", "mb-3"], ["type", "checkbox", "value", "", "id", "auto-refresh", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "auto-refresh", 1, "form-check-label"], [1, "form-check-inline"], ["type", "radio", "value", "arbitrage", "id", "table-arbitrage", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "table-arbitrage", 1, "form-check-label"], ["type", "radio", "value", "chart", "id", "table-chart", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "table-chart", 1, "form-check-label"], ["class", "table table-sm table-bordered shadow mb-0 text-center", 4, "ngIf"], [4, "ngIf"], [1, "table", "table-sm", "table-bordered", "shadow", "mb-0", "text-center"], [1, "thead-light"], ["scope", "col", 1, "table-col"], [4, "ngFor", "ngForOf"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-2", "mr-2", 3, "click"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-2", 3, "click"], ["type", "file", "name", "File Upload 1", "accept", "*", 2, "display", "none", 3, "change"], ["fileImportInput1", ""], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", 3, "click"], ["colspan", "10"], [1, "chart-chart"], ["baseChart", "", "width", "2", "height", "1", 3, "datasets", "labels", "options", "colors", "legend", "chartType", "plugins"]],
       template: function AppComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0);
