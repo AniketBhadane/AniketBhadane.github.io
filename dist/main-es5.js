@@ -1511,6 +1511,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         value: function ngOnInit() {
           var _this2 = this;
 
+          this.mapService.setLtp('NIFTY50', 18000);
+          this.mapService.setLtp('BANKNIFTY', 40000);
           var refresh_interval = setInterval(function () {
             _this2.updateSpotStrike();
           }, 5000);
@@ -1611,151 +1613,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             typet0 = _common_models__WEBPACK_IMPORTED_MODULE_2__["PositionTypeForPayOff"].PE;
           }
 
-          var iv = this.calculateIV(spot, strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].INTEREST_RATE, date_expiry, typet0, mkt_price);
+          var iv = this.appService.calculateIV(this.oc_instru, spot, strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].INTEREST_RATE, date_expiry, typet0, mkt_price);
           return iv;
         }
       }, {
         key: "getDelta",
         value: function getDelta(symbol, strike, type) {
-          //let expiry_date = new Date(this.oc_year, this.oc_month - 1, this.oc_date).toDateString();
-          var date_expiry = new Date(this.oc_year, this.oc_month - 1, this.oc_date);
-
-          if (this.oc_instru === 'USDINR') {
-            date_expiry.setHours(12, 30, 0);
-          } else {
-            date_expiry.setHours(15, 30, 0);
-          }
-
-          var date_now = new Date(); // date_now.setDate(date_now.getDate() + 0);
-
-          var seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000);
-          var minutes = Math.floor(seconds / 60);
-          var hours = Math.floor(minutes / 60);
-          var delta_t = Math.floor(hours / 24) / 365.0; // time
-
-          var underlying = 'NIFTY50';
-
-          if (this.oc_instru === 'BANKNIFTY') {
-            underlying = 'BANKNIFTY';
-          } else if (this.oc_instru === 'USDINR') {
-            underlying = 'USDINR_FUT';
-          }
-
-          var spot = this.getLtp(underlying);
-          var mkt_price = this.getLtp(symbol + type);
-          var typet0 = null;
-
-          if (type === 'CE') {
-            typet0 = _common_models__WEBPACK_IMPORTED_MODULE_2__["PositionTypeForPayOff"].CE;
-          }
-
-          if (type === 'PE') {
-            typet0 = _common_models__WEBPACK_IMPORTED_MODULE_2__["PositionTypeForPayOff"].PE;
-          }
-
-          var iv = this.calculateIV(spot, strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].INTEREST_RATE, date_expiry, typet0, mkt_price);
-          var volt = iv / 100;
-          var int_rate = _common_application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].INTEREST_RATE / 100; // console.log(spot, date_expiry, mkt_price, iv);
-
-          var d1 = (Math.log(spot / strike) + (int_rate + Math.pow(volt, 2) / 2) * delta_t) / (volt * Math.sqrt(delta_t));
-          var delta = 0;
-
-          if (type === 'CE') {
-            delta = this.getCDF(d1);
-          } else if (type === 'PE') {
-            delta = this.getCDF(d1) - 1;
-          }
-
-          delta = Math.round((delta + 0.00001) * 100) / 100;
+          var ltp = this.getLtp(symbol + type);
+          var expiry = new Date(this.oc_year, this.oc_month - 1, this.oc_date);
+          var delta = this.appService.getDelta(this.oc_instru, strike, type, expiry, ltp);
           return delta;
-        }
-      }, {
-        key: "calculateIV",
-        value: function calculateIV(spot, strike, int_rate, expiry_date, type, mkt_price) {
-          var high = 80;
-          var low = 0;
-          var iv = 0;
-          var date_expiry = new Date(expiry_date);
-          var date_now = new Date();
-          var seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000);
-          var minutes = Math.floor(seconds / 60);
-          var hours = Math.floor(minutes / 60);
-          var delta_t = Math.floor(hours / 24) / 365.0;
-
-          if (hours < 24) {
-            return 0;
-          }
-
-          while (high - low > 0.0001) {
-            if (this.calculateT0AtPoint(spot, strike, int_rate, expiry_date, (high + low) / 2, type) > mkt_price) {
-              high = (high + low) / 2;
-            } else {
-              low = (high + low) / 2;
-            }
-          }
-
-          iv = (high + low) / 2;
-          return iv;
-        }
-      }, {
-        key: "calculateT0AtPoint",
-        value: function calculateT0AtPoint(spot, strike, int_rate, expiry_date, volatility, type, add_days) {
-          var t0 = 0;
-          var date_expiry = new Date(expiry_date);
-
-          if (this.oc_instru === 'USDINR') {
-            date_expiry.setHours(12, 30, 0);
-          } else {
-            date_expiry.setHours(15, 30, 0);
-          }
-
-          if (!add_days) {
-            add_days = 0;
-          }
-
-          var date_now = new Date();
-          date_now.setDate(date_now.getDate() + add_days);
-          var seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000);
-          var minutes = Math.floor(seconds / 60);
-          var hours = Math.floor(minutes / 60);
-          var delta_t = Math.floor(hours / 24) / 365.0; // time
-
-          if (hours < 12) {
-            return 0;
-          } else {
-            var volt = volatility / 100;
-            int_rate = int_rate / 100;
-            var d1 = (Math.log(spot / strike) + (int_rate + Math.pow(volt, 2) / 2) * delta_t) / (volt * Math.sqrt(delta_t)); // let d2 = (Math.log(spot / strike) + (int_rate - (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
-
-            var d2 = d1 - volt * Math.sqrt(delta_t);
-            var fv_strike = strike * Math.exp(-1 * int_rate * delta_t);
-
-            if (type === _common_models__WEBPACK_IMPORTED_MODULE_2__["PositionTypeForPayOff"].CE) {
-              t0 = spot * this.getCDF(d1) - fv_strike * this.getCDF(d2);
-            }
-
-            if (type === _common_models__WEBPACK_IMPORTED_MODULE_2__["PositionTypeForPayOff"].PE) {
-              t0 = fv_strike * this.getCDF(-1 * d2) - spot * this.getCDF(-1 * d1);
-            }
-          }
-
-          return t0;
-        }
-      }, {
-        key: "getCDF",
-        value: function getCDF(x) {
-          var standardDeviation = Math.sqrt(this.variance);
-          return 0.5 * this.erfc(-(x - this.mean) / (standardDeviation * Math.sqrt(2)));
-        } // Complementary error function
-        // From Numerical Recipes in C 2e p221
-
-      }, {
-        key: "erfc",
-        value: function erfc(x) {
-          var z = Math.abs(x);
-          var t = 1 / (1 + z / 2);
-          var r = t * Math.exp(-z * z - 1.26551223 + t * (1.00002368 + t * (0.37409196 + t * (0.09678418 + t * (-0.18628806 + t * (0.27886807 + t * (-1.13520398 + t * (1.48851587 + t * (-0.82215223 + t * 0.17087277)))))))));
-          return x >= 0 ? r : 2 - r;
         }
       }, {
         key: "getUSDINRMonth",
@@ -4200,42 +4067,54 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony import */
 
 
-    var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    var _common_models__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! ./common/models */
+    "./src/app/common/models.ts");
+    /* harmony import */
+
+
+    var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
     /*! @angular/common/http */
     "./node_modules/@angular/common/__ivy_ngcc__/fesm2015/http.js");
     /* harmony import */
 
 
-    var _common_fyers_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(
+    var _common_fyers_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
     /*! ./common/fyers.service */
     "./src/app/common/fyers.service.ts");
     /* harmony import */
 
 
-    var _common_aliceblue_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(
+    var _common_aliceblue_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
     /*! ./common/aliceblue.service */
     "./src/app/common/aliceblue.service.ts");
     /* harmony import */
 
 
-    var _common_angel_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(
+    var _common_angel_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
     /*! ./common/angel.service */
     "./src/app/common/angel.service.ts");
     /* harmony import */
 
 
-    var _common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(
+    var _common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
     /*! ./common/angelwebsocket.service */
     "./src/app/common/angelwebsocket.service.ts");
     /* harmony import */
 
 
-    var _common_websocket_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(
+    var _common_websocket_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(
     /*! ./common/websocket.service */
     "./src/app/common/websocket.service.ts");
+    /* harmony import */
+
+
+    var _common_map_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(
+    /*! ./common/map.service */
+    "./src/app/common/map.service.ts");
 
     var AppService = /*#__PURE__*/function () {
-      function AppService(http, fyersService, aliceblueService, angelService, angelWS, websocketService) {
+      function AppService(http, fyersService, aliceblueService, angelService, angelWS, websocketService, mapService) {
         _classCallCheck(this, AppService);
 
         this.http = http;
@@ -4244,8 +4123,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         this.angelService = angelService;
         this.angelWS = angelWS;
         this.websocketService = websocketService;
+        this.mapService = mapService;
         this.requestStatusEvent$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
         this.payOffEvent$ = new rxjs__WEBPACK_IMPORTED_MODULE_1__["Subject"]();
+        this.mean = 0;
+        this.variance = 1;
       }
 
       _createClass(AppService, [{
@@ -4256,6 +4138,183 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           } else if (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].SocketMode === 'angel') {
             return this.angelService.getMastersContract();
           }
+        }
+      }, {
+        key: "getDelta",
+        value: function getDelta(instru, strike, type, expiry, ltp) {
+          //let expiry_date = new Date(this.oc_year, this.oc_month - 1, this.oc_date).toDateString();
+          // let date_expiry = new Date(this.oc_year, this.oc_month - 1, this.oc_date);
+          var date_expiry = new Date(expiry);
+
+          if (instru === 'USDINR') {
+            date_expiry.setHours(12, 30, 0);
+          } else {
+            date_expiry.setHours(15, 30, 0);
+          }
+
+          var date_now = new Date(); // date_now.setDate(date_now.getDate() + 0);
+
+          var seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000);
+          var minutes = Math.floor(seconds / 60);
+          var hours = Math.floor(minutes / 60);
+          var delta_t = Math.floor(hours / 24) / 365.0; // time
+
+          var underlying = 'NIFTY50';
+
+          if (instru === 'BANKNIFTY') {
+            underlying = 'BANKNIFTY';
+          } else if (instru === 'USDINR') {
+            underlying = 'USDINR_FUT';
+          }
+
+          var spot = this.getLtp(underlying); // let mkt_price = this.getLtp(symbol + type);
+
+          var mkt_price = ltp;
+          var typet0 = null;
+
+          if (type === 'CE') {
+            typet0 = _common_models__WEBPACK_IMPORTED_MODULE_3__["PositionTypeForPayOff"].CE;
+          }
+
+          if (type === 'PE') {
+            typet0 = _common_models__WEBPACK_IMPORTED_MODULE_3__["PositionTypeForPayOff"].PE;
+          }
+
+          var iv = this.calculateIV(instru, spot, strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].INTEREST_RATE, date_expiry, typet0, mkt_price);
+          var volt = iv / 100;
+          var int_rate = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].INTEREST_RATE / 100; // console.log(spot, date_expiry, mkt_price, iv);
+
+          var d1 = (Math.log(spot / strike) + (int_rate + Math.pow(volt, 2) / 2) * delta_t) / (volt * Math.sqrt(delta_t));
+          var delta = 0;
+
+          if (type === 'CE') {
+            delta = this.getCDF(d1);
+          } else if (type === 'PE') {
+            delta = this.getCDF(d1) - 1;
+          }
+
+          delta = Math.round((delta + 0.00001) * 100) / 100;
+          return delta;
+        }
+      }, {
+        key: "getLtp",
+        value: function getLtp(strike) {
+          var oc_strike = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+          // console.log('strike', strike);
+          if (strike === 'USDINR_FUT') {
+            var expiryDate = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].monthlyExpiryDatesUSDINR[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].year + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].USDINR_FUT_MONTH];
+            var expiryMonth = null;
+
+            if (expiryDate.getMonth() + 1 === 10) {
+              expiryMonth = 'O';
+            } else if (expiryDate.getMonth() + 1 === 11) {
+              expiryMonth = 'N';
+            } else if (expiryDate.getMonth() + 1 === 12) {
+              expiryMonth = 'D';
+            } else {
+              expiryMonth = expiryDate.getMonth() + 1;
+            }
+
+            var expiry = '' + (expiryDate.getFullYear() - 2000) + expiryMonth + ('0' + expiryDate.getDate()).slice(-2);
+            strike = 'USDINR' + expiry + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].USDINR_FUT_MONTH + 'FUT'; // console.log('getLtp strike: ' + strike);
+          }
+
+          var ltp = this.mapService.getLtp(strike);
+
+          if (oc_strike) {
+            oc_strike.ltp = ltp;
+          }
+
+          return ltp;
+        }
+      }, {
+        key: "calculateIV",
+        value: function calculateIV(instru, spot, strike, int_rate, expiry_date, type, mkt_price) {
+          var high = 80;
+          var low = 0;
+          var iv = 0;
+          var date_expiry = new Date(expiry_date);
+          var date_now = new Date();
+          var seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000);
+          var minutes = Math.floor(seconds / 60);
+          var hours = Math.floor(minutes / 60);
+          var delta_t = Math.floor(hours / 24) / 365.0;
+
+          if (hours < 24) {
+            return 0;
+          }
+
+          while (high - low > 0.0001) {
+            if (this.calculateT0AtPoint(instru, spot, strike, int_rate, expiry_date, (high + low) / 2, type) > mkt_price) {
+              high = (high + low) / 2;
+            } else {
+              low = (high + low) / 2;
+            }
+          }
+
+          iv = (high + low) / 2;
+          return iv;
+        }
+      }, {
+        key: "calculateT0AtPoint",
+        value: function calculateT0AtPoint(instru, spot, strike, int_rate, expiry_date, volatility, type, add_days) {
+          var t0 = 0;
+          var date_expiry = new Date(expiry_date);
+
+          if (instru === 'USDINR') {
+            date_expiry.setHours(12, 30, 0);
+          } else {
+            date_expiry.setHours(15, 30, 0);
+          }
+
+          if (!add_days) {
+            add_days = 0;
+          }
+
+          var date_now = new Date();
+          date_now.setDate(date_now.getDate() + add_days);
+          var seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000);
+          var minutes = Math.floor(seconds / 60);
+          var hours = Math.floor(minutes / 60);
+          var delta_t = Math.floor(hours / 24) / 365.0; // time
+
+          if (hours < 12) {
+            return 0;
+          } else {
+            var volt = volatility / 100;
+            int_rate = int_rate / 100;
+            var d1 = (Math.log(spot / strike) + (int_rate + Math.pow(volt, 2) / 2) * delta_t) / (volt * Math.sqrt(delta_t)); // let d2 = (Math.log(spot / strike) + (int_rate - (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
+
+            var d2 = d1 - volt * Math.sqrt(delta_t);
+            var fv_strike = strike * Math.exp(-1 * int_rate * delta_t);
+
+            if (type === _common_models__WEBPACK_IMPORTED_MODULE_3__["PositionTypeForPayOff"].CE) {
+              t0 = spot * this.getCDF(d1) - fv_strike * this.getCDF(d2);
+            }
+
+            if (type === _common_models__WEBPACK_IMPORTED_MODULE_3__["PositionTypeForPayOff"].PE) {
+              t0 = fv_strike * this.getCDF(-1 * d2) - spot * this.getCDF(-1 * d1);
+            }
+          }
+
+          return t0;
+        }
+      }, {
+        key: "getCDF",
+        value: function getCDF(x) {
+          var standardDeviation = Math.sqrt(this.variance);
+          return 0.5 * this.erfc(-(x - this.mean) / (standardDeviation * Math.sqrt(2)));
+        } // Complementary error function
+        // From Numerical Recipes in C 2e p221
+
+      }, {
+        key: "erfc",
+        value: function erfc(x) {
+          var z = Math.abs(x);
+          var t = 1 / (1 + z / 2);
+          var r = t * Math.exp(-z * z - 1.26551223 + t * (1.00002368 + t * (0.37409196 + t * (0.09678418 + t * (-0.18628806 + t * (0.27886807 + t * (-1.13520398 + t * (1.48851587 + t * (-0.82215223 + t * 0.17087277)))))))));
+          return x >= 0 ? r : 2 - r;
         }
       }, {
         key: "get",
@@ -4436,7 +4495,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     }();
 
     AppService.ɵfac = function AppService_Factory(t) {
-      return new (t || AppService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_fyers_service__WEBPACK_IMPORTED_MODULE_4__["FyersService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_aliceblue_service__WEBPACK_IMPORTED_MODULE_5__["AliceblueService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_angel_service__WEBPACK_IMPORTED_MODULE_6__["AngelService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_7__["AngelWebsocketService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_8__["WebsocketService"]));
+      return new (t || AppService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_fyers_service__WEBPACK_IMPORTED_MODULE_5__["FyersService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_aliceblue_service__WEBPACK_IMPORTED_MODULE_6__["AliceblueService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_angel_service__WEBPACK_IMPORTED_MODULE_7__["AngelService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_8__["AngelWebsocketService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_9__["WebsocketService"]), _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_common_map_service__WEBPACK_IMPORTED_MODULE_10__["MapService"]));
     };
 
     AppService.ɵprov = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineInjectable"]({
@@ -4454,17 +4513,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         }]
       }], function () {
         return [{
-          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]
+          type: _angular_common_http__WEBPACK_IMPORTED_MODULE_4__["HttpClient"]
         }, {
-          type: _common_fyers_service__WEBPACK_IMPORTED_MODULE_4__["FyersService"]
+          type: _common_fyers_service__WEBPACK_IMPORTED_MODULE_5__["FyersService"]
         }, {
-          type: _common_aliceblue_service__WEBPACK_IMPORTED_MODULE_5__["AliceblueService"]
+          type: _common_aliceblue_service__WEBPACK_IMPORTED_MODULE_6__["AliceblueService"]
         }, {
-          type: _common_angel_service__WEBPACK_IMPORTED_MODULE_6__["AngelService"]
+          type: _common_angel_service__WEBPACK_IMPORTED_MODULE_7__["AngelService"]
         }, {
-          type: _common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_7__["AngelWebsocketService"]
+          type: _common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_8__["AngelWebsocketService"]
         }, {
-          type: _common_websocket_service__WEBPACK_IMPORTED_MODULE_8__["WebsocketService"]
+          type: _common_websocket_service__WEBPACK_IMPORTED_MODULE_9__["WebsocketService"]
+        }, {
+          type: _common_map_service__WEBPACK_IMPORTED_MODULE_10__["MapService"]
         }];
       }, null);
     })();
@@ -4570,9 +4631,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
     function ChartComponent_div_36_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 42);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 43);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "canvas", 43);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](1, "canvas", 44);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
       }
@@ -4622,7 +4683,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "input", 44);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "input", 45);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_59_Template_input_ngModelChange_8_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r8);
@@ -4634,7 +4695,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "input", 45);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "input", 46);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_59_Template_input_ngModelChange_9_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r8);
@@ -4646,7 +4707,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "select", 46);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "select", 47);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_59_Template_select_ngModelChange_10_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r8);
@@ -4656,13 +4717,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return ctx_r11.simulateTimeAdv = $event;
         });
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "option", 47);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "option", 48);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "+");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "option", 48);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "option", 49);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "-");
 
@@ -4670,7 +4731,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "input", 49);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "input", 50);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_59_Template_input_ngModelChange_15_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r8);
@@ -4710,7 +4771,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "input", 50, 51);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "input", 51, 52);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("change", function ChartComponent_div_59_Template_input_change_20_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r8);
@@ -4766,9 +4827,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 60);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 61);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "input", 61);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "input", 62);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_76_td_1_Template_input_ngModelChange_2_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r21);
@@ -4780,7 +4841,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "input", 61);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "input", 62);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_76_td_1_Template_input_ngModelChange_3_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r21);
@@ -4829,11 +4890,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "tr", 38);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, ChartComponent_tr_76_td_1_Template, 4, 4, "td", 52);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](1, ChartComponent_tr_76_td_1_Template, 4, 4, "td", 53);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "input", 53);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "input", 54);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_76_Template_input_ngModelChange_3_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
@@ -4848,7 +4909,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "input", 54);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "input", 55);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_76_Template_input_ngModelChange_5_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
@@ -4863,7 +4924,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "input", 55);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "input", 56);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_76_Template_input_ngModelChange_7_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
@@ -4878,7 +4939,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "input", 56);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "input", 57);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_76_Template_input_ngModelChange_9_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
@@ -4893,7 +4954,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "input", 57);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "input", 58);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_76_Template_input_ngModelChange_11_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
@@ -4912,7 +4973,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "td", 58);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "td", 59);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "span", 38);
 
@@ -4924,7 +4985,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "button", 59);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "button", 60);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ChartComponent_tr_76_Template_button_click_18_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
@@ -4944,7 +5005,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "td");
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "button", 59);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "button", 60);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function ChartComponent_tr_76_Template_button_click_21_listener() {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r26);
@@ -5010,21 +5071,21 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function ChartComponent_div_149_Template(rf, ctx) {
+    function ChartComponent_div_153_Template(rf, ctx) {
       if (rf & 1) {
         var _r34 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 62);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 63);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "button", 63);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "button", 64);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, " Straddle Charts ");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 64);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 65);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 7);
 
@@ -5032,7 +5093,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "select", 24);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_149_Template_select_ngModelChange_7_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_153_Template_select_ngModelChange_7_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r34);
 
           var ctx_r33 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5060,9 +5121,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "input", 65);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "input", 66);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_149_Template_input_ngModelChange_14_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_153_Template_input_ngModelChange_14_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r34);
 
           var ctx_r35 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5072,9 +5133,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "input", 66);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "input", 67);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_149_Template_input_ngModelChange_15_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_153_Template_input_ngModelChange_15_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r34);
 
           var ctx_r36 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5086,7 +5147,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "select", 24);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_149_Template_select_ngModelChange_16_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_153_Template_select_ngModelChange_16_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r34);
 
           var ctx_r37 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5114,9 +5175,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "input", 65);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "input", 66);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_149_Template_input_ngModelChange_23_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_153_Template_input_ngModelChange_23_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r34);
 
           var ctx_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5126,9 +5187,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "input", 66);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "input", 67);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_149_Template_input_ngModelChange_24_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_153_Template_input_ngModelChange_24_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r34);
 
           var ctx_r39 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5140,7 +5201,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "select", 24);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_149_Template_select_ngModelChange_25_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_153_Template_select_ngModelChange_25_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r34);
 
           var ctx_r40 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5168,9 +5229,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "input", 65);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "input", 66);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_149_Template_input_ngModelChange_32_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_153_Template_input_ngModelChange_32_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r34);
 
           var ctx_r41 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5180,9 +5241,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "input", 66);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "input", 67);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_149_Template_input_ngModelChange_33_listener($event) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_153_Template_input_ngModelChange_33_listener($event) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r34);
 
           var ctx_r42 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
@@ -5194,9 +5255,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "div", 42);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "div", 43);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](35, "canvas", 43);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](35, "canvas", 44);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -5254,25 +5315,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }
     }
 
-    function ChartComponent_div_150_Template(rf, ctx) {
+    function ChartComponent_div_154_Template(rf, ctx) {
       if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 67);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 68);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "button", 68);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](2, "button", 69);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, " Charts ");
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 69);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "div", 70);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "div", 7);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](6, "iframe", 70);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](6, "iframe", 71);
 
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "iframe", 71);
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](7, "iframe", 72);
 
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -6915,9 +6976,67 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           return pnl;
         }
       }, {
+        key: "getStrategyDelta",
+        value: function getStrategyDelta() {
+          var _this25 = this;
+
+          var delta = 0;
+          var trades = this.curr_positions_trades;
+
+          if (trades) {
+            trades.forEach(function (pos) {
+              if (pos.exit === null || pos.exit === 0) {
+                if (_this25.payoff_overlay && !pos.selected) {
+                  return;
+                }
+
+                var type = '';
+                var s = pos.scrip;
+
+                if (s.includes('CE')) {
+                  type = 'CE';
+                }
+
+                if (s.includes('PE')) {
+                  type = 'PE';
+                }
+
+                var strike = s.slice(0, -2); // remove CE PE at end
+
+                var ltp = _this25.getLTP_strike(pos);
+
+                delta += _this25.appService.getDelta(_this25.instru, strike, type, pos.expiry, ltp) * pos.qty;
+              }
+            });
+          }
+
+          delta = Math.round((delta + 0.00001) * 100) / 100;
+          var suggest_string = ' ( 50: ' + Math.round((-delta / 50 + 0.00001) * 100) / 100 + ' , 100: ' + Math.round((-delta / 100 + 0.00001) * 100) / 100 + ' , 150: ' + Math.round((-delta / 150 + 0.00001) * 100) / 100 + ' , 200: ' + Math.round((-delta / 200 + 0.00001) * 100) / 100 + ' )';
+          return delta + suggest_string;
+        }
+      }, {
+        key: "getStrategyPnLAfterCharges",
+        value: function getStrategyPnLAfterCharges() {
+          var pnl = this.getStrategyPnL();
+          var charges = 0;
+          var trades = this.curr_positions_trades;
+
+          if (trades) {
+            trades.forEach(function (pos) {
+              if (pos.exit !== null && pos.exit !== 0) {
+                charges += 50;
+              } else {
+                charges += 25;
+              }
+            });
+          }
+
+          return pnl - charges;
+        }
+      }, {
         key: "getStrategyPnL",
         value: function getStrategyPnL() {
-          var _this25 = this;
+          var _this26 = this;
 
           var num = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
           var pnl = 0;
@@ -6963,12 +7082,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (trades) {
             trades.forEach(function (pos) {
               if (num) {
-                var posPnl = _this25.getPnL(pos, instru, pos.expiry);
+                var posPnl = _this26.getPnL(pos, instru, pos.expiry);
 
                 pnl += posPnl;
                 pointsProfit += posPnl / Math.abs(pos.qty); // console.log('points:', pointsProfit);
               } else {
-                var _posPnl = _this25.getPnL(pos); // pos.pnl;
+                var _posPnl = _this26.getPnL(pos); // pos.pnl;
 
 
                 pnl += _posPnl;
@@ -7076,7 +7195,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "updateChartData",
         value: function updateChartData(res) {
-          var _this26 = this;
+          var _this27 = this;
 
           if (res) {
             this.labels = [];
@@ -7098,15 +7217,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                   this.zeroline.push(0); */
                 }
 
-                _this26.labels.push(element.StockPrice);
+                _this27.labels.push(element.StockPrice);
 
-                _this26.pnl.push(element.Final);
+                _this27.pnl.push(element.Final);
 
                 t0.push(element.Today);
 
-                _this26.zeroline.push(0);
+                _this27.zeroline.push(0);
 
-                if (_this26.payoff_overlay) {
+                if (_this27.payoff_overlay) {
                   overlay.push(element.Overlay);
                   overlayT0.push(element.OverlayT0);
                 }
@@ -7444,9 +7563,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵloadQuery"]()) && (ctx.chart = _t.first);
         }
       },
-      decls: 151,
-      vars: 53,
-      consts: [["id", "accordionPayoff", 1, "accordion", "mb-2"], [1, "card"], ["type", "button", "data-toggle", "collapse", "data-target", "#payOffSection", "aria-expanded", "true", "aria-controls", "payOffSection", 1, "btn", "btn-light", "font-weight-bold"], ["id", "payOffSection", "aria-labelledby", "headingOne", "data-parent", "#accordionPayoff", 1, "collapse", "show", "p-2"], [1, "chart-all-strategies-pnl", "text-center"], [1, "font-weight-bold", 3, "ngClass"], [1, "pl-4", "pr-4"], [1, "chart-flex-container"], ["class", "chart-chart", 4, "ngIf"], [1, "chart-positions"], [1, "form-check-inline", "use-hypo-future-class"], ["for", "use-range", 1, "form-check-label"], ["id", "use-range", "type", "number", "placeholder", "Payoff Range", 1, "ml-2", "form-control", "form-control-sm", 2, "width", "100px", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "use-hypo-future", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "use-hypo-future", 1, "form-check-label"], ["type", "number", "placeholder", "Closest Strike", 1, "ml-2", "form-control", "form-control-sm", 2, "width", "100px", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "hide-payoff", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-payoff", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "payoff_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "payoff_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "simulate_strategy", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "simulate_strategy", 1, "form-check-label"], ["class", "mb-2", 4, "ngIf"], [1, "mb-2"], [1, "strategy_instru", "form-control", "form-control-sm", "mr-2", 3, "ngModel", "ngModelChange"], ["value", "NIFTY"], ["value", "BANKNIFTY"], ["value", "USDINR"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "mb-1", "mr-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", "mr-2", 3, "click"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", 3, "click"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center"], [3, "ngClass", 4, "ngFor", "ngForOf"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mr-1", 3, "click"], [1, "mt-2"], ["type", "file", "name", "File Upload 1", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInput1", ""], [1, "mt-2", "font-weight-bold"], [3, "ngClass"], [1, "mt-1"], ["class", "accordion mb-2", "id", "accordionStraddle", 4, "ngIf"], ["class", "accordion", "id", "accordionCharts", 4, "ngIf"], [1, "chart-chart"], ["baseChart", "", "width", "2", "height", "1", 3, "datasets", "labels", "options", "colors", "legend", "chartType", "plugins"], ["placeholder", "Expiry YYYY-MM-DD", 1, "simulateDate", "mb-1", "mr-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Start YYYY-MM-DD", 1, "simulateDate", "mb-1", "mr-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [1, "simulateTimeAdv", "form-control", "form-control-sm", "mr-2", 3, "ngModel", "ngModelChange"], ["value", "add"], ["value", "subtract"], ["placeholder", "mins", "id", "simulateTimeMins", 1, "simulateTimeMins", "mb-1", "mr-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], [4, "ngIf"], ["type", "number", "placeholder", "Qty", 1, "form-control", "form-control-sm", 3, "step", "ngModel", "ngModelChange"], ["placeholder", "Scrip 11500CE", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Expiry 01OCT2020", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Entry", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Exit", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [1, "font-weight-bold"], ["type", "button", 1, "btn", "btn-light", "btn-sm", 3, "click"], [1, "form-check-inline", "posCheckbox"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "disabled", "ngModelChange"], ["id", "accordionStraddle", 1, "accordion", "mb-2"], ["type", "button", "data-toggle", "collapse", "data-target", "#straddleSection", "aria-expanded", "true", "aria-controls", "straddleSection", 1, "btn", "btn-light", "font-weight-bold"], ["id", "straddleSection", "aria-labelledby", "headingOne", "data-parent", "#accordionStraddle", 1, "collapse", "show", "p-2"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "mr-2", "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip", "id", "payOffExpiry", 1, "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["id", "accordionCharts", 1, "accordion"], ["type", "button", "data-toggle", "collapse", "data-target", "#chartsSection", "aria-expanded", "true", "aria-controls", "chartsSection", 1, "btn", "btn-light", "font-weight-bold"], ["id", "chartsSection", "aria-labelledby", "headingOne", "data-parent", "#accordionCharts", 1, "collapse", "show", "p-2"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=8985&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=160&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"]],
+      decls: 155,
+      vars: 55,
+      consts: [["id", "accordionPayoff", 1, "accordion", "mb-2"], [1, "card"], ["type", "button", "data-toggle", "collapse", "data-target", "#payOffSection", "aria-expanded", "true", "aria-controls", "payOffSection", 1, "btn", "btn-light", "font-weight-bold"], ["id", "payOffSection", "aria-labelledby", "headingOne", "data-parent", "#accordionPayoff", 1, "collapse", "show", "p-2"], [1, "chart-all-strategies-pnl", "text-center"], [1, "font-weight-bold", 3, "ngClass"], [1, "pl-4", "pr-4"], [1, "chart-flex-container"], ["class", "chart-chart", 4, "ngIf"], [1, "chart-positions"], [1, "form-check-inline", "use-hypo-future-class"], ["for", "use-range", 1, "form-check-label"], ["id", "use-range", "type", "number", "placeholder", "Payoff Range", 1, "ml-2", "form-control", "form-control-sm", 2, "width", "100px", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "use-hypo-future", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "use-hypo-future", 1, "form-check-label"], ["type", "number", "placeholder", "Closest Strike", 1, "ml-2", "form-control", "form-control-sm", 2, "width", "100px", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "hide-payoff", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-payoff", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "payoff_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "payoff_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "simulate_strategy", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "simulate_strategy", 1, "form-check-label"], ["class", "mb-2", 4, "ngIf"], [1, "mb-2"], [1, "strategy_instru", "form-control", "form-control-sm", "mr-2", 3, "ngModel", "ngModelChange"], ["value", "NIFTY"], ["value", "BANKNIFTY"], ["value", "USDINR"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "mb-1", "mr-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", "mr-2", 3, "click"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", 3, "click"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center"], [3, "ngClass", 4, "ngFor", "ngForOf"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mr-1", 3, "click"], [1, "mt-2"], ["type", "file", "name", "File Upload 1", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInput1", ""], [1, "mt-2", "font-weight-bold"], [3, "ngClass"], [2, "font-weight", "normal"], [1, "mt-1"], ["class", "accordion mb-2", "id", "accordionStraddle", 4, "ngIf"], ["class", "accordion", "id", "accordionCharts", 4, "ngIf"], [1, "chart-chart"], ["baseChart", "", "width", "2", "height", "1", 3, "datasets", "labels", "options", "colors", "legend", "chartType", "plugins"], ["placeholder", "Expiry YYYY-MM-DD", 1, "simulateDate", "mb-1", "mr-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Start YYYY-MM-DD", 1, "simulateDate", "mb-1", "mr-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [1, "simulateTimeAdv", "form-control", "form-control-sm", "mr-2", 3, "ngModel", "ngModelChange"], ["value", "add"], ["value", "subtract"], ["placeholder", "mins", "id", "simulateTimeMins", 1, "simulateTimeMins", "mb-1", "mr-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], [4, "ngIf"], ["type", "number", "placeholder", "Qty", 1, "form-control", "form-control-sm", 3, "step", "ngModel", "ngModelChange"], ["placeholder", "Scrip 11500CE", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Expiry 01OCT2020", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Entry", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Exit", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [1, "font-weight-bold"], ["type", "button", 1, "btn", "btn-light", "btn-sm", 3, "click"], [1, "form-check-inline", "posCheckbox"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "disabled", "ngModelChange"], ["id", "accordionStraddle", 1, "accordion", "mb-2"], ["type", "button", "data-toggle", "collapse", "data-target", "#straddleSection", "aria-expanded", "true", "aria-controls", "straddleSection", 1, "btn", "btn-light", "font-weight-bold"], ["id", "straddleSection", "aria-labelledby", "headingOne", "data-parent", "#accordionStraddle", 1, "collapse", "show", "p-2"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "mr-2", "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip", "id", "payOffExpiry", 1, "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["id", "accordionCharts", 1, "accordion"], ["type", "button", "data-toggle", "collapse", "data-target", "#chartsSection", "aria-expanded", "true", "aria-controls", "chartsSection", 1, "btn", "btn-light", "font-weight-bold"], ["id", "chartsSection", "aria-labelledby", "headingOne", "data-parent", "#accordionCharts", 1, "collapse", "show", "p-2"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=8985&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=160&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"]],
       template: function ChartComponent_Template(rf, ctx) {
         if (rf & 1) {
           var _r43 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
@@ -7947,81 +8066,93 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](123, "div", 39);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](123, "span", 39);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](124);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](125, "div", 39);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](125, "div", 40);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](126);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](127, "div", 39);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](127, "div", 40);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](128);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](129, "div", 39);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](129, "div", 40);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](130);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](131, "div", 39);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](131, "div", 40);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](132);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](133, "div", 40);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](134);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](135, "div", 40);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](136);
+
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](133, "div");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](134, "b");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](135, "HEDGE:");
-
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](136, " Move a side's hedge inside if EMA confirmation, S/R breach. Keep monitoring charts of the current hedge and inside strike on that side. Max loss on a side should be 100 points. In terms of Rs., do 100 * num. lots. Hedge should eventually be at the distance less than straddle premium. Move untested side hedge inside if cheap. ");
-
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](137, "br");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](137, "div");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](138, "b");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](139, "NAKED SELL:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](139, "HEDGE:");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](140, " Sell naked far OTM CE or strangle. Exit the naked option if SL hit. Keep moving untested side naked sell inside. ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](140, " Move a side's hedge inside if EMA confirmation, S/R breach. Keep monitoring charts of the current hedge and inside strike on that side. Max loss on a side should be 100 points. In terms of Rs., do 100 * num. lots. Hedge should eventually be at the distance less than straddle premium. Move untested side hedge inside if cheap. ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](141, "br");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](142, "b");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](143, "NEW FLY:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](143, "NAKED SELL:");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](144, " If BNF near of crossing breakeven, make CLOSE-HEDGED fly with lower qty at that point. Exit this new fly if BNF moving out of its breakevens. ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](144, " Sell naked far OTM CE or strangle. Exit the naked option if SL hit. Keep moving untested side naked sell inside. ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](145, "br");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](146, "b");
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](147, "CREDIT SPREAD REMOVAL:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](147, "NEW FLY:");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](148, " If after a direction or time, the untested credit spread of fly becomes of low value, then exit the credit spread and sell naked option of remaining premium. ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](148, " If BNF near of crossing breakeven, make CLOSE-HEDGED fly with lower qty at that point. Exit this new fly if BNF moving out of its breakevens. ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](149, "br");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](150, "b");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](151, "CREDIT SPREAD REMOVAL:");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](152, " If after a direction or time, the untested credit spread of fly becomes of low value, then exit the credit spread and sell naked option of remaining premium. ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
@@ -8031,15 +8162,15 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](149, ChartComponent_div_149_Template, 36, 16, "div", 40);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](153, ChartComponent_div_153_Template, 36, 16, "div", 41);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](150, ChartComponent_div_150_Template, 8, 0, "div", 41);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](154, ChartComponent_div_154_Template, 8, 0, "div", 42);
         }
 
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](8);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](35, _c1, ctx.getStrategyPnL(1) < 0, ctx.getStrategyPnL(1) > 0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](37, _c1, ctx.getStrategyPnL(1) < 0, ctx.getStrategyPnL(1) > 0));
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -8047,7 +8178,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](38, _c1, ctx.getStrategyPnL(2) < 0, ctx.getStrategyPnL(2) > 0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](40, _c1, ctx.getStrategyPnL(2) < 0, ctx.getStrategyPnL(2) > 0));
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -8055,7 +8186,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](41, _c1, ctx.getStrategyPnL(3) < 0, ctx.getStrategyPnL(3) > 0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](43, _c1, ctx.getStrategyPnL(3) < 0, ctx.getStrategyPnL(3) > 0));
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -8063,7 +8194,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](44, _c1, ctx.getStrategyPnL(4) < 0, ctx.getStrategyPnL(4) > 0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](46, _c1, ctx.getStrategyPnL(4) < 0, ctx.getStrategyPnL(4) > 0));
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -8071,7 +8202,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](5);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](47, _c1, ctx.getStrategyPnL(5) < 0, ctx.getStrategyPnL(5) > 0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](49, _c1, ctx.getStrategyPnL(5) < 0, ctx.getStrategyPnL(5) > 0));
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
@@ -8127,11 +8258,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](45);
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](50, _c1, ctx.getStrategyPnL() < 0, ctx.getStrategyPnL() > 0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction2"](52, _c1, ctx.getStrategyPnL() < 0, ctx.getStrategyPnL() > 0));
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](1);
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx.getStrategyPnL(), " ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" (", ctx.getStrategyPnLAfterCharges(), ") ");
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("Delta: ", ctx.getStrategyDelta(), "");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
 
@@ -8398,20 +8537,20 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "loadIntradayData",
         value: function loadIntradayData(intradayWatch) {
-          var _this27 = this;
+          var _this28 = this;
 
           console.log('Loading intraday data');
           intradayWatch.forEach(function (element) {
             var prices = JSON.parse(localStorage.getItem(element.instru + ' ' + element.expiry + ' ' + element.scrip));
 
-            _this27.intradayData.set(element.instru + ' ' + element.expiry + ' ' + element.scrip, prices);
+            _this28.intradayData.set(element.instru + ' ' + element.expiry + ' ' + element.scrip, prices);
           });
           console.log('Loaded intraday data: ', this.intradayData);
         }
       }, {
         key: "initFetchIntraday",
         value: function initFetchIntraday(intradayWatch) {
-          var _this28 = this;
+          var _this29 = this;
 
           Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["interval"])(500).subscribe(function (sec) {
             // console.log('Fetching intraday data');
@@ -8440,13 +8579,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               var ltp = null;
 
               if (scrip === 'FUT' || scrip === 'SPOT') {
-                ltp = _this28.getInstruLTP(instru);
+                ltp = _this29.getInstruLTP(instru);
               } else {
-                ltp = _this28.getLTP_strike(scrip, instru, expiry);
+                ltp = _this29.getLTP_strike(scrip, instru, expiry);
               }
 
               if (ltp) {
-                var arr = _this28.intradayData.get(instru + ' ' + expiry + ' ' + scrip);
+                var arr = _this29.intradayData.get(instru + ' ' + expiry + ' ' + scrip);
 
                 if (!arr) {
                   arr = [];
@@ -8478,7 +8617,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 } // arr[dformat] = ltp;
 
 
-                _this28.intradayData.set(instru + ' ' + expiry + ' ' + scrip, arr); // console.log('intradayData: ', this.intradayData);
+                _this29.intradayData.set(instru + ' ' + expiry + ' ' + scrip, arr); // console.log('intradayData: ', this.intradayData);
 
               }
             });
@@ -8564,11 +8703,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "saveIntradayData",
         value: function saveIntradayData() {
-          var _this29 = this;
+          var _this30 = this;
 
           // console.log('Saving intraday data: ');
           Object(rxjs__WEBPACK_IMPORTED_MODULE_1__["interval"])(1000).subscribe(function (sec) {
-            var _iterator = _createForOfIteratorHelper(_this29.intradayData),
+            var _iterator = _createForOfIteratorHelper(_this30.intradayData),
                 _step;
 
             try {
@@ -8936,7 +9075,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       _createClass(AliceblueService, [{
         key: "getMastersContract",
         value: function getMastersContract(access_token) {
-          var _this30 = this;
+          var _this31 = this;
 
           var httpOptions = {
             responseType: 'json'
@@ -8974,7 +9113,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 }
               }
 
-              _this30.connectWebsocket(access_token);
+              _this31.connectWebsocket(access_token);
             }
 
             console.log('AliceblueService getMastersContract abMastersContract', _application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].abMastersContract);
@@ -8990,7 +9129,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "sendSubscriptions",
         value: function sendSubscriptions(instruments) {
-          var _this31 = this;
+          var _this32 = this;
 
           /* for _instrument in instrument:
                       if not isinstance(_instrument, Instrument):
@@ -9002,7 +9141,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           data = json.dumps({'a' : 'subscribe', 'v' : arr, 'm' : AliceBlueLiveFeedType.MARKET_DATA}) */
           var arr = [];
           instruments.forEach(function (instrument) {
-            var instru = _this31.findStrikeInMasters(instrument);
+            var instru = _this32.findStrikeInMasters(instrument);
 
             if (instru) {
               arr.push([instru.exchange_code, instru.code]);
@@ -9167,7 +9306,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "angelLogin",
         value: function angelLogin() {
-          var _this32 = this;
+          var _this33 = this;
 
           this.auth().subscribe(function (res) {
             console.log('angel auth', res);
@@ -9177,7 +9316,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               _application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].angelJWTToken = res.data.jwtToken;
               _application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].angelRefreshToken = res.data.refreshToken;
 
-              _this32.angelWS.connect();
+              _this33.angelWS.connect();
             }
           }, function (error) {
             console.log('angel auth error', error);
@@ -9186,7 +9325,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "getMastersContract",
         value: function getMastersContract() {
-          var _this33 = this;
+          var _this34 = this;
 
           var httpOptions = {
             responseType: 'json'
@@ -9242,7 +9381,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 _application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].abMastersContract.set(p.code, p);
               });
 
-              _this33.angelLogin();
+              _this34.angelLogin();
             }
 
             console.log('AngelService getMastersContract abMastersContract', _application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].abMastersContract);
@@ -9253,7 +9392,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "sendSubscriptions",
         value: function sendSubscriptions(instruments) {
-          var _this34 = this;
+          var _this35 = this;
 
           /* for _instrument in instrument:
                       if not isinstance(_instrument, Instrument):
@@ -9265,7 +9404,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           data = json.dumps({'a' : 'subscribe', 'v' : arr, 'm' : AliceBlueLiveFeedType.MARKET_DATA}) */
           var arr = [];
           instruments.forEach(function (instrument) {
-            var instru = _this34.findStrikeInMasters(instrument);
+            var instru = _this35.findStrikeInMasters(instrument);
           }); // let message = JSON.stringify({'a' : 'subscribe', 'v' : arr, 'm' : AliceBlueLiveFeedType.MARKET_DATA});
 
           var strwatchlistscrips = 'nse_fo|43315&nse_fo|38692';
@@ -9593,25 +9732,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "connect",
         value: function connect() {
-          var _this35 = this;
+          var _this36 = this;
 
           this.websocket = new WebSocket(this.socket_endpoint);
           this.websocket.binaryType = 'arraybuffer';
 
           this.websocket.onopen = function () {
-            _this35.handleOnOpen(event);
+            _this36.handleOnOpen(event);
           };
 
           this.websocket.onmessage = function (messageEvent) {
-            _this35.handleOnMessage(messageEvent);
+            _this36.handleOnMessage(messageEvent);
           };
 
           this.websocket.onerror = function (event) {
-            _this35.handleOnError(event);
+            _this36.handleOnError(event);
           };
 
           this.websocket.onclose = function (event) {
-            _this35.handleOnClose(event);
+            _this36.handleOnClose(event);
           };
         }
       }, {
@@ -9632,13 +9771,13 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "sendHeartbeat",
         value: function sendHeartbeat() {
-          var _this36 = this;
+          var _this37 = this;
 
           this.heartbeatInterval = setInterval(function () {
             // console.log('sending heartbeat');
             var message = '{"task":"hb","channel":"","token":"' + _application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].angelFeedToken + '","user": "' + _application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].angelUserId + '","acctid":"' + _application_constant__WEBPACK_IMPORTED_MODULE_1__["AppConstants"].angelUserId + '"}';
 
-            _this36.sendMessage(message);
+            _this37.sendMessage(message);
           }, 59000);
         }
       }, {
@@ -9719,17 +9858,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "handleOnClose",
         value: function handleOnClose(event) {
-          var _this37 = this;
+          var _this38 = this;
 
           console.log('Closed WS connection', event);
           clearInterval(this.heartbeatInterval);
           this.websocket = null;
           setTimeout(function () {
-            if (_this37.websocket && _this37.websocket.OPEN === 1) {// ws connected
+            if (_this38.websocket && _this38.websocket.OPEN === 1) {// ws connected
             } else {
               console.log('Reconnecting websocket');
 
-              _this37.connect();
+              _this38.connect();
             }
           }, 2000);
         }
@@ -10424,26 +10563,26 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "connect",
         value: function connect(access_token) {
-          var _this38 = this;
+          var _this39 = this;
 
           this.access_token = access_token;
           this.websocket = new WebSocket(this.socket_endpoint + access_token);
           this.websocket.binaryType = 'arraybuffer';
 
           this.websocket.onopen = function () {
-            _this38.handleOnOpen(event);
+            _this39.handleOnOpen(event);
           };
 
           this.websocket.onmessage = function (messageEvent) {
-            _this38.handleOnMessage(messageEvent);
+            _this39.handleOnMessage(messageEvent);
           };
 
           this.websocket.onerror = function (event) {
-            _this38.handleOnError(event);
+            _this39.handleOnError(event);
           };
 
           this.websocket.onclose = function (event) {
-            _this38.handleOnClose(event);
+            _this39.handleOnClose(event);
           };
         }
       }, {
@@ -10460,7 +10599,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "sendHeartbeat",
         value: function sendHeartbeat() {
-          var _this39 = this;
+          var _this40 = this;
 
           this.heartbeatInterval = setInterval(function () {
             // console.log('sending heartbeat');
@@ -10470,7 +10609,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
               "m": ""
             });
 
-            _this39.sendMessage(message);
+            _this40.sendMessage(message);
           }, 5000);
         }
       }, {
@@ -10506,7 +10645,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       }, {
         key: "handleOnClose",
         value: function handleOnClose(event) {
-          var _this40 = this;
+          var _this41 = this;
 
           console.log('Closed WS connection', event);
           clearInterval(this.heartbeatInterval);
@@ -10514,7 +10653,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           setTimeout(function () {
             console.log('Reconnecting websocket');
 
-            _this40.connect(_this40.access_token);
+            _this41.connect(_this41.access_token);
           }, 2000);
         }
       }, {
