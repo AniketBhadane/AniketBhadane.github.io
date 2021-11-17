@@ -5916,18 +5916,25 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                 alert.status = '';
 
                 if (alert.selected) {
-                  var ltp1 = _this17.getLTP_strike({
-                    scrip: alert.scrip1
-                  }, alert.instru, alert.expiry);
+                  var ltp = null;
 
-                  var ltp = ltp1;
-
-                  if (alert.scrip2) {
-                    var ltp2 = _this17.getLTP_strike({
-                      scrip: alert.scrip2
+                  if (alert.scrip1) {
+                    var ltp1 = _this17.getLTP_strike({
+                      scrip: alert.scrip1
                     }, alert.instru, alert.expiry);
 
-                    ltp += ltp2;
+                    var _ltp = ltp1;
+
+                    if (alert.scrip2) {
+                      var ltp2 = _this17.getLTP_strike({
+                        scrip: alert.scrip2
+                      }, alert.instru, alert.expiry);
+
+                      _ltp += ltp2;
+                    }
+                  } else {
+                    // index
+                    ltp = _this17.mapService.getLtp(alert.instru);
                   }
 
                   if (alert.compare === '>') {
@@ -8485,7 +8492,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
 
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](156, " A side becomes loss less if NET CREDIT is GREATER than HEDGE DISTANCE on that side. Normally you would have atleast 400 credit in straddle and upto pay upto 200 on hedges. So net credit is 200. So straddle around 200 points away from hedge can make that side loss less. ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](156, " A side becomes loss less if NET CREDIT is GREATER than HEDGE DISTANCE on that side. Normally you would have atleast 400 credit in straddle and pay upto 200 on hedges. So net credit is 200. So straddle around 200 points away from hedge can make that side loss less. ");
 
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](157, "br");
 

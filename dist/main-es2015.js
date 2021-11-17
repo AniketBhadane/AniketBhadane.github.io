@@ -3567,11 +3567,17 @@ class ChartComponent {
                 this.alerts.forEach((alert) => {
                     alert.status = '';
                     if (alert.selected) {
-                        let ltp1 = this.getLTP_strike({ scrip: alert.scrip1 }, alert.instru, alert.expiry);
-                        let ltp = ltp1;
-                        if (alert.scrip2) {
-                            let ltp2 = this.getLTP_strike({ scrip: alert.scrip2 }, alert.instru, alert.expiry);
-                            ltp += ltp2;
+                        let ltp = null;
+                        if (alert.scrip1) {
+                            let ltp1 = this.getLTP_strike({ scrip: alert.scrip1 }, alert.instru, alert.expiry);
+                            let ltp = ltp1;
+                            if (alert.scrip2) {
+                                let ltp2 = this.getLTP_strike({ scrip: alert.scrip2 }, alert.instru, alert.expiry);
+                                ltp += ltp2;
+                            }
+                        }
+                        else { // index
+                            ltp = this.mapService.getLtp(alert.instru);
                         }
                         if (alert.compare === '>') {
                             if (ltp > alert.price) {
@@ -5394,7 +5400,7 @@ ChartComponent.ɵcmp = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineCom
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](154, "b");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](155, "Loss less:");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](156, " A side becomes loss less if NET CREDIT is GREATER than HEDGE DISTANCE on that side. Normally you would have atleast 400 credit in straddle and upto pay upto 200 on hedges. So net credit is 200. So straddle around 200 points away from hedge can make that side loss less. ");
+        _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](156, " A side becomes loss less if NET CREDIT is GREATER than HEDGE DISTANCE on that side. Normally you would have atleast 400 credit in straddle and pay upto 200 on hedges. So net credit is 200. So straddle around 200 points away from hedge can make that side loss less. ");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](157, "br");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](158, "b");
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](159, "Strangle:");
