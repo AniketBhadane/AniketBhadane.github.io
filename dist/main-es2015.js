@@ -3570,7 +3570,7 @@ class ChartComponent {
                         let ltp = null;
                         if (alert.scrip1) {
                             let ltp1 = this.getLTP_strike({ scrip: alert.scrip1 }, alert.instru, alert.expiry);
-                            let ltp = ltp1;
+                            ltp = ltp1;
                             if (alert.scrip2) {
                                 let ltp2 = this.getLTP_strike({ scrip: alert.scrip2 }, alert.instru, alert.expiry);
                                 ltp += ltp2;

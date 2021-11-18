@@ -5923,14 +5923,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
                       scrip: alert.scrip1
                     }, alert.instru, alert.expiry);
 
-                    var _ltp = ltp1;
+                    ltp = ltp1;
 
                     if (alert.scrip2) {
                       var ltp2 = _this17.getLTP_strike({
                         scrip: alert.scrip2
                       }, alert.instru, alert.expiry);
 
-                      _ltp += ltp2;
+                      ltp += ltp2;
                     }
                   } else {
                     // index
