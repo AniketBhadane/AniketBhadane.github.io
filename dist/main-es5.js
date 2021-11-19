@@ -7316,9 +7316,9 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           if (trades) {
             trades.forEach(function (pos) {
               if (pos.exit !== null && pos.exit !== 0) {
-                charges += 50;
+                charges += 70;
               } else {
-                charges += 25;
+                charges += 35;
               }
             });
           }

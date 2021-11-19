@@ -4659,10 +4659,10 @@ class ChartComponent {
         if (trades) {
             trades.forEach(pos => {
                 if (pos.exit !== null && pos.exit !== 0) {
-                    charges += 50;
+                    charges += 70;
                 }
                 else {
-                    charges += 25;
+                    charges += 35;
                 }
             });
         }
