@@ -3784,6 +3784,7 @@ class ChartComponent {
                 }
             }
         }
+        this.getPayoff();
         console.log('ltpMap', this.mapService.ltpMap);
     }
     getMapKeyString(instru, expiry_date, scrip) {

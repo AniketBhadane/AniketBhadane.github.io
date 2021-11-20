@@ -6196,6 +6196,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             }
           }
 
+          this.getPayoff();
           console.log('ltpMap', this.mapService.ltpMap);
         }
       }, {
