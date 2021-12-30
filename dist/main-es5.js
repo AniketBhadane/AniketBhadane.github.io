@@ -11499,7 +11499,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       '21DEC': new Date(2021, 11, 30),
       '22JAN': new Date(2022, 0, 27),
       '22FEB': new Date(2022, 1, 24),
-      '22MAR': new Date(2022, 2, 31)
+      '22MAR': new Date(2022, 2, 31),
+      '22APR': new Date(2022, 2, 29),
+      '22MAY': new Date(2022, 2, 29),
+      '22JUN': new Date(2022, 2, 29),
+      '22JUL': new Date(2022, 2, 29),
+      '22AUG': new Date(2022, 2, 29),
+      '22SEP': new Date(2022, 2, 29),
+      '22OCT': new Date(2022, 2, 29),
+      '22NOV': new Date(2022, 2, 29),
+      '22DEC': new Date(2022, 2, 29)
     };
     AppConstants.monthlyExpiryDatesUSDINR = {
       '21JAN': new Date(2021, 0, 27),
@@ -11516,7 +11525,16 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       '21DEC': new Date(2021, 11, 29),
       '22JAN': new Date(2022, 0, 27),
       '22FEB': new Date(2022, 1, 24),
-      '22MAR': new Date(2022, 2, 29)
+      '22MAR': new Date(2022, 2, 29),
+      '22APR': new Date(2022, 2, 29),
+      '22MAY': new Date(2022, 2, 29),
+      '22JUN': new Date(2022, 2, 29),
+      '22JUL': new Date(2022, 2, 29),
+      '22AUG': new Date(2022, 2, 29),
+      '22SEP': new Date(2022, 2, 29),
+      '22OCT': new Date(2022, 2, 29),
+      '22NOV': new Date(2022, 2, 29),
+      '22DEC': new Date(2022, 2, 29)
     };
     AppConstants.holdings = {
       'NIFTY 50': {
