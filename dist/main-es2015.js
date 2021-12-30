@@ -7297,7 +7297,7 @@ AppConstants.angelAPIKey = 'I5nI74Nm';
 AppConstants.angelFeedToken = '';
 AppConstants.angelJWTToken = '';
 AppConstants.angelRefreshToken = '';
-AppConstants.year = '21'; // TODO: make year 21 when 2021 year starts
+AppConstants.year = '22'; // TODO: make year 22 when 2022 year starts
 AppConstants.INTEREST_RATE = 6; // https://in.investing.com/rates-bonds/india-10-year-bond-yield-historical-data
 AppConstants.curr_positions_trades = [];
 AppConstants.isSimulatedStrategy = false;
@@ -7463,6 +7463,8 @@ AppConstants.holdings = {
     'CHOLAFIN': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'COLPAL': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'DABUR': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
+    'DLF': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
+    'DMART': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'GAIL': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'GLAND': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'GODREJCP': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
@@ -7476,6 +7478,7 @@ AppConstants.holdings = {
     'JINDALSTEL': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'JUBLFOOD': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'LTI': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
+    'LUPIN': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'MARICO': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'MCDOWELL-N': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },
     'MUTHOOTFIN': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null },

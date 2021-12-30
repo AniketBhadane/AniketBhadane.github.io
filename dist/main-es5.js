@@ -11416,7 +11416,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     AppConstants.angelFeedToken = '';
     AppConstants.angelJWTToken = '';
     AppConstants.angelRefreshToken = '';
-    AppConstants.year = '21'; // TODO: make year 21 when 2021 year starts
+    AppConstants.year = '22'; // TODO: make year 22 when 2022 year starts
 
     AppConstants.INTEREST_RATE = 6; // https://in.investing.com/rates-bonds/india-10-year-bond-yield-historical-data
 
@@ -12289,6 +12289,28 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         'avgp': null,
         'qty': null
       },
+      'DLF': {
+        'ltp': null,
+        'volume': null,
+        'oned': null,
+        'onew': null,
+        'onem': null,
+        'threem': null,
+        'fiftytwow': null,
+        'avgp': null,
+        'qty': null
+      },
+      'DMART': {
+        'ltp': null,
+        'volume': null,
+        'oned': null,
+        'onew': null,
+        'onem': null,
+        'threem': null,
+        'fiftytwow': null,
+        'avgp': null,
+        'qty': null
+      },
       'GAIL': {
         'ltp': null,
         'volume': null,
@@ -12422,6 +12444,17 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         'qty': null
       },
       'LTI': {
+        'ltp': null,
+        'volume': null,
+        'oned': null,
+        'onew': null,
+        'onem': null,
+        'threem': null,
+        'fiftytwow': null,
+        'avgp': null,
+        'qty': null
+      },
+      'LUPIN': {
         'ltp': null,
         'volume': null,
         'oned': null,
