@@ -7461,18 +7461,18 @@ AppConstants.numAlerts = 4;
   'DEC': 1487,
 }; */
 AppConstants.USDINRFUTCodes = {
-    'JAN': 1814,
-    'FEB': 1277,
-    'MAR': 10288,
-    'APR': 1168,
-    'MAY': 1255,
-    'JUN': 1612,
-    'JUL': 2771,
-    'AUG': 7395,
-    'SEP': 1354,
-    'OCT': 1629,
-    'NOV': 3244,
-    'DEC': 1421,
+    'JAN': 1131,
+    'FEB': 10201,
+    'MAR': 1779,
+    'APR': 1170,
+    'MAY': 1381,
+    'JUN': 1237,
+    'JUL': 1503,
+    'AUG': 1091,
+    'SEP': 1136,
+    'OCT': 1176,
+    'NOV': 5940,
+    'DEC': 1182,
 };
 AppConstants.USDINR_FUT_MONTH = new Date().toLocaleString('default', { month: 'short' }).toUpperCase().substring(0, 3); // 'JUL';
 AppConstants.abMastersContract = new Map();
@@ -8151,6 +8151,9 @@ class MapService {
         this.intradayData = new Array();
     }
     getLtp(strike) {
+        if (strike === 'BANKNIFTY') {
+            return 37739;
+        }
         return this.ltpMap.get(strike);
     }
     setLtp(strike, val) {
