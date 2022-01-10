@@ -8152,7 +8152,7 @@ class MapService {
     }
     getLtp(strike) {
         if (strike === 'BANKNIFTY') {
-            return 37739;
+            // return 37739;
         }
         return this.ltpMap.get(strike);
     }
