@@ -4880,6 +4880,12 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             curDate.setDate(curDate.getDate() + 1);
           }
 
+          _common_application_constant__WEBPACK_IMPORTED_MODULE_2__["AppConstants"].holidays.forEach(function (day) {
+            if (day >= dDate1 && day <= dDate2) {
+              count--;
+            }
+          });
+
           return count - 1;
           /* var iWeeks, iDateDiff, iAdjust = 0;
           if (dDate2 < dDate1) return -1; // error code if dates transposed
@@ -4947,9 +4953,10 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
             add_days = 0;
           }
 
-          var date_now = new Date();
-          date_now.setDate(date_now.getDate() + add_days);
+          var date_now = new Date(); // date_now.setDate(date_now.getDate() + add_days);
+
           var days_diff = this.calcWorkingDays(date_now, date_expiry);
+          days_diff = days_diff - add_days;
           var seconds = days_diff * 86400; // let seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000);
 
           var minutes = Math.floor(seconds / 60);
@@ -8428,10 +8435,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
           if (this.simulate_strategy) {
             date_now = this.simulateCurrDateObj;
-          }
+          } // date_now.setDate(date_now.getDate() + add_days);
 
-          date_now.setDate(date_now.getDate() + add_days);
+
           var days_diff = this.appService.calcWorkingDays(date_now, date_expiry);
+          days_diff = days_diff - add_days;
           var seconds = days_diff * 86400; //let seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000);
 
           var minutes = Math.floor(seconds / 60);
@@ -12067,6 +12075,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       '22NOV': new Date(2022, 2, 29),
       '22DEC': new Date(2022, 2, 29)
     };
+    AppConstants.holidays = [new Date(26, 0, 2022), new Date(1, 2, 2022), new Date(18, 2, 2022), new Date(14, 3, 2022), new Date(15, 3, 2022), new Date(3, 4, 2022), new Date(9, 7, 2022), new Date(15, 7, 2022), new Date(31, 7, 2022), new Date(5, 9, 2022), new Date(24, 9, 2022), new Date(26, 9, 2022), new Date(8, 10, 2022)];
     /* Enter Supports from high to low, Enter Resistances from Low to High */
 
     AppConstants.holdings = {
