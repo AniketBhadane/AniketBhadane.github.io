@@ -1391,10 +1391,10 @@ class AppComponent {
         console.log('sort');
         this.holdings.sort((a, b) => {
             // console.log(a['scrip'], b['scrip']);
-            if (a['scrip'] === 'NIFTY 50') {
+            if (a['scrip'] === 'NIFTYBEES') {
                 return -1;
             }
-            if (b['scrip'] === 'NIFTY 50') {
+            if (b['scrip'] === 'NIFTYBEES') {
                 return 1;
             }
             return a[colName] > b[colName] ? -1 : a[colName] < b[colName] ? 1 : 0;
@@ -3409,7 +3409,7 @@ class ChartComponent {
         this.alerts = [];
         this.ordersTextarea = '';
         this.orders_parsed = [];
-        this.orders_broker = 'upstox';
+        this.orders_broker = 'zerodha';
         this.ce_side_overlay = false;
         this.pe_side_overlay = false;
         this.num_overlays = 1;
@@ -3828,6 +3828,10 @@ class ChartComponent {
     }
     parseZerodhaOrders() {
         /*
+        
+        09:32:37	SELL	BANKNIFTY FEB 40400 CE NFO	NRML	250 / 250	13.60	COMPLETE
+        09:32:31	BUY	BANKNIFTY FEB 40000 CE NFO	NRML	250 / 250	22.65	COMPLETE
+        
         14:59:52	BUY	BANKNIFTY 2nd w DEC 38000 CE NFO	NRML	125 / 125	7.20	COMPLETE
         11:36:58	SELL	BANKNIFTY 2nd w DEC 35000 PE NFO
         NRML	75 / 75	140.85	COMPLETE
@@ -3851,9 +3855,16 @@ class ChartComponent {
                 let line = split[i];
                 line = line.replace('\n', '\t');
                 let details = line.split('\t');
+                // details = 0: 09:32:37, 1: SELL, 2: BANKNIFTY FEB 40400 CE NFO, 3: NRML, 4: 250 / 250, 5: 13.60, 6: COMPLETE
+                // details = 0: 09:32:37, 1: SELL, 2: BANKNIFTY 2nd w DEC 40400 CE NFO, 3: NRML, 4: 250 / 250, 5: 13.60, 6: COMPLETE
                 let o = new _common_models__WEBPACK_IMPORTED_MODULE_3__.OrderPasted();
                 o.instru = details[2].split(' ')[0];
-                o.scrip = details[2].split(' ')[4] + details[2].split(' ')[5];
+                if (isNaN(parseInt(details[2].split(' ')[4]))) {
+                    o.scrip = details[2].split(' ')[2] + details[2].split(' ')[3];
+                }
+                else {
+                    o.scrip = details[2].split(' ')[4] + details[2].split(' ')[5];
+                }
                 o.qty = Number(details[4].split(' ')[0]);
                 if (details[1] === 'SELL') {
                     o.qty = -o.qty;
@@ -7337,9 +7348,9 @@ AppConstants.monthlyExpiryDates = {
     '22JAN': new Date(2022, 0, 27),
     '22FEB': new Date(2022, 1, 24),
     '22MAR': new Date(2022, 2, 31),
-    '22APR': new Date(2022, 2, 29),
-    '22MAY': new Date(2022, 2, 29),
-    '22JUN': new Date(2022, 2, 29),
+    '22APR': new Date(2022, 3, 28),
+    '22MAY': new Date(2022, 4, 29),
+    '22JUN': new Date(2022, 5, 30),
     '22JUL': new Date(2022, 2, 29),
     '22AUG': new Date(2022, 2, 29),
     '22SEP': new Date(2022, 2, 29),
