@@ -2678,23 +2678,23 @@ class AppService {
         let minutes = Math.floor(seconds / 60);
         let hours = Math.floor(minutes / 60);
         let delta_t = (Math.floor(hours / 24)) / 365.0; // time
-        if (hours < 12) {
-            return 0;
+        /* if (hours < 12) {
+          return 0;
         }
-        else {
-            let volt = volatility / 100;
-            int_rate = int_rate / 100;
-            let d1 = (Math.log(spot / strike) + (int_rate + (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
-            // let d2 = (Math.log(spot / strike) + (int_rate - (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
-            let d2 = d1 - (volt * Math.sqrt(delta_t));
-            let fv_strike = (strike) * Math.exp(-1 * int_rate * delta_t);
-            if (type === _common_models__WEBPACK_IMPORTED_MODULE_1__.PositionTypeForPayOff.CE) {
-                t0 = spot * this.getCDF(d1) - fv_strike * this.getCDF(d2);
-            }
-            if (type === _common_models__WEBPACK_IMPORTED_MODULE_1__.PositionTypeForPayOff.PE) {
-                t0 = fv_strike * this.getCDF(-1 * d2) - spot * this.getCDF(-1 * d1);
-            }
+        else { */
+        let volt = volatility / 100;
+        int_rate = int_rate / 100;
+        let d1 = (Math.log(spot / strike) + (int_rate + (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
+        // let d2 = (Math.log(spot / strike) + (int_rate - (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
+        let d2 = d1 - (volt * Math.sqrt(delta_t));
+        let fv_strike = (strike) * Math.exp(-1 * int_rate * delta_t);
+        if (type === _common_models__WEBPACK_IMPORTED_MODULE_1__.PositionTypeForPayOff.CE) {
+            t0 = spot * this.getCDF(d1) - fv_strike * this.getCDF(d2);
         }
+        if (type === _common_models__WEBPACK_IMPORTED_MODULE_1__.PositionTypeForPayOff.PE) {
+            t0 = fv_strike * this.getCDF(-1 * d2) - spot * this.getCDF(-1 * d1);
+        }
+        //}
         return t0;
     }
     getCDF(x) {
@@ -7421,9 +7421,9 @@ AppConstants.holidays = [
 AppConstants.holdings = {
     /* 'NIFTY 50': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 17369, 'qty': 161, 'support': [16800, 16500], 'resistance': [18350, 18600] }, */ /* 187.97 * 92.4 */ /* 185.4 * 92.4 */
     /* 'NIFTY BANK': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 36938, 'qty': 27, 'support': [34200], 'resistance': [38900, 41800] }, */ /* 369.38 * 99.5 */
-    'NIFTYBEES': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 186.4, 'qty': 461, 'support': [180], 'resistance': [207] },
-    'BANKBEES': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 379.85, 'qty': 134, 'support': [350], 'resistance': [410] },
-    'NETFIT': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 35.65, 'qty': 1500, 'support': [35], 'resistance': [40] },
+    'NIFTYBEES': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 184.94, 'qty': 581, 'support': [180], 'resistance': [207] },
+    'BANKBEES': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 377.32, 'qty': 156, 'support': [350], 'resistance': [410] },
+    'NETFIT': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 35.33, 'qty': 1750, 'support': [35], 'resistance': [40] },
     'ADANIPORTS': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null, 'support': [650], 'resistance': [900] },
     'ASIANPAINT': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 3098.95, 'qty': 3, 'support': [3000, 2860], 'resistance': [3600] },
     'AXISBANK': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': null, 'qty': null, 'support': [650], 'resistance': [770, 850] },
