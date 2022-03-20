@@ -2732,36 +2732,41 @@ class AppService {
             date_expiry.setHours(15, 30, 0);
         }
         let date_now = new Date();
+        let add_days_seconds = 0;
         if (add_days) {
             // add_days = 0;
-            date_now.setDate(date_now.getDate() + add_days);
-            date_now.setHours(9, 15, 0);
+            let newDate = new Date(date_now);
+            newDate.setDate(newDate.getDate() + add_days);
+            newDate.setHours(9, 15, 0);
+            add_days_seconds = Math.floor((newDate.getTime() - date_now.getTime()) / 1000);
         }
         //let days_diff = this.calcWorkingDays(date_now, date_expiry);
         //days_diff = days_diff - add_days;
         //let seconds = days_diff * 86400;
         let holidays_seconds = this.calcHolidays(date_now, date_expiry) * 86400;
-        let seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000) - holidays_seconds;
-        let minutes = Math.floor(seconds / 60);
-        let hours = Math.floor(minutes / 60);
-        let delta_t = (Math.floor(hours / 24)) / 365.0; // time
-        /* if (hours < 12) {
-          return 0;
+        let seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000) - holidays_seconds - add_days_seconds;
+        if (seconds > 0) {
+            let minutes = Math.floor(seconds / 60);
+            let hours = Math.floor(minutes / 60);
+            let delta_t = (Math.floor(hours / 24)) / 365.0; // time
+            /* if (hours < 12) {
+              return 0;
+            }
+            else { */
+            let volt = volatility / 100;
+            int_rate = int_rate / 100;
+            let d1 = (Math.log(spot / strike) + (int_rate + (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
+            // let d2 = (Math.log(spot / strike) + (int_rate - (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
+            let d2 = d1 - (volt * Math.sqrt(delta_t));
+            let fv_strike = (strike) * Math.exp(-1 * int_rate * delta_t);
+            if (type === _common_models__WEBPACK_IMPORTED_MODULE_1__.PositionTypeForPayOff.CE) {
+                t0 = spot * this.getCDF(d1) - fv_strike * this.getCDF(d2);
+            }
+            if (type === _common_models__WEBPACK_IMPORTED_MODULE_1__.PositionTypeForPayOff.PE) {
+                t0 = fv_strike * this.getCDF(-1 * d2) - spot * this.getCDF(-1 * d1);
+            }
+            //}
         }
-        else { */
-        let volt = volatility / 100;
-        int_rate = int_rate / 100;
-        let d1 = (Math.log(spot / strike) + (int_rate + (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
-        // let d2 = (Math.log(spot / strike) + (int_rate - (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
-        let d2 = d1 - (volt * Math.sqrt(delta_t));
-        let fv_strike = (strike) * Math.exp(-1 * int_rate * delta_t);
-        if (type === _common_models__WEBPACK_IMPORTED_MODULE_1__.PositionTypeForPayOff.CE) {
-            t0 = spot * this.getCDF(d1) - fv_strike * this.getCDF(d2);
-        }
-        if (type === _common_models__WEBPACK_IMPORTED_MODULE_1__.PositionTypeForPayOff.PE) {
-            t0 = fv_strike * this.getCDF(-1 * d2) - spot * this.getCDF(-1 * d1);
-        }
-        //}
         return t0;
     }
     getCDF(x) {
@@ -3083,6 +3088,7 @@ function ChartComponent_tr_18_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"](" ", o_r22.price, " ");
 } }
+const _c0 = function (a0, a1) { return { "text-danger": a0, "text-success": a1 }; };
 function ChartComponent_tr_56_Template(rf, ctx) { if (rf & 1) {
     const _r26 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "tr");
@@ -3145,13 +3151,13 @@ function ChartComponent_tr_56_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](8);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", pos_r24.expiry_date);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", pos_r24.curr_qty);
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](10, _c0, pos_r24.curr_qty < 0, pos_r24.curr_qty > 0))("ngModel", pos_r24.curr_qty);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", pos_r24.curr_scrip);
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](13, _c0, pos_r24.curr_scrip.includes("PE"), pos_r24.curr_scrip.includes("CE")))("ngModel", pos_r24.curr_scrip);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx_r2.getOrderLtp(pos_r24, false));
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", pos_r24.new_scrip);
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](16, _c0, pos_r24.new_scrip.includes("PE"), pos_r24.new_scrip.includes("CE")))("ngModel", pos_r24.new_scrip);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx_r2.getOrderLtp(pos_r24, true));
 } }
@@ -3330,8 +3336,7 @@ function ChartComponent_tr_152_div_6_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx_r51.getPosRollStrikeLTP(pos_r48, -1));
 } }
-const _c0 = function (a0, a1) { return { "positionExited": a0, "hidePositionRow": a1 }; };
-const _c1 = function (a0, a1) { return { "text-danger": a0, "text-success": a1 }; };
+const _c1 = function (a0, a1) { return { "positionExited": a0, "hidePositionRow": a1 }; };
 function ChartComponent_tr_152_Template(rf, ctx) { if (rf & 1) {
     const _r67 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "tr", 69);
@@ -3392,7 +3397,7 @@ function ChartComponent_tr_152_Template(rf, ctx) { if (rf & 1) {
 } if (rf & 2) {
     const pos_r48 = ctx.$implicit;
     const ctx_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](12, _c0, pos_r48.exit !== 0, ctx_r5.hide_closed && pos_r48.exit !== 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](12, _c1, pos_r48.exit !== 0, ctx_r5.hide_closed && pos_r48.exit !== 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx_r5.payoff_overlay);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
@@ -3410,7 +3415,7 @@ function ChartComponent_tr_152_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"](" ", ctx_r5.getLTP_strike(pos_r48), " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](15, _c1, pos_r48.pnl < 0, pos_r48.pnl > 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](15, _c0, pos_r48.pnl < 0, pos_r48.pnl > 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"](" ", ctx_r5.getPnL(pos_r48), " ");
 } }
@@ -5293,36 +5298,41 @@ class ChartComponent {
         if (this.simulate_strategy) {
             date_now = this.simulateCurrDateObj;
         }
+        let add_days_seconds = 0;
         if (add_days) {
             // add_days = 0;
-            date_now.setDate(date_now.getDate() + add_days);
-            date_now.setHours(9, 15, 0);
+            let newDate = new Date(date_now);
+            newDate.setDate(newDate.getDate() + add_days);
+            newDate.setHours(9, 15, 0);
+            add_days_seconds = Math.floor((newDate.getTime() - date_now.getTime()) / 1000);
         }
         //let days_diff = this.appService.calcWorkingDays(date_now, date_expiry);
         //days_diff = days_diff - add_days;
         //let seconds = days_diff * 86400;
         let holidays_seconds = this.appService.calcHolidays(date_now, date_expiry) * 86400;
-        let seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000) - holidays_seconds;
-        let minutes = Math.floor(seconds / 60);
-        let hours = Math.floor(minutes / 60);
-        let delta_t = (Math.floor(hours / 24)) / 365.0; // time
-        /* if (hours < 12) {
-          return 0;
+        let seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000) - holidays_seconds - add_days_seconds;
+        if (seconds > 0) {
+            let minutes = Math.floor(seconds / 60);
+            let hours = Math.floor(minutes / 60);
+            let delta_t = (Math.floor(hours / 24)) / 365.0; // time
+            /* if (hours < 12) {
+              return 0;
+            }
+            else { */
+            let volt = volatility / 100;
+            int_rate = int_rate / 100;
+            let d1 = (Math.log(spot / strike) + (int_rate + (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
+            // let d2 = (Math.log(spot / strike) + (int_rate - (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
+            let d2 = d1 - (volt * Math.sqrt(delta_t));
+            let fv_strike = (strike) * Math.exp(-1 * int_rate * delta_t);
+            if (type === _common_models__WEBPACK_IMPORTED_MODULE_3__.PositionTypeForPayOff.CE) {
+                t0 = spot * this.getCDF(d1) - fv_strike * this.getCDF(d2);
+            }
+            if (type === _common_models__WEBPACK_IMPORTED_MODULE_3__.PositionTypeForPayOff.PE) {
+                t0 = fv_strike * this.getCDF(-1 * d2) - spot * this.getCDF(-1 * d1);
+            }
+            /* } */
         }
-        else { */
-        let volt = volatility / 100;
-        int_rate = int_rate / 100;
-        let d1 = (Math.log(spot / strike) + (int_rate + (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
-        // let d2 = (Math.log(spot / strike) + (int_rate - (Math.pow(volt, 2) / 2)) * delta_t) / (volt * Math.sqrt(delta_t));
-        let d2 = d1 - (volt * Math.sqrt(delta_t));
-        let fv_strike = (strike) * Math.exp(-1 * int_rate * delta_t);
-        if (type === _common_models__WEBPACK_IMPORTED_MODULE_3__.PositionTypeForPayOff.CE) {
-            t0 = spot * this.getCDF(d1) - fv_strike * this.getCDF(d2);
-        }
-        if (type === _common_models__WEBPACK_IMPORTED_MODULE_3__.PositionTypeForPayOff.PE) {
-            t0 = fv_strike * this.getCDF(-1 * d2) - spot * this.getCDF(-1 * d1);
-        }
-        /* } */
         return t0;
     }
     getCDF(x) {
@@ -6156,7 +6166,7 @@ ChartComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10__
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵloadQuery"]()) && (ctx.chart = _t.first);
-    } }, decls: 218, vars: 70, consts: [["id", "accordionAlerts", 1, "accordion", "mb-2"], [1, "accordion-item"], ["id", "headingOne", 1, "accordion-header"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#alertsSection", "aria-expanded", "false", "aria-controls", "alertsSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "alertsSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionAlerts", 1, "accordion-collapse", "collapse", "show", "p-2"], ["class", "alerts-flex-container", 4, "ngFor", "ngForOf"], ["type", "button", 1, "btn", "btn-link", 3, "click"], ["id", "accordionOrders", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#ordersSection", "aria-expanded", "true", "aria-controls", "ordersSection", 1, "accordion-button", "fw-bold"], ["id", "ordersSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionOrders", 1, "accordion-collapse", "collapse", "show", "p-2"], ["rows", "5", 2, "width", "100%", 3, "ngModel", "ngModelChange"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center"], [4, "ngFor", "ngForOf"], [1, "confirmation-check", "form-check-inline", "mt-0"], ["type", "radio", "value", "upstox", "id", "upstox_orders", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "upstox_orders", 1, "form-check-label"], ["type", "radio", "value", "zerodha", "id", "zerodha_orders", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "zerodha_orders", 1, "form-check-label"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", 2, "margin-top", "-7px", 3, "click"], [1, "place_multi_orders"], ["placeholder", "Authorization", 1, "form-control", "mb-2", "me-2", 2, "max-width", "1000px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "me-1", 3, "click"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center", 2, "max-width", "1000px"], [1, "table-light"], ["scope", "col"], ["id", "accordionPayoff", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#payOffSection", "aria-expanded", "true", "aria-controls", "payOffSection", 1, "accordion-button", "fw-bold"], ["id", "payOffSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionPayoff", 1, "accordion-collapse", "collapse", "show", "p-2"], [1, "chart-all-strategies-pnl", "text-center"], [1, "fw-bold", 3, "ngClass"], [1, "ps-4", "pe-4"], [1, "chart-flex-container"], ["class", "chart-chart", 4, "ngIf"], [1, "chart-positions"], [1, "form-check", "form-check-inline", "use-hypo-future-class"], ["for", "use-range", 1, "form-check-label"], ["id", "use-range", "type", "number", "placeholder", "Payoff Range", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "use-hypo-future", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "use-hypo-future", 1, "form-check-label"], ["type", "number", "placeholder", "Closest Strike", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "hide-closed", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-closed", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "hide-payoff", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-payoff", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-multit0", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-multit0", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "simulate_strategy", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "simulate_strategy", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "ce_side_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "ce_side_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "pe_side_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "pe_side_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "payoff_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange", "change"], ["for", "payoff_overlay", 1, "form-check-label"], ["type", "number", "placeholder", "Overlay strike", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["class", "mb-2", 4, "ngIf"], [1, "mb-2"], [1, "strategy_instru", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange"], ["value", "NIFTY"], ["value", "BANKNIFTY"], ["value", "USDINR"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", "me-2", 3, "click"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", 3, "click"], [3, "ngClass", 4, "ngFor", "ngForOf"], [1, "mt-2"], ["type", "file", "name", "File Upload 1", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInput1", ""], [1, "mt-2", "fw-bold"], [3, "ngClass"], [2, "font-weight", "normal"], [1, "mt-1"], [4, "ngIf"], ["class", "accordion mb-2", "id", "accordionStraddle", 4, "ngIf"], ["class", "accordion", "id", "accordionCharts", 4, "ngIf"], [1, "alerts-flex-container"], [1, "form-check-inline"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "ngModelChange"], [1, "alert_field", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip1", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip2", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["placeholder", "Expiry YYYY-MM-DD", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["value", ">"], ["value", "<"], ["placeholder", "Price", "type", "number", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], [1, "text-danger", "ms-2"], [1, "form-select", "form-select-sm", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["id", "place_expiry_date", "placeholder", "place_expiry_date", 1, "form-control", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["id", "place_qty", "placeholder", "curr_qty", 1, "form-control", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["id", "curr_pos", "placeholder", "curr_pos", 1, "form-control", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], [1, "me-2", 2, "display", "inline-block"], ["id", "new_pos", "placeholder", "new_pos", 1, "form-control", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], [1, "chart-chart"], ["baseChart", "", "width", "2", "height", "1", 3, "datasets", "labels", "options", "colors", "legend", "chartType", "plugins"], ["placeholder", "Expiry YYYY-MM-DD", 1, "simulateDate", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Start YYYY-MM-DD", 1, "simulateDate", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-light", "btn-sm", "me-1", 3, "click"], [1, "form-check-inline", "use-hypo-future-class"], ["type", "checkbox", "value", "", "id", "show_simulate_charts", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_simulate_charts", 1, "form-check-label"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], ["type", "number", "placeholder", "Qty", 1, "form-control", "form-control-sm", 3, "step", "ngModel", "ngModelChange"], ["placeholder", "Scrip 11500CE", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Expiry 01OCT2020", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Entry", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Exit", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [1, "fw-bold"], ["type", "button", 1, "btn", "btn-light", "btn-sm", 3, "click"], [1, "form-check-inline", "posCheckbox"], ["type", "checkbox", "value", "", 1, "form-check-input", "me-1", 3, "ngModel", "disabled", "ngModelChange"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "disabled", "ngModelChange"], [1, "form-check", "form-check-inline"], ["type", "radio", "name", "inlineRadioOptions", "id", "inlineRadio1", 1, "form-check-input", 3, "value", "ngModel", "ngModelChange"], ["for", "inlineRadio1", 1, "form-check-label"], ["type", "radio", "name", "inlineRadioOptions", "id", "inlineRadio2", 1, "form-check-input", 3, "value", "ngModel", "ngModelChange"], ["for", "inlineRadio2", 1, "form-check-label"], ["type", "radio", "name", "inlineRadioOptions", "id", "inlineRadio3", 1, "form-check-input", 3, "value", "ngModel", "ngModelChange"], ["for", "inlineRadio3", 1, "form-check-label"], [1, "chart-finchart"], ["id", "accordionStraddle", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#straddleSection", "aria-expanded", "true", "aria-controls", "straddleSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "straddleSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionStraddle", 1, "accordion-collapse", "collapse", "p-2"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "me-2", "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip", "id", "payOffExpiry", 1, "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["id", "accordionCharts", 1, "accordion"], ["type", "button", "data-toggle", "collapse", "data-target", "#chartsSection", "aria-expanded", "true", "aria-controls", "chartsSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "chartsSection", "aria-labelledby", "headingOne", "data-parent", "#accordionCharts", 1, "accordion-collapse", "collapse", "p-2"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=8985&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=160&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"]], template: function ChartComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 218, vars: 70, consts: [["id", "accordionAlerts", 1, "accordion", "mb-2"], [1, "accordion-item"], ["id", "headingOne", 1, "accordion-header"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#alertsSection", "aria-expanded", "false", "aria-controls", "alertsSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "alertsSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionAlerts", 1, "accordion-collapse", "collapse", "show", "p-2"], ["class", "alerts-flex-container", 4, "ngFor", "ngForOf"], ["type", "button", 1, "btn", "btn-link", 3, "click"], ["id", "accordionOrders", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#ordersSection", "aria-expanded", "true", "aria-controls", "ordersSection", 1, "accordion-button", "fw-bold"], ["id", "ordersSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionOrders", 1, "accordion-collapse", "collapse", "show", "p-2"], ["rows", "5", 2, "width", "100%", 3, "ngModel", "ngModelChange"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center"], [4, "ngFor", "ngForOf"], [1, "confirmation-check", "form-check-inline", "mt-0"], ["type", "radio", "value", "upstox", "id", "upstox_orders", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "upstox_orders", 1, "form-check-label"], ["type", "radio", "value", "zerodha", "id", "zerodha_orders", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "zerodha_orders", 1, "form-check-label"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", 2, "margin-top", "-7px", 3, "click"], [1, "place_multi_orders"], ["placeholder", "Authorization", 1, "form-control", "mb-2", "me-2", 2, "max-width", "1000px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "me-1", 3, "click"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center", 2, "max-width", "1000px"], [1, "table-light"], ["scope", "col"], ["id", "accordionPayoff", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#payOffSection", "aria-expanded", "true", "aria-controls", "payOffSection", 1, "accordion-button", "fw-bold"], ["id", "payOffSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionPayoff", 1, "accordion-collapse", "collapse", "show", "p-2"], [1, "chart-all-strategies-pnl", "text-center"], [1, "fw-bold", 3, "ngClass"], [1, "ps-4", "pe-4"], [1, "chart-flex-container"], ["class", "chart-chart", 4, "ngIf"], [1, "chart-positions"], [1, "form-check", "form-check-inline", "use-hypo-future-class"], ["for", "use-range", 1, "form-check-label"], ["id", "use-range", "type", "number", "placeholder", "Payoff Range", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "use-hypo-future", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "use-hypo-future", 1, "form-check-label"], ["type", "number", "placeholder", "Closest Strike", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "hide-closed", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-closed", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "hide-payoff", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-payoff", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-multit0", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-multit0", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "simulate_strategy", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "simulate_strategy", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "ce_side_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "ce_side_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "pe_side_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "pe_side_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "payoff_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange", "change"], ["for", "payoff_overlay", 1, "form-check-label"], ["type", "number", "placeholder", "Overlay strike", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["class", "mb-2", 4, "ngIf"], [1, "mb-2"], [1, "strategy_instru", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange"], ["value", "NIFTY"], ["value", "BANKNIFTY"], ["value", "USDINR"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", "me-2", 3, "click"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", 3, "click"], [3, "ngClass", 4, "ngFor", "ngForOf"], [1, "mt-2"], ["type", "file", "name", "File Upload 1", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInput1", ""], [1, "mt-2", "fw-bold"], [3, "ngClass"], [2, "font-weight", "normal"], [1, "mt-1"], [4, "ngIf"], ["class", "accordion mb-2", "id", "accordionStraddle", 4, "ngIf"], ["class", "accordion", "id", "accordionCharts", 4, "ngIf"], [1, "alerts-flex-container"], [1, "form-check-inline"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "ngModelChange"], [1, "alert_field", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip1", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip2", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["placeholder", "Expiry YYYY-MM-DD", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["value", ">"], ["value", "<"], ["placeholder", "Price", "type", "number", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], [1, "text-danger", "ms-2"], [1, "form-select", "form-select-sm", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["id", "place_expiry_date", "placeholder", "place_expiry_date", 1, "form-control", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["id", "place_qty", "placeholder", "curr_qty", 1, "form-control", "fw-bold", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngClass", "ngModel", "ngModelChange"], ["id", "curr_pos", "placeholder", "curr_pos", 1, "form-control", "fw-bold", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngClass", "ngModel", "ngModelChange"], [1, "me-2", 2, "display", "inline-block"], ["id", "new_pos", "placeholder", "new_pos", 1, "form-control", "fw-bold", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngClass", "ngModel", "ngModelChange"], [1, "chart-chart"], ["baseChart", "", "width", "2", "height", "1", 3, "datasets", "labels", "options", "colors", "legend", "chartType", "plugins"], ["placeholder", "Expiry YYYY-MM-DD", 1, "simulateDate", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Start YYYY-MM-DD", 1, "simulateDate", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-light", "btn-sm", "me-1", 3, "click"], [1, "form-check-inline", "use-hypo-future-class"], ["type", "checkbox", "value", "", "id", "show_simulate_charts", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_simulate_charts", 1, "form-check-label"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], ["type", "number", "placeholder", "Qty", 1, "form-control", "form-control-sm", 3, "step", "ngModel", "ngModelChange"], ["placeholder", "Scrip 11500CE", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Expiry 01OCT2020", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Entry", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Exit", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [1, "fw-bold"], ["type", "button", 1, "btn", "btn-light", "btn-sm", 3, "click"], [1, "form-check-inline", "posCheckbox"], ["type", "checkbox", "value", "", 1, "form-check-input", "me-1", 3, "ngModel", "disabled", "ngModelChange"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "disabled", "ngModelChange"], [1, "form-check", "form-check-inline"], ["type", "radio", "name", "inlineRadioOptions", "id", "inlineRadio1", 1, "form-check-input", 3, "value", "ngModel", "ngModelChange"], ["for", "inlineRadio1", 1, "form-check-label"], ["type", "radio", "name", "inlineRadioOptions", "id", "inlineRadio2", 1, "form-check-input", 3, "value", "ngModel", "ngModelChange"], ["for", "inlineRadio2", 1, "form-check-label"], ["type", "radio", "name", "inlineRadioOptions", "id", "inlineRadio3", 1, "form-check-input", 3, "value", "ngModel", "ngModelChange"], ["for", "inlineRadio3", 1, "form-check-label"], [1, "chart-finchart"], ["id", "accordionStraddle", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#straddleSection", "aria-expanded", "true", "aria-controls", "straddleSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "straddleSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionStraddle", 1, "accordion-collapse", "collapse", "p-2"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "me-2", "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip", "id", "payOffExpiry", 1, "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["id", "accordionCharts", 1, "accordion"], ["type", "button", "data-toggle", "collapse", "data-target", "#chartsSection", "aria-expanded", "true", "aria-controls", "chartsSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "chartsSection", "aria-labelledby", "headingOne", "data-parent", "#accordionCharts", 1, "accordion-collapse", "collapse", "p-2"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=8985&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=160&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"]], template: function ChartComponent_Template(rf, ctx) { if (rf & 1) {
         const _r85 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](1, "div", 1);
@@ -6253,7 +6263,7 @@ ChartComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10__
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](55, "tbody");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](56, ChartComponent_tr_56_Template, 26, 7, "tr", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](56, ChartComponent_tr_56_Template, 26, 19, "tr", 12);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
@@ -6564,23 +6574,23 @@ ChartComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10__
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](24);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngForOf", ctx.place_orders);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](52, _c1, ctx.getStrategyPnL(1) < 0, ctx.getStrategyPnL(1) > 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](52, _c0, ctx.getStrategyPnL(1) < 0, ctx.getStrategyPnL(1) > 0));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx.getStrategyPnL(1));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](55, _c1, ctx.getStrategyPnL(2) < 0, ctx.getStrategyPnL(2) > 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](55, _c0, ctx.getStrategyPnL(2) < 0, ctx.getStrategyPnL(2) > 0));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx.getStrategyPnL(2));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](58, _c1, ctx.getStrategyPnL(3) < 0, ctx.getStrategyPnL(3) > 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](58, _c0, ctx.getStrategyPnL(3) < 0, ctx.getStrategyPnL(3) > 0));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx.getStrategyPnL(3));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](61, _c1, ctx.getStrategyPnL(4) < 0, ctx.getStrategyPnL(4) > 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](61, _c0, ctx.getStrategyPnL(4) < 0, ctx.getStrategyPnL(4) > 0));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx.getStrategyPnL(4));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](64, _c1, ctx.getStrategyPnL(5) < 0, ctx.getStrategyPnL(5) > 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](64, _c0, ctx.getStrategyPnL(5) < 0, ctx.getStrategyPnL(5) > 0));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx.getStrategyPnL(5));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
@@ -6618,7 +6628,7 @@ ChartComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10__
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](7);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngForOf", ctx.curr_positions_trades);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](45);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](67, _c1, ctx.getStrategyPnL() < 0, ctx.getStrategyPnL() > 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](67, _c0, ctx.getStrategyPnL() < 0, ctx.getStrategyPnL() > 0));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"](" ", ctx.getStrategyPnL(), " ");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
