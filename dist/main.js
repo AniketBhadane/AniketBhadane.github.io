@@ -2746,9 +2746,12 @@ class AppService {
         let holidays_seconds = this.calcHolidays(date_now, date_expiry) * 86400;
         let seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000) - holidays_seconds - add_days_seconds;
         if (seconds > 0) {
-            let minutes = Math.floor(seconds / 60);
-            let hours = Math.floor(minutes / 60);
-            let delta_t = (Math.floor(hours / 24)) / 365.0; // time
+            /* let	minutes = Math.floor(seconds / 60);
+            let	hours = Math.floor(minutes / 60);
+            let	delta_t = (Math.floor(hours / 24)) / 365.0; // time */
+            let minutes = seconds / 60;
+            let hours = minutes / 60;
+            let delta_t = hours / 24 / 365.0; // time
             /* if (hours < 12) {
               return 0;
             }
@@ -5311,10 +5314,17 @@ class ChartComponent {
         //let seconds = days_diff * 86400;
         let holidays_seconds = this.appService.calcHolidays(date_now, date_expiry) * 86400;
         let seconds = Math.floor((date_expiry.getTime() - date_now.getTime()) / 1000) - holidays_seconds - add_days_seconds;
+        //console.log('aniket', add_days, seconds);
+        /* aniket undefined 171348
+        aniket 1 108899
+        aniket 2 22499 */
         if (seconds > 0) {
-            let minutes = Math.floor(seconds / 60);
-            let hours = Math.floor(minutes / 60);
-            let delta_t = (Math.floor(hours / 24)) / 365.0; // time
+            /* let	minutes = Math.floor(seconds / 60);
+            let	hours = Math.floor(minutes / 60);
+            let	delta_t = (Math.floor(hours / 24)) / 365.0; // time */
+            let minutes = seconds / 60;
+            let hours = minutes / 60;
+            let delta_t = hours / 24 / 365.0; // time
             /* if (hours < 12) {
               return 0;
             }
