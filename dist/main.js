@@ -3912,6 +3912,19 @@ class ChartComponent {
         let expiry = symbol.substring(0, 5); // 20N08 20JUN 20911
         return strike + type;
     }
+    findCurrExpiry() {
+        let diff = 10000000000000000000;
+        let expiry = new Date();
+        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.niftyExpiries.forEach((element) => {
+            let currDiff = element.getTime() - new Date().getTime();
+            if (currDiff > 0 && currDiff < diff) {
+                diff = currDiff;
+                expiry = element;
+            }
+        });
+        let expiryString = '' + expiry.getFullYear() + '-' + ('0' + (expiry.getMonth() + 1)) + '-' + ('0' + expiry.getDate()).slice(-2);
+        return expiryString;
+    }
     ngOnInit() {
         /* let positions = {
           instru: 'NIFTY',
@@ -3990,9 +4003,16 @@ class ChartComponent {
         //this.chartService.initFetchIntraday(this.intradayWatch);
         //this.chartService.saveIntradayData();
         /****************************************** */
+        let currExpiry = this.findCurrExpiry();
+        this.place_orders = [
+            { instru: 'BANKNIFTY', expiry_date: currExpiry, curr_qty: -300, curr_scrip: '', new_scrip: '37200CE' },
+            { instru: 'BANKNIFTY', expiry_date: currExpiry, curr_qty: -300, curr_scrip: '', new_scrip: '' },
+            { instru: 'BANKNIFTY', expiry_date: currExpiry, curr_qty: -300, curr_scrip: '', new_scrip: '' },
+            { instru: 'BANKNIFTY', expiry_date: currExpiry, curr_qty: -300, curr_scrip: '', new_scrip: '' },
+        ];
         this.alerts = [];
         for (let index = 0; index < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.numAlerts; index += 1) {
-            this.alerts.push({ selected: false, scrip1: '40000CE', scrip2: '', instru: 'BANKNIFTY', expiry: '2022-01-07', compare: '>', price: 20, status: '' });
+            this.alerts.push({ selected: false, scrip1: '40000CE', scrip2: '', instru: 'BANKNIFTY', expiry: currExpiry, compare: '>', price: 20, status: '' });
         }
         let alert_interval = setInterval(() => {
             if (this.alerts) {
@@ -4801,70 +4821,203 @@ class ChartComponent {
         this.getPayoff();
         this.getMargin();
     }
+    mergePositions() {
+        let exitedMap = new Map(); // will contain all exited positions
+        let mergeMap = new Map(); // will contain all open positions
+        //this.curr_positions_trades.forEach(element => {
+        for (let i = 0; i < this.curr_positions_trades.length; i++) {
+            let element = this.curr_positions_trades[i];
+            let key = element.scrip + ' ' + element.expiry;
+            let exitedMap_value = exitedMap.get(key);
+            let mergeMap_value = mergeMap.get(key);
+            /* let element_v = {
+              entry: element.entry,
+              exit: element.exit,
+              expiry: element.expiry,
+              pnl: element.pnl,
+              qty: element.qty,
+              rollstrike: element.rollstrike,
+              scrip: element.scrip,
+              selected: element.selected,
+              selectedActual: element.selectedActual
+            } */
+            if (element.exit !== 0) { // if element is exited
+                if (!exitedMap_value) {
+                    exitedMap_value = [];
+                }
+                exitedMap_value.push(element);
+                exitedMap.set(key, exitedMap_value);
+            }
+            else { // element not exited
+                if (!mergeMap_value) { // element not in mergeMap
+                    mergeMap.set(key, element);
+                }
+                else { // element exists in mergeMap
+                    if (mergeMap_value.qty == -element.qty) { // if complete exit
+                        mergeMap_value.exit = element.entry;
+                        if (!exitedMap_value) {
+                            exitedMap_value = [];
+                        }
+                        exitedMap_value.push(mergeMap_value);
+                        exitedMap.set(key, exitedMap_value);
+                        mergeMap.delete(key);
+                    }
+                    else if ((mergeMap_value.qty > 0 && element.qty > 0) || (mergeMap_value.qty < 0 && element.qty < 0)) { // if adding to existing position (i.e. both are buy or both are sell)
+                        mergeMap_value.entry = ((mergeMap_value.entry * mergeMap_value.qty) + (element.entry * element.qty)) / (mergeMap_value.qty + element.qty);
+                        mergeMap_value.entry = (Math.round((mergeMap_value.entry + 0.00001) * 10000) / 10000); // round to four decimals
+                        mergeMap_value.qty += element.qty;
+                        mergeMap.set(key, mergeMap_value);
+                    }
+                    else { // if opposite positions of different quantities
+                        if (Math.abs(mergeMap_value.qty) > Math.abs(element.qty)) { // if existing qty in mergemap is greater than element qty
+                            /*
+                            merge 600     40  0
+                            elem  -150    35  0
+              
+                            exit  150     40  35
+                            merge 450     40  0
+              
+                            new mergemap qty = old mergemap qty + element qty
+              
+                            exitedmap qty = -element qty
+                            exitedmap entry = mergemap entry
+                            exitedmap exit = element entry
+                            */
+                            mergeMap_value.qty = mergeMap_value.qty + element.qty;
+                            mergeMap.set(key, mergeMap_value);
+                            element.qty = -element.qty;
+                            element.exit = element.entry;
+                            element.entry = mergeMap_value.entry;
+                            if (!exitedMap_value) {
+                                exitedMap_value = [];
+                            }
+                            exitedMap_value.push(element);
+                            exitedMap.set(key, exitedMap_value);
+                        }
+                        else { // if existing qty in mergemap is lesser than element qty
+                            /*
+                            merge 50     40   0
+                            elem  -150   35   0
+              
+                            exit  50    40  35
+                            merge -100   35  0
+              
+                            new mergemap qty = old mergemap qty + element qty
+                            new mergeMap entry = element.entry
+              
+                            exitedmap qty = mergemap qty
+                            exitedmap entry = mergemap entry
+                            exitedmap exit = element entry
+                            */
+                            let exitedQty = mergeMap_value.qty;
+                            let exitedEntry = mergeMap_value.entry;
+                            mergeMap_value.qty = mergeMap_value.qty + element.qty;
+                            mergeMap_value.entry = element.entry;
+                            mergeMap.set(key, mergeMap_value);
+                            element.qty = exitedQty;
+                            element.exit = element.entry;
+                            element.entry = exitedEntry;
+                            if (!exitedMap_value) {
+                                exitedMap_value = [];
+                            }
+                            exitedMap_value.push(element);
+                            exitedMap.set(key, exitedMap_value);
+                        }
+                    }
+                }
+            }
+        }
+        console.log('exitedMap:', exitedMap);
+        console.log('mergeMap:', mergeMap);
+        this.curr_positions_trades = [];
+        for (let [key, v] of exitedMap) {
+            v.forEach(value => {
+                this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike });
+            });
+        }
+        for (let [key, value] of mergeMap) {
+            this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike });
+        }
+    }
     savePositions(num) {
         // To combine positions of same scrip
         // other way is iterating through the array and use Map with scrip as key and rest of params as value
-        const combinedItems = (arr = []) => {
-            const res = arr.reduce((acc, obj) => {
-                //console.log(obj);
-                if (obj.exit !== 0) {
-                    acc.push(obj);
-                    return acc;
-                }
-                if (obj.notconsider === true) {
-                    return acc;
-                }
-                //this.curr_positions_trades.push({ qty: qty, scrip: scrip, expiry: dateString, entry: entry, exit: 0 });
-                let found = false;
-                for (let i = 0; i < acc.length; i++) {
-                    if (acc[i].notconsider === true) {
-                        continue;
+        /* const combinedItems = (arr = []) => {
+          const res = arr.reduce((acc, obj) => {
+            
+            //console.log(obj);
+            
+            if (obj.exit !== 0) {
+              acc.push(obj);
+              return acc;
+            }
+    
+            if (obj.notconsider === true) {
+              return acc;
+            }
+            
+            //this.curr_positions_trades.push({ qty: qty, scrip: scrip, expiry: dateString, entry: entry, exit: 0 });
+    
+            let found = false;
+    
+            for (let i = 0; i < acc.length; i++) {
+    
+              if (acc[i].notconsider === true) {
+                continue;
+              }
+              
+              if (acc[i].exit === 0 && acc[i].scrip === obj.scrip && acc[i].expiry === obj.expiry) {
+                found = true;
+    
+                if ((acc[i].qty > 0 && obj.qty > 0) || (acc[i].qty < 0 && obj.qty < 0)) {
+                  acc[i].entry = ((acc[i].entry * acc[i].qty) + (obj.entry * obj.qty)) / (acc[i].qty + obj.qty);
+                  acc[i].entry = (Math.round((acc[i].entry + 0.00001) * 10000) / 10000); // round to four decimals
+                  acc[i].qty += obj.qty;
+                } else {
+                  let qtydiff = acc[i].qty + obj.qty;
+                  
+                  if (qtydiff !== 0) { // if quantity mismatch, add another entry
+    
+                    if (Math.abs(acc[i].qty) > Math.abs(obj.qty)) {
+                      
+                      let copy = Object.assign({}, acc[i]);
+                      copy.qty = qtydiff;
+                      copy.entry = acc[i].entry;
+                      copy.notconsider = true;
+                      acc.push(copy);
+    
+                      acc[i].qty = -obj.qty;
+                      acc[i].exit = obj.entry;
+    
+                      // console.log('qtydiff', qtydiff, copy);
+                    } else {
+                      
+                      let copy = Object.assign({}, acc[i]);
+                      copy.qty = qtydiff;
+                      copy.entry = obj.entry;
+                      copy.notconsider = true;
+                      acc.push(copy);
+    
+                      acc[i].exit = obj.entry;
                     }
-                    if (acc[i].exit === 0 && acc[i].scrip === obj.scrip && acc[i].expiry === obj.expiry) {
-                        found = true;
-                        if ((acc[i].qty > 0 && obj.qty > 0) || (acc[i].qty < 0 && obj.qty < 0)) {
-                            acc[i].entry = ((acc[i].entry * acc[i].qty) + (obj.entry * obj.qty)) / (acc[i].qty + obj.qty);
-                            acc[i].entry = (Math.round((acc[i].entry + 0.00001) * 10000) / 10000); // round to four decimals
-                            acc[i].qty += obj.qty;
-                        }
-                        else {
-                            let qtydiff = acc[i].qty + obj.qty;
-                            if (qtydiff !== 0) { // if quantity mismatch, add another entry
-                                if (Math.abs(acc[i].qty) > Math.abs(obj.qty)) {
-                                    let copy = Object.assign({}, acc[i]);
-                                    copy.qty = qtydiff;
-                                    copy.entry = acc[i].entry;
-                                    copy.notconsider = true;
-                                    acc.push(copy);
-                                    acc[i].qty = -obj.qty;
-                                    acc[i].exit = obj.entry;
-                                    // console.log('qtydiff', qtydiff, copy);
-                                }
-                                else {
-                                    let copy = Object.assign({}, acc[i]);
-                                    copy.qty = qtydiff;
-                                    copy.entry = obj.entry;
-                                    copy.notconsider = true;
-                                    acc.push(copy);
-                                    acc[i].exit = obj.entry;
-                                }
-                            }
-                            else {
-                                acc[i].exit = obj.entry;
-                            }
-                        }
-                    }
+    
+                  } else {
+                    acc[i].exit = obj.entry;
+                  }
                 }
-                if (found === false) {
-                    acc.push(obj);
-                }
-                return acc;
-            }, []);
-            return res;
-        };
-        this.curr_positions_trades = combinedItems(this.curr_positions_trades);
+              }
+            }
+            if (found === false) {
+              acc.push(obj);
+            }
+            return acc;
+          }, []);
+          return res;
+        } */
+        //this.curr_positions_trades = combinedItems(this.curr_positions_trades);
         //console.log(ne);
-        console.log(this.curr_positions_trades);
+        this.mergePositions();
+        console.log('curr_positions_trades', this.curr_positions_trades);
         if (confirm('Sure save ' + num + '?')) {
             let curr_positions = { instru: '', expiry: '', trades: {} };
             curr_positions.instru = this.instru;
@@ -6147,26 +6300,32 @@ class ChartComponent {
                 else {
                     scrip = pos.new_scrip;
                 }
-                let symbol = this.getMapKeyString(pos.instru, pos.expiry_date, scrip);
-                console.log('placing ', first_order ? 'first order ' : 'second order ', symbol);
-                this.zerodhaService.place_order(symbol, qty, this.orders_authorization).subscribe((res) => {
-                    console.log('place_roll_orders response', res);
-                    this.appService.requestStatusEvent$.next({ 'status': 'success', 'message': 'Success ' + scrip + ' ' + qty });
-                    if (first_order && pos.new_scrip) {
-                        this.place_roll_orders(pos, false);
-                    }
-                }, error => {
-                    console.log('place_roll_orders error', error);
-                    let errmsg = 'Error (mostly timeout)';
-                    if (error.error && error.error.message) {
-                        errmsg = error.error.message;
-                    }
-                    else {
-                        errmsg = error.message;
-                    }
-                    this.appService.requestStatusEvent$.next({ 'status': 'danger', 'message': scrip + ' ' + qty + ' ' + errmsg });
-                    this.appService.playAudio('error');
-                });
+                console.log(qty, scrip);
+                if (qty != '' && qty != null && scrip) {
+                    let symbol = this.getMapKeyString(pos.instru, pos.expiry_date, scrip);
+                    console.log('placing ', first_order ? 'first order ' : 'second order ', symbol);
+                    this.zerodhaService.place_order(symbol, qty, this.orders_authorization).subscribe((res) => {
+                        console.log('place_roll_orders response', res);
+                        this.appService.requestStatusEvent$.next({ 'status': 'success', 'message': 'Success ' + scrip + ' ' + qty });
+                        if (first_order && pos.new_scrip) {
+                            this.place_roll_orders(pos, false);
+                        }
+                    }, error => {
+                        console.log('place_roll_orders error', error);
+                        let errmsg = 'Error (mostly timeout)';
+                        if (error.error && error.error.message) {
+                            errmsg = error.error.message;
+                        }
+                        else {
+                            errmsg = error.message;
+                        }
+                        this.appService.requestStatusEvent$.next({ 'status': 'danger', 'message': scrip + ' ' + qty + ' ' + errmsg });
+                        this.appService.playAudio('error');
+                    });
+                }
+                else {
+                    console.log('Not valid data to place order');
+                }
             }
         }
     }
@@ -7872,19 +8031,61 @@ AppConstants.monthlyExpiryDatesUSDINR = {
     '22DEC': new Date(2022, 2, 29),
 };
 AppConstants.holidays = [
-    new Date(26, 0, 2022),
-    new Date(1, 2, 2022),
-    new Date(18, 2, 2022),
-    new Date(14, 3, 2022),
-    new Date(15, 3, 2022),
-    new Date(3, 4, 2022),
-    new Date(9, 7, 2022),
-    new Date(15, 7, 2022),
-    new Date(31, 7, 2022),
-    new Date(5, 9, 2022),
-    new Date(24, 9, 2022),
-    new Date(26, 9, 2022),
-    new Date(8, 10, 2022),
+    new Date(2022, 0, 26),
+    new Date(2022, 2, 1),
+    new Date(2022, 2, 18),
+    new Date(2022, 3, 14),
+    new Date(2022, 3, 15),
+    new Date(2022, 4, 3),
+    new Date(2022, 7, 9),
+    new Date(2022, 7, 15),
+    new Date(2022, 7, 31),
+    new Date(2022, 9, 5),
+    new Date(2022, 9, 24),
+    new Date(2022, 9, 26),
+    new Date(2022, 10, 8),
+];
+AppConstants.niftyExpiries = [
+    new Date(2022, 2, 31),
+    new Date(2022, 3, 7),
+    new Date(2022, 3, 13),
+    new Date(2022, 3, 21),
+    new Date(2022, 3, 28),
+    new Date(2022, 4, 5),
+    new Date(2022, 4, 12),
+    new Date(2022, 4, 19),
+    new Date(2022, 4, 26),
+    new Date(2022, 5, 2),
+    new Date(2022, 5, 9),
+    new Date(2022, 5, 16),
+    new Date(2022, 5, 23),
+    new Date(2022, 5, 30),
+    new Date(2022, 6, 7),
+    new Date(2022, 6, 14),
+    new Date(2022, 6, 21),
+    new Date(2022, 6, 28),
+    new Date(2022, 7, 4),
+    new Date(2022, 7, 11),
+    new Date(2022, 7, 18),
+    new Date(2022, 7, 25),
+    new Date(2022, 8, 1),
+    new Date(2022, 8, 8),
+    new Date(2022, 8, 15),
+    new Date(2022, 8, 22),
+    new Date(2022, 8, 29),
+    new Date(2022, 9, 6),
+    new Date(2022, 9, 13),
+    new Date(2022, 9, 20),
+    new Date(2022, 9, 27),
+    new Date(2022, 10, 3),
+    new Date(2022, 10, 10),
+    new Date(2022, 10, 17),
+    new Date(2022, 10, 24),
+    new Date(2022, 11, 1),
+    new Date(2022, 11, 8),
+    new Date(2022, 11, 15),
+    new Date(2022, 11, 22),
+    new Date(2022, 11, 29),
 ];
 /* Enter Supports from high to low, Enter Resistances from Low to High */
 AppConstants.holdings = {
