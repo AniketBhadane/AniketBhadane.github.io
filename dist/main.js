@@ -3891,7 +3891,6 @@ class ChartComponent {
             res.forEach(element => {
                 this.place_orders.push({ instru: element.instru, expiry_date: this.currExpiry, curr_qty: -300, curr_scrip: '', new_scrip: element.strike });
             });
-            // this.place_orders.push({ instru: this.instru, expiry_date: this.currExpiry, curr_qty: element.qty, curr_scrip: element.scrip, new_scrip: '' });
         });
         this.appService.chartEvent$.subscribe(res => {
             console.log('chartEvent subcribe: ', res);
@@ -3960,10 +3959,18 @@ class ChartComponent {
         let diff = 10000000000000000000;
         let expiry = new Date();
         _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.niftyExpiries.forEach((element) => {
-            let currDiff = element.getTime() - new Date().getTime();
-            if (currDiff >= 0 && currDiff < diff) {
-                diff = currDiff;
+            let today = new Date();
+            let sameDay = element.getFullYear() === today.getFullYear() && element.getMonth() === today.getMonth() && element.getDate() === today.getDate();
+            if (sameDay) {
+                diff = 0;
                 expiry = element;
+            }
+            else {
+                let currDiff = element.getTime() - new Date().getTime();
+                if (currDiff >= 0 && currDiff < diff) {
+                    diff = currDiff;
+                    expiry = element;
+                }
             }
         });
         let expiryString = '' + expiry.getFullYear() + '-' + ('0' + (expiry.getMonth() + 1)) + '-' + ('0' + expiry.getDate()).slice(-2);
