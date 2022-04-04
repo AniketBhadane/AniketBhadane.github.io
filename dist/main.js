@@ -3889,7 +3889,7 @@ class ChartComponent {
             // this.rest_res = res;
             this.place_orders = [];
             res.forEach(element => {
-                this.place_orders.push({ instru: element.instru, expiry_date: this.currExpiry, curr_qty: -300, curr_scrip: '', new_scrip: element.strike });
+                this.place_orders.push({ instru: element.instru, expiry_date: this.currExpiry, curr_qty: null, curr_scrip: '', new_scrip: element.strike });
             });
         });
         this.appService.chartEvent$.subscribe(res => {
@@ -4206,7 +4206,7 @@ class ChartComponent {
                 if (details[1] === 'SELL') {
                     o.qty = -o.qty;
                 }
-                o.price = Number(details[5]);
+                o.price = Number(details[5].replace(',', ''));
                 o.strategy = this.currLoadNum;
                 this.orders_parsed.push(o);
             }
