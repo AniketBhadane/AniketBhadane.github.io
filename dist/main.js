@@ -2824,7 +2824,7 @@ class AppService {
         let url = urlToFetch;
         return this.http.get(url, httpOptions);
     }
-    getZerodhaMargin(instru, curr_positions_trades, exchange) {
+    getZerodhaMargin(instru, curr_positions_trades, exchange, access_token) {
         // console.log('getMargin curr_positions_trades: ', curr_positions_trades);
         /*
         [
@@ -2860,7 +2860,7 @@ class AppService {
         }
         let httpOptions = {
             headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpHeaders({
-                Authorization: 'enctoken Lwst9BqmMuSc81/BFlaQO3s/1U+LBDhg0Q7hKeuIUZgC5mfnLZ9dWPAmrHYsZc63c86tpbAFnTWXI7dXJEWL4avFeGmeCiTnn85qQYXda00K5NxcAWvgxA==',
+                Authorization: access_token,
             }),
             responseType: 'json'
         };
@@ -5773,7 +5773,7 @@ class ChartComponent {
         // let month = d.toLocaleString('default', { month: 'short' }).toUpperCase();
         let month = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.monthsMapping[d.getMonth() + 1];
         console.log('getMargin: ', this.curr_positions_trades);
-        this.appService.getZerodhaMargin(this.instru, /* month, */ this.curr_positions_trades, this.instru).subscribe((res) => {
+        this.appService.getZerodhaMargin(this.instru, /* month, */ this.curr_positions_trades, this.instru, this.orders_authorization).subscribe((res) => {
             console.log('getMargin res: ', res);
             if (res.data && res.data.final) {
                 this.margin = Math.round(res.data.final.total).toLocaleString();
