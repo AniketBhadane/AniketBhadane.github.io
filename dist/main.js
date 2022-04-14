@@ -2502,15 +2502,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! rxjs */ 2218);
 /* harmony import */ var _common_application_constant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./common/application.constant */ 8001);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ 8784);
 /* harmony import */ var _common_models__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./common/models */ 8077);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/common/http */ 8784);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 3184);
 /* harmony import */ var _common_fyers_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./common/fyers.service */ 6982);
 /* harmony import */ var _common_aliceblue_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./common/aliceblue.service */ 7023);
 /* harmony import */ var _common_angel_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./common/angel.service */ 1580);
 /* harmony import */ var _common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./common/angelwebsocket.service */ 4991);
 /* harmony import */ var _common_websocket_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./common/websocket.service */ 4440);
 /* harmony import */ var _common_map_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./common/map.service */ 397);
+
 
 
 
@@ -2823,7 +2824,91 @@ class AppService {
         let url = urlToFetch;
         return this.http.get(url, httpOptions);
     }
-    getZerodhaMargin(instru, month, curr_positions_trades, exchange) {
+    getZerodhaMargin(instru, curr_positions_trades, exchange) {
+        // console.log('getMargin curr_positions_trades: ', curr_positions_trades);
+        /*
+        [
+          {"exchange":"NFO","tradingsymbol":"BANKNIFTY2242139000CE","transaction_type":"SELL","variety":"regular","product":"NRML","order_type":"MARKET","quantity":50,"price":0,"trigger_price":0,"squareoff":0,"stoploss":0},
+          {"exchange":"NFO","tradingsymbol":"BANKNIFTY2242135000PE","transaction_type":"SELL","variety":"regular","product":"NRML","order_type":"MARKET","quantity":50,"price":0,"trigger_price":0,"squareoff":0,"stoploss":0}
+        ]
+        */
+        let b = [];
+        for (let i = 0; i < curr_positions_trades.length; i++) {
+            let element = curr_positions_trades[i];
+            /* {
+              qty: 50,
+              scrip: '11150CE',
+              expiry: '01OCT2020',
+              entry: 50,
+              exit: 0,
+            }, */
+            // -375x10950PEx01OCT2020x19.2x0x0&
+            // console.log('getMargin inside loop: ', element);
+            if (element.exit !== null && element.exit === 0) {
+                let symbol = this.getScrip(element.scrip, instru, element.expiry);
+                let trade = 'SELL';
+                if (element.qty > 0) {
+                    trade = 'BUY';
+                }
+                let exch = 'CDS';
+                if (exchange.includes('NIFTY')) {
+                    exch = 'NFO';
+                }
+                let pos = { "exchange": exch, "tradingsymbol": symbol, "transaction_type": trade, "variety": "regular", "product": "NRML", "order_type": "MARKET", "quantity": Math.abs(element.qty), "price": 0, "trigger_price": 0, "squareoff": 0, "stoploss": 0 };
+                b.push(pos);
+            }
+        }
+        let httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpHeaders({
+                Authorization: 'enctoken Lwst9BqmMuSc81/BFlaQO3s/1U+LBDhg0Q7hKeuIUZgC5mfnLZ9dWPAmrHYsZc63c86tpbAFnTWXI7dXJEWL4avFeGmeCiTnn85qQYXda00K5NxcAWvgxA==',
+            }),
+            responseType: 'json'
+        };
+        return this.http.post('https://kite.zerodha.com/oms/margins/basket?consider_positions=&mode=compact', b, httpOptions);
+    }
+    getScrip(scrip, instru, expiry_date) {
+        let is_monthly_expiry = false;
+        let expiryDate = new Date(expiry_date);
+        expiryDate.setHours(0, 0, 0, 0);
+        let tempmonthlyExpiryDates = _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDates;
+        if (instru === 'USDINR') {
+            tempmonthlyExpiryDates = _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesUSDINR;
+        }
+        for (let key in tempmonthlyExpiryDates) {
+            if (tempmonthlyExpiryDates.hasOwnProperty(key)) {
+                // console.log(key + " -> " + tempmonthlyExpiryDates[key] + ' ' + expiryDate);
+                if (expiryDate.getTime() === tempmonthlyExpiryDates[key].getTime()) {
+                    // console.log('monthly expiry matched');
+                    is_monthly_expiry = true;
+                    break;
+                }
+            }
+        }
+        let expiry = null;
+        if (is_monthly_expiry) {
+            expiry = '' + (expiryDate.getFullYear() - 2000) + _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthsMapping[expiryDate.getMonth() + 1];
+        }
+        else {
+            let expiryMonth = null;
+            if (expiryDate.getMonth() + 1 === 10) {
+                expiryMonth = 'O';
+            }
+            else if (expiryDate.getMonth() + 1 === 11) {
+                expiryMonth = 'N';
+            }
+            else if (expiryDate.getMonth() + 1 === 12) {
+                expiryMonth = 'D';
+            }
+            else {
+                expiryMonth = expiryDate.getMonth() + 1;
+            }
+            expiry = '' + (expiryDate.getFullYear() - 2000) + (expiryMonth) + ('0' + expiryDate.getDate()).slice(-2);
+        }
+        let str = instru + expiry + scrip;
+        // console.log('str: ' + str);
+        return str;
+    }
+    getZerodhaMargin_old(instru, month, curr_positions_trades, exchange) {
         let formData = new FormData();
         formData.append('action', 'calculate');
         /*
@@ -2959,8 +3044,8 @@ class AppService {
         }
     }
 }
-AppService.ɵfac = function AppService_Factory(t) { return new (t || AppService)(_angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_10__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_common_fyers_service__WEBPACK_IMPORTED_MODULE_2__.FyersService), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_common_aliceblue_service__WEBPACK_IMPORTED_MODULE_3__.AliceblueService), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_common_angel_service__WEBPACK_IMPORTED_MODULE_4__.AngelService), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_5__.AngelWebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_6__.WebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵinject"](_common_map_service__WEBPACK_IMPORTED_MODULE_7__.MapService)); };
-AppService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_9__["ɵɵdefineInjectable"]({ token: AppService, factory: AppService.ɵfac, providedIn: 'root' });
+AppService.ɵfac = function AppService_Factory(t) { return new (t || AppService)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_common_fyers_service__WEBPACK_IMPORTED_MODULE_2__.FyersService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_common_aliceblue_service__WEBPACK_IMPORTED_MODULE_3__.AliceblueService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_common_angel_service__WEBPACK_IMPORTED_MODULE_4__.AngelService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_5__.AngelWebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_6__.WebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵinject"](_common_map_service__WEBPACK_IMPORTED_MODULE_7__.MapService)); };
+AppService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineInjectable"]({ token: AppService, factory: AppService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
@@ -4163,6 +4248,54 @@ class ChartComponent {
             this.parseZerodhaOrders();
         }
     }
+    parseZ1() {
+        /*
+        BANKNIFTY2240733500PE		200	1160	1190	30	2.5862	0	0		0	0	0
+        BANKNIFTY2240733700PE		300	4470	6943.7499	2473.75	55.3412	0	0		0	0	0
+    
+              scrip                       qty   buy       sell   pnl    pnl       -   Open type value
+        ['', 'BANKNIFTY2240733500PE', '', '200', '1160', '1190', '30', '2.5862', '0', '0', '', '0', '0', '0']
+        */
+        this.orders_parsed = [];
+        let split = this.ordersTextarea.split('\n');
+        console.log(split);
+        for (let i = 0; i < split.length; i++) {
+            let line = split[i];
+            line = line.replace('\n', '\t');
+            let details = line.split('\t');
+            console.log(details);
+            let o = new _common_models__WEBPACK_IMPORTED_MODULE_3__.OrderPasted1();
+            o.instru = 'BANKNIFTY';
+            o.scrip = details[1].slice(-7);
+            o.qty = Number(details[3]);
+            /* if (details[1] === 'SELL') {
+              o.qty = -o.qty;
+            } */
+            o.entry = Number(details[4].replace(',', '')) / o.qty;
+            o.exit = Number(details[5].replace(',', '')) / o.qty;
+            o.strategy = this.currLoadNum;
+            if (o.qty !== 0) {
+                this.orders_parsed.push(o);
+            }
+            if (details[10] !== '') {
+                let o1 = new _common_models__WEBPACK_IMPORTED_MODULE_3__.OrderPasted1();
+                o1.instru = 'BANKNIFTY';
+                o1.scrip = details[1].slice(-7);
+                o1.qty = Number(details[9]);
+                /* if (details[1] === 'SELL') {
+                  o.qty = -o.qty;
+                } */
+                o1.entry = Number(details[11].replace(',', '')) / o1.qty;
+                o1.exit = 0;
+                if (details[10] == 'sell') {
+                    o1.qty = -o1.qty;
+                }
+                o1.strategy = this.currLoadNum;
+                this.orders_parsed.push(o1);
+            }
+        }
+        console.log(this.orders_parsed);
+    }
     parseZerodhaOrders() {
         /*
         
@@ -4253,6 +4386,7 @@ class ChartComponent {
     addOrdersToStrategy() {
         for (let i = 0; i < this.orders_parsed.length; i++) {
             this.addPosition(this.orders_parsed[i].qty, this.orders_parsed[i].scrip, this.orders_parsed[i].price);
+            // this.addPosition1(this.orders_parsed[i].qty, this.orders_parsed[i].scrip, this.orders_parsed[i].entry, this.orders_parsed[i].exit);
         }
     }
     exportToCSV(num) {
@@ -4831,6 +4965,22 @@ class ChartComponent {
           console.log('urlToFetch: ' + url);
           this.urlToFetch = url;
         } */
+    }
+    addPosition1(qty = null, scrip = null, entry = null, exit = null) {
+        if (this.curr_positions_trades === null) {
+            this.curr_positions_trades = [];
+        }
+        let d = new Date(this.expiryDate);
+        let monthNames = ['JAN', 'FEB', 'MAR', 'APR',
+            'MAY', 'JUN', 'JUL', 'AUG',
+            'SEP', 'OCT', 'NOV', 'DEC'];
+        let day = ('0' + d.getDate()).slice(-2);
+        let monthIndex = d.getMonth();
+        let monthName = monthNames[monthIndex];
+        let year = d.getFullYear();
+        let dateString = day + monthName + year;
+        // console.log('***: ', day + monthName + year);
+        this.curr_positions_trades.push({ qty: qty, scrip: scrip, expiry: dateString, entry: entry, exit: exit, addToOrders: false, selected: true, selectedActual: false, rollstrike: null });
     }
     addPosition(qty = null, scrip = null, entry = null) {
         if (this.curr_positions_trades === null) {
@@ -5623,10 +5773,10 @@ class ChartComponent {
         // let month = d.toLocaleString('default', { month: 'short' }).toUpperCase();
         let month = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.monthsMapping[d.getMonth() + 1];
         console.log('getMargin: ', this.curr_positions_trades);
-        this.appService.getZerodhaMargin(this.instru, month, this.curr_positions_trades, this.instru).subscribe((res) => {
-            console.log('getMargin: ', res);
-            if (res.total) {
-                this.margin = Math.round(res.total.total).toLocaleString();
+        this.appService.getZerodhaMargin(this.instru, /* month, */ this.curr_positions_trades, this.instru).subscribe((res) => {
+            console.log('getMargin res: ', res);
+            if (res.data && res.data.final) {
+                this.margin = Math.round(res.data.final.total).toLocaleString();
             }
         }, error => {
             console.log('getMargin error', error);
@@ -8987,6 +9137,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "IntradayData": () => (/* binding */ IntradayData),
 /* harmony export */   "Position": () => (/* binding */ Position),
+/* harmony export */   "OrderPasted1": () => (/* binding */ OrderPasted1),
 /* harmony export */   "OrderPasted": () => (/* binding */ OrderPasted),
 /* harmony export */   "Order": () => (/* binding */ Order),
 /* harmony export */   "PlaceOrder": () => (/* binding */ PlaceOrder),
@@ -9006,6 +9157,8 @@ class Position {
         this.includeInSum3 = false;
         this.includeInSum4 = false;
     }
+}
+class OrderPasted1 {
 }
 class OrderPasted {
 }
