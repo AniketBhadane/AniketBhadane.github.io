@@ -1763,7 +1763,7 @@ class AppComponent {
         this.orders.forEach(element => {
             if (element.addToOrders) {
                 ord.push({ scrip: element.scrip, price: element.tradedPrice, qty: element.qty });
-                element.addToOrders = false;
+                // element.addToOrders = false;
             }
         });
         this.appService.payOffEvent$.next(ord);
