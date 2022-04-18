@@ -1101,7 +1101,7 @@ class AppComponent {
                 if (element.transaction_type === 'SELL') {
                     o.qty = -o.qty;
                 }
-                o.tradedPrice = element.price;
+                o.tradedPrice = element.price != 0 ? element.price : element.average_price;
                 o.status = element.status;
                 o.message = element.status_message;
                 this.orders.push(o);
