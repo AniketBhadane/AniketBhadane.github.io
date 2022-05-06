@@ -5315,7 +5315,7 @@ class ChartComponent {
         let fetched_pos = [];
         for (let i = 0; i < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions.length; i++) {
             let element = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions[i];
-            if (element.instru === this.instru) {
+            if (element.instru === this.instru && element.netQty !== 0) {
                 let a = { 'scrip': element.scrip, 'qty': element.netQty };
                 fetched_pos.push(a);
             }
