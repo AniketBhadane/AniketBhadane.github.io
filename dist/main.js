@@ -8708,7 +8708,7 @@ AppConstants.monthsMapping = {
     '20DEC': new Date(2020, 11, 29),
   }; */
 AppConstants.monthlyExpiryDates = {
-    '21JAN': new Date(2021, 0, 27),
+    /* '21JAN': new Date(2021, 0, 27),
     '21FEB': new Date(2021, 1, 24),
     '21MAR': new Date(2021, 2, 26),
     '21APR': new Date(2021, 3, 29),
@@ -8719,14 +8719,14 @@ AppConstants.monthlyExpiryDates = {
     '21SEP': new Date(2021, 8, 29),
     '21OCT': new Date(2021, 9, 28),
     '21NOV': new Date(2021, 10, 25),
-    '21DEC': new Date(2021, 11, 30),
+    '21DEC': new Date(2021, 11, 30), */
     '22JAN': new Date(2022, 0, 27),
     '22FEB': new Date(2022, 1, 24),
     '22MAR': new Date(2022, 2, 31),
     '22APR': new Date(2022, 3, 28),
-    '22MAY': new Date(2022, 4, 29),
+    '22MAY': new Date(2022, 4, 26),
     '22JUN': new Date(2022, 5, 30),
-    '22JUL': new Date(2022, 2, 29),
+    '22JUL': new Date(2022, 6, 28),
     '22AUG': new Date(2022, 2, 29),
     '22SEP': new Date(2022, 2, 29),
     '22OCT': new Date(2022, 2, 29),
@@ -8734,7 +8734,7 @@ AppConstants.monthlyExpiryDates = {
     '22DEC': new Date(2022, 2, 29),
 };
 AppConstants.monthlyExpiryDatesUSDINR = {
-    '21JAN': new Date(2021, 0, 27),
+    /* '21JAN': new Date(2021, 0, 27),
     '21FEB': new Date(2021, 1, 24),
     '21MAR': new Date(2021, 2, 26),
     '21APR': new Date(2021, 3, 28),
@@ -8745,7 +8745,7 @@ AppConstants.monthlyExpiryDatesUSDINR = {
     '21SEP': new Date(2021, 8, 28),
     '21OCT': new Date(2021, 9, 27),
     '21NOV': new Date(2021, 10, 26),
-    '21DEC': new Date(2021, 11, 29),
+    '21DEC': new Date(2021, 11, 29), */
     '22JAN': new Date(2022, 0, 27),
     '22FEB': new Date(2022, 1, 24),
     '22MAR': new Date(2022, 2, 29),
