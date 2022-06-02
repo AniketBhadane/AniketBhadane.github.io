@@ -1295,7 +1295,7 @@ class AppComponent {
         }
     }
     refreshAll() {
-        this.getFunds();
+        // this.getFunds();
         this.getPositions();
         this.getOrders();
     }
