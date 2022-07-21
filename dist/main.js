@@ -4462,7 +4462,7 @@ class ChartComponent {
         let expiry = new Date();
         _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.niftyExpiries.forEach((element) => {
             let today = new Date();
-            let sameDay = element.getFullYear() !== today.getFullYear() && element.getMonth() === today.getMonth() && element.getDate() === today.getDate();
+            let sameDay = element.getFullYear() === today.getFullYear() && element.getMonth() === today.getMonth() && element.getDate() === today.getDate();
             if (sameDay) {
                 diff = 0;
                 expiry = element;
