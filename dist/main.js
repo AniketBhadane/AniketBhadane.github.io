@@ -1643,18 +1643,17 @@ class AppComponent {
         }
     }
     showOILimit(instru, strike) {
-        if (instru === 'NIFTY') {
+        if (instru === 'NIFTY' && _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.nfCEOILimit && _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.nfPEOILimit) {
             if (strike > _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.nfCEOILimit || strike < _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.nfPEOILimit) {
                 return true;
             }
-            return false;
         }
-        if (instru === 'BANKNIFTY') {
+        if (instru === 'BANKNIFTY' && _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.bnfCEOILimit && _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.bnfPEOILimit) {
             if (strike > _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.bnfCEOILimit || strike < _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.bnfPEOILimit) {
                 return true;
             }
-            return false;
         }
+        return false;
     }
     refreshInlineStategyPnL() {
         if (this.oc_strikes && this.oc_strikes.length > 0) {
@@ -4545,7 +4544,7 @@ class ChartComponent {
             type = 'PE';
         }
         strike = Number(strike.slice(0, -2)); // remove CE PE at end
-        if (instru === 'NIFTY') {
+        if (instru === 'NIFTY' && _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfCEOILimit && _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfPEOILimit) {
             if (type === 'CE') {
                 return strike > _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfCEOILimit;
             }
@@ -4553,7 +4552,7 @@ class ChartComponent {
                 return strike < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfPEOILimit;
             }
         }
-        if (instru === 'BANKNIFTY') {
+        if (instru === 'BANKNIFTY' && _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfCEOILimit && _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfPEOILimit) {
             if (type === 'CE') {
                 return strike > _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfCEOILimit;
             }
@@ -4561,6 +4560,7 @@ class ChartComponent {
                 return strike < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfPEOILimit;
             }
         }
+        return false;
     }
     nudgeOrder(instru, instru_ltp) {
         let spotStrike = (Math.round(instru_ltp / 100) * 100) + 1000;
@@ -4572,21 +4572,29 @@ class ChartComponent {
         // response:
         // {"status":"success","data":[[{"type":"bnf_range","message":"Use MIS (Intraday) to trade all option strikes with no position conversion (MIS to NRML). This will act as a risk management check, ensuring you don’t hold any losing intraday positions overnight. NRML buy orders are blocked for this strike price due to [open interest (OI)](https://support.zerodha.com/category/trading-and-markets/kite-web-and-mobile/articles/why-did-my-bank-nifty-option-order-get-rejected) limits prescribed by SEBI. You can exit existing positions or place NRML buy orders between 35900 - 36200.","description":"Use MIS (Intraday) to trade all option strikes with no position conversion (MIS to NRML). This will act as a risk management check, ensuring you don’t hold any losing intraday positions overnight. NRML buy orders are blocked for this strike price due to [open interest (OI)](https://support.zerodha.com/category/trading-and-markets/kite-web-and-mobile/articles/why-did-my-bank-nifty-option-order-get-rejected) limits prescribed by SEBI. You can exit existing positions or place NRML buy orders between 35900 - 36200.","severity":"low","prompt":false}]]}
         this.zerodhaService.nudge_order(symbol, this.orders_authorization).subscribe((res) => {
-            console.log('nudgeOrder response', res, res.data[0][0].message);
-            let msg = res.data[0][0].message;
-            let sliced = msg.slice(-14);
-            sliced = sliced.slice(0, -1);
-            let split = sliced.split('-');
-            if (instru === 'NIFTY') {
-                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfPEOILimit = Number(split[0].trim());
-                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfCEOILimit = Number(split[1].trim());
+            console.log('nudgeOrder response', res, res.data[0][0]);
+            if (res.data[0] && res.data[0][0] && res.data[0][0].message) {
+                let msg = res.data[0][0].message;
+                let sliced = msg.slice(-14);
+                sliced = sliced.slice(0, -1);
+                let split = sliced.split('-');
+                if (instru === 'NIFTY') {
+                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfPEOILimit = Number(split[0].trim());
+                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfCEOILimit = Number(split[1].trim());
+                }
+                if (instru === 'BANKNIFTY') {
+                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfPEOILimit = Number(split[0].trim());
+                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfCEOILimit = Number(split[1].trim());
+                }
+                // console.log(ceOILimit, peOILimit);
+                // this.appService.requestStatusEvent$.next({'status': 'success', 'message': 'Nudge Success ' + scrip});
             }
-            if (instru === 'BANKNIFTY') {
-                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfPEOILimit = Number(split[0].trim());
-                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfCEOILimit = Number(split[1].trim());
+            else {
+                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfPEOILimit = null;
+                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.nfCEOILimit = null;
+                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfPEOILimit = null;
+                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfCEOILimit = null;
             }
-            // console.log(ceOILimit, peOILimit);
-            this.appService.requestStatusEvent$.next({ 'status': 'success', 'message': 'Nudge Success ' + scrip });
         }, error => {
             console.log('nudgeOrder error', error);
             let errmsg = 'Error (mostly timeout)';
@@ -4596,8 +4604,8 @@ class ChartComponent {
             else {
                 errmsg = error.message;
             }
-            this.appService.requestStatusEvent$.next({ 'status': 'danger', 'message': scrip + ' ' + errmsg });
-            this.appService.playAudio('error');
+            // this.appService.requestStatusEvent$.next({'status': 'danger', 'message': scrip + ' ' + errmsg});
+            // this.appService.playAudio('error');
         });
     }
     ngOnInit() {
@@ -8952,7 +8960,7 @@ AppConstants.monthlyExpiryDatesUSDINR = {
     '22MAY': new Date(2022, 4, 27),
     '22JUN': new Date(2022, 5, 28),
     '22JUL': new Date(2022, 6, 27),
-    '22AUG': new Date(2022, 7, 31),
+    '22AUG': new Date(2022, 7, 26),
     '22SEP': new Date(2022, 8, 28),
     '22OCT': new Date(2022, 9, 29),
     '22NOV': new Date(2022, 10, 29),
