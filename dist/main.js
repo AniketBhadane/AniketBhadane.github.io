@@ -8335,7 +8335,7 @@ class AliceblueService {
     constructor(http, webSocketService) {
         this.http = http;
         this.webSocketService = webSocketService;
-        this.baseUrl = 'https://a3.aliceblueonline.com/rest/AliceBlueAPIService/api/'; // 'https://ant.aliceblueonline.com';
+        this.baseUrl = 'https://ant.aliceblueonline.com/rest/AliceBlueAPIService/api/'; // 'https://ant.aliceblueonline.com';
     }
     getMastersContract(access_token) {
         let httpOptions = {
