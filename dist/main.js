@@ -716,7 +716,7 @@ class AppComponent {
     }
     changeLatestTen(event) {
         if (event.target.checked) {
-            this.orders_rows = 9;
+            this.orders_rows = 10;
         }
         else {
             this.orders_rows = 1000;
@@ -829,13 +829,13 @@ class AppComponent {
     getDelta(symbol, strike, type) {
         let ltp = this.getLtp(symbol + type);
         let expiry = new Date(this.oc_year, this.oc_month - 1, this.oc_date);
-        let delta = this.appService.getDelta(this.oc_instru, strike, type, expiry, ltp);
+        let delta = this.appService.getDelta(this.oc_instru, strike, type, expiry, ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isSimulatedStrategy, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.simulateCurrDateObj);
         return delta;
     }
     getGreeks(symbol, strike, type) {
         let ltp = this.getLtp(symbol + type);
         let expiry = new Date(this.oc_year, this.oc_month - 1, this.oc_date);
-        let greeks = this.appService.getGreeks(this.oc_instru, strike, type, expiry, ltp);
+        let greeks = this.appService.getGreeks(this.oc_instru, strike, type, expiry, ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isSimulatedStrategy, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.simulateCurrDateObj);
         return greeks;
     }
     getUSDINRMonth() {
@@ -3037,7 +3037,7 @@ class AppService {
         }
         let iv = this.calculateIV(instru, spot, strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.INTEREST_RATE, date_expiry, typet0, mkt_price);
         let volt = iv / 100;
-        console.log('volatility', volt, iv);
+        console.log('volatility', simulate_strategy, strike + '' + type, volt, iv);
         let int_rate = _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.INTEREST_RATE / 100;
         // console.log(spot, date_expiry, mkt_price, iv);
         let d1 = (Math.log(spot / strike) + (int_rate + Math.pow(volt, 2) / 2) * delta_t) / (volt * Math.sqrt(delta_t));
@@ -3075,6 +3075,7 @@ class AppService {
         gamma = Math.round((gamma + 0.00001) * 10000) / 10000;
         vega = Math.round((vega + 0.00001) * 100) / 100;
         theta = Math.round((theta + 0.00001) * 100) / 100;
+        //    console.log('volatility', strike+''+type, volt, iv);
         return { 'delta': delta, 'gamma': gamma, 'vega': vega, 'theta': theta };
     }
     getGreeks0(instru, strike, type, expiry, ltp, simulate_strategy = false, simulateCurrDateObj = null) {
@@ -5295,6 +5296,7 @@ class ChartComponent {
         this.simulateCurrDateObj = new Date(this.simulateStartDate);
         this.simulateCurrDateObj.setHours(this.simulateCurrHour);
         this.simulateCurrDateObj.setMinutes(this.simulateCurrMins);
+        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.simulateCurrDateObj = this.simulateCurrDateObj;
         let curr_date_string = '' + ('0' + this.simulateCurrDateObj.getDate()).slice(-2) + '-' + ('0' + (this.simulateCurrDateObj.getMonth() + 1)).slice(-2) + '-' + this.simulateCurrDateObj.getFullYear();
         this.simulateCurrDateTimeString = curr_date_string + ' ' + ('0' + this.simulateCurrDateObj.getHours()).slice(-2) + ':' + ('0' + this.simulateCurrDateObj.getMinutes()).slice(-2) + ':00'; // '21-10-2021 09:15:00'
         this.loadSimulatedOCForTime(this.simulate_instru, this.simulateCurrDateTimeString, this.simulateExpiryDate);
@@ -5347,6 +5349,7 @@ class ChartComponent {
                 //console.log(sod, diff, newday);
             }
         }
+        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.simulateCurrDateObj = this.simulateCurrDateObj;
         let curr_date_string = '' + ('0' + this.simulateCurrDateObj.getDate()).slice(-2) + '-' + ('0' + (this.simulateCurrDateObj.getMonth() + 1)).slice(-2) + '-' + this.simulateCurrDateObj.getFullYear();
         this.simulateCurrDateTimeString = curr_date_string + ' ' + ('0' + this.simulateCurrDateObj.getHours()).slice(-2) + ':' + ('0' + this.simulateCurrDateObj.getMinutes()).slice(-2) + ':00'; // '21-10-2021 09:15:00'
         this.loadSimulatedOCForTime(this.simulate_instru, this.simulateCurrDateTimeString, this.simulateExpiryDate);
@@ -9355,6 +9358,7 @@ AppConstants.INTEREST_RATE = 6; // https://in.investing.com/rates-bonds/india-10
 AppConstants.curr_positions_trades = [];
 AppConstants.fetchedPositions = [];
 AppConstants.isSimulatedStrategy = false;
+AppConstants.simulateCurrDateObj = null;
 AppConstants.isProduction = true;
 AppConstants.numAlerts = 4;
 AppConstants.broker_auth = 'enctoken w/QSjtmdHWPPJQwVucm7LB+chEfE+zy9NcjDrgGoWOUhpk0Cp1pQGb//vsB7fNPVWufmbP1o43Ef3cmlzCjhY/dZUEyBiShJoxLla4tFUnvZz4wDzEQvtw==';
