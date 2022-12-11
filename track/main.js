@@ -3986,6 +3986,10 @@ class ChartComponent {
             e1.strike = Number(symbol);
             e1.type = type;
             let fromMaster = this.angelService.findStrikeInMasters(e1);
+            if (!fromMaster) {
+                this.appService.requestStatusEvent$.next({ 'status': 'danger', 'message': 'Cannot find symbol in Angel Master' });
+                return;
+            }
             let totalqty = Number(alert.totalqty);
             let qtyfreeze = Number(alert.qtyfreeze);
             let iterations = Math.ceil(totalqty / qtyfreeze);
