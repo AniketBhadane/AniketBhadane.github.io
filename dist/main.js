@@ -5434,6 +5434,7 @@ class ChartComponent {
         /****************************************** */
         this.currExpiry = this.findCurrExpiry();
         this.reset_place_orders();
+        this.orders_authorization = JSON.parse(localStorage.getItem('orders_authorization'));
         this.alerts = [];
         for (let index = 0; index < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.numAlerts; index += 1) {
             this.alerts.push({ selected: false, scrip1: '40000CE', scrip2: '', instru: 'BANKNIFTY', expiry: this.currExpiry, compare: '>', price: 20, status: '' });
@@ -5530,6 +5531,7 @@ class ChartComponent {
     auth_change(event) {
         _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.broker_auth = event;
         console.log('auth change', event);
+        localStorage.setItem('orders_authorization', JSON.stringify(event));
     }
     ordersTextareaUpdated(event) {
         // console.log(this.ordersTextarea);
