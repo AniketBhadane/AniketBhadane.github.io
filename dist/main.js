@@ -5193,7 +5193,7 @@ class ChartComponent {
                 }
             }
         });
-        let expiryString = '' + expiry.getFullYear() + '-' + ('0' + (expiry.getMonth() + 1)) + '-' + ('0' + expiry.getDate()).slice(-2);
+        let expiryString = '' + expiry.getFullYear() + '-' + ('0' + (expiry.getMonth() + 1)).slice(-2) + '-' + ('0' + expiry.getDate()).slice(-2);
         return expiryString;
     }
     reset_place_orders() {
@@ -10205,7 +10205,7 @@ AppConstants.angelAPIKey = 'I5nI74Nm';
 AppConstants.angelFeedToken = '';
 AppConstants.angelJWTToken = '';
 AppConstants.angelRefreshToken = '';
-AppConstants.year = '22'; // TODO: make year 22 when 2022 year starts
+AppConstants.year = '23'; // TODO: make year 24 when 2024 year starts
 AppConstants.INTEREST_RATE = 6; // https://in.investing.com/rates-bonds/india-10-year-bond-yield-historical-data
 AppConstants.curr_positions_trades = [];
 AppConstants.fetchedPositions = [];
@@ -10225,6 +10225,7 @@ AppConstants.bnfPEOILimit = null;
   'DEC': 1487,
 }; */
 AppConstants.USDINRFUTCodes = {
+    // Not updated for 2023
     'JAN': 1131,
     'FEB': 10210,
     'MAR': 1779,
@@ -10254,25 +10255,6 @@ AppConstants.monthsMapping = {
     11: 'NOV',
     12: 'DEC'
 };
-/*   static monthlyExpiryDates = {
-    '20JUN': new Date(2020, 5, 25),
-    '20JUL': new Date(2020, 6, 30),
-    '20AUG': new Date(2020, 7, 27),
-    '20SEP': new Date(2020, 8, 24),
-    '20OCT': new Date(2020, 9, 29),
-    '20NOV': new Date(2020, 10, 26),
-    '20DEC': new Date(2020, 11, 31),
-  };
-
-  static monthlyExpiryDatesUSDINR = {
-    '20JUN': new Date(2020, 5, 26),
-    '20JUL': new Date(2020, 6, 29),
-    '20AUG': new Date(2020, 7, 27),
-    '20SEP': new Date(2020, 8, 28),
-    '20OCT': new Date(2020, 9, 27),
-    '20NOV': new Date(2020, 10, 25),
-    '20DEC': new Date(2020, 11, 29),
-  }; */
 AppConstants.monthlyExpiryDates = {
     /* '21JAN': new Date(2021, 0, 27),
     '21FEB': new Date(2021, 1, 24),
@@ -10286,7 +10268,7 @@ AppConstants.monthlyExpiryDates = {
     '21OCT': new Date(2021, 9, 28),
     '21NOV': new Date(2021, 10, 25),
     '21DEC': new Date(2021, 11, 30), */
-    '22JAN': new Date(2022, 0, 27),
+    /* '22JAN': new Date(2022, 0, 27),
     '22FEB': new Date(2022, 1, 24),
     '22MAR': new Date(2022, 2, 31),
     '22APR': new Date(2022, 3, 28),
@@ -10297,7 +10279,20 @@ AppConstants.monthlyExpiryDates = {
     '22SEP': new Date(2022, 8, 29),
     '22OCT': new Date(2022, 9, 27),
     '22NOV': new Date(2022, 10, 24),
-    '22DEC': new Date(2022, 11, 29),
+    '22DEC': new Date(2022, 11, 29), */
+    '23JAN': new Date(2023, 0, 25),
+    '23FEB': new Date(2023, 1, 23),
+    '23MAR': new Date(2023, 2, 29),
+    // TODO below
+    '23APR': new Date(2023, 3, 28),
+    '23MAY': new Date(2023, 4, 26),
+    '23JUN': new Date(2023, 5, 29),
+    '23JUL': new Date(2023, 6, 28),
+    '23AUG': new Date(2023, 7, 25),
+    '23SEP': new Date(2023, 8, 28),
+    '23OCT': new Date(2023, 9, 27),
+    '23NOV': new Date(2023, 10, 24),
+    '23DEC': new Date(2023, 11, 28),
 };
 AppConstants.monthlyExpiryDatesUSDINR = {
     /* '21JAN': new Date(2021, 0, 27),
@@ -10312,7 +10307,7 @@ AppConstants.monthlyExpiryDatesUSDINR = {
     '21OCT': new Date(2021, 9, 27),
     '21NOV': new Date(2021, 10, 26),
     '21DEC': new Date(2021, 11, 29), */
-    '22JAN': new Date(2022, 0, 27),
+    /* '22JAN': new Date(2022, 0, 27),
     '22FEB': new Date(2022, 1, 24),
     '22MAR': new Date(2022, 2, 29),
     '22APR': new Date(2022, 3, 27),
@@ -10323,10 +10318,23 @@ AppConstants.monthlyExpiryDatesUSDINR = {
     '22SEP': new Date(2022, 8, 28),
     '22OCT': new Date(2022, 9, 29),
     '22NOV': new Date(2022, 10, 29),
-    '22DEC': new Date(2022, 11, 29),
+    '22DEC': new Date(2022, 11, 29), */
+    '23JAN': new Date(2023, 0, 27),
+    '23FEB': new Date(2023, 1, 24),
+    '23MAR': new Date(2023, 2, 28),
+    // TODO below
+    '23APR': new Date(2023, 3, 28),
+    '23MAY': new Date(2023, 4, 26),
+    '23JUN': new Date(2023, 5, 27),
+    '23JUL': new Date(2023, 6, 28),
+    '23AUG': new Date(2023, 7, 25),
+    '23SEP': new Date(2023, 8, 26),
+    '23OCT': new Date(2023, 9, 27),
+    '23NOV': new Date(2023, 10, 24),
+    '23DEC': new Date(2023, 11, 28),
 };
 AppConstants.holidays = [
-    new Date(2022, 0, 26),
+    /* new Date(2022, 0, 26),
     new Date(2022, 2, 1),
     new Date(2022, 2, 18),
     new Date(2022, 3, 14),
@@ -10338,10 +10346,25 @@ AppConstants.holidays = [
     new Date(2022, 9, 5),
     new Date(2022, 9, 24),
     new Date(2022, 9, 26),
-    new Date(2022, 10, 8),
+    new Date(2022, 10, 8), */
+    new Date(2023, 0, 26),
+    new Date(2023, 2, 7),
+    new Date(2023, 2, 30),
+    new Date(2023, 3, 4),
+    new Date(2023, 3, 7),
+    new Date(2023, 3, 14),
+    new Date(2023, 4, 1),
+    new Date(2023, 5, 28),
+    new Date(2023, 7, 15),
+    new Date(2023, 8, 19),
+    new Date(2023, 9, 2),
+    new Date(2023, 9, 24),
+    new Date(2023, 10, 14),
+    new Date(2023, 10, 27),
+    new Date(2023, 11, 25),
 ];
 AppConstants.niftyExpiries = [
-    new Date(2022, 2, 31),
+    /* new Date(2022, 2, 31),
     new Date(2022, 3, 7),
     new Date(2022, 3, 13),
     new Date(2022, 3, 21),
@@ -10380,7 +10403,60 @@ AppConstants.niftyExpiries = [
     new Date(2022, 11, 8),
     new Date(2022, 11, 15),
     new Date(2022, 11, 22),
-    new Date(2022, 11, 29),
+    new Date(2022, 11, 29), */
+    new Date(2023, 0, 5),
+    new Date(2023, 0, 12),
+    new Date(2023, 0, 19),
+    new Date(2023, 0, 25),
+    new Date(2023, 1, 2),
+    new Date(2023, 1, 9),
+    new Date(2023, 1, 16),
+    new Date(2023, 1, 23),
+    new Date(2023, 2, 2),
+    new Date(2023, 2, 9),
+    new Date(2023, 2, 16),
+    new Date(2023, 2, 23),
+    new Date(2023, 2, 29),
+    // TODO below
+    new Date(2023, 3, 7),
+    new Date(2023, 3, 13),
+    new Date(2023, 3, 21),
+    new Date(2023, 3, 28),
+    new Date(2023, 4, 5),
+    new Date(2023, 4, 12),
+    new Date(2023, 4, 19),
+    new Date(2023, 4, 26),
+    new Date(2023, 5, 2),
+    new Date(2023, 5, 9),
+    new Date(2023, 5, 16),
+    new Date(2023, 5, 23),
+    new Date(2023, 5, 30),
+    new Date(2023, 6, 7),
+    new Date(2023, 6, 14),
+    new Date(2023, 6, 21),
+    new Date(2023, 6, 28),
+    new Date(2023, 7, 4),
+    new Date(2023, 7, 11),
+    new Date(2023, 7, 18),
+    new Date(2023, 7, 25),
+    new Date(2023, 8, 1),
+    new Date(2023, 8, 8),
+    new Date(2023, 8, 15),
+    new Date(2023, 8, 22),
+    new Date(2023, 8, 29),
+    new Date(2023, 9, 6),
+    new Date(2023, 9, 13),
+    new Date(2023, 9, 20),
+    new Date(2023, 9, 27),
+    new Date(2023, 10, 3),
+    new Date(2023, 10, 10),
+    new Date(2023, 10, 17),
+    new Date(2023, 10, 24),
+    new Date(2023, 11, 1),
+    new Date(2023, 11, 8),
+    new Date(2023, 11, 15),
+    new Date(2023, 11, 22),
+    new Date(2023, 11, 29),
 ];
 /* Enter Supports from high to low, Enter Resistances from Low to High */
 AppConstants.holdings = {
