@@ -11927,7 +11927,8 @@ class WebsocketService {
           'v' : [[1, 26000], [1, 26009], [3, 1], [3, usdinr_fut_code]], // , [2, 95734], [2, 95733]
           'm' : AliceBlueLiveFeedType.MARKET_DATA});
         */
-        let message = JSON.stringify({ "k": "NSE|26000#NSE|26009#NSE|26037#NFO|" + finnifty_fut_code + "#CDS|" + usdinr_fut_code, "t": "t" });
+        //let message = JSON.stringify({"k":"NSE|26000#NSE|26009#NSE|26037#NFO|" + finnifty_fut_code + "#CDS|" + usdinr_fut_code,"t":"t"});
+        let message = JSON.stringify({ "k": "NSE|26000#NSE|26009#NSE|26037#CDS|" + usdinr_fut_code, "t": "t" });
         //message = JSON.stringify({"k":"NFO|" + finnifty_fut_code,"t":"t"});
         //message = JSON.stringify({"k":"NFO|26037","t":"t"});
         // 26000 26009 26037 for nf, bnf, finnifty spot
