@@ -6600,6 +6600,10 @@ class ChartComponent {
                 this.stepValue = 25;
                 this.strikeStepValue = 100;
             }
+            else if (this.instru === 'FINNIFTY') {
+                this.stepValue = 40;
+                this.strikeStepValue = 50;
+            }
             else {
                 this.stepValue = 1000;
                 this.strikeStepValue = 0.25;
