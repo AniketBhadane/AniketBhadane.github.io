@@ -11483,7 +11483,7 @@ class MapService {
         let strike = object.strike;
         let type = object.optionType;
         let symbol = '';
-        if (strike === 'NIFTY50') {
+        if (strike === 'NIFTY50' || strike === 'NIFTY') {
             symbol = 'NIFTY50';
         }
         else if (strike === 'BANKNIFTY') {
