@@ -741,6 +741,12 @@ class AppComponent {
                 }, 10000); */
             }
         });
+        _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.subscribe(res => {
+            console.log('app miscEvent: ', res);
+            if (res === 'refreshAll') {
+                this.refreshAll();
+            }
+        });
     }
     close(alert) {
         this.alerts.splice(this.alerts.indexOf(alert), 1);
@@ -834,12 +840,15 @@ class AppComponent {
         //console.log(this.babyNameNumber);
     }
     ngOnInit() {
+        _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth = JSON.parse(localStorage.getItem('broker_auth'));
+        this.zerodha_auth = _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth;
         //this.zerodhaWebsocketService.connect();
         //console.log(sha256('AB03397849LHZEV09feJdK7c59mzI4vxZOpJ0McPVg6aYP0kKmnMq1Gbn3DQMBOAb8xE7b6EJCkOspKl1EBljBUEmVppzSTT39G7rd9gIy01cWqzZTocnuCHXpBSj14TiyP0SDF80B9E4QG3EXTP2M2UXGQ6TYCUD2FQAHNT'));
         // this.appService.dummyRequest();
         //this.startMonitoringGreeks();
         // this.getNSE_OC();
         this.calcBabyName(null);
+        //this.zerodhaService.historical('14208002', '5minute', '2023-01-01', '2023-02-01', '0', '1');
         // Setting dummy values for indices for Payoff to work even if websocket is not working
         this.mapService.setLtp('NIFTY50', 18000);
         this.mapService.setLtp('BANKNIFTY', 40000);
@@ -850,7 +859,6 @@ class AppComponent {
         console.log(window.location.href, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isProduction);
         _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.FINNIFTY_FUT_MONTH = this.findCurrExpiryMonth(_common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesFINNIFTY);
         _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.USDINR_FUT_MONTH = this.findCurrExpiryMonth(_common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesUSDINR);
-        this.zerodha_auth = JSON.parse(localStorage.getItem('broker_auth'));
         this.zerodha_expiry_date = this.findCurrExpiry();
         this.zerodha_to_date = this.findCurrExpiry();
         let zerodha_from_date = new Date(this.findCurrExpiry());
@@ -5127,16 +5135,16 @@ class ChartComponent {
         ];
         this.broker_auth = 'enctoken JSZVXPxDxfYE1BwATYBtropRu0k5DrWsRVWZREuEMB2OCz91S6Gsjd1FxNdHJ92Bi/rg6AQQbp6cahr2z1ADkJyo2rQdlZ/uAjItl/1W0bza7TTuye7BOg==';
         this.knife_orders = [
-            /* { instru: 'BANKNIFTY', scrip: '43600CE', expiry_date: '2023-01-25', qty: 100, status: '', order_price: null, ltp: null, low: null }, */
+            /* { instru: 'BANKNIFTY', scrip: '41800CE', expiry_date: '2023-01-25', qty: 25, status: '', order_price: null, ltp: null, low: null }, */
             { instru: 'NIFTY', scrip: '20000CE', expiry_date: '2023-12-28', qty: 100, status: '', order_price: null, ltp: null, low: null },
             { instru: 'NIFTY', scrip: '19000CE', expiry_date: '2023-12-28', qty: 100, status: '', order_price: null, ltp: null, low: null },
             { instru: 'NIFTY', scrip: '18000CE', expiry_date: '2023-12-28', qty: 50, status: '', order_price: null, ltp: null, low: null },
-            { instru: 'NIFTY', scrip: '18000PE', expiry_date: '2023-12-28', qty: 50, status: '', order_price: null, ltp: null, low: null },
+            /* { instru: 'NIFTY', scrip: '18000PE', expiry_date: '2023-12-28', qty: 50, status: '', order_price: null, ltp: null, low: null },
             { instru: 'NIFTY', scrip: '17000PE', expiry_date: '2023-12-28', qty: 100, status: '', order_price: null, ltp: null, low: null },
-            { instru: 'NIFTY', scrip: '16000PE', expiry_date: '2023-12-28', qty: 100, status: '', order_price: null, ltp: null, low: null },
+            { instru: 'NIFTY', scrip: '16000PE', expiry_date: '2023-12-28', qty: 100, status: '', order_price: null, ltp: null, low: null }, */
         ];
         this.knife_perc = 5;
-        this.auto_adjust_knife = false;
+        this.auto_adjust_knife = true;
         this.lineChartData = [
         /* { data: [-65, -59, 80, 81, 56, -55, -40], label: 'Series A' },
         { data: [0, 0, 0, 0, 0, 0, 0], label: 'Zero line' }, */
@@ -5780,8 +5788,6 @@ class ChartComponent {
         /****************************************** */
         this.currExpiry = this.findCurrExpiry();
         this.reset_place_orders();
-        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.broker_auth = JSON.parse(localStorage.getItem('broker_auth'));
-        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.broker_auth = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.broker_auth;
         this.alerts = [];
         for (let index = 0; index < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.numAlerts; index += 1) {
             this.alerts.push({ selected: false, scrip1: '40000CE', scrip2: '', instru: 'BANKNIFTY', expiry: this.currExpiry, compare: '>', price: 20, status: '' });
@@ -8247,8 +8253,9 @@ class ChartComponent {
             if (status === 'OPEN') {
                 let ltp = this.getLTP(k.expiry_date, k.scrip, k.instru);
                 let threshold = Math.round(price + (price * (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.knife_threshold_adjust / 100)));
-                if (ltp < threshold) {
+                if (ltp && ltp < threshold) {
                     console.log('Adjusting knife order', k.scrip);
+                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.requestStatusEvent$.next({ 'status': 'info', 'message': 'Adjusting knife order ' + k.scrip });
                     let limit = Math.round(ltp - (ltp * (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.knife_threshold / 100)));
                     let pos = {
                         instru: k.instru,
@@ -8257,7 +8264,15 @@ class ChartComponent {
                         curr_scrip: k.scrip,
                         new_scrip: null
                     };
-                    this.place_roll_orders(pos, true, false, limit, orderId);
+                    if (limit) {
+                        this.place_roll_orders(pos, true, false, limit, orderId);
+                        setTimeout(() => {
+                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.miscEvent$.next('refreshAll');
+                        }, 4000);
+                    }
+                    else {
+                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': 'Limit price could not be calculated for ' + k.scrip });
+                    }
                 }
             }
         });
@@ -8288,6 +8303,9 @@ class ChartComponent {
             this.place_knife_order(k);
         });
         // this.place_knife_order(this.knife_orders[2]);
+        setTimeout(() => {
+            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.miscEvent$.next('refreshAll');
+        }, 4000);
     }
     place_knife_order(k) {
         let pos = {
@@ -8299,7 +8317,12 @@ class ChartComponent {
         };
         let ltp = this.getLTP(k.expiry_date, k.scrip, k.instru);
         let limit = Math.round(ltp - (ltp * (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.knife_threshold / 100)));
-        this.place_roll_orders(pos, true, false, limit);
+        if (limit) {
+            this.place_roll_orders(pos, true, false, limit);
+        }
+        else {
+            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': 'Limit price could not be calculated for ' + k.scrip });
+        }
     }
     place_all_orders() {
         if (confirm('Place All ?')) {
@@ -10467,6 +10490,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class AppConstants {
 }
+AppConstants.miscEvent$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.Subject();
 AppConstants.websocketEvent$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.Subject();
 AppConstants.requestStatusEvent$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.Subject();
 AppConstants.SocketMode = 'zerodha'; // aliceblue angel
@@ -12922,6 +12946,51 @@ class ZerodhaService {
         let url = this.baseUrl + 'oms/nudge/orders';
         let body = [{ "exchange": "NFO", "tradingsymbol": symbol, "transaction_type": "BUY", "variety": "regular", "product": "NRML", "order_type": "MARKET", "quantity": 1000 }];
         return this.http.post(url, body /* b.toString() */, httpOptions);
+    }
+    historical(instru_token, interval, from, to, continuous, oi) {
+        // interval can be minute day 3minute 5minute 10minute 15minute 30minute 60minute
+        let httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpHeaders({
+                Authorization: _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth
+            }),
+            responseType: 'json',
+        };
+        // got from kitconnectjs library on github
+        let url = 'https://api.kite.trade/instruments/historical/' + instru_token + '/' + interval + '?from=' + from + '&to=' + to + '&continuous=' + continuous + '&oi=' + oi;
+        this.http.get(url, httpOptions).subscribe((res) => {
+            console.log('zerodha historical', res);
+            /* {
+              "status": "success",
+              "data": {
+                  "candles": [
+                      [
+                          "2023-01-25T09:15:00+0530",
+                          60.45,
+                          60.45,
+                          48.25,
+                          48.8,
+                          137325
+                      ], */
+            let results = [];
+            for (let i = 0; i < res.data.candles.length; i++) {
+                let d = res.data.candles[i];
+                let c = {
+                    "date": new Date(d[0]),
+                    "open": d[1],
+                    "high": d[2],
+                    "low": d[3],
+                    "close": d[4],
+                    "volume": d[5]
+                };
+                if (d[6]) {
+                    c["oi"] = d[6];
+                }
+                results.push(c);
+            }
+            console.log('zerodha historical result:', results);
+        }, error => {
+            console.log('zerodha historical error', error);
+        });
     }
 }
 ZerodhaService.ɵfac = function ZerodhaService_Factory(t) { return new (t || ZerodhaService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpClient), _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_zerodha_websocket_service__WEBPACK_IMPORTED_MODULE_2__.ZerodhaWebsocketService)); };
