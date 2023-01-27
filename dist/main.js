@@ -8252,8 +8252,9 @@ class ChartComponent {
             let orderId = knife[2];
             if (status === 'OPEN') {
                 let ltp = this.getLTP(k.expiry_date, k.scrip, k.instru);
-                let threshold = Math.round(price + (price * (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.knife_threshold_adjust / 100)));
-                if (ltp && ltp < threshold) {
+                let threshold1 = Math.round(price + (price * (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.knife_threshold_adjust1 / 100)));
+                let threshold2 = Math.round(price + (price * (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.knife_threshold_adjust2 / 100)));
+                if (ltp && (ltp < threshold1 || ltp > threshold2)) {
                     console.log('Adjusting knife order', k.scrip);
                     _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.requestStatusEvent$.next({ 'status': 'info', 'message': 'Adjusting knife order ' + k.scrip });
                     let limit = Math.round(ltp - (ltp * (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.knife_threshold / 100)));
@@ -10510,7 +10511,8 @@ AppConstants.angelRefreshToken = '';
 AppConstants.year = '23'; // TODO: make year 24 when 2024 year starts
 AppConstants.INTEREST_RATE = 6.89; // https://techfanetechnologies.github.io/risk_free_interest_rate/RiskFreeInterestRate.json - use 364 Days T-bills , https://in.investing.com/rates-bonds/india-10-year-bond-yield-historical-data
 AppConstants.knife_threshold = 5;
-AppConstants.knife_threshold_adjust = 2;
+AppConstants.knife_threshold_adjust1 = 2;
+AppConstants.knife_threshold_adjust2 = 7;
 AppConstants.orders = [];
 AppConstants.curr_positions_trades = [];
 AppConstants.fetchedPositions = [];
