@@ -11835,7 +11835,10 @@ class MapService {
         let expiryDate = new Date(expiryRecvd);
         expiryDate.setHours(0, 0, 0, 0);
         let tempmonthlyExpiryDates = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDates;
-        if (instru === 'USDINR') {
+        if (instru === 'FINNIFTY') {
+            tempmonthlyExpiryDates = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesFINNIFTY;
+        }
+        else if (instru === 'USDINR') {
             tempmonthlyExpiryDates = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesUSDINR;
         }
         for (let key in tempmonthlyExpiryDates) {
