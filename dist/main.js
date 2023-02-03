@@ -735,6 +735,7 @@ class AppComponent {
             console.log('app websocketEvent: ', res);
             if (res === 'connected') {
                 this.refreshAll();
+                this.subscribeUSDINR();
                 // this.subscribePositionsFeed();
                 /* setTimeout(() => {
                   this.startMonitoringGreeks();
@@ -747,6 +748,14 @@ class AppComponent {
                 this.refreshAll();
             }
         });
+    }
+    subscribeUSDINR() {
+        let sub = [];
+        let expiry = this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.usdinrExpiries);
+        let expiryString = this.mapService.getExpiry(expiry);
+        sub.push(this.mapService.getSubscriptionObjectForFuture('USDINR' + expiryString + 'FUT', 'CDS'));
+        console.log('subscribeUSDINR feed', sub);
+        this.appService.sendSubscriptions(sub);
     }
     close(alert) {
         this.alerts.splice(this.alerts.indexOf(alert), 1);
@@ -761,48 +770,6 @@ class AppComponent {
     }
     getInstruLTP(instru) {
         return this.mapService.getScripLTP(null, null, instru, null);
-    }
-    findCurrExpiry() {
-        let diff = 10000000000000000000;
-        let expiry = new Date();
-        _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.niftyExpiries.forEach((element) => {
-            let today = new Date();
-            let sameDay = element.getFullYear() === today.getFullYear() && element.getMonth() === today.getMonth() && element.getDate() === today.getDate();
-            if (sameDay) {
-                diff = 0;
-                expiry = element;
-            }
-            else {
-                let currDiff = element.getTime() - new Date().getTime();
-                if (currDiff >= 0 && currDiff < diff) {
-                    diff = currDiff;
-                    expiry = element;
-                }
-            }
-        });
-        let expiryString = '' + expiry.getFullYear() + '-' + ('0' + (expiry.getMonth() + 1)).slice(-2) + '-' + ('0' + expiry.getDate()).slice(-2);
-        return expiryString;
-    }
-    findCurrExpiryMonth(datesObj) {
-        let diff = 10000000000000000000;
-        let expiry = new Date();
-        for (let key in datesObj) {
-            let element = datesObj[key];
-            let today = new Date();
-            let sameDay = element.getFullYear() === today.getFullYear() && element.getMonth() === today.getMonth() && element.getDate() === today.getDate();
-            if (sameDay) {
-                diff = 0;
-                expiry = element;
-            }
-            else {
-                let currDiff = element.getTime() - new Date().getTime();
-                if (currDiff >= 0 && currDiff < diff) {
-                    diff = currDiff;
-                    expiry = element;
-                }
-            }
-        }
-        return expiry.toLocaleString('default', { month: 'short' }).toUpperCase().substring(0, 3); // 'JUL';
     }
     auth_change(event) {
         _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth = event;
@@ -857,11 +824,11 @@ class AppComponent {
             _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isProduction = false;
         }
         console.log(window.location.href, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isProduction);
-        _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.FINNIFTY_FUT_MONTH = this.findCurrExpiryMonth(_common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesFINNIFTY);
-        _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.USDINR_FUT_MONTH = this.findCurrExpiryMonth(_common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesUSDINR);
-        this.zerodha_expiry_date = this.findCurrExpiry();
-        this.zerodha_to_date = this.findCurrExpiry();
-        let zerodha_from_date = new Date(this.findCurrExpiry());
+        // AppConstants.FINNIFTY_FUT_MONTH = this.findCurrExpiryMonth(AppConstants.monthlyExpiryDatesFINNIFTY);
+        // AppConstants.USDINR_FUT_MONTH = this.findCurrExpiryMonth(AppConstants.monthlyExpiryDatesUSDINR);
+        this.zerodha_expiry_date = this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.niftyExpiries);
+        this.zerodha_to_date = this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.niftyExpiries);
+        let zerodha_from_date = new Date(this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.niftyExpiries));
         zerodha_from_date.setDate(zerodha_from_date.getDate() - 10);
         this.zerodha_from_date = '' + zerodha_from_date.getFullYear() + '-' + ('0' + (zerodha_from_date.getMonth() + 1)).slice(-2) + '-' + ('0' + zerodha_from_date.getDate()).slice(-2);
         // console.log(AppConstants.FINNIFTY_FUT_MONTH, AppConstants.USDINR_FUT_MONTH)
@@ -978,9 +945,9 @@ class AppComponent {
         let greeks = this.appService.getGreeks(this.oc_instru, strike, type, expiry, ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isSimulatedStrategy, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.simulateCurrDateObj);
         return greeks;
     }
-    getUSDINRMonth() {
-        return _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.USDINR_FUT_MONTH;
-    }
+    /* getUSDINRMonth() {
+      return AppConstants.USDINR_FUT_MONTH;
+    } */
     checkNifty() {
         if (this.nifty_oc_check) {
             this.usdinr_oc_check = false;
@@ -5356,7 +5323,7 @@ class ChartComponent {
         this.i1ChartType = 'line';
         this.i1ChartPlugins = [chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_0__];
         this.intradayWatch = [
-            { scrip: 'FUT', instru: 'USDINR', expiry: _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.USDINR_FUT_MONTH, },
+            { scrip: 'FUT', instru: 'USDINR', expiry: '2020-11-13', /* AppConstants.USDINR_FUT_MONTH */ },
             { scrip: '74CE', instru: 'USDINR', expiry: '2020-11-13', },
             { scrip: '74PE', instru: 'USDINR', expiry: '2020-11-13', },
             { scrip: '74.5CE', instru: 'USDINR', expiry: '2020-11-13', },
@@ -5470,27 +5437,6 @@ class ChartComponent {
             instru = this.instru;
         }
         return this.mapService.getScripOHLC(instru, expiry, this.mapService.parseScrip(scrip).scrip, this.mapService.parseScrip(scrip).type);
-    }
-    findCurrExpiry() {
-        let diff = 10000000000000000000;
-        let expiry = new Date();
-        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.niftyExpiries.forEach((element) => {
-            let today = new Date();
-            let sameDay = element.getFullYear() === today.getFullYear() && element.getMonth() === today.getMonth() && element.getDate() === today.getDate();
-            if (sameDay) {
-                diff = 0;
-                expiry = element;
-            }
-            else {
-                let currDiff = element.getTime() - new Date().getTime();
-                if (currDiff >= 0 && currDiff < diff) {
-                    diff = currDiff;
-                    expiry = element;
-                }
-            }
-        });
-        let expiryString = '' + expiry.getFullYear() + '-' + ('0' + (expiry.getMonth() + 1)).slice(-2) + '-' + ('0' + expiry.getDate()).slice(-2);
-        return expiryString;
     }
     reset_place_orders() {
         this.place_orders = [
@@ -5836,7 +5782,7 @@ class ChartComponent {
         //this.chartService.initFetchIntraday(this.intradayWatch);
         //this.chartService.saveIntradayData();
         /****************************************** */
-        this.currExpiry = this.findCurrExpiry();
+        this.currExpiry = this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.niftyExpiries);
         this.reset_place_orders();
         this.alerts = [];
         for (let index = 0; index < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.numAlerts; index += 1) {
@@ -6261,8 +6207,9 @@ class ChartComponent {
                         symbol = 'NIFTY50';
                     }
                     if (instru === 'USDINR') {
-                        let expiry = this.mapService.getExpiryString(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.monthlyExpiryDatesUSDINR[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.year + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.USDINR_FUT_MONTH]);
-                        symbol = 'USDINR' + expiry + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.USDINR_FUT_MONTH + 'FUT';
+                        symbol = 'USDINR';
+                        // let expiry = this.mapService.getExpiryString(AppConstants.monthlyExpiryDatesUSDINR[AppConstants.year + AppConstants.USDINR_FUT_MONTH]);
+                        // symbol = 'USDINR' + expiry + AppConstants.USDINR_FUT_MONTH + 'FUT';
                     }
                     this.mapService.setLtp(symbol, value[curr_date_time]);
                 }
@@ -8208,7 +8155,7 @@ class ChartComponent {
         let spot = [];
         let ce_intraday = this.chartService.getIntradayData('74CE', 'USDINR', '2020-11-13');
         let pe_intraday = this.chartService.getIntradayData('74PE', 'USDINR', '2020-11-13');
-        let spot_intraday = this.chartService.getIntradayData('FUT', 'USDINR', _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.USDINR_FUT_MONTH);
+        let spot_intraday = this.chartService.getIntradayData('FUT', 'USDINR', '2020-11-13' /* AppConstants.USDINR_FUT_MONTH */);
         if (ce_intraday) {
             ce_intraday.forEach(ce_elem => {
                 let ce_time = ce_elem.time;
@@ -10444,15 +10391,15 @@ class AngelWebsocketService {
     }
     sendInitialSubscription() {
         console.log('sending initial subscription');
-        let usdinr_fut_code = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.USDINRFUTCodes[_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.USDINR_FUT_MONTH];
+        // let usdinr_fut_code = AppConstants.USDINRFUTCodes[AppConstants.USDINR_FUT_MONTH];
         let message = JSON.stringify({
             'a': 'subscribe',
-            'v': [[1, 26000], [1, 26009], [3, 1], [3, usdinr_fut_code] /* , [2, 95734], [2, 95733] */],
+            'v': [[1, 26000], [1, 26009], [3, 1] /* , [3, usdinr_fut_code] */ /* , [2, 95734], [2, 95733] */],
             'm': _models__WEBPACK_IMPORTED_MODULE_1__.AliceBlueLiveFeedType.MARKET_DATA
         });
         // 26000 26009 for nf and bnf spot
         // 1 is usdinr spot
-        console.log('usdinr_fut_code', usdinr_fut_code);
+        // console.log('usdinr_fut_code', usdinr_fut_code);
         this.sendMessage(message);
     }
     handleOnMessage(messageEvent) {
@@ -10550,6 +10497,7 @@ AppConstants.websocketEvent$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.Subject();
 AppConstants.requestStatusEvent$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.Subject();
 AppConstants.SocketMode = 'zerodha'; // aliceblue angel
 AppConstants.RestMode = 'zerodha'; // fyers
+AppConstants.zerodhaUserId = 'FW6041';
 AppConstants.AliceblueUserId = 'AB033978';
 AppConstants.AliceblueApiKey = '49LHZEV09feJdK7c59mzI4vxZOpJ0McPVg6aYP0kKmnMq1Gbn3DQMBOAb8xE7b6EJCkOspKl1EBljBUEmVppzSTT39G7rd9gIy01cWqzZTocnuCHXpBSj14TiyP0SDF8';
 AppConstants.AliceblueEncKey = '';
@@ -10628,22 +10576,22 @@ AppConstants.monthsMapping = {
     11: 'NOV',
     12: 'DEC'
 };
-AppConstants.USDINRFUTCodes = {
-    // Not updated for 2023
-    'JAN': 1131,
-    'FEB': 10210,
-    'MAR': 1779,
-    'APR': 1170,
-    'MAY': 1381,
-    'JUN': 1237,
-    'JUL': 1503,
-    'AUG': 1091,
-    'SEP': 1136,
-    'OCT': 1176,
-    'NOV': 5940,
-    'DEC': 1182,
-};
-AppConstants.USDINR_FUT_MONTH = ''; //new Date().toLocaleString('default', { month: 'short' }).toUpperCase().substring(0,3); // 'JUL';
+/* static USDINRFUTCodes = {
+  // Not updated for 2023
+  'JAN': 1131,
+  'FEB': 10210,
+  'MAR': 1779,
+  'APR': 1170,
+  'MAY': 1381,
+  'JUN': 1237,
+  'JUL': 1503,
+  'AUG': 1091,
+  'SEP': 1136,
+  'OCT': 1176,
+  'NOV': 5940,
+  'DEC': 1182,
+}; */
+// static USDINR_FUT_MONTH = ''; //new Date().toLocaleString('default', { month: 'short' }).toUpperCase().substring(0,3); // 'JUL';
 AppConstants.FINNIFTYFUTCodes = {
     'JAN': 53825,
     'FEB': 37819,
@@ -10659,7 +10607,7 @@ AppConstants.FINNIFTYFUTCodes = {
     'NOV': 5940,
     'DEC': 53825,
 };
-AppConstants.FINNIFTY_FUT_MONTH = ''; //new Date().toLocaleString('default', { month: 'short' }).toUpperCase().substring(0,3); // 'JUL';
+// static FINNIFTY_FUT_MONTH = ''; //new Date().toLocaleString('default', { month: 'short' }).toUpperCase().substring(0,3); // 'JUL';
 AppConstants.monthlyExpiryDates = {
     /* '21JAN': new Date(2021, 0, 27),
     '21FEB': new Date(2021, 1, 24),
@@ -10837,6 +10785,62 @@ AppConstants.niftyExpiries = [
     new Date(2023, 2, 16),
     new Date(2023, 2, 23),
     new Date(2023, 2, 29),
+    // TODO below
+    new Date(2023, 3, 7),
+    new Date(2023, 3, 13),
+    new Date(2023, 3, 21),
+    new Date(2023, 3, 28),
+    new Date(2023, 4, 5),
+    new Date(2023, 4, 12),
+    new Date(2023, 4, 19),
+    new Date(2023, 4, 26),
+    new Date(2023, 5, 2),
+    new Date(2023, 5, 9),
+    new Date(2023, 5, 16),
+    new Date(2023, 5, 23),
+    new Date(2023, 5, 30),
+    new Date(2023, 6, 7),
+    new Date(2023, 6, 14),
+    new Date(2023, 6, 21),
+    new Date(2023, 6, 28),
+    new Date(2023, 7, 4),
+    new Date(2023, 7, 11),
+    new Date(2023, 7, 18),
+    new Date(2023, 7, 25),
+    new Date(2023, 8, 1),
+    new Date(2023, 8, 8),
+    new Date(2023, 8, 15),
+    new Date(2023, 8, 22),
+    new Date(2023, 8, 29),
+    new Date(2023, 9, 6),
+    new Date(2023, 9, 13),
+    new Date(2023, 9, 20),
+    new Date(2023, 9, 27),
+    new Date(2023, 10, 3),
+    new Date(2023, 10, 10),
+    new Date(2023, 10, 17),
+    new Date(2023, 10, 24),
+    new Date(2023, 11, 1),
+    new Date(2023, 11, 8),
+    new Date(2023, 11, 15),
+    new Date(2023, 11, 22),
+    new Date(2023, 11, 29),
+];
+AppConstants.usdinrExpiries = [
+    new Date(2023, 0, 5),
+    new Date(2023, 0, 12),
+    new Date(2023, 0, 19),
+    new Date(2023, 0, 25),
+    new Date(2023, 1, 3),
+    new Date(2023, 1, 10),
+    new Date(2023, 1, 17),
+    new Date(2023, 1, 24),
+    new Date(2023, 2, 3),
+    new Date(2023, 2, 10),
+    new Date(2023, 2, 17),
+    new Date(2023, 2, 24),
+    new Date(2023, 2, 28),
+    new Date(2023, 2, 31),
     // TODO below
     new Date(2023, 3, 7),
     new Date(2023, 3, 13),
@@ -11282,7 +11286,7 @@ class HoldingsService {
         // let url = 'https://www.nseindia.com/api/chart-databyindex?index=OPTCURUSDINR31-12-2021CE74.5000';
         // url = 'https://kite.zerodha.com/api/marketwatch';
         // let url = 'https://kite.zerodha.com/oms/instruments/historical/2085635/minute?user_id=FW6041&oi=1&from=2021-12-02&to=2022-01-01';
-        let url = 'https://kite.zerodha.com/oms/instruments/historical/' + instru_token + '/minute?user_id=FW6041&oi=1&from=' + this.from_date + '&to=' + this.to_date;
+        let url = 'https://kite.zerodha.com/oms/instruments/historical/' + instru_token + '/minute?user_id=' + _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.zerodhaUserId + '&oi=1&from=' + this.from_date + '&to=' + this.to_date;
         this.http.get(url, httpOptions).subscribe((res) => {
             console.log('scrip data:', scrip, res);
             if (res.data.candles) {
@@ -11742,8 +11746,12 @@ class MapService {
         }
         else {
             let instru_masters = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.mastersContract.get(p.instrument_token);
+            let strike = '' + instru_masters.strike;
+            if (instru_masters.tradingSymbol.includes('USDINR') && instru_masters.tradingSymbol.includes('FUT')) {
+                strike = 'USDINR';
+            }
             if (instru_masters) {
-                symbol = this.getMapKey({ instru: instru_masters.instru, expiry: instru_masters.expiry, strike: instru_masters.strike, optionType: instru_masters.optionType });
+                symbol = this.getMapKey({ instru: instru_masters.instru, expiry: instru_masters.expiry, strike: strike, optionType: instru_masters.optionType });
                 // console.log('updateMaps:', instru_masters, symbol);
             }
         }
@@ -11808,9 +11816,10 @@ class MapService {
             symbol = 'FINNIFTY';
         }
         else if (strike === 'USDINR') {
-            let expiryDate = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesUSDINR[_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.year + _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.USDINR_FUT_MONTH];
-            let expiry = this.getExpiryString(expiryDate);
-            symbol = 'USDINR' + expiry + _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.USDINR_FUT_MONTH + 'FUT';
+            symbol = 'USDINR';
+            // let expiryDate: Date = AppConstants.monthlyExpiryDatesUSDINR[AppConstants.year + AppConstants.USDINR_FUT_MONTH];
+            // let expiry = this.getExpiryString(expiryDate);
+            // symbol = 'USDINR' + expiry + AppConstants.USDINR_FUT_MONTH + 'FUT';
         }
         else {
             let expiry = this.getExpiry(expiryRecvd, instru);
@@ -11872,8 +11881,32 @@ class MapService {
         let expiry = '' + (expiryDate.getFullYear() - 2000) + (expiryMonth) + ('0' + expiryDate.getDate()).slice(-2); // expiryDate.getDate();
         return expiry;
     }
+    findCurrExpiryForDisplay(datesObj) {
+        let diff = 10000000000000000000;
+        let expiry = new Date();
+        // AppConstants.niftyExpiries.forEach((element: Date) => {
+        for (let key in datesObj) {
+            let element = datesObj[key];
+            let today = new Date();
+            let sameDay = element.getFullYear() === today.getFullYear() && element.getMonth() === today.getMonth() && element.getDate() === today.getDate();
+            if (sameDay) {
+                diff = 0;
+                expiry = element;
+            }
+            else {
+                let currDiff = element.getTime() - new Date().getTime();
+                if (currDiff >= 0 && currDiff < diff) {
+                    diff = currDiff;
+                    expiry = element;
+                }
+            }
+        }
+        let expiryString = '' + expiry.getFullYear() + '-' + ('0' + (expiry.getMonth() + 1)).slice(-2) + '-' + ('0' + expiry.getDate()).slice(-2);
+        return expiryString;
+    }
     getSubscriptionObject(scrip, instru, expiry) {
         let symbol = scrip;
+        console.log('getSubscriptionObject symbol: ' + symbol);
         let type = '';
         if (symbol.includes('CE')) {
             type = 'CE';
@@ -11881,7 +11914,6 @@ class MapService {
         if (symbol.includes('PE')) {
             type = 'PE';
         }
-        console.log('getSubscriptionObject symbol: ' + symbol);
         symbol = symbol.slice(0, -2); // remove CE PE at end
         let expiryDate = new Date(expiry).toDateString(); // expiry_date
         let e1 = new _models__WEBPACK_IMPORTED_MODULE_1__.Instrument();
@@ -11889,6 +11921,13 @@ class MapService {
         e1.instru = instru;
         e1.strike = Number(symbol);
         e1.type = type;
+        return e1;
+    }
+    getSubscriptionObjectForFuture(tradingSymbol, exchange) {
+        console.log('getSubscriptionObject tradingSymbol: ' + tradingSymbol);
+        let e1 = new _models__WEBPACK_IMPORTED_MODULE_1__.Instrument();
+        e1.tradingSymbol = tradingSymbol;
+        e1.exchange = exchange;
         return e1;
     }
     parseSymbol(symbol) {
@@ -12165,15 +12204,16 @@ class WebsocketService {
     }
     sendInitialSubscription() {
         console.log('sending initial subscription');
-        let usdinr_fut_code = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.USDINRFUTCodes[_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.USDINR_FUT_MONTH];
-        let finnifty_fut_code = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.FINNIFTYFUTCodes[_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.FINNIFTY_FUT_MONTH];
+        // let usdinr_fut_code = AppConstants.USDINRFUTCodes[AppConstants.USDINR_FUT_MONTH];
+        // let finnifty_fut_code = AppConstants.FINNIFTYFUTCodes[AppConstants.FINNIFTY_FUT_MONTH];
         /*let message = JSON.stringify({
           'a' : 'subscribe',
           'v' : [[1, 26000], [1, 26009], [3, 1], [3, usdinr_fut_code]], // , [2, 95734], [2, 95733]
           'm' : AliceBlueLiveFeedType.MARKET_DATA});
         */
         //let message = JSON.stringify({"k":"NSE|26000#NSE|26009#NSE|26037#NFO|" + finnifty_fut_code + "#CDS|" + usdinr_fut_code,"t":"t"});
-        let message = JSON.stringify({ "k": "NSE|26000#NSE|26009#NSE|26037#CDS|" + usdinr_fut_code, "t": "t" });
+        // let message = JSON.stringify({"k":"NSE|26000#NSE|26009#NSE|26037#CDS|" + usdinr_fut_code,"t":"t"});
+        let message = JSON.stringify({ "k": "NSE|26000#NSE|26009#NSE|26037", "t": "t" });
         //message = JSON.stringify({"k":"NFO|" + finnifty_fut_code,"t":"t"});
         //message = JSON.stringify({"k":"NFO|26037","t":"t"});
         // 26000 26009 26037 for nf, bnf, finnifty spot
@@ -12242,7 +12282,7 @@ __webpack_require__.r(__webpack_exports__);
 class ZerodhaWebsocketService {
     constructor(mapService) {
         this.mapService = mapService;
-        this.user_id = 'FW6041';
+        this.user_id = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.zerodhaUserId;
         this.root = "wss://ws.zerodha.com/";
         this.read_timeout = 5; // seconds
         this.reconnect_max_delay = 0;
@@ -12806,6 +12846,12 @@ class ZerodhaService {
             if (instru) {
                 items.push(instru.token);
             }
+            else {
+                let instru = this.findFutureInMasters(instrument);
+                if (instru) {
+                    items.push(instru.token);
+                }
+            }
         });
         console.log('sendSubscriptions: ', items);
         this.zerodhaWebsocketService.subscribe(items);
@@ -12819,6 +12865,17 @@ class ZerodhaService {
                 instrument.instru === element.instru &&
                 instrument.strike === element.strike &&
                 instrument.type === element.optionType) {
+                return_instru = element;
+                return;
+            }
+        });
+        return return_instru;
+    }
+    findFutureInMasters(instrument) {
+        let return_instru = null;
+        _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.mastersContract.forEach(element => {
+            // console.log(instru, strike, type, element.expiry, instrument.instru, instrument.strike, instrument.type, instrument.expiry);
+            if (instrument.tradingSymbol === element.tradingSymbol && instrument.exchange === element.exchange) {
                 return_instru = element;
                 return;
             }
@@ -12961,7 +13018,7 @@ class ZerodhaService {
                 .set("squareoff", "0")
                 .set("stoploss", "0")
                 .set("trailing_stoploss", "0")
-                .set("user_id", "FW6041")
+                .set("user_id", _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.zerodhaUserId)
                 .set("order_id", orderId)
                 .set("parent_order_id", "");
             url += '/' + orderId;
@@ -12983,7 +13040,7 @@ class ZerodhaService {
                 .set("squareoff", "0")
                 .set("stoploss", "0")
                 .set("trailing_stoploss", "0")
-                .set("user_id", "FW6041");
+                .set("user_id", _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.zerodhaUserId);
             return this.http.post(url, b.toString(), httpOptions);
         }
     }
