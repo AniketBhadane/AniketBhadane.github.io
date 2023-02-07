@@ -9461,13 +9461,15 @@ class ChartService {
             }, */
         });
         this.spot_candlestickSeries = this.spot_chart_chart.addCandlestickSeries();
-        this.spot_chart_chart.timeScale().fitContent();
+        // this.spot_chart_chart.timeScale().fitContent();
         this.fetchSpotChartData();
     }
     fetchSpotChartData() {
+        let yday = new Date();
+        yday.setDate(yday.getDate() - 1);
+        let from_date = '' + yday.getFullYear() + '-' + ('0' + (yday.getMonth() + 1)).slice(-2) + '-' + ('0' + yday.getDate()).slice(-2);
         let today = new Date();
-        let from_date = '' + today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-        let to_date = from_date;
+        let to_date = '' + today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
         let token = this.mapService.getZerodhaInstruToken(this.spot_chart_instru);
         if (token) {
             const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpHeaders({
@@ -9500,7 +9502,7 @@ class ChartService {
                         data.push(data_entry);
                     }
                     this.spot_candlestickSeries.setData(data);
-                    this.spot_chart_chart.timeScale().fitContent();
+                    // this.spot_chart_chart.timeScale().fitContent();
                 }
                 console.log('spot candles:', Object.keys(this.spot_chart_chart).length, this.spot_chart_chart);
             }, error => {
@@ -9566,7 +9568,7 @@ class ChartService {
                 }, */
             });
             let c = chart.addCandlestickSeries();
-            chart.timeScale().fitContent();
+            // chart.timeScale().fitContent();
             this.candlestickSeries['' + strike + type] = c;
             this.charts['' + strike + type] = chart;
             c1++;
@@ -9606,9 +9608,11 @@ class ChartService {
     fetchChartData(strike) {
         let obj = this.mapService.getSubscriptionObject(strike, this.charts_instru, this.charts_expiry);
         let element = this.zerodhaService.findStrikeInMasters(obj);
+        let yday = new Date();
+        yday.setDate(yday.getDate() - 1);
+        let from_date = '' + yday.getFullYear() + '-' + ('0' + (yday.getMonth() + 1)).slice(-2) + '-' + ('0' + yday.getDate()).slice(-2);
         let today = new Date();
-        let from_date = '' + today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
-        let to_date = from_date;
+        let to_date = '' + today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
         if (element && element.token) {
             const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_8__.HttpHeaders({
                 'authorization': _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth,
@@ -9642,7 +9646,7 @@ class ChartService {
                     let c = this.candlestickSeries['' + strike];
                     c.setData(data);
                     let chart = this.charts['' + strike];
-                    chart.timeScale().fitContent();
+                    // chart.timeScale().fitContent();
                 }
                 console.log('candles:', Object.keys(this.charts_data).length, this.charts_data);
             }, error => {
@@ -9706,7 +9710,7 @@ class ChartService {
             { time: Date.parse('2018-06-25T09:55:00.000Z') / 1000, open: 106.33, high: 110.20, low: 90.39, close: 98.10 },
             { time: Date.parse('2018-06-25T10:00:00.000Z') / 1000, open: 109.87, high: 114.69, low: 85.66, close: 111.26 },
         ]);
-        chart.timeScale().fitContent();
+        // chart.timeScale().fitContent();
     }
     initTV_charts_changing() {
         let chart = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_1__.createChart)('tv_test', {
