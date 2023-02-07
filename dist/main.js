@@ -13272,7 +13272,7 @@ class ZerodhaWebsocketService {
         this.mapService = mapService;
         this.user_id = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.zerodhaUserId;
         this.root = "wss://ws.zerodha.com/";
-        this.read_timeout = 5; // seconds
+        this.read_timeout = 10; // seconds
         this.reconnect_max_delay = 0;
         this.reconnect_max_tries = 0;
         // message flags (outgoing)
@@ -13326,6 +13326,7 @@ class ZerodhaWebsocketService {
         if (this.ws && (this.ws.readyState === this.ws.CONNECTING || this.ws.readyState === this.ws.OPEN)) {
             return;
         }
+        console.log('Trying to establish Zerodha WS connection');
         let url = this.root +
             "?api_key=kitefront&user_id=" + this.user_id +
             "&enctoken=" + encodeURIComponent(_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth.replace('enctoken ', '')) +
@@ -13359,6 +13360,23 @@ class ZerodhaWebsocketService {
     }
     handleOnOpen(event) {
         console.log('Opened Zerodha Web Socket connection');
+        // nf, bnf, nifty fin service
+        let items = [256265, 260105, 257801];
+        this.subscribe(items);
+        this.setMode(this.modeFull, items);
+        /*
+        items = [11474946];
+        this.subscribe(items);
+        this.setMode(this.modeFull, items);
+         */
+        _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.websocketEvent$.next('connected');
+        /*
+        setTimeout(() => {
+          this.websocketEvent$.next('connected');
+        }, 1000); */
+        this.initStatusCheck();
+    }
+    initStatusCheck() {
         /*
         // Reset last reconnect interval
         last_reconnect_interval = null;
@@ -13384,20 +13402,24 @@ class ZerodhaWebsocketService {
           }
         }, read_timeout * 1000);
          */
-        // nf, bnf, nifty fin service
-        let items = [256265, 260105, 257801];
-        this.subscribe(items);
-        this.setMode(this.modeFull, items);
-        /*
-        items = [11474946];
-        this.subscribe(items);
-        this.setMode(this.modeFull, items);
-         */
-        _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.websocketEvent$.next('connected');
-        /*
-        setTimeout(() => {
-          this.websocketEvent$.next('connected');
-        }, 1000); */
+        // If there isn't an incoming message in n seconds, assume disconnection.
+        clearInterval(this.read_timer);
+        this.last_read = new Date();
+        this.read_timer = setInterval(() => {
+            // console.log('times', (new Date().valueOf() - this.last_read ) / 1000, this.read_timeout);
+            if ((new Date().valueOf() - this.last_read) / 1000 >= this.read_timeout) {
+                _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'info', 'message': 'WS Reconnecting...' });
+                console.log('Reconnecting WS...');
+                if (this.ws) {
+                    this.ws.close();
+                    this.ws = null;
+                }
+                clearInterval(this.read_timer);
+                let reconnect_timer = setTimeout(function () {
+                    this.connect();
+                }, 2000);
+            }
+        }, this.read_timeout * 1000);
     }
     handleOnMessage(messageEvent) {
         console.log('handleOnMessage', messageEvent);
