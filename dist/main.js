@@ -9597,6 +9597,34 @@ class ChartService {
         };
         //console.log('currentBar', currentBar);
         this.spot_candlestickSeries.update(currentBar);
+        if (this.single_strike_ce) {
+            let ltpCE = this.mapService.getScripLTP(this.charts_instru, this.charts_expiry, this.mapService.parseScrip(this.single_strike_ce).scrip, this.mapService.parseScrip(this.single_strike_ce).type);
+            let objCE = this.charts_data[this.single_strike_ce];
+            let lastCE = objCE[objCE.length - 1]; // [ d, element[1], element[2], element[3], element[4], element[5], element[6] ]
+            //console.log('lastCE', this.single_strike_ce, this.charts_instru, this.charts_expiry, ltpCE, lastCE);
+            let currentBarCE = {
+                time: Date.parse(lastCE[0]) / 1000,
+                open: lastCE[1],
+                high: lastCE[2],
+                low: lastCE[3],
+                close: ltpCE
+            };
+            this.single_chart_ce_candlestickSeries.update(currentBarCE);
+        }
+        if (this.single_strike_pe) {
+            let ltpPE = this.mapService.getScripLTP(this.charts_instru, this.charts_expiry, this.mapService.parseScrip(this.single_strike_pe).scrip, this.mapService.parseScrip(this.single_strike_pe).type);
+            let objPE = this.charts_data[this.single_strike_pe];
+            let lastPE = objPE[objPE.length - 1]; // [ d, element[1], element[2], element[3], element[4], element[5], element[6] ]
+            //console.log('lastPE', this.single_strike_pe, this.charts_instru, this.charts_expiry, ltpPE, lastPE);
+            let currentBarPE = {
+                time: Date.parse(lastPE[0]) / 1000,
+                open: lastPE[1],
+                high: lastPE[2],
+                low: lastPE[3],
+                close: ltpPE
+            };
+            this.single_chart_pe_candlestickSeries.update(currentBarPE);
+        }
     }
     updateSingleChart(strike, type) {
         let data = [];
@@ -9610,6 +9638,7 @@ class ChartService {
             data.push(data_entry);
         });
         if (type === 'CE') {
+            this.single_strike_ce = strike;
             if (this.single_chart_ce) {
                 this.single_chart_ce.remove();
             }
@@ -9625,10 +9654,11 @@ class ChartService {
                   backgroundColor: '#000000',
                 }, */
             });
-            let c = this.single_chart_ce.addCandlestickSeries();
-            c.setData(data);
+            this.single_chart_ce_candlestickSeries = this.single_chart_ce.addCandlestickSeries();
+            this.single_chart_ce_candlestickSeries.setData(data);
         }
         else if (type === 'PE') {
+            this.single_strike_pe = strike;
             if (this.single_chart_pe) {
                 this.single_chart_pe.remove();
             }
@@ -9644,8 +9674,8 @@ class ChartService {
                   backgroundColor: '#000000',
                 }, */
             });
-            let c = this.single_chart_pe.addCandlestickSeries();
-            c.setData(data);
+            this.single_chart_pe_candlestickSeries = this.single_chart_pe.addCandlestickSeries();
+            this.single_chart_pe_candlestickSeries.setData(data);
         }
     }
     init_opt_charts(instru, call_start_strike, call_end_strike, put_start_strike, put_end_strike, strike_interval, expiry) {
