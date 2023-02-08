@@ -9582,8 +9582,8 @@ class ChartService {
                 console.log('zerodha spot fetch chart error', error);
             });
         }
-        this.updateSingleChart(this.single_strike_ce, 'CE');
-        this.updateSingleChart(this.single_strike_pe, 'PE');
+        this.updateSingleChart(this.single_strike_ce, 'CE', false);
+        this.updateSingleChart(this.single_strike_pe, 'PE', false);
     }
     plotSpotCurrentPrice() {
         let ltp = this.mapService.getScripLTP(null, null, this.spot_chart_instru, null);
@@ -9628,7 +9628,7 @@ class ChartService {
             this.single_chart_pe_candlestickSeries.update(currentBarPE);
         }
     }
-    updateSingleChart(strike, type) {
+    updateSingleChart(strike, type, recreate = true) {
         if (strike) {
             let data = [];
             let obj = this.charts_data[strike]; // getting all data for strike
@@ -9642,41 +9642,45 @@ class ChartService {
             });
             if (type === 'CE') {
                 this.single_strike_ce = strike;
-                if (this.single_chart_ce) {
-                    this.single_chart_ce.remove();
+                if (recreate) {
+                    if (this.single_chart_ce) {
+                        this.single_chart_ce.remove();
+                    }
+                    let div_id = 'chart-ce';
+                    this.single_chart_ce = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_1__.createChart)(div_id, {
+                        width: 400,
+                        height: 240,
+                        timeScale: {
+                            timeVisible: true,
+                        },
+                        /* layout: {
+                          textColor: '#d1d4dc',
+                          backgroundColor: '#000000',
+                        }, */
+                    });
                 }
-                let div_id = 'chart-ce';
-                this.single_chart_ce = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_1__.createChart)(div_id, {
-                    width: 400,
-                    height: 240,
-                    timeScale: {
-                        timeVisible: true,
-                    },
-                    /* layout: {
-                      textColor: '#d1d4dc',
-                      backgroundColor: '#000000',
-                    }, */
-                });
                 this.single_chart_ce_candlestickSeries = this.single_chart_ce.addCandlestickSeries();
                 this.single_chart_ce_candlestickSeries.setData(data);
             }
             else if (type === 'PE') {
                 this.single_strike_pe = strike;
-                if (this.single_chart_pe) {
-                    this.single_chart_pe.remove();
+                if (recreate) {
+                    if (this.single_chart_pe) {
+                        this.single_chart_pe.remove();
+                    }
+                    let div_id = 'chart-pe';
+                    this.single_chart_pe = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_1__.createChart)(div_id, {
+                        width: 400,
+                        height: 240,
+                        timeScale: {
+                            timeVisible: true,
+                        },
+                        /* layout: {
+                          textColor: '#d1d4dc',
+                          backgroundColor: '#000000',
+                        }, */
+                    });
                 }
-                let div_id = 'chart-pe';
-                this.single_chart_pe = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_1__.createChart)(div_id, {
-                    width: 400,
-                    height: 240,
-                    timeScale: {
-                        timeVisible: true,
-                    },
-                    /* layout: {
-                      textColor: '#d1d4dc',
-                      backgroundColor: '#000000',
-                    }, */
-                });
                 this.single_chart_pe_candlestickSeries = this.single_chart_pe.addCandlestickSeries();
                 this.single_chart_pe_candlestickSeries.setData(data);
             }
