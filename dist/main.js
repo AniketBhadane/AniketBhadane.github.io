@@ -9658,8 +9658,8 @@ class ChartService {
                           backgroundColor: '#000000',
                         }, */
                     });
+                    this.single_chart_ce_candlestickSeries = this.single_chart_ce.addCandlestickSeries();
                 }
-                this.single_chart_ce_candlestickSeries = this.single_chart_ce.addCandlestickSeries();
                 this.single_chart_ce_candlestickSeries.setData(data);
             }
             else if (type === 'PE') {
@@ -9680,8 +9680,8 @@ class ChartService {
                           backgroundColor: '#000000',
                         }, */
                     });
+                    this.single_chart_pe_candlestickSeries = this.single_chart_pe.addCandlestickSeries();
                 }
-                this.single_chart_pe_candlestickSeries = this.single_chart_pe.addCandlestickSeries();
                 this.single_chart_pe_candlestickSeries.setData(data);
             }
         }
