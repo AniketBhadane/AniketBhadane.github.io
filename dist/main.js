@@ -9582,6 +9582,8 @@ class ChartService {
                 console.log('zerodha spot fetch chart error', error);
             });
         }
+        this.updateSingleChart(this.single_strike_ce, 'CE');
+        this.updateSingleChart(this.single_strike_pe, 'PE');
     }
     plotSpotCurrentPrice() {
         let ltp = this.mapService.getScripLTP(null, null, this.spot_chart_instru, null);
@@ -9627,55 +9629,57 @@ class ChartService {
         }
     }
     updateSingleChart(strike, type) {
-        let data = [];
-        let obj = this.charts_data[strike]; // getting all data for strike
-        if (!obj) {
-            return;
-        }
-        // obj.push([ d, element[1], element[2], element[3], element[4], element[5], element[6] ]);
-        obj.forEach(element => {
-            let data_entry = { time: Date.parse(element[0]) / 1000, open: element[1], high: element[2], low: element[3], close: element[4] };
-            data.push(data_entry);
-        });
-        if (type === 'CE') {
-            this.single_strike_ce = strike;
-            if (this.single_chart_ce) {
-                this.single_chart_ce.remove();
+        if (strike) {
+            let data = [];
+            let obj = this.charts_data[strike]; // getting all data for strike
+            if (!obj) {
+                return;
             }
-            let div_id = 'chart-ce';
-            this.single_chart_ce = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_1__.createChart)(div_id, {
-                width: 400,
-                height: 240,
-                timeScale: {
-                    timeVisible: true,
-                },
-                /* layout: {
-                  textColor: '#d1d4dc',
-                  backgroundColor: '#000000',
-                }, */
+            // obj.push([ d, element[1], element[2], element[3], element[4], element[5], element[6] ]);
+            obj.forEach(element => {
+                let data_entry = { time: Date.parse(element[0]) / 1000, open: element[1], high: element[2], low: element[3], close: element[4] };
+                data.push(data_entry);
             });
-            this.single_chart_ce_candlestickSeries = this.single_chart_ce.addCandlestickSeries();
-            this.single_chart_ce_candlestickSeries.setData(data);
-        }
-        else if (type === 'PE') {
-            this.single_strike_pe = strike;
-            if (this.single_chart_pe) {
-                this.single_chart_pe.remove();
+            if (type === 'CE') {
+                this.single_strike_ce = strike;
+                if (this.single_chart_ce) {
+                    this.single_chart_ce.remove();
+                }
+                let div_id = 'chart-ce';
+                this.single_chart_ce = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_1__.createChart)(div_id, {
+                    width: 400,
+                    height: 240,
+                    timeScale: {
+                        timeVisible: true,
+                    },
+                    /* layout: {
+                      textColor: '#d1d4dc',
+                      backgroundColor: '#000000',
+                    }, */
+                });
+                this.single_chart_ce_candlestickSeries = this.single_chart_ce.addCandlestickSeries();
+                this.single_chart_ce_candlestickSeries.setData(data);
             }
-            let div_id = 'chart-pe';
-            this.single_chart_pe = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_1__.createChart)(div_id, {
-                width: 400,
-                height: 240,
-                timeScale: {
-                    timeVisible: true,
-                },
-                /* layout: {
-                  textColor: '#d1d4dc',
-                  backgroundColor: '#000000',
-                }, */
-            });
-            this.single_chart_pe_candlestickSeries = this.single_chart_pe.addCandlestickSeries();
-            this.single_chart_pe_candlestickSeries.setData(data);
+            else if (type === 'PE') {
+                this.single_strike_pe = strike;
+                if (this.single_chart_pe) {
+                    this.single_chart_pe.remove();
+                }
+                let div_id = 'chart-pe';
+                this.single_chart_pe = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_1__.createChart)(div_id, {
+                    width: 400,
+                    height: 240,
+                    timeScale: {
+                        timeVisible: true,
+                    },
+                    /* layout: {
+                      textColor: '#d1d4dc',
+                      backgroundColor: '#000000',
+                    }, */
+                });
+                this.single_chart_pe_candlestickSeries = this.single_chart_pe.addCandlestickSeries();
+                this.single_chart_pe_candlestickSeries.setData(data);
+            }
         }
     }
     init_opt_charts(instru, call_start_strike, call_end_strike, put_start_strike, put_end_strike, strike_interval, expiry) {
