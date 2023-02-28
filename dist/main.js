@@ -6103,10 +6103,10 @@ class ChartComponent {
     }
     loadSpotChart() {
         if (this.spot_fetch_interval) {
-            this.spot_fetch_interval.unsubscribe();
+            clearInterval(this.spot_fetch_interval);
         }
         if (this.chart_prices_interval) {
-            this.chart_prices_interval.unsubscribe();
+            clearInterval(this.chart_prices_interval);
         }
         this.chartingService.initSpotChart(this.spot_chart_instru);
         this.spot_fetch_interval = setInterval(() => {
@@ -10305,16 +10305,16 @@ class ChartingService {
         }
         this.charts = {};
         if (this.fetch_ce_interval) {
-            this.fetch_ce_interval.unsubscribe();
+            clearInterval(this.fetch_ce_interval);
         }
         if (this.fetch_pe_interval) {
-            this.fetch_pe_interval.unsubscribe();
+            clearInterval(this.fetch_pe_interval);
         }
         if (this.refresh_ce_interval) {
-            this.refresh_ce_interval.unsubscribe();
+            clearInterval(this.refresh_ce_interval);
         }
         if (this.refresh_pe_interval) {
-            this.refresh_pe_interval.unsubscribe();
+            clearInterval(this.refresh_pe_interval);
         }
         this.charts_instru = instru;
         this.strike_interval = strike_interval;
