@@ -11877,13 +11877,17 @@ class ChartComponent {
                 this.curr_positions_trades.push({ qty: o.qty, scrip: o.scrip, expiry: dateString, entry: o.tradedPrice, exit: 0, addToOrders: false, selected: true, selectedActual: false, rollstrike: null, rollstrike_new: o.scrip, alertPrice: null, alertStatus: '' });
             }
         });
-        // console.log('algo positions', this.algo_positions);
+        console.log('this.curr_positions_trades', this.curr_positions_trades);
+        //this.savePositions(this.currLoadNum);
         this.mergePositions();
-        //this.sortPositions();
-        //console.log('algo positions', this.algo_positions);
-        //console.log('prev', prev_algo_positions);
-        //this.copyProperties(prev_positions);
-        this.reloadPayoffData(this.currLoadNum);
+        this.sortPositions();
+        console.log('this.curr_positions_trades after merge', this.curr_positions_trades);
+        console.log('prev_positions', prev_positions);
+        this.getPayoff();
+        this.getMargin();
+        this.crossCheckPositions();
+        this.copyProperties(prev_positions);
+        //this.reloadPayoffData(this.currLoadNum);
     }
     copyProperties(prev_positions) {
         console.log('prev pos', prev_positions);
