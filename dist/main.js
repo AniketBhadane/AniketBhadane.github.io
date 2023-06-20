@@ -396,6 +396,7 @@ class AlgoComponent {
         _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.orders.forEach((o) => {
             if (((o.tags && o.tags.includes(this.tag)) || this.includeGUIDs.includes(o.guid)) && o.status === 'COMPLETE') {
                 let a = new _common_models__WEBPACK_IMPORTED_MODULE_1__.AlgoPosition();
+                a.instru = o.instru;
                 a.qty = o.qty;
                 a.entry = o.tradedPrice;
                 a.strike = o.scrip;
@@ -11863,7 +11864,7 @@ class ChartComponent {
         this.curr_positions_trades = [];
         // this.curr_positions_trades.push({ qty: qty, scrip: scrip, expiry: dateString, entry: entry, exit: 0, addToOrders: false, selected: true, selectedActual: false, rollstrike: null, rollstrike_new: scrip, alertPrice: null, alertStatus: '' });
         _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.orders.forEach((o) => {
-            if (((o.tags && o.tags.includes(this.tagSearch)) || this.includeGUIDs.includes(o.guid)) && o.status === 'COMPLETE') {
+            if (o.instru === this.instru && ((o.tags && o.tags.includes(this.tagSearch)) || this.includeGUIDs.includes(o.guid)) && o.status === 'COMPLETE') {
                 this.curr_positions_trades.push({ qty: o.qty, scrip: o.scrip, expiry: dateString, entry: o.tradedPrice, exit: 0, addToOrders: false, selected: true, selectedActual: false, rollstrike: null, rollstrike_new: o.scrip, alertPrice: null, alertStatus: '' });
             }
         });
