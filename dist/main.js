@@ -8230,6 +8230,7 @@ class ChartComponent {
         this.s4Trades = null;
         this.s5Trades = null;
         this.s6Trades = null;
+        this.prev_positions = [];
         this.currLoadNum = null;
         this.payOffData = null;
         this.curr_positions_trades = null;
@@ -10054,11 +10055,15 @@ class ChartComponent {
         //this.getSelectedPnL();
     }
     reloadPayoffData(num) {
+        if (this.currLoadNum) {
+            this.prev_positions[this.currLoadNum] = this.curr_positions_trades;
+        }
         this.loadPayoffData(num);
         this.getPayoff();
         this.getMargin();
         //this.getSelectedPnL();
         this.crossCheckPositions();
+        this.copyProperties(this.prev_positions[num]);
     }
     getFunds() {
         this.appService.getFunds().subscribe((res) => {
@@ -10194,11 +10199,11 @@ class ChartComponent {
         this.curr_positions_trades = [];
         for (let [key, v] of exitedMap) {
             v.forEach(value => {
-                this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, addToOrders: value.addToOrders, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike, rollstrike_new: value.rollstrike_new, alertPrice: null, alertStatus: '' });
+                this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, addToOrders: value.addToOrders, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike, rollstrike_new: value.rollstrike_new, alertPrice: value.alertPrice, alertStatus: '' });
             });
         }
         for (let [key, value] of mergeMap) {
-            this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, addToOrders: value.addToOrders, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike, rollstrike_new: value.rollstrike_new, alertPrice: null, alertStatus: '' });
+            this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, addToOrders: value.addToOrders, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike, rollstrike_new: value.rollstrike_new, alertPrice: value.alertPrice, alertStatus: '' });
         }
     }
     savePositions(num) {
@@ -10280,11 +10285,15 @@ class ChartComponent {
         //console.log(ne);
         this.mergePositions();
         console.log('curr_positions_trades', this.curr_positions_trades);
+        //let c_positions = Object.assign({}, this.curr_positions_trades);
+        //let c_positions = structuredClone(this.curr_positions_trades);
+        let c_positions = this.curr_positions_trades.map(a => Object.assign({}, a));
+        console.log('c_positions', c_positions);
         if (confirm('Sure save ' + num + '?')) {
             let curr_positions = { instru: '', expiry: '', trades: {} };
             curr_positions.instru = this.instru;
             curr_positions.expiry = this.expiryDate;
-            this.curr_positions_trades.forEach(element => {
+            c_positions.forEach(element => {
                 delete element.addToOrders;
                 delete element.selected;
                 delete element.selectedActual;
@@ -10294,7 +10303,7 @@ class ChartComponent {
                 delete element.alertPrice;
                 delete element.alertStatus;
             });
-            curr_positions.trades = this.curr_positions_trades;
+            curr_positions.trades = c_positions;
             console.log('Saving positions: ', curr_positions);
             console.log('Saving positions json: ', JSON.stringify(curr_positions));
             localStorage.setItem('curr_positions' + num, JSON.stringify(curr_positions));
@@ -11870,19 +11879,25 @@ class ChartComponent {
         });
         // console.log('algo positions', this.algo_positions);
         this.mergePositions();
-        this.sortPositions();
+        //this.sortPositions();
         //console.log('algo positions', this.algo_positions);
         //console.log('prev', prev_algo_positions);
-        this.copyProperties(prev_positions);
+        //this.copyProperties(prev_positions);
+        this.reloadPayoffData(this.currLoadNum);
     }
     copyProperties(prev_positions) {
+        console.log('prev pos', prev_positions);
         this.curr_positions_trades.forEach(a => {
             if (a.exit === 0) {
                 let found = this.findInPrevious(prev_positions, a.scrip);
                 console.log('chart component found', found);
                 if (found) {
-                    a.rollstrike_new = found.rollstrike_new;
-                    a.alertPrice = found.alertPrice;
+                    if (found.rollstrike_new) {
+                        a.rollstrike_new = found.rollstrike_new;
+                    }
+                    if (found.alertPrice) {
+                        a.alertPrice = found.alertPrice;
+                    }
                 }
             }
         });
@@ -17377,15 +17392,17 @@ class MapService {
         return { instru: instru, expiry: expiry, strike: strike, type: type };
     }
     parseScrip(scrip) {
-        let type = '';
-        if (scrip.includes('CE')) {
-            type = 'CE';
+        if (scrip) {
+            let type = '';
+            if (scrip.includes('CE')) {
+                type = 'CE';
+            }
+            if (scrip.includes('PE')) {
+                type = 'PE';
+            }
+            scrip = scrip.slice(0, -2); // remove CE PE at end
+            return { scrip: scrip, type: type };
         }
-        if (scrip.includes('PE')) {
-            type = 'PE';
-        }
-        scrip = scrip.slice(0, -2); // remove CE PE at end
-        return { scrip: scrip, type: type };
     }
     getScripLTP(instru, expiryRecvd, strike, optionType) {
         let object = { instru: instru, expiry: expiryRecvd, strike: strike, optionType: optionType };
