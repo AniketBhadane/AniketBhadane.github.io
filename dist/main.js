@@ -16096,9 +16096,9 @@ AppConstants.bnfExpiries = [
     new Date(2023, 5, 22),
     new Date(2023, 5, 28),
     new Date(2023, 6, 6),
-    new Date(2023, 6, 14),
-    new Date(2023, 6, 21),
-    new Date(2023, 6, 28),
+    new Date(2023, 6, 13),
+    new Date(2023, 6, 20),
+    new Date(2023, 6, 27),
     // TODO below
     /*
      new Date(2023, 7, 4),
