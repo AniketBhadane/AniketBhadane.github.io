@@ -10078,28 +10078,30 @@ class ChartComponent {
         });
     }
     crossCheckPositions() {
-        let strat_pos = [];
-        for (let i = 0; i < this.curr_positions_trades.length; i++) {
-            let element = this.curr_positions_trades[i];
-            if (element.exit == 0) {
-                let a = { 'scrip': element.scrip, 'qty': element.qty };
-                strat_pos.push(a);
+        if (this.curr_positions_trades) {
+            let strat_pos = [];
+            for (let i = 0; i < this.curr_positions_trades.length; i++) {
+                let element = this.curr_positions_trades[i];
+                if (element.exit == 0) {
+                    let a = { 'scrip': element.scrip, 'qty': element.qty };
+                    strat_pos.push(a);
+                }
             }
-        }
-        let fetched_pos = [];
-        for (let i = 0; i < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions.length; i++) {
-            let element = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions[i];
-            if (element.instru === this.instru && element.netQty !== 0) {
-                let a = { 'scrip': element.scrip, 'qty': element.netQty };
-                fetched_pos.push(a);
+            let fetched_pos = [];
+            for (let i = 0; i < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions.length; i++) {
+                let element = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions[i];
+                if (element.instru === this.instru && element.netQty !== 0) {
+                    let a = { 'scrip': element.scrip, 'qty': element.netQty };
+                    fetched_pos.push(a);
+                }
             }
+            /* console.log('strat_pos',strat_pos);
+            console.log('fetched_pos',fetched_pos);
+            console.log('json1',JSON.stringify(strat_pos));
+            console.log('json2',JSON.stringify(fetched_pos));
+            console.log('equal',JSON.stringify(strat_pos) === JSON.stringify(fetched_pos)); */
+            this.matchPositions = JSON.stringify(strat_pos) === JSON.stringify(fetched_pos);
         }
-        /* console.log('strat_pos',strat_pos);
-        console.log('fetched_pos',fetched_pos);
-        console.log('json1',JSON.stringify(strat_pos));
-        console.log('json2',JSON.stringify(fetched_pos));
-        console.log('equal',JSON.stringify(strat_pos) === JSON.stringify(fetched_pos)); */
-        this.matchPositions = JSON.stringify(strat_pos) === JSON.stringify(fetched_pos);
     }
     mergePositions() {
         let exitedMap = new Map(); // will contain all exited positions - values will be array since can be multiple exited positions of same strike
@@ -10939,18 +10941,20 @@ class ChartComponent {
         error => {
           console.log('getMargin error', error);
         }); */
-        let d = new Date(this.expiryDate);
-        // let month = d.toLocaleString('default', { month: 'short' }).toUpperCase();
-        let month = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.monthsMapping[d.getMonth() + 1];
-        console.log('getMargin: ', this.curr_positions_trades);
-        this.appService.getZerodhaMargin(this.instru, /* month, */ this.curr_positions_trades, this.instru, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.broker_auth).subscribe((res) => {
-            console.log('getMargin res: ', res);
-            if (res.data && res.data.final) {
-                this.margin = Math.round(res.data.final.total).toLocaleString();
-            }
-        }, error => {
-            console.log('getMargin error', error);
-        });
+        if (this.curr_positions_trades) {
+            let d = new Date(this.expiryDate);
+            // let month = d.toLocaleString('default', { month: 'short' }).toUpperCase();
+            let month = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.monthsMapping[d.getMonth() + 1];
+            console.log('getMargin: ', this.curr_positions_trades);
+            this.appService.getZerodhaMargin(this.instru, /* month, */ this.curr_positions_trades, this.instru, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.broker_auth).subscribe((res) => {
+                console.log('getMargin res: ', res);
+                if (res.data && res.data.final) {
+                    this.margin = Math.round(res.data.final.total).toLocaleString();
+                }
+            }, error => {
+                console.log('getMargin error', error);
+            });
+        }
     }
     getROI() {
         // console.log('roi: ', this.getStrategyPnL(), parseFloat(this.margin.replace(/,/g, '')));
@@ -11892,32 +11896,36 @@ class ChartComponent {
     }
     copyProperties(prev_positions) {
         console.log('prev pos', prev_positions);
-        this.curr_positions_trades.forEach(a => {
-            if (a.exit === 0) {
-                let found = this.findInPrevious(prev_positions, a.scrip);
-                console.log('chart component found', found);
-                if (found) {
-                    if (found.rollstrike_new) {
-                        a.rollstrike_new = found.rollstrike_new;
-                    }
-                    if (found.alertPrice) {
-                        a.alertPrice = found.alertPrice;
+        if (this.curr_positions_trades) {
+            this.curr_positions_trades.forEach(a => {
+                if (a.exit === 0) {
+                    let found = this.findInPrevious(prev_positions, a.scrip);
+                    console.log('chart component found', found);
+                    if (found) {
+                        if (found.rollstrike_new) {
+                            a.rollstrike_new = found.rollstrike_new;
+                        }
+                        if (found.alertPrice) {
+                            a.alertPrice = found.alertPrice;
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     }
     findInPrevious(prev_positions, strikeToFind) {
         let found = null;
-        prev_positions.forEach(a => {
-            // console.log('chart component findInPrevious', a);
-            if (a.exit === 0 && a.scrip === strikeToFind) {
-                // console.log('chart component found prev', a);
-                found = a;
-                return;
-            }
-        });
-        return found;
+        if (prev_positions) {
+            prev_positions.forEach(a => {
+                // console.log('chart component findInPrevious', a);
+                if (a.exit === 0 && a.scrip === strikeToFind) {
+                    // console.log('chart component found prev', a);
+                    found = a;
+                    return;
+                }
+            });
+            return found;
+        }
     }
 }
 ChartComponent.ɵfac = function ChartComponent_Factory(t) { return new (t || ChartComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_app_service__WEBPACK_IMPORTED_MODULE_4__.AppService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_common_zerodha_service__WEBPACK_IMPORTED_MODULE_5__.ZerodhaService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_common_map_service__WEBPACK_IMPORTED_MODULE_1__.MapService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_6__.WebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_7__.AngelWebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_chart_service__WEBPACK_IMPORTED_MODULE_8__.ChartService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_charting_service__WEBPACK_IMPORTED_MODULE_9__.ChartingService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_backtest_service__WEBPACK_IMPORTED_MODULE_10__.BacktestService)); };
@@ -13197,7 +13205,7 @@ class ChartingService {
             low: last[3],
             close: ltp
         };
-        //console.log('currentBar', currentBar);
+        // console.log('currentBar', currentBar);
         this.spot_candlestickSeries.update(currentBar);
         if (this.single_strike_ce) {
             let ltpCE = this.mapService.getScripLTP(this.charts_instru, this.charts_expiry, this.mapService.parseScrip(this.single_strike_ce).scrip, this.mapService.parseScrip(this.single_strike_ce).type);
