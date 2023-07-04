@@ -1931,6 +1931,9 @@ class AppComponent {
         // AppConstants.broker_auth = event;
         console.log('auth_change_num', event, num);
         localStorage.setItem('broker_auth_' + num, JSON.stringify(event));
+        if (num == this.auth_acc) {
+            _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth = event;
+        }
     }
     auth_radio_change(event) {
         console.log('auth_radio_change', event);
@@ -3630,7 +3633,7 @@ AppComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_13__["
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵlistener"]("ngModelChange", function AppComponent_Template_input_ngModelChange_47_listener($event) { return ctx.auth_acc = $event; })("change", function AppComponent_Template_input_change_47_listener($event) { return ctx.auth_radio_change($event); });
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementStart"](48, "input", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵlistener"]("ngModelChange", function AppComponent_Template_input_ngModelChange_48_listener($event) { return ctx.auth_change_num($event, 1); })("ngModelChange", function AppComponent_Template_input_ngModelChange_48_listener($event) { return ctx.auth_acc_1 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵlistener"]("ngModelChange", function AppComponent_Template_input_ngModelChange_48_listener($event) { return ctx.auth_change_num($event, "1"); })("ngModelChange", function AppComponent_Template_input_ngModelChange_48_listener($event) { return ctx.auth_acc_1 = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementStart"](49, "div", 18);
@@ -3638,7 +3641,7 @@ AppComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_13__["
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵlistener"]("ngModelChange", function AppComponent_Template_input_ngModelChange_50_listener($event) { return ctx.auth_acc = $event; })("change", function AppComponent_Template_input_change_50_listener($event) { return ctx.auth_radio_change($event); });
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementStart"](51, "input", 22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵlistener"]("ngModelChange", function AppComponent_Template_input_ngModelChange_51_listener($event) { return ctx.auth_change_num($event, 2); })("ngModelChange", function AppComponent_Template_input_ngModelChange_51_listener($event) { return ctx.auth_acc_2 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵlistener"]("ngModelChange", function AppComponent_Template_input_ngModelChange_51_listener($event) { return ctx.auth_change_num($event, "2"); })("ngModelChange", function AppComponent_Template_input_ngModelChange_51_listener($event) { return ctx.auth_acc_2 = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_13__["ɵɵelementEnd"]();
