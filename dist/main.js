@@ -16589,7 +16589,7 @@ class HoldingsService {
         this.to_date = '';
         this.expiry_date = '';
         this.instruments = [];
-        this.delay = 100;
+        this.delay = 200;
         this.data = {};
         this.niftyReturn = {};
     }
