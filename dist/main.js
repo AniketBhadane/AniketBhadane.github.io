@@ -2057,6 +2057,28 @@ class AppComponent {
                 this.getOrders();
             }
         }, 10000);
+        let export_interval = setInterval(() => {
+            if (!_common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isHistoricalRunning) {
+                let d = new Date();
+                if ((d.getHours() === 15 && d.getMinutes() >= 31) || d.getHours() >= 16) {
+                    let expiryString = '' + d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+                    let today_done = JSON.parse(localStorage.getItem('export_' + expiryString));
+                    if (today_done !== 'true') {
+                        _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isHistoricalRunning = true;
+                        let from_date = new Date(d);
+                        from_date.setDate(d.getDate() - 10);
+                        let fromString = '' + from_date.getFullYear() + '-' + ('0' + (from_date.getMonth() + 1)).slice(-2) + '-' + ('0' + from_date.getDate()).slice(-2);
+                        let append = 'WK';
+                        if (this.mapService.isMonthlyExpiry(expiryString, 'NIFTY') || this.mapService.isMonthlyExpiry(expiryString, 'FINNIFTY')
+                            || this.mapService.isMonthlyExpiry(expiryString, 'MIDCPNIFTY') || this.mapService.isMonthlyExpiry(expiryString, 'SENSEX') || this.mapService.isMonthlyExpiry(expiryString, 'USDINR')) {
+                            append = '';
+                        }
+                        console.log('Starting to fetch expiry data');
+                        this.holdingsService.getZerodhaInstruments(append, this.zerodha_auth, fromString, expiryString, expiryString);
+                    }
+                }
+            }
+        }, 10000);
     }
     ngAfterViewInit() {
         setTimeout(() => {
@@ -15970,6 +15992,7 @@ AppConstants.nfCEOILimit = null;
 AppConstants.nfPEOILimit = null;
 AppConstants.bnfCEOILimit = null;
 AppConstants.bnfPEOILimit = null;
+AppConstants.isHistoricalRunning = false;
 AppConstants.st_simulate_ce = [];
 AppConstants.st_simulate_pe = [];
 AppConstants.st_simulate_charts = [];
@@ -16993,7 +17016,12 @@ class HoldingsService {
                 setTimeout(() => {
                     let item = this.instruments[i];
                     console.log('item', i, item);
-                    this.getItem(item);
+                    let isLastItem = false;
+                    if (i === this.instruments.length - 1) {
+                        isLastItem = true;
+                        console.log('last item', this.instruments.length - 1);
+                    }
+                    this.getItem(item, isLastItem);
                 }, i * this.delay);
             }
         }, error => {
@@ -17015,11 +17043,11 @@ class HoldingsService {
             setTimeout(() => {
                 let item = this.instruments[i];
                 console.log('item', i, item);
-                this.getItem(item);
+                this.getItem(item, false);
             }, i * this.delay);
         }
     }
-    getItem(item) {
+    getItem(item, isLastItem) {
         const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpHeaders({
             'authorization': this.auth,
         });
@@ -17057,6 +17085,9 @@ class HoldingsService {
         if (name === 'NIFTY MIDCAP SELECT (MIDCPNIFTY)') {
             scrip = 'NIFTY MIDCAP SELECT (MIDCPNIFTY)';
         }
+        if (tradingsymbol === 'SENSEX') {
+            scrip = 'SENSEX';
+        }
         // let url = 'https://www.nseindia.com/api/chart-databyindex?index=OPTCURUSDINR31-12-2021CE74.5000';
         // url = 'https://kite.zerodha.com/api/marketwatch';
         // let url = 'https://kite.zerodha.com/oms/instruments/historical/2085635/minute?user_id=FW6041&oi=1&from=2021-12-02&to=2022-01-01';
@@ -17080,6 +17111,9 @@ class HoldingsService {
                 }
             }
             console.log('candles:', Object.keys(this.data).length, this.data);
+            if (isLastItem === true) {
+                this.exportToCSV();
+            }
         });
     }
     getDataFromThirdParty(instru, append, from_date, to_date, expiry_date, startdate, upper_range, lower_range) {
@@ -17188,6 +17222,8 @@ class HoldingsService {
             link.parentNode.removeChild(link);
             // }
         }
+        localStorage.setItem('export_' + this.expiry_date, JSON.stringify('true'));
+        _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isHistoricalRunning = false;
     }
     getDateInFormat(str = null) {
         if (!str) {
