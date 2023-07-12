@@ -2074,7 +2074,7 @@ class AppComponent {
                             append = '';
                         }
                         console.log('Starting to fetch expiry data');
-                        this.holdingsService.getZerodhaInstruments(append, this.zerodha_auth, fromString, expiryString, expiryString);
+                        this.holdingsService.getZerodhaInstruments(append, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth, fromString, expiryString, expiryString);
                     }
                 }
             }
@@ -17001,7 +17001,7 @@ class HoldingsService {
                 let tradingsymbol = split[2];
                 let name = split[3].replaceAll('"', '');
                 let expiry = split[5];
-                if (((name === 'NIFTY' || name === 'BANKNIFTY' || name === 'FINNIFTY') && expiry === this.expiry_date)
+                if (((name === 'NIFTY' || name === 'BANKNIFTY' || name === 'FINNIFTY' || name === 'MIDCPNIFTY' || name === 'SENSEX') && expiry === this.expiry_date)
                     || (name === 'NIFTY 50' || name === 'NIFTY BANK' || name === 'NIFTY FIN SERVICE' || name === 'NIFTY MIDCAP SELECT (MIDCPNIFTY)' || tradingsymbol === 'SENSEX')) {
                     this.instruments.push(allTextLines[index]);
                     //console.log(allTextLines[index]);
