@@ -8486,6 +8486,7 @@ class ChartComponent {
         this.pe_side_overlay = false;
         this.num_overlays = 1;
         this.currExpiry = '';
+        this.currBnfExpiry = '';
         this.currFinniftyExpiry = '';
         this.currMidcapExpiry = '';
         this.currSensexExpiry = '';
@@ -9421,6 +9422,7 @@ class ChartComponent {
         // this.chartingService.initTV_charts_static();
         // this.chartingService.initTV_charts_changing();
         this.currExpiry = this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.niftyExpiries);
+        this.currBnfExpiry = this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bnfExpiries);
         this.currFinniftyExpiry = this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.finniftyExpiries);
         this.currMidcapExpiry = this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.midcapExpiries);
         this.currSensexExpiry = this.mapService.findCurrExpiryForDisplay(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.sensexExpiries);
@@ -11300,7 +11302,7 @@ class ChartComponent {
                 // console.log(brokerage, stt, exchange_fees, gst, clearing_charges, stamp_duty);
             });
         }
-        return Math.round(pnl - charges);
+        return Math.round(pnl - charges) + ', ' + Math.round(charges);
     }
     getSoldPremium() {
         let soldQtyCE = 0;
@@ -16127,6 +16129,45 @@ AppConstants.monthlyExpiryDates = {
     '23NOV': new Date(2023, 10, 24),
     '23DEC': new Date(2023, 11, 28),
 };
+AppConstants.monthlyExpiryDatesBNF = {
+    /* '21JAN': new Date(2021, 0, 27),
+    '21FEB': new Date(2021, 1, 24),
+    '21MAR': new Date(2021, 2, 26),
+    '21APR': new Date(2021, 3, 29),
+    '21MAY': new Date(2021, 4, 26),
+    '21JUN': new Date(2021, 5, 30),
+    '21JUL': new Date(2021, 6, 28),
+    '21AUG': new Date(2021, 7, 26),
+    '21SEP': new Date(2021, 8, 29),
+    '21OCT': new Date(2021, 9, 28),
+    '21NOV': new Date(2021, 10, 25),
+    '21DEC': new Date(2021, 11, 30), */
+    /* '22JAN': new Date(2022, 0, 27),
+    '22FEB': new Date(2022, 1, 24),
+    '22MAR': new Date(2022, 2, 31),
+    '22APR': new Date(2022, 3, 28),
+    '22MAY': new Date(2022, 4, 26),
+    '22JUN': new Date(2022, 5, 30),
+    '22JUL': new Date(2022, 6, 28),
+    '22AUG': new Date(2022, 7, 25),
+    '22SEP': new Date(2022, 8, 29),
+    '22OCT': new Date(2022, 9, 27),
+    '22NOV': new Date(2022, 10, 24),
+    '22DEC': new Date(2022, 11, 29), */
+    '23JAN': new Date(2023, 0, 25),
+    '23FEB': new Date(2023, 1, 23),
+    '23MAR': new Date(2023, 2, 29),
+    '23APR': new Date(2023, 3, 27),
+    '23MAY': new Date(2023, 4, 25),
+    '23JUN': new Date(2023, 5, 28),
+    '23JUL': new Date(2023, 6, 27),
+    // TODO below
+    '23AUG': new Date(2023, 7, 25),
+    '23SEP': new Date(2023, 8, 28),
+    '23OCT': new Date(2023, 9, 27),
+    '23NOV': new Date(2023, 10, 24),
+    '23DEC': new Date(2023, 11, 28),
+};
 AppConstants.monthlyExpiryDatesFINNIFTY = {
     '23JAN': new Date(2023, 0, 31),
     '23FEB': new Date(2023, 1, 28),
@@ -17760,7 +17801,10 @@ class MapService {
         let expiryDate = new Date(expiryRecvd);
         expiryDate.setHours(0, 0, 0, 0);
         let tempmonthlyExpiryDates = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDates;
-        if (instru === 'FINNIFTY') {
+        if (instru === 'BANKNIFTY') {
+            tempmonthlyExpiryDates = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesBNF;
+        }
+        else if (instru === 'FINNIFTY') {
             tempmonthlyExpiryDates = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.monthlyExpiryDatesFINNIFTY;
         }
         else if (instru === 'MIDCPNIFTY') {
