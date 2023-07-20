@@ -2065,14 +2065,16 @@ class AppComponent {
                     let today_done = JSON.parse(localStorage.getItem('export_' + expiryString));
                     if (today_done !== 'true') {
                         _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isHistoricalRunning = true;
-                        let from_date = new Date(d);
-                        from_date.setDate(d.getDate() - 10);
-                        let fromString = '' + from_date.getFullYear() + '-' + ('0' + (from_date.getMonth() + 1)).slice(-2) + '-' + ('0' + from_date.getDate()).slice(-2);
                         let append = 'WK';
+                        let daysToRetrieve = 10;
                         if (this.mapService.isMonthlyExpiry(expiryString, 'NIFTY') || this.mapService.isMonthlyExpiry(expiryString, 'FINNIFTY')
                             || this.mapService.isMonthlyExpiry(expiryString, 'MIDCPNIFTY') || this.mapService.isMonthlyExpiry(expiryString, 'SENSEX') || this.mapService.isMonthlyExpiry(expiryString, 'USDINR')) {
                             append = '';
+                            daysToRetrieve = 30;
                         }
+                        let from_date = new Date(d);
+                        from_date.setDate(d.getDate() - daysToRetrieve);
+                        let fromString = '' + from_date.getFullYear() + '-' + ('0' + (from_date.getMonth() + 1)).slice(-2) + '-' + ('0' + from_date.getDate()).slice(-2);
                         console.log('Starting to fetch expiry data');
                         this.holdingsService.getZerodhaInstruments(append, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth, fromString, expiryString, expiryString);
                     }
@@ -10171,7 +10173,7 @@ class ChartComponent {
                 this.strikeStepValue = 50;
             }
             else if (this.instru === 'BANKNIFTY') {
-                this.stepValue = 25;
+                this.stepValue = 15;
                 this.strikeStepValue = 100;
             }
             else if (this.instru === 'FINNIFTY') {
