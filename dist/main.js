@@ -1027,7 +1027,7 @@ class AlgoService {
                     strike_diff = 50;
                 }
                 else if (istrangle_instru === 'MIDCPNIFTY') {
-                    strike_diff = 50;
+                    strike_diff = 25;
                 }
                 else if (istrangle_instru === 'SENSEX') {
                     strike_diff = 100;
@@ -2125,7 +2125,7 @@ class AppComponent {
             this.oc_range_lower = spotStrike - 500;
         }
         else if (this.oc_instru === 'MIDCPNIFTY') {
-            this.oc_range_multiple = 50;
+            this.oc_range_multiple = 25;
             let spot = this.mapService.getScripLTP(null, null, 'MIDCPNIFTY', null);
             let spotStrike = (Math.round(spot / this.oc_range_multiple) * this.oc_range_multiple);
             this.oc_range_higher = spotStrike + 500;
@@ -5603,7 +5603,7 @@ class BacktestService {
                 strike_diff = 50;
             }
             else if (charts_instru === 'MIDCPNIFTY') {
-                strike_diff = 50;
+                strike_diff = 25;
             }
             else if (charts_instru === 'SENSEX') {
                 strike_diff = 100;
@@ -5891,7 +5891,7 @@ class BacktestService {
             strike_diff = 50;
         }
         else if (charts_instru === 'MIDCPNIFTY') {
-            strike_diff = 50;
+            strike_diff = 25;
         }
         else if (charts_instru === 'SENSEX') {
             strike_diff = 100;
@@ -5980,7 +5980,7 @@ class BacktestService {
             strike_diff = 50;
         }
         else if (charts_instru === 'MIDCPNIFTY') {
-            strike_diff = 50;
+            strike_diff = 25;
         }
         else if (charts_instru === 'SENSEX') {
             strike_diff = 100;
@@ -6113,7 +6113,7 @@ class BacktestService {
             strike_diff = 50;
         }
         else if (charts_instru === 'MIDCPNIFTY') {
-            strike_diff = 50;
+            strike_diff = 25;
         }
         else if (charts_instru === 'SENSEX') {
             strike_diff = 100;
@@ -6571,7 +6571,7 @@ class BacktestService {
             strike_diff = 50;
         }
         else if (charts_instru === 'MIDCPNIFTY') {
-            strike_diff = 50;
+            strike_diff = 25;
         }
         else if (charts_instru === 'SENSEX') {
             strike_diff = 100;
@@ -9209,7 +9209,7 @@ class ChartComponent {
             }
         }
         else if (this.charts_instru === 'MIDCPNIFTY') {
-            this.charts_multiple = 50;
+            this.charts_multiple = 25;
             range = 450;
             if (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.isSimulatedStrategy) {
                 range = 300;
@@ -10182,7 +10182,7 @@ class ChartComponent {
             }
             else if (this.instru === 'MIDCPNIFTY') {
                 this.stepValue = 75;
-                this.strikeStepValue = 50;
+                this.strikeStepValue = 25;
             }
             else if (this.instru === 'SENSEX') {
                 this.stepValue = 10;
@@ -13222,7 +13222,7 @@ class ChartService {
             this.oc_range_lower = spotStrike - 500;
         }
         else if (this.oc_instru === 'MIDCPNIFTY') {
-            this.oc_range_multiple = 50;
+            this.oc_range_multiple = 25;
             let spot = this.mapService.getScripLTP(null, null, 'MIDCPNIFTY', null);
             let spotStrike = (Math.round(spot / this.oc_range_multiple) * this.oc_range_multiple);
             this.oc_range_higher = spotStrike + 500;
@@ -13536,7 +13536,7 @@ class ChartingService {
                 responseType: 'json',
                 headers: headers
             };
-            let url = 'https://kite.zerodha.com/oms/instruments/historical/' + token + '/5minute?user_id=' + _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.zerodhaUserId + '&oi=1&from=' + from_date + '&to=' + to_date;
+            let url = 'https://kite.zerodha.com/oms/instruments/historical/' + token + '/minute?user_id=' + _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.zerodhaUserId + '&oi=1&from=' + from_date + '&to=' + to_date;
             this.http.get(url, httpOptions).subscribe((res) => {
                 //console.log('scrip data:', scrip, res);
                 if (res.data.candles) {
@@ -14485,7 +14485,7 @@ class ChartingService {
                 strike_diff = 50;
             }
             else if (charts_instru === 'MIDCPNIFTY') {
-                strike_diff = 50;
+                strike_diff = 25;
             }
             else if (charts_instru === 'SENSEX') {
                 strike_diff = 100;
@@ -14722,7 +14722,7 @@ class ChartingService {
                 strike_diff = 50;
             }
             else if (charts_instru === 'MIDCPNIFTY') {
-                strike_diff = 50;
+                strike_diff = 25;
             }
             else if (charts_instru === 'SENSEX') {
                 strike_diff = 100;
@@ -16222,8 +16222,8 @@ AppConstants.monthlyExpiryDates = {
     '23MAY': new Date(2023, 4, 25),
     '23JUN': new Date(2023, 5, 28),
     '23JUL': new Date(2023, 6, 27),
+    '23AUG': new Date(2023, 7, 31),
     // TODO below
-    '23AUG': new Date(2023, 7, 25),
     '23SEP': new Date(2023, 8, 28),
     '23OCT': new Date(2023, 9, 27),
     '23NOV': new Date(2023, 10, 24),
@@ -16261,8 +16261,8 @@ AppConstants.monthlyExpiryDatesBNF = {
     '23MAY': new Date(2023, 4, 25),
     '23JUN': new Date(2023, 5, 28),
     '23JUL': new Date(2023, 6, 27),
+    '23AUG': new Date(2023, 7, 31),
     // TODO below
-    '23AUG': new Date(2023, 7, 25),
     '23SEP': new Date(2023, 8, 28),
     '23OCT': new Date(2023, 9, 27),
     '23NOV': new Date(2023, 10, 24),
@@ -16275,10 +16275,10 @@ AppConstants.monthlyExpiryDatesFINNIFTY = {
     '23APR': new Date(2023, 3, 25),
     '23MAY': new Date(2023, 4, 30),
     '23JUN': new Date(2023, 5, 27),
+    '23JUL': new Date(2023, 6, 25),
+    '23AUG': new Date(2023, 7, 29),
+    '23SEP': new Date(2023, 8, 26),
     // TODO below
-    '23JUL': new Date(2023, 6, 28),
-    '23AUG': new Date(2023, 7, 25),
-    '23SEP': new Date(2023, 8, 28),
     '23OCT': new Date(2023, 9, 27),
     '23NOV': new Date(2023, 10, 24),
     '23DEC': new Date(2023, 11, 28),
@@ -16292,7 +16292,7 @@ AppConstants.monthlyExpiryDatesMidcap = {
     '23JUN': new Date(2023, 5, 27),
     '23JUL': new Date(2023, 6, 26),
     // TODO below
-    '23AUG': new Date(2023, 7, 30),
+    '23AUG': new Date(2023, 7, 28),
     '23SEP': new Date(2023, 8, 28),
     '23OCT': new Date(2023, 9, 27),
     '23NOV': new Date(2023, 10, 24),
@@ -16465,12 +16465,13 @@ AppConstants.niftyExpiries = [
     new Date(2023, 6, 13),
     new Date(2023, 6, 20),
     new Date(2023, 6, 27),
+    new Date(2023, 7, 3),
+    new Date(2023, 7, 10),
+    new Date(2023, 7, 17),
+    new Date(2023, 7, 24),
+    new Date(2023, 7, 31),
     // TODO below
     /*
-     new Date(2023, 7, 4),
-     new Date(2023, 7, 11),
-     new Date(2023, 7, 18),
-     new Date(2023, 7, 25),
      new Date(2023, 8, 1),
      new Date(2023, 8, 8),
      new Date(2023, 8, 15),
@@ -16573,12 +16574,13 @@ AppConstants.bnfExpiries = [
     new Date(2023, 6, 13),
     new Date(2023, 6, 20),
     new Date(2023, 6, 27),
+    new Date(2023, 7, 3),
+    new Date(2023, 7, 10),
+    new Date(2023, 7, 17),
+    new Date(2023, 7, 24),
+    new Date(2023, 7, 31),
     // TODO below
     /*
-     new Date(2023, 7, 4),
-     new Date(2023, 7, 11),
-     new Date(2023, 7, 18),
-     new Date(2023, 7, 25),
      new Date(2023, 8, 1),
      new Date(2023, 8, 8),
      new Date(2023, 8, 15),
@@ -16624,15 +16626,17 @@ AppConstants.finniftyExpiries = [
     new Date(2023, 5, 13),
     new Date(2023, 5, 20),
     new Date(2023, 5, 27),
+    new Date(2023, 6, 6),
+    new Date(2023, 6, 13),
+    new Date(2023, 6, 20),
+    new Date(2023, 6, 27),
+    new Date(2023, 7, 1),
+    new Date(2023, 7, 8),
+    new Date(2023, 7, 14),
+    new Date(2023, 7, 22),
+    new Date(2023, 7, 29),
     // TODO below,
-    /* new Date(2023, 6, 7),
-    new Date(2023, 6, 14),
-    new Date(2023, 6, 21),
-    new Date(2023, 6, 28),
-    new Date(2023, 7, 4),
-    new Date(2023, 7, 11),
-    new Date(2023, 7, 18),
-    new Date(2023, 7, 25),
+    /*
     new Date(2023, 8, 1),
     new Date(2023, 8, 8),
     new Date(2023, 8, 15),
@@ -16683,10 +16687,11 @@ AppConstants.midcapExpiries = [
     new Date(2023, 6, 26),
     new Date(2023, 7, 2),
     new Date(2023, 7, 9),
+    new Date(2023, 7, 16),
+    new Date(2023, 7, 21),
+    new Date(2023, 7, 28),
     // TODO below
-    /* new Date(2023, 7, 11),
-    new Date(2023, 7, 18),
-    new Date(2023, 7, 25),
+    /*
     new Date(2023, 8, 1),
     new Date(2023, 8, 8),
     new Date(2023, 8, 15),
