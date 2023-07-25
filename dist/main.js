@@ -13790,7 +13790,7 @@ class ChartingService {
                 responseType: 'json',
                 headers: headers
             };
-            let url = 'https://kite.zerodha.com/oms/instruments/historical/' + element.token + '/5minute?user_id=' + _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.zerodhaUserId + '&oi=1&from=' + from_date + '&to=' + to_date;
+            let url = 'https://kite.zerodha.com/oms/instruments/historical/' + element.token + '/minute?user_id=' + _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.zerodhaUserId + '&oi=1&from=' + from_date + '&to=' + to_date;
             this.http.get(url, httpOptions).subscribe((res) => {
                 //console.log('scrip data:', scrip, res);
                 if (res.data.candles) {
