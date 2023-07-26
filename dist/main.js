@@ -9317,7 +9317,7 @@ class ChartComponent {
     }
     onSpotChartInstruChange(event) {
         // console.log(this.spot_chart_instru);
-        this.chartingService.initSpotChart(this.spot_chart_instru);
+        this.chartingService.initSpotChart(this.spot_chart_instru, this.expand_single_charts);
     }
     onChartInstruChange(event) {
         this.update_charts_inputs();
@@ -13517,15 +13517,21 @@ class ChartingService {
     https://codesandbox.io/s/damonacheylightweightchartsdemo-xhisf?file=/src/index.js:45-58
     https://tradingview.github.io/lightweight-charts/docs
     */
-    initSpotChart(instru) {
+    initSpotChart(instru, expand = false) {
         this.spot_chart_instru = instru;
         if (this.spot_chart_chart) {
             this.spot_chart_chart.remove();
         }
+        let width = 320;
+        let height = 200;
+        if (expand) {
+            width = 600;
+            height = 400;
+        }
         let div_id = 'spot-chart';
         this.spot_chart_chart = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_2__.createChart)(div_id, {
-            width: 320,
-            height: 200,
+            width: width,
+            height: height,
             timeScale: {
                 timeVisible: true,
             },
@@ -13646,10 +13652,12 @@ class ChartingService {
     }
     resizeSingleCharts(expand) {
         if (expand) {
+            this.spot_chart_chart.resize(600, 400);
             this.single_chart_ce.resize(600, 400);
             this.single_chart_pe.resize(600, 400);
         }
         else {
+            this.spot_chart_chart.resize(320, 200);
             this.single_chart_ce.resize(320, 200);
             this.single_chart_pe.resize(320, 200);
         }
