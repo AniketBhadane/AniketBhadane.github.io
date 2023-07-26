@@ -13646,8 +13646,8 @@ class ChartingService {
     }
     resizeSingleCharts(expand) {
         if (expand) {
-            this.single_chart_ce.resize(720, 480);
-            this.single_chart_pe.resize(720, 480);
+            this.single_chart_ce.resize(600, 400);
+            this.single_chart_pe.resize(600, 400);
         }
         else {
             this.single_chart_ce.resize(320, 200);
@@ -13671,8 +13671,8 @@ class ChartingService {
             let width = 320;
             let height = 200;
             if (expand) {
-                width = 720;
-                height = 480;
+                width = 600;
+                height = 400;
             }
             if (type === 'CE') {
                 this.single_strike_ce = strike;
@@ -13950,7 +13950,7 @@ class ChartingService {
     }
     initTV_charts_static() {
         const chart = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_2__.createChart)('tv_test', {
-            width: 480,
+            width: 400,
             height: 200,
             timeScale: {
                 timeVisible: true,
@@ -13975,7 +13975,7 @@ class ChartingService {
     }
     initTV_charts_changing() {
         let chart = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_2__.createChart)('tv_test', {
-            width: 480,
+            width: 400,
             height: 200,
             /* crosshair: {
               mode: LightweightCharts.CrosshairMode.Normal,
