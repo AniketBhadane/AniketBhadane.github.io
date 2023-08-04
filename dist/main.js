@@ -2670,6 +2670,9 @@ class AppComponent {
                     });
                     o.tags = o.tags.replace(/,\s*$/, '');
                 }
+                else {
+                    o.tags = '';
+                }
                 this.orders.push(o);
             });
             this.sortOrders();
@@ -12308,7 +12311,8 @@ class ChartComponent {
         this.curr_positions_trades = [];
         // this.curr_positions_trades.push({ qty: qty, scrip: scrip, expiry: dateString, entry: entry, exit: 0, addToOrders: false, selected: true, selectedActual: false, rollstrike: null, rollstrike_new: scrip, roll_qty: roll_qty, alertPrice: null, alertStatus: '' });
         _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.orders.forEach((o) => {
-            if (o.instru === this.instru && ((o.tags && o.tags.includes(this.tagSearch) && !this.excludeGUIDs.includes(o.guid)) || this.includeGUIDs.includes(o.guid)) && o.status === 'COMPLETE') {
+            console.log('tag search', o.tags, this.tagSearch);
+            if (o.instru === this.instru && ((o.tags.includes(this.tagSearch) && !this.excludeGUIDs.includes(o.guid)) || this.includeGUIDs.includes(o.guid)) && o.status === 'COMPLETE') {
                 this.curr_positions_trades.push({ qty: o.qty, scrip: o.scrip, expiry: dateString, entry: o.tradedPrice, exit: 0, addToOrders: false, selected: true, selectedActual: false, rollstrike: null, rollstrike_new: o.scrip, roll_qty: this.appService.getQtyUptoFreezeLimit(this.instru, o.qty), alertPrice: null, alertStatus: '' });
             }
         });
