@@ -12351,6 +12351,9 @@ class ChartComponent {
                         if (found.alertPrice) {
                             a.alertPrice = found.alertPrice;
                         }
+                        if (a.qty === found.qty) {
+                            a.roll_qty = found.roll_qty;
+                        }
                     }
                 }
             });
