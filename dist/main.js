@@ -2543,6 +2543,10 @@ class AppComponent {
                 let parsed = this.mapService.parseSymbol(symbol);
                 p.instru = parsed.instru;
                 p.scrip = parsed.strike + parsed.type;
+                let fromMasters = this.zerodhaService.findInMastersByToken(pos.instrument_token);
+                if (fromMasters && fromMasters.expiry) {
+                    p.expiry = fromMasters.expiry;
+                }
                 p.netQty = pos.quantity;
                 p.buyAvg = pos.buy_price;
                 p.sellAvg = pos.sell_price;
@@ -8917,7 +8921,7 @@ class ChartComponent {
             console.log(pos, pos.scrip);
             let pos1 = {
                 instru: this.instru,
-                expiry_date: this.expiryDate,
+                expiry_date: pos.expiry,
                 curr_qty: pos.roll_qty,
                 curr_scrip: pos.scrip,
                 new_scrip: null
@@ -8929,7 +8933,7 @@ class ChartComponent {
             console.log(pos, pos.rollstrike_new);
             let pos1 = {
                 instru: this.instru,
-                expiry_date: this.expiryDate,
+                expiry_date: pos.expiry,
                 curr_qty: -pos.roll_qty,
                 curr_scrip: pos.rollstrike_new,
                 new_scrip: null
@@ -9604,9 +9608,10 @@ class ChartComponent {
         }
     }
     posQtyUpdated(event, pos) {
-        if ((pos.qty < 0 && pos.roll_qty > 0) || (pos.qty > 0 && pos.roll_qty < 0)) {
-            pos.roll_qty = -pos.roll_qty;
-        }
+        /* if ((pos.qty < 0 && pos.roll_qty > 0) || (pos.qty > 0 && pos.roll_qty < 0)) {
+          pos.roll_qty = -pos.roll_qty;
+        } */
+        pos.roll_qty = this.appService.getQtyUptoFreezeLimit(this.instru, pos.qty);
     }
     parseZ1() {
         /*
@@ -10453,7 +10458,7 @@ class ChartComponent {
             for (let i = 0; i < this.curr_positions_trades.length; i++) {
                 let element = this.curr_positions_trades[i];
                 if (element.exit == 0) {
-                    let a = { 'scrip': element.scrip, 'qty': element.qty };
+                    let a = { 'scrip': element.scrip, 'qty': element.qty /* , 'expiry': element.expiry */ };
                     strat_pos.push(a);
                 }
             }
@@ -10461,10 +10466,13 @@ class ChartComponent {
             for (let i = 0; i < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions.length; i++) {
                 let element = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions[i];
                 if (element.instru === this.instru && element.netQty !== 0) {
-                    let a = { 'scrip': element.scrip, 'qty': element.netQty };
+                    let a = { 'scrip': element.scrip, 'qty': element.netQty /* , 'expiry': element.expiry */ };
                     fetched_pos.push(a);
                 }
             }
+            console.log('strat_pos', JSON.stringify(strat_pos));
+            console.log('fetched_pos', JSON.stringify(fetched_pos));
+            console.log('***', this.deepEqual(strat_pos, fetched_pos));
             /* console.log('strat_pos',strat_pos);
             console.log('fetched_pos',fetched_pos);
             console.log('json1',JSON.stringify(strat_pos));
@@ -10472,6 +10480,11 @@ class ChartComponent {
             console.log('equal',JSON.stringify(strat_pos) === JSON.stringify(fetched_pos)); */
             this.matchPositions = JSON.stringify(strat_pos) === JSON.stringify(fetched_pos);
         }
+    }
+    deepEqual(x, y) {
+        let ok = Object.keys, tx = typeof x, ty = typeof y;
+        return x && y && tx === 'object' && tx === ty ? (ok(x).length === ok(y).length &&
+            ok(x).every(key => this.deepEqual(x[key], y[key]))) : (x === y);
     }
     mergePositions() {
         let exitedMap = new Map(); // will contain all exited positions - values will be array since can be multiple exited positions of same strike
@@ -12079,7 +12092,7 @@ class ChartComponent {
         console.log(pos, pos.rollstrike_new);
         let pos1 = {
             instru: this.instru,
-            expiry_date: this.expiryDate,
+            expiry_date: pos.expiry,
             curr_qty: pos.roll_qty,
             curr_scrip: pos.scrip,
             new_scrip: pos.rollstrike_new
