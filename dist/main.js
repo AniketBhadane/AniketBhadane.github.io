@@ -2592,6 +2592,14 @@ class AppComponent {
             if (a_symbol === b_symbol && a.scrip.includes('PE') && b.scrip.includes('CE')) { // same strike CE PE, CE should occur first
                 return 1;
             }
+            if (a_symbol === b_symbol && (a.scrip.includes('CE') && b.scrip.includes('CE') || a.scrip.includes('PE') && b.scrip.includes('PE'))) { // same strike and type with different expiries
+                let d1 = new Date(a.expiry);
+                let d2 = new Date(b.expiry);
+                if (d1 < d2) {
+                    return -1;
+                }
+                return 1;
+            }
             //return b.scrip.localeCompare(a.scrip); // negative if a is before b
             return this.compareForSorting(a.scrip, b.scrip);
         });
@@ -10315,6 +10323,14 @@ class ChartComponent {
                 return -1;
             }
             if (a_symbol === b_symbol && a.scrip.includes('PE') && b.scrip.includes('CE')) { // same strike CE PE, CE should occur first
+                return 1;
+            }
+            if (a_symbol === b_symbol && (a.scrip.includes('CE') && b.scrip.includes('CE') || a.scrip.includes('PE') && b.scrip.includes('PE'))) { // same strike and type with different expiries
+                let d1 = new Date(a.expiry);
+                let d2 = new Date(b.expiry);
+                if (d1 < d2) {
+                    return -1;
+                }
                 return 1;
             }
             //return b.scrip.localeCompare(a.scrip); // negative if a is before b
