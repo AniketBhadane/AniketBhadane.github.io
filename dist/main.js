@@ -10508,9 +10508,9 @@ class ChartComponent {
                     fetched_pos.push(a);
                 }
             }
-            console.log('strat_pos', JSON.stringify(strat_pos));
-            console.log('fetched_pos', JSON.stringify(fetched_pos));
-            console.log('***', this.deepEqual(strat_pos, fetched_pos));
+            //console.log('strat_pos',JSON.stringify(strat_pos));
+            //console.log('fetched_pos',JSON.stringify(fetched_pos));
+            //console.log('***', this.deepEqual(strat_pos, fetched_pos))
             /* console.log('strat_pos',strat_pos);
             console.log('fetched_pos',fetched_pos);
             console.log('json1',JSON.stringify(strat_pos));
@@ -10623,11 +10623,11 @@ class ChartComponent {
         this.curr_positions_trades = [];
         for (let [key, v] of exitedMap) {
             v.forEach(value => {
-                this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, addToOrders: value.addToOrders, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike, rollstrike_new: value.rollstrike_new, roll_qty: this.appService.getQtyUptoFreezeLimit(this.instru, value.qty), alertPrice: value.alertPrice, alertStatus: '' });
+                this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, addToOrders: value.addToOrders, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike, rollstrike_new: value.rollstrike_new, roll_qty: value.roll_qty, alertPrice: value.alertPrice, alertStatus: '' });
             });
         }
         for (let [key, value] of mergeMap) {
-            this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, addToOrders: value.addToOrders, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike, rollstrike_new: value.rollstrike_new, roll_qty: this.appService.getQtyUptoFreezeLimit(this.instru, value.qty), alertPrice: value.alertPrice, alertStatus: '' });
+            this.curr_positions_trades.push({ qty: value.qty, scrip: value.scrip, expiry: value.expiry, entry: value.entry, exit: value.exit, addToOrders: value.addToOrders, selected: value.selected, selectedActual: value.selectedActual, rollstrike: value.rollstrike, rollstrike_new: value.rollstrike_new, roll_qty: value.roll_qty, alertPrice: value.alertPrice, alertStatus: '' });
         }
     }
     savePositions(num) {
@@ -12419,6 +12419,9 @@ class ChartComponent {
                         }
                         if (a.qty === found.qty) {
                             a.roll_qty = found.roll_qty;
+                        }
+                        else {
+                            a.roll_qty = this.appService.getQtyUptoFreezeLimit(this.instru, found.qty);
                         }
                     }
                 }
