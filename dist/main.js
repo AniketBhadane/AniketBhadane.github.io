@@ -10483,8 +10483,8 @@ class ChartComponent {
         this.appService.getFunds().subscribe((res) => {
             console.log('getFunds res: ', res);
             if (res.data && res.data.equity) {
-                this.avail_margin = Math.round(res.data.equity.net).toLocaleString();
-                this.used_margin = Math.round(res.data.equity.utilised.debits).toLocaleString();
+                this.avail_margin = Math.round(res.data.equity.net).toLocaleString('en-IN');
+                this.used_margin = Math.round(res.data.equity.utilised.debits).toLocaleString('en-IN');
             }
         }, error => {
             console.log('getFunds error', error);
@@ -11371,7 +11371,7 @@ class ChartComponent {
             this.appService.getZerodhaMargin(this.instru, /* month, */ this.curr_positions_trades, this.instru, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.broker_auth).subscribe((res) => {
                 console.log('getMargin res: ', res);
                 if (res.data && res.data.final) {
-                    this.margin = Math.round(res.data.final.total).toLocaleString();
+                    this.margin = Math.round(res.data.final.total).toLocaleString('en-IN');
                 }
             }, error => {
                 console.log('getMargin error', error);
@@ -13901,7 +13901,7 @@ class ChartingService {
             let lineData1 = [];
             let lineData2 = [];
             let obj = this.charts_data[strike]; // getting all data for strike
-            console.log('chart data', obj);
+            // console.log('chart data', obj);
             if (!obj) {
                 return;
             }
