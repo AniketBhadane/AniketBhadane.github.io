@@ -12421,7 +12421,7 @@ class ChartComponent {
                             a.roll_qty = found.roll_qty;
                         }
                         else {
-                            a.roll_qty = this.appService.getQtyUptoFreezeLimit(this.instru, found.qty);
+                            a.roll_qty = this.appService.getQtyUptoFreezeLimit(this.instru, a.qty);
                         }
                     }
                 }
