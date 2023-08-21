@@ -16599,9 +16599,9 @@ AppConstants.monthlyExpiryDates = {
     '23JUN': new Date(2023, 5, 28),
     '23JUL': new Date(2023, 6, 27),
     '23AUG': new Date(2023, 7, 31),
-    // TODO below
     '23SEP': new Date(2023, 8, 28),
-    '23OCT': new Date(2023, 9, 27),
+    '23OCT': new Date(2023, 9, 26),
+    // TODO below
     '23NOV': new Date(2023, 10, 24),
     '23DEC': new Date(2023, 11, 28),
 };
@@ -16638,9 +16638,9 @@ AppConstants.monthlyExpiryDatesBNF = {
     '23JUN': new Date(2023, 5, 28),
     '23JUL': new Date(2023, 6, 27),
     '23AUG': new Date(2023, 7, 31),
-    // TODO below
     '23SEP': new Date(2023, 8, 28),
-    '23OCT': new Date(2023, 9, 27),
+    '23OCT': new Date(2023, 9, 26),
+    // TODO below
     '23NOV': new Date(2023, 10, 24),
     '23DEC': new Date(2023, 11, 28),
 };
@@ -16654,8 +16654,8 @@ AppConstants.monthlyExpiryDatesFINNIFTY = {
     '23JUL': new Date(2023, 6, 25),
     '23AUG': new Date(2023, 7, 29),
     '23SEP': new Date(2023, 8, 26),
+    '23OCT': new Date(2023, 9, 31),
     // TODO below
-    '23OCT': new Date(2023, 9, 27),
     '23NOV': new Date(2023, 10, 24),
     '23DEC': new Date(2023, 11, 28),
 };
@@ -16667,10 +16667,10 @@ AppConstants.monthlyExpiryDatesMidcap = {
     '23MAY': new Date(2023, 4, 30),
     '23JUN': new Date(2023, 5, 27),
     '23JUL': new Date(2023, 6, 26),
-    // TODO below
     '23AUG': new Date(2023, 7, 28),
-    '23SEP': new Date(2023, 8, 28),
-    '23OCT': new Date(2023, 9, 27),
+    '23SEP': new Date(2023, 8, 25),
+    '23OCT': new Date(2023, 9, 30),
+    // TODO below
     '23NOV': new Date(2023, 10, 24),
     '23DEC': new Date(2023, 11, 28),
 };
@@ -16684,10 +16684,10 @@ AppConstants.monthlyExpiryDatesSensex = {
     '23JUL': new Date(2023, 6, 28),
     '23AUG': new Date(2023, 7, 25),
     '23SEP': new Date(2023, 8, 29),
-    // TODO below
     '23OCT': new Date(2023, 9, 27),
+    // TODO below
     '23NOV': new Date(2023, 10, 24),
-    '23DEC': new Date(2023, 11, 28),
+    '23DEC': new Date(2023, 11, 29),
 };
 AppConstants.monthlyExpiryDatesUSDINR = {
     /* '21JAN': new Date(2021, 0, 27),
@@ -16846,13 +16846,12 @@ AppConstants.niftyExpiries = [
     new Date(2023, 7, 17),
     new Date(2023, 7, 24),
     new Date(2023, 7, 31),
+    new Date(2023, 8, 7),
+    new Date(2023, 8, 14),
+    new Date(2023, 8, 21),
+    new Date(2023, 8, 28),
     // TODO below
     /*
-     new Date(2023, 8, 1),
-     new Date(2023, 8, 8),
-     new Date(2023, 8, 15),
-     new Date(2023, 8, 22),
-     new Date(2023, 8, 29),
      new Date(2023, 9, 6),
      new Date(2023, 9, 13),
      new Date(2023, 9, 20),
@@ -16955,13 +16954,12 @@ AppConstants.bnfExpiries = [
     new Date(2023, 7, 17),
     new Date(2023, 7, 24),
     new Date(2023, 7, 31),
+    new Date(2023, 8, 6),
+    new Date(2023, 8, 13),
+    new Date(2023, 8, 20),
+    new Date(2023, 8, 27),
     // TODO below
     /*
-     new Date(2023, 8, 1),
-     new Date(2023, 8, 8),
-     new Date(2023, 8, 15),
-     new Date(2023, 8, 22),
-     new Date(2023, 8, 29),
      new Date(2023, 9, 6),
      new Date(2023, 9, 13),
      new Date(2023, 9, 20),
@@ -17011,13 +17009,12 @@ AppConstants.finniftyExpiries = [
     new Date(2023, 7, 14),
     new Date(2023, 7, 22),
     new Date(2023, 7, 29),
+    new Date(2023, 8, 5),
+    new Date(2023, 8, 12),
+    new Date(2023, 8, 18),
+    new Date(2023, 8, 26),
     // TODO below,
     /*
-    new Date(2023, 8, 1),
-    new Date(2023, 8, 8),
-    new Date(2023, 8, 15),
-    new Date(2023, 8, 22),
-    new Date(2023, 8, 29),
     new Date(2023, 9, 6),
     new Date(2023, 9, 13),
     new Date(2023, 9, 20),
@@ -17066,12 +17063,12 @@ AppConstants.midcapExpiries = [
     new Date(2023, 7, 16),
     new Date(2023, 7, 21),
     new Date(2023, 7, 28),
+    new Date(2023, 8, 4),
+    new Date(2023, 8, 11),
+    new Date(2023, 8, 18),
+    new Date(2023, 8, 25),
     // TODO below
     /*
-    new Date(2023, 8, 1),
-    new Date(2023, 8, 8),
-    new Date(2023, 8, 15),
-    new Date(2023, 8, 22),
     new Date(2023, 8, 29),
     new Date(2023, 9, 6),
     new Date(2023, 9, 13),
@@ -17120,12 +17117,13 @@ AppConstants.sensexExpiries = [
     new Date(2023, 7, 11),
     new Date(2023, 7, 18),
     new Date(2023, 7, 25),
-    // TODO below,
-    /* new Date(2023, 8, 1),
+    new Date(2023, 8, 1),
     new Date(2023, 8, 8),
     new Date(2023, 8, 15),
     new Date(2023, 8, 22),
     new Date(2023, 8, 29),
+    // TODO below,
+    /*
     new Date(2023, 9, 6),
     new Date(2023, 9, 13),
     new Date(2023, 9, 20),
