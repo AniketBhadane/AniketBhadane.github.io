@@ -19167,13 +19167,17 @@ class ZerodhaWebsocketService {
                 let parsed = this.mapService.parseSymbol(data.tradingsymbol);
                 let scrip = parsed.strike + parsed.type;
                 _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'success', 'message': 'COMPLETE ' + scrip + ' ' + data.transaction_type + ' ' + data.quantity });
-                _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.next('refreshAll');
+                setTimeout(() => {
+                    _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.next('refreshAll');
+                }, 500);
             }
             if (data.status === 'REJECTED') {
                 let parsed = this.mapService.parseSymbol(data.tradingsymbol);
                 let scrip = parsed.strike + parsed.type;
                 _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': 'REJECTED ' + scrip + ' ' + data.transaction_type + ' ' + data.quantity + ' ' + data.status_message });
-                _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.next('refreshAll');
+                setTimeout(() => {
+                    _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.next('refreshAll');
+                }, 500);
             }
         }
     }
