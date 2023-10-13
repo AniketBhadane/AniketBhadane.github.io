@@ -2513,7 +2513,7 @@ class AppComponent {
                 console.log('zerodha getPositions response', res);
                 this.mapPositions(res);
                 this.positionsSubscription.unsubscribe();
-                _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'success', 'message': 'Positions Fetched' });
+                // AppConstants.requestStatusEvent$.next({'status': 'success', 'message': 'Positions Fetched'});
             }, error => {
                 console.log('zerodha getPositions error', error);
                 _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': 'Positions Fetch Failed' });
@@ -2631,7 +2631,7 @@ class AppComponent {
                 console.log('zerodha getOrders response', res);
                 this.mapOrders(res);
                 this.ordersSubscription.unsubscribe();
-                _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'success', 'message': 'Orders Fetched' });
+                // AppConstants.requestStatusEvent$.next({'status': 'success', 'message': 'Orders Fetched'});
                 _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.next('ordersReceived');
             }, error => {
                 console.log('zerodha getOrder error', error);
