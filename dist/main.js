@@ -6806,22 +6806,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function ChartComponent_div_87_button_2_Template(rf, ctx) { if (rf & 1) {
+function ChartComponent_div_87_button_6_Template(rf, ctx) { if (rf & 1) {
     const _r36 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 125);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_87_button_2_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r36); const ctx_r35 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r35.startAlgo(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 127);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_87_button_6_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r36); const ctx_r35 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r35.startAlgo(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "Start");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
-function ChartComponent_div_87_button_3_Template(rf, ctx) { if (rf & 1) {
+function ChartComponent_div_87_button_7_Template(rf, ctx) { if (rf & 1) {
     const _r38 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 125);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_87_button_3_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r38); const ctx_r37 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r37.stopAlgo(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 127);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_87_button_7_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r38); const ctx_r37 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r37.stopAlgo(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "Stop");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
-function ChartComponent_div_87_option_5_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
+function ChartComponent_div_87_option_9_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -6834,20 +6834,30 @@ function ChartComponent_div_87_Template(rf, ctx) { if (rf & 1) {
     const _r41 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 121);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 122);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](2, ChartComponent_div_87_button_2_Template, 2, 0, "button", 123);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](3, ChartComponent_div_87_button_3_Template, 2, 0, "button", 123);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "select", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_87_Template_select_ngModelChange_4_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r41); const ctx_r40 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r40.instruToTrade = $event; });
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](5, ChartComponent_div_87_option_5_Template, 2, 2, "option", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "input", 123);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_87_Template_input_ngModelChange_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r41); const ctx_r40 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r40.algoSimulated = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 124);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_87_Template_input_ngModelChange_6_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r41); const ctx_r42 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r42.expiryDateToTrade = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "label", 124);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](5, "Simulated");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](6, ChartComponent_div_87_button_6_Template, 2, 0, "button", 125);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](7, ChartComponent_div_87_button_7_Template, 2, 0, "button", 125);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "select", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_87_Template_select_ngModelChange_8_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r41); const ctx_r42 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r42.instruToTrade = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](9, ChartComponent_div_87_option_9_Template, 2, 2, "option", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "input", 126);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_87_Template_input_ngModelChange_10_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r41); const ctx_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r43.expiryDateToTrade = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx_r0.algoSimulated);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !ctx_r0.enableAlgo);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r0.enableAlgo);
@@ -6860,68 +6870,68 @@ function ChartComponent_div_87_Template(rf, ctx) { if (rf & 1) {
 } }
 function ChartComponent_div_88_tr_19_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "td", 130);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "td", 132);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "td", 130);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "td", 132);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "td", 130);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "td", 132);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](6);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "td", 130);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "td", 132);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](8);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "td", 130);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "td", 132);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](10);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "td", 130);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "td", 132);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](12);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const tbl_r44 = ctx.$implicit;
-    const ctx_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2);
+    const tbl_r45 = ctx.$implicit;
+    const ctx_r44 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r44.qty, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r45.qty, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r44.entry, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r45.entry, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r44.scrip, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r45.scrip, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", ctx_r43.getAlgoPosLTP(tbl_r44.scrip), " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", ctx_r44.getAlgoPosLTP(tbl_r45.scrip), " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r44.sl, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r45.sl, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r44.rollin, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", tbl_r45.rollin, " ");
 } }
 function ChartComponent_div_88_Template(rf, ctx) { if (rf & 1) {
-    const _r47 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r48 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 127);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "textarea", 128);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_88_Template_textarea_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r47); const ctx_r46 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r46.algoLog = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 129);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "textarea", 130);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_88_Template_textarea_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r48); const ctx_r47 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r47.algoLog = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "table", 56);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "thead", 106);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "th", 129);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "th", 131);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](7, "Qty");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "th", 129);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "th", 131);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](9, "Entry");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "th", 129);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "th", 131);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](11, "Strike");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "th", 129);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "th", 131);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](13, "LTP");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "th", 129);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "th", 131);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](15, "SL");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "th", 129);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "th", 131);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](17, "RollIn");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -6940,79 +6950,79 @@ function ChartComponent_div_88_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngForOf", ctx_r1.algo_pos);
 } }
 function ChartComponent_div_125_Template(rf, ctx) { if (rf & 1) {
-    const _r49 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r50 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 131);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r48 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r48.hide_payoff = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 133);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r49 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r49.hide_payoff = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "label", 132);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "label", 134);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](4, "Hide Payoff");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 133);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_6_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r50 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r50.use_hypo_future = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 135);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_6_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r51 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r51.use_hypo_future = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "label", 134);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "label", 136);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](8, "Use Hypothetical Future");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "input", 135);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_9_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r51 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r51.hypo_future_strike = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "input", 137);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_9_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r52 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r52.hypo_future_strike = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "input", 136);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_11_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r52 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r52.hide_roll3 = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "input", 138);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_11_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r53 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r53.hide_roll3 = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "label", 137);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "label", 139);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](13, "Hide Roll 3");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "input", 138);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_15_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r53 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r53.ce_side_overlay = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "input", 140);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_15_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r54 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r54.ce_side_overlay = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "label", 139);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "label", 141);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](17, "CE side");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](18, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "input", 140);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_19_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r54 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r54.pe_side_overlay = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "input", 142);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_19_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r55 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r55.pe_side_overlay = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](20, "label", 141);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](20, "label", 143);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](21, "PE side");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](22, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](23, "input", 142);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_23_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r55 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r55.straddle_shiftCE_overlay = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](23, "input", 144);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_23_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r56 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r56.straddle_shiftCE_overlay = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](24, "label", 143);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](24, "label", 145);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](25, "Straddle CE shift");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](26, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "input", 144);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_27_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r56 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r56.straddle_shiftPE_overlay = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "input", 146);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_27_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r57 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r57.straddle_shiftPE_overlay = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](28, "label", 145);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](28, "label", 147);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](29, "Straddle PE shift");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](30, "input", 146);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_30_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r57 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r57.straddle_shiftQty_overlay = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](30, "input", 148);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_30_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r58 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r58.straddle_shiftQty_overlay = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](31, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](32, "input", 147);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_32_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r58 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r58.payoff_overlay = $event; })("change", function ChartComponent_div_125_Template_input_change_32_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r59 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r59.payoffCheckboxChange($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](32, "input", 149);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_32_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r59 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r59.payoff_overlay = $event; })("change", function ChartComponent_div_125_Template_input_change_32_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r60 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r60.payoffCheckboxChange($event); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](33, "label", 148);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](33, "label", 150);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](34, "Payoff Overlay");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](35, "input", 149);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_35_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r49); const ctx_r60 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r60.overlay_strike = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](35, "input", 151);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_125_Template_input_ngModelChange_35_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r50); const ctx_r61 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r61.overlay_strike = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -7042,87 +7052,87 @@ function ChartComponent_div_125_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx_r2.overlay_strike);
 } }
 function ChartComponent_div_126_option_2_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const item_r64 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r64);
+    const item_r65 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r65);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r64, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r65, " ");
 } }
 function ChartComponent_div_126_option_4_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const expiry_date_r65 = ctx.$implicit;
+    const expiry_date_r66 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", expiry_date_r65, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", expiry_date_r66, " ");
 } }
 function ChartComponent_div_126_Template(rf, ctx) { if (rf & 1) {
-    const _r67 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r68 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "select", 150);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_select_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r66 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r66.simulate_instru = $event; })("change", function ChartComponent_div_126_Template_select_change_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r68 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r68.onSimulateInstruChange($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "select", 152);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_select_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r67 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r67.simulate_instru = $event; })("change", function ChartComponent_div_126_Template_select_change_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r69 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r69.onSimulateInstruChange($event); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](2, ChartComponent_div_126_option_2_Template, 2, 2, "option", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "select", 150);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_select_ngModelChange_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r69 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r69.simulate_expiries_arr_value = $event; })("change", function ChartComponent_div_126_Template_select_change_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r70 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r70.onSimulateExpiryChange($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "select", 152);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_select_ngModelChange_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r70 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r70.simulate_expiries_arr_value = $event; })("change", function ChartComponent_div_126_Template_select_change_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r71 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r71.onSimulateExpiryChange($event); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](4, ChartComponent_div_126_option_4_Template, 2, 1, "option", 108);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 151);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_input_ngModelChange_5_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r71 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r71.simulateExpiryDate = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 153);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_input_ngModelChange_5_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r72 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r72.simulateExpiryDate = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 152);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_input_ngModelChange_6_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r72 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r72.simulateStartDate = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 154);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_input_ngModelChange_6_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r73 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r73.simulateStartDate = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_7_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const _r63 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵreference"](30); return _r63.click(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_7_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const _r64 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵreference"](30); return _r64.click(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](8, "Import");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "button", 153);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r74 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r74.loadSimulatedNextMins(-120); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "button", 155);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_9_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r75 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r75.loadSimulatedNextMins(-120); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](10, "-120");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "button", 153);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r75 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r75.loadSimulatedNextMins(120); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "button", 155);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_11_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r76 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r76.loadSimulatedNextMins(120); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](12, "+120");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "button", 153);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_13_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r76 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r76.loadSimulatedNextMins(-15); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "button", 155);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_13_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r77 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r77.loadSimulatedNextMins(-15); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](14, "-15");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "button", 153);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_15_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r77 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r77.loadSimulatedNextMins(15); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "button", 155);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_15_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r78 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r78.loadSimulatedNextMins(15); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](16, "+15");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "button", 153);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_17_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r78 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r78.loadSimulatedNextMins(-5); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "button", 155);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_17_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r79 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r79.loadSimulatedNextMins(-5); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](18, "-5");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "button", 153);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_19_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r79 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r79.loadSimulatedNextMins(5); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "button", 155);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_19_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r80 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r80.loadSimulatedNextMins(5); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](20, "+5");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](21, "button", 153);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_21_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r80 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r80.loadSimulatedNextMins(-1); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](21, "button", 155);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_21_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r81 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r81.loadSimulatedNextMins(-1); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](22, "-1");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](23, "button", 153);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_23_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r81 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r81.loadSimulatedNextMins(1); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](23, "button", 155);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_126_Template_button_click_23_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r82 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r82.loadSimulatedNextMins(1); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](24, "+1");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](25, "div", 154);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](26, "input", 155);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_input_ngModelChange_26_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r82 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r82.show_simulate_charts = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](25, "div", 156);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](26, "input", 157);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_126_Template_input_ngModelChange_26_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r83 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r83.show_simulate_charts = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "label", 156);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "label", 158);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](28, "Show simulate charts");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "input", 157, 158);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("change", function ChartComponent_div_126_Template_input_change_29_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const ctx_r83 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r83.uploadExpiryFile($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "input", 159, 160);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("change", function ChartComponent_div_126_Template_input_change_29_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const ctx_r84 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r84.uploadExpiryFile($event); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](31, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](32);
@@ -7148,7 +7158,7 @@ function ChartComponent_div_126_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("Date Time: ", ctx_r3.simulateCurrDateTimeString, "");
 } }
 function ChartComponent_span_129_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 159);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 161);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, " Positions/Quantities match with actual positions ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
@@ -7158,56 +7168,56 @@ function ChartComponent_span_130_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_option_132_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const item_r84 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r84);
+    const item_r85 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r85);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r84, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r85, " ");
 } }
 function ChartComponent_tr_161_td_4_Template(rf, ctx) { if (rf & 1) {
-    const _r99 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r100 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 162);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 182);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_4_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r99); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r85.selected = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 164);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 184);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_4_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r100); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r86.selected = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "input", 183);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_4_Template_input_ngModelChange_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r99); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r85.selectedActual = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "input", 185);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_4_Template_input_ngModelChange_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r100); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r86.selectedActual = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.selected)("disabled", pos_r85.exit !== 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.selected)("disabled", pos_r86.exit !== 0);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.selectedActual)("disabled", pos_r85.exit !== 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.selectedActual)("disabled", pos_r86.exit !== 0);
 } }
 function ChartComponent_tr_161_button_19_Template(rf, ctx) { if (rf & 1) {
-    const _r105 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r106 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 113);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_button_19_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r105); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r103 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r103.executeOrder(pos_r85, "currentstrike"); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_button_19_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r106); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r104 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r104.executeOrder(pos_r86, "currentstrike"); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "B");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_tr_161_button_20_Template(rf, ctx) { if (rf & 1) {
-    const _r108 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 184);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_button_20_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r108); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r106 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r106.executeOrder(pos_r85, "currentstrike"); });
+    const _r109 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 186);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_button_20_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r109); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r107 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r107.executeOrder(pos_r86, "currentstrike"); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "S");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_tr_161_div_21_Template(rf, ctx) { if (rf & 1) {
-    const _r111 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r112 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 16);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 185);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_div_21_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r111); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r85.rollstrike = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 187);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_div_21_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r112); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r86.rollstrike = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "label", 186);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "label", 188);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](6);
@@ -7215,10 +7225,10 @@ function ChartComponent_tr_161_div_21_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "div", 16);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "input", 185);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_div_21_Template_input_ngModelChange_8_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r111); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r85.rollstrike = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "input", 187);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_div_21_Template_input_ngModelChange_8_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r112); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r86.rollstrike = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "label", 186);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "label", 188);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](10);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](12);
@@ -7226,10 +7236,10 @@ function ChartComponent_tr_161_div_21_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "div", 16);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "input", 185);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_div_21_Template_input_ngModelChange_14_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r111); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r85.rollstrike = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "input", 187);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_div_21_Template_input_ngModelChange_14_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r112); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r86.rollstrike = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "label", 186);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "label", 188);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](16);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](18);
@@ -7238,129 +7248,129 @@ function ChartComponent_tr_161_div_21_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
-    const ctx_r90 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
+    const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const ctx_r91 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("name", "inlineRadioOptions-", pos_r85.scrip, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("id", "inlineRadio1-", pos_r85.scrip, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("value", ctx_r90.getPosRollStrike(pos_r85, 2));
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.rollstrike);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("name", "inlineRadioOptions-", pos_r86.scrip, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("id", "inlineRadio1-", pos_r86.scrip, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("value", ctx_r91.getPosRollStrike(pos_r86, 2));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.rollstrike);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("for", "inlineRadio1-", pos_r85.scrip, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("for", "inlineRadio1-", pos_r86.scrip, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("", ctx_r90.getPosRollStrike(pos_r85, 2), " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("", ctx_r91.getPosRollStrike(pos_r86, 2), " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r90.getPosRollStrikeLTP(pos_r85, 2));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r91.getPosRollStrikeLTP(pos_r86, 2));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("name", "inlineRadioOptions-", pos_r85.scrip, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("id", "inlineRadio2-", pos_r85.scrip, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("value", ctx_r90.getPosRollStrike(pos_r85, 1));
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.rollstrike);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("name", "inlineRadioOptions-", pos_r86.scrip, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("id", "inlineRadio2-", pos_r86.scrip, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("value", ctx_r91.getPosRollStrike(pos_r86, 1));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.rollstrike);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("for", "inlineRadio2-", pos_r85.scrip, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("for", "inlineRadio2-", pos_r86.scrip, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("", ctx_r90.getPosRollStrike(pos_r85, 1), " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("", ctx_r91.getPosRollStrike(pos_r86, 1), " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r90.getPosRollStrikeLTP(pos_r85, 1));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r91.getPosRollStrikeLTP(pos_r86, 1));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("name", "inlineRadioOptions-", pos_r85.scrip, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("id", "inlineRadio3-", pos_r85.scrip, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("value", ctx_r90.getPosRollStrike(pos_r85, -1));
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.rollstrike);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("name", "inlineRadioOptions-", pos_r86.scrip, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("id", "inlineRadio3-", pos_r86.scrip, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("value", ctx_r91.getPosRollStrike(pos_r86, -1));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.rollstrike);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("for", "inlineRadio3-", pos_r85.scrip, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate1"]("for", "inlineRadio3-", pos_r86.scrip, "");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("", ctx_r90.getPosRollStrike(pos_r85, -1), " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("", ctx_r91.getPosRollStrike(pos_r86, -1), " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r90.getPosRollStrikeLTP(pos_r85, -1));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r91.getPosRollStrikeLTP(pos_r86, -1));
 } }
 function ChartComponent_tr_161_td_22_button_5_Template(rf, ctx) { if (rf & 1) {
-    const _r121 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r122 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 113);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_22_button_5_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r121); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2).$implicit; const ctx_r119 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r119.executeOrder(pos_r85, "newstrike"); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_22_button_5_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r122); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2).$implicit; const ctx_r120 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r120.executeOrder(pos_r86, "newstrike"); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "B");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_tr_161_td_22_button_6_Template(rf, ctx) { if (rf & 1) {
-    const _r124 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 184);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_22_button_6_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r124); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2).$implicit; const ctx_r122 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r122.executeOrder(pos_r85, "newstrike"); });
+    const _r125 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 186);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_22_button_6_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r125); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2).$implicit; const ctx_r123 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r123.executeOrder(pos_r86, "newstrike"); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "S");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_tr_161_td_22_Template(rf, ctx) { if (rf & 1) {
-    const _r127 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td", 170);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 165);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 187);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_22_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r127); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r85.rollstrike_new = $event; })("keyup", function ChartComponent_tr_161_td_22_Template_input_keyup_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r127); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r128 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r128.rollStrikeKeyUp($event, pos_r85); });
+    const _r128 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td", 172);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 167);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 189);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_22_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r128); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r86.rollstrike_new = $event; })("keyup", function ChartComponent_tr_161_td_22_Template_input_keyup_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r128); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r129 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r129.rollStrikeKeyUp($event, pos_r86); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "div", 172);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "div", 174);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](5, ChartComponent_tr_161_td_22_button_5_Template, 2, 0, "button", 173);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](6, ChartComponent_tr_161_td_22_button_6_Template, 2, 0, "button", 174);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](5, ChartComponent_tr_161_td_22_button_5_Template, 2, 0, "button", 175);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](6, ChartComponent_tr_161_td_22_button_6_Template, 2, 0, "button", 176);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
-    const ctx_r91 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
+    const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const ctx_r92 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.rollstrike_new);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.rollstrike_new);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r91.getLTP(pos_r85.expiry, pos_r85.rollstrike_new));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r92.getLTP(pos_r86.expiry, pos_r86.rollstrike_new));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r85.qty > 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r86.qty > 0);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r85.qty < 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r86.qty < 0);
 } }
 function ChartComponent_tr_161_td_23_Template(rf, ctx) { if (rf & 1) {
-    const _r133 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td", 188);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "input", 189);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_23_Template_input_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r133); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r85.expiry = $event; });
+    const _r134 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td", 190);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "input", 191);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_23_Template_input_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r134); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r86.expiry = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.expiry);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.expiry);
 } }
 function ChartComponent_tr_161_td_24_Template(rf, ctx) { if (rf & 1) {
-    const _r137 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td", 130);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "input", 190);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_24_Template_input_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r137); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r85.exit = $event; });
+    const _r138 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td", 132);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "input", 192);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_td_24_Template_input_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r138); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; return pos_r86.exit = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.exit);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.exit);
 } }
 function ChartComponent_tr_161_td_25_Template(rf, ctx) { if (rf & 1) {
-    const _r141 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td", 191);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "button", 192);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_25_Template_button_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r141); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r139 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r139.rollPosition(pos_r85); });
+    const _r142 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td", 193);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "button", 194);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_25_Template_button_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r142); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r140 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r140.rollPosition(pos_r86); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](2, "Roll");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_tr_161_td_26_Template(rf, ctx) { if (rf & 1) {
-    const _r144 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r145 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "button", 192);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_26_Template_button_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r144); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r142 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r142.splitPosition(pos_r85); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "button", 194);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_26_Template_button_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r145); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r143 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r143.splitPosition(pos_r86); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](2, "+");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_tr_161_td_27_Template(rf, ctx) { if (rf & 1) {
-    const _r147 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r148 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "button", 192);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_27_Template_button_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r147); const pos_r85 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r145 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r145.deletePosition(pos_r85); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "button", 194);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_161_td_27_Template_button_click_1_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r148); const pos_r86 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r146 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r146.deletePosition(pos_r86); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](2, "X");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -7369,92 +7379,92 @@ const _c0 = function (a0, a1) { return { "positionExited": a0, "hidePositionRow"
 const _c1 = function (a0, a1) { return { "red": a0, "blue": a1 }; };
 const _c2 = function (a0, a1) { return { "text-danger": a0, "text-success": a1 }; };
 function ChartComponent_tr_161_Template(rf, ctx) { if (rf & 1) {
-    const _r149 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "tr", 160);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "td", 161);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 162);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "input", 163);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_3_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r149); const pos_r85 = restoredCtx.$implicit; return pos_r85.addToOrders = $event; });
+    const _r150 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "tr", 162);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "td", 163);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 164);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "input", 165);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_3_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r150); const pos_r86 = restoredCtx.$implicit; return pos_r86.addToOrders = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](4, ChartComponent_tr_161_td_4_Template, 4, 4, "td", 20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "td", 164);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "div", 165);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "input", 166);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_7_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r149); const pos_r85 = restoredCtx.$implicit; return pos_r85.qty = $event; })("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_7_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r149); const pos_r85 = restoredCtx.$implicit; const ctx_r151 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r151.posQtyUpdated($event, pos_r85); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "td", 166);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "div", 167);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "input", 168);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_7_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r150); const pos_r86 = restoredCtx.$implicit; return pos_r86.qty = $event; })("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_7_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r150); const pos_r86 = restoredCtx.$implicit; const ctx_r152 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r152.posQtyUpdated($event, pos_r86); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "input", 167);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_8_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r149); const pos_r85 = restoredCtx.$implicit; return pos_r85.roll_qty = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "input", 169);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_8_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r150); const pos_r86 = restoredCtx.$implicit; return pos_r86.roll_qty = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "td", 168);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "span", 160);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "td", 170);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "span", 162);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](11);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "td", 130);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "input", 169);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_13_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r149); const pos_r85 = restoredCtx.$implicit; return pos_r85.entry = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "td", 132);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "input", 171);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_13_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r150); const pos_r86 = restoredCtx.$implicit; return pos_r86.entry = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "td", 170);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "div", 165);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "input", 171);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_16_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r149); const pos_r85 = restoredCtx.$implicit; return pos_r85.scrip = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "td", 172);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "div", 167);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "input", 173);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_16_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r150); const pos_r86 = restoredCtx.$implicit; return pos_r86.scrip = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "div", 172);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "div", 174);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](18);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](19, ChartComponent_tr_161_button_19_Template, 2, 0, "button", 173);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](20, ChartComponent_tr_161_button_20_Template, 2, 0, "button", 174);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](19, ChartComponent_tr_161_button_19_Template, 2, 0, "button", 175);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](20, ChartComponent_tr_161_button_20_Template, 2, 0, "button", 176);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](21, ChartComponent_tr_161_div_21_Template, 19, 21, "div", 20);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](22, ChartComponent_tr_161_td_22_Template, 7, 4, "td", 175);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](23, ChartComponent_tr_161_td_23_Template, 2, 1, "td", 176);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](24, ChartComponent_tr_161_td_24_Template, 2, 1, "td", 177);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](25, ChartComponent_tr_161_td_25_Template, 3, 0, "td", 178);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](22, ChartComponent_tr_161_td_22_Template, 7, 4, "td", 177);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](23, ChartComponent_tr_161_td_23_Template, 2, 1, "td", 178);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](24, ChartComponent_tr_161_td_24_Template, 2, 1, "td", 179);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](25, ChartComponent_tr_161_td_25_Template, 3, 0, "td", 180);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](26, ChartComponent_tr_161_td_26_Template, 3, 0, "td", 20);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](27, ChartComponent_tr_161_td_27_Template, 3, 0, "td", 20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](28, "td", 179);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "input", 180);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_29_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r149); const pos_r85 = restoredCtx.$implicit; return pos_r85.alertPrice = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](28, "td", 181);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "input", 182);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_161_Template_input_ngModelChange_29_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r150); const pos_r86 = restoredCtx.$implicit; return pos_r86.alertPrice = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](30, "span", 181);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](30, "span", 183);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](31);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const pos_r85 = ctx.$implicit;
+    const pos_r86 = ctx.$implicit;
     const ctx_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](25, _c0, pos_r85.exit !== 0, ctx_r7.hide_closed && pos_r85.exit !== 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](25, _c0, pos_r86.exit !== 0, ctx_r7.hide_closed && pos_r86.exit !== 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.addToOrders);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.addToOrders);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r7.payoff_overlay);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("step", ctx_r7.stepValue)("ngModel", pos_r85.qty)("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](28, _c1, pos_r85.qty < 0, pos_r85.qty > 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("step", ctx_r7.stepValue)("ngModel", pos_r86.qty)("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](28, _c1, pos_r86.qty < 0, pos_r86.qty > 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("step", ctx_r7.stepValue)("ngModel", pos_r85.roll_qty)("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](31, _c1, pos_r85.roll_qty < 0, pos_r85.roll_qty > 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("step", ctx_r7.stepValue)("ngModel", pos_r86.roll_qty)("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](31, _c1, pos_r86.roll_qty < 0, pos_r86.roll_qty > 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](34, _c2, pos_r85.pnl < 0, pos_r85.pnl > 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](34, _c2, pos_r86.pnl < 0, pos_r86.pnl > 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", ctx_r7.getPnL(pos_r85), " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", ctx_r7.getPnL(pos_r86), " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.entry);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.entry);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.scrip);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.scrip);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r7.getLTP(pos_r85.expiry, pos_r85.scrip));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r7.getLTP(pos_r86.expiry, pos_r86.scrip));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r85.qty < 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r86.qty < 0);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r85.qty > 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r86.qty > 0);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r85.exit === 0 && !ctx_r7.hide_roll3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r86.exit === 0 && !ctx_r7.hide_roll3);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !ctx_r7.hide_roll);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
@@ -7468,144 +7478,144 @@ function ChartComponent_tr_161_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !ctx_r7.hide_extra);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r85.alertPrice);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r86.alertPrice);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](pos_r85.alertStatus);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](pos_r86.alertStatus);
 } }
 function ChartComponent_table_162_tr_16_div_14_button_1_Template(rf, ctx) { if (rf & 1) {
-    const _r167 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r168 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 113);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_div_14_button_1_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r167); const pos_r157 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2).$implicit; const ctx_r165 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r165.executeOrderSLL(pos_r157); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_div_14_button_1_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r168); const pos_r158 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2).$implicit; const ctx_r166 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r166.executeOrderSLL(pos_r158); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "SL-L buy");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_table_162_tr_16_div_14_button_2_Template(rf, ctx) { if (rf & 1) {
-    const _r170 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 184);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_div_14_button_2_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r170); const pos_r157 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2).$implicit; const ctx_r168 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r168.executeOrderSLL(pos_r157); });
+    const _r171 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 186);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_div_14_button_2_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r171); const pos_r158 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2).$implicit; const ctx_r169 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r169.executeOrderSLL(pos_r158); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "SL-L sell");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_table_162_tr_16_div_14_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 165);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](1, ChartComponent_table_162_tr_16_div_14_button_1_Template, 2, 0, "button", 173);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](2, ChartComponent_table_162_tr_16_div_14_button_2_Template, 2, 0, "button", 174);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 167);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](1, ChartComponent_table_162_tr_16_div_14_button_1_Template, 2, 0, "button", 175);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](2, ChartComponent_table_162_tr_16_div_14_button_2_Template, 2, 0, "button", 176);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const pos_r157 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const pos_r158 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r157.qty > 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r158.qty > 0);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r157.qty < 0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r158.qty < 0);
 } }
 function ChartComponent_table_162_tr_16_button_16_Template(rf, ctx) { if (rf & 1) {
-    const _r174 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 192);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_button_16_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r174); const pos_r157 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r172 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r172.executeOrderSLL(pos_r157); });
+    const _r175 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 194);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_button_16_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r175); const pos_r158 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r173 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r173.executeOrderSLL(pos_r158); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "Modify");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_table_162_tr_16_button_18_Template(rf, ctx) { if (rf & 1) {
-    const _r177 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 192);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_button_18_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r177); const pos_r157 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r175 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r175.cancelSLLOrder(pos_r157); });
+    const _r178 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 194);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_button_18_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r178); const pos_r158 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r176 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r176.cancelSLLOrder(pos_r158); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "Cancel");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_table_162_tr_16_button_20_Template(rf, ctx) { if (rf & 1) {
-    const _r180 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 192);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_button_20_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r180); const pos_r157 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r178 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r178.deleteSLLOrder(pos_r157); });
+    const _r181 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "button", 194);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_table_162_tr_16_button_20_Template_button_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r181); const pos_r158 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r179 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r179.deleteSLLOrder(pos_r158); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "X");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 const _c3 = function (a0) { return { "sl-order-placed": a0 }; };
 function ChartComponent_table_162_tr_16_Template(rf, ctx) { if (rf & 1) {
-    const _r182 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "tr", 160);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "td", 161);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 165);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "input", 195);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_table_162_tr_16_Template_input_ngModelChange_3_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r182); const pos_r157 = restoredCtx.$implicit; return pos_r157.qty = $event; });
+    const _r183 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "tr", 162);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "td", 163);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 167);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "input", 197);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_table_162_tr_16_Template_input_ngModelChange_3_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r183); const pos_r158 = restoredCtx.$implicit; return pos_r158.qty = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "td", 170);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 165);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 196);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_table_162_tr_16_Template_input_ngModelChange_6_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r182); const pos_r157 = restoredCtx.$implicit; return pos_r157.scrip = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "td", 172);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 167);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 198);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_table_162_tr_16_Template_input_ngModelChange_6_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r183); const pos_r158 = restoredCtx.$implicit; return pos_r158.scrip = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "div", 172);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "div", 174);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](8);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "td", 161);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "input", 197);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_table_162_tr_16_Template_input_ngModelChange_10_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r182); const pos_r157 = restoredCtx.$implicit; return pos_r157.price = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "td", 163);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "input", 199);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_table_162_tr_16_Template_input_ngModelChange_10_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r183); const pos_r158 = restoredCtx.$implicit; return pos_r158.price = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "td", 161);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "input", 198);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_table_162_tr_16_Template_input_ngModelChange_12_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r182); const pos_r157 = restoredCtx.$implicit; return pos_r157.trigger_price = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "td", 163);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "input", 200);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_table_162_tr_16_Template_input_ngModelChange_12_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r183); const pos_r158 = restoredCtx.$implicit; return pos_r158.trigger_price = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "td", 161);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](14, ChartComponent_table_162_tr_16_div_14_Template, 3, 2, "div", 199);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "td", 163);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](14, ChartComponent_table_162_tr_16_div_14_Template, 3, 2, "div", 201);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "td", 200);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](16, ChartComponent_table_162_tr_16_button_16_Template, 2, 0, "button", 201);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "td", 202);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](16, ChartComponent_table_162_tr_16_button_16_Template, 2, 0, "button", 203);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "td", 200);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](18, ChartComponent_table_162_tr_16_button_18_Template, 2, 0, "button", 201);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "td", 202);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](18, ChartComponent_table_162_tr_16_button_18_Template, 2, 0, "button", 203);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "td", 200);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](20, ChartComponent_table_162_tr_16_button_20_Template, 2, 0, "button", 201);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "td", 202);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](20, ChartComponent_table_162_tr_16_button_20_Template, 2, 0, "button", 203);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const pos_r157 = ctx.$implicit;
-    const ctx_r156 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction1"](12, _c3, pos_r157.order_id !== null));
+    const pos_r158 = ctx.$implicit;
+    const ctx_r157 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction1"](12, _c3, pos_r158.order_id !== null));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("step", ctx_r156.stepValue)("ngModel", pos_r157.qty)("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](14, _c1, pos_r157.qty < 0, pos_r157.qty > 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("step", ctx_r157.stepValue)("ngModel", pos_r158.qty)("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](14, _c1, pos_r158.qty < 0, pos_r158.qty > 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r157.scrip);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r158.scrip);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r156.getLTP(pos_r157.expiry, pos_r157.scrip));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r157.getLTP(pos_r158.expiry, pos_r158.scrip));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r157.price);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r158.price);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r157.trigger_price);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r158.trigger_price);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r157.order_id === null);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r158.order_id === null);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r157.order_id);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r158.order_id);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r157.order_id);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r158.order_id);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r157.order_id === null);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", pos_r158.order_id === null);
 } }
 function ChartComponent_table_162_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "table", 56);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "thead", 106);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "th", 193);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "th", 195);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](4, "Qty");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "th", 194);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "th", 196);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](6, "Scrip");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "th", 193);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "th", 195);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](8, "Exec. Price");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "th", 193);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "th", 195);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](10, "Trigger");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](11, "th", 193);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](12, "th", 193);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](13, "th", 193);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](14, "th", 193);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](11, "th", 195);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](12, "th", 195);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](13, "th", 195);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](14, "th", 195);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "tbody");
@@ -7618,163 +7628,163 @@ function ChartComponent_table_162_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngForOf", ctx_r8.sl_trades);
 } }
 function ChartComponent_div_163_Template(rf, ctx) { if (rf & 1) {
-    const _r188 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 202);
+    const _r189 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 204);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 60);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 203);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](3, "canvas", 204);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 205);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](3, "canvas", 206);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "div", 205);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 206);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "div", 207);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "div", 207);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 208);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "div", 209);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](7);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "div", 207);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "div", 209);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](9);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "input", 208);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_163_Template_input_ngModelChange_10_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r187 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r187.strategyAlertPrice = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "input", 210);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_163_Template_input_ngModelChange_10_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r188 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r188.strategyAlertPrice = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "span", 10);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](12);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "div", 209);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "div", 211);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](14, " Total PnL: ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "div", 210);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "span", 160);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "div", 212);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "span", 162);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](17);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](18, "span", 211);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](18, "span", 213);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](19);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](20, "div", 60);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](21, "div", 212);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](21, "div", 214);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](22, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_22_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r189 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r189.addPosition(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_22_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r190 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r190.addPosition(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](23, "Add");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](24, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_24_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r190 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r190.calculatePayoff(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_24_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r191 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r191.calculatePayoff(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](25, "Preview");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](26, "div", 213);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](26, "div", 215);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_27_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const _r186 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵreference"](30); return _r186.click(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_27_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const _r187 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵreference"](30); return _r187.click(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](28, "Import");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "input", 214, 215);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("change", function ChartComponent_div_163_Template_input_change_29_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r192 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r192.importCSV($event, 1); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "input", 216, 217);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("change", function ChartComponent_div_163_Template_input_change_29_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r193 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r193.importCSV($event, 1); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](31, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_31_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r193 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r193.fetchLastOI(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_31_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r194 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r194.fetchLastOI(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](32, "Fetch OI");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](33, "a", 216);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](33, "a", 218);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](34, "View Fly Payoff");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](35, "button", 113);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_35_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r194 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r194.findDS_BuyExit(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_35_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r195 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r195.findDS_BuyExit(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](36, "DS Buy Exit");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](37, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](38);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](39, "div", 127);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](39, "div", 129);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](40, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_40_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r195 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r195.savePositions(1); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_40_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r196 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r196.savePositions(1); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](41, "Save 1");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](42, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_42_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r196 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r196.savePositions(2); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_42_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r197 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r197.savePositions(2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](43, "Save 2");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](44, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_44_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r197 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r197.savePositions(3); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_44_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r198 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r198.savePositions(3); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](45, "Save 3");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](46, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_46_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r198 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r198.savePositions(4); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_46_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r199 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r199.savePositions(4); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](47, "Save 4");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](48, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_48_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r199 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r199.savePositions(5); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_48_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r200 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r200.savePositions(5); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](49, "Save 5");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](50, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_50_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r200 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r200.savePositions(6); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_50_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r201 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r201.savePositions(6); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](51, "Save 6");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](52, "div", 127);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](52, "div", 129);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](53, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_53_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r201 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r201.reloadPayoffData(1); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_53_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r202 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r202.reloadPayoffData(1); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](54, "Load 1");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](55, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_55_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r202 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r202.reloadPayoffData(2); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_55_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r203 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r203.reloadPayoffData(2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](56, "Load 2");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](57, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_57_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r203 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r203.reloadPayoffData(3); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_57_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r204 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r204.reloadPayoffData(3); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](58, "Load 3");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](59, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_59_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r204 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r204.reloadPayoffData(4); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_59_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r205 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r205.reloadPayoffData(4); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](60, "Load 4");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](61, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_61_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r205 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r205.reloadPayoffData(5); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_61_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r206 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r206.reloadPayoffData(5); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](62, "Load 5");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](63, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_63_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r206 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r206.reloadPayoffData(6); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_63_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r207 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r207.reloadPayoffData(6); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](64, "Load 6");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](65, "div", 127);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](65, "div", 129);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](66, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_66_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r207 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r207.exportToCSV(1); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_66_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r208 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r208.exportToCSV(1); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](67, "Export 1");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](68, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_68_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r208 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r208.exportToCSV(2); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_68_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r209 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r209.exportToCSV(2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](69, "Export 2");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](70, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_70_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r209 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r209.exportToCSV(3); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_70_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r210 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r210.exportToCSV(3); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](71, "Export 3");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](72, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_72_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r210 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r210.exportToCSV(4); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_72_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r211 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r211.exportToCSV(4); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](73, "Export 4");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](74, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_74_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r211 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r211.exportToCSV(5); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_74_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r212 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r212.exportToCSV(5); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](75, "Export 5");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](76, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_76_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r212 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r212.exportToCSV(6); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_76_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r213 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r213.exportToCSV(6); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](77, "Export 6");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](78, "div", 217);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](78, "div", 219);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](79);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](80, "div", 217);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](80, "div", 219);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](81);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](82, "button", 113);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_82_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r188); const ctx_r213 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r213.getFunds(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_163_Template_button_click_82_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r189); const ctx_r214 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r214.getFunds(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](83, "Fetch");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](84, "div", 217);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](84, "div", 219);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](85);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](86, "div", 217);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](86, "div", 219);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](87);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -7812,22 +7822,22 @@ function ChartComponent_div_163_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("Breakevens: ", ctx_r9.breakevens, "");
 } }
 function ChartComponent_option_168_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const item_r214 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r214);
+    const item_r215 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r215);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r214, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r215, " ");
 } }
 function ChartComponent_div_194_Template(rf, ctx) { if (rf & 1) {
-    const _r216 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r217 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "input", 218);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_194_Template_input_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r216); const ctx_r215 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r215.strangle_chart_simulate_tillend = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "input", 220);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_194_Template_input_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r217); const ctx_r216 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r216.strangle_chart_simulate_tillend = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "label", 219);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "label", 221);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](3, "Till end");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -7846,7 +7856,7 @@ function ChartComponent_span_197_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate2"]("", ctx_r12.simulateCurrDateTimeString, " - Expiry: ", ctx_r12.simulateExpiryDate, "");
 } }
 function ChartComponent_div_199_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 220);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 222);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 68);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -7857,154 +7867,154 @@ function ChartComponent_div_199_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r13.charts_instru);
 } }
 function ChartComponent_div_201_tr_17_div_8_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 239);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 241);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const oc_r218 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const oc_r219 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate2"](" ", oc_r218.qtyCE, " (", oc_r218.costCE, ") ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate2"](" ", oc_r219.qtyCE, " (", oc_r219.costCE, ") ");
 } }
 function ChartComponent_div_201_tr_17_div_9_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 239);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 241);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const oc_r218 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const oc_r219 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", oc_r218.sllCE, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", oc_r219.sllCE, " ");
 } }
 function ChartComponent_div_201_tr_17_div_12_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 240);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 242);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const ctx_r222 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](3);
+    const ctx_r223 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", ctx_r222.getSpotValue(), " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", ctx_r223.getSpotValue(), " ");
 } }
 function ChartComponent_div_201_tr_17_div_13_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 241);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 243);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, " N ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_div_201_tr_17_div_21_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 239);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 241);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const oc_r218 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const oc_r219 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate2"](" ", oc_r218.qtyPE, " (", oc_r218.costPE, ") ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate2"](" ", oc_r219.qtyPE, " (", oc_r219.costPE, ") ");
 } }
 function ChartComponent_div_201_tr_17_div_22_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 239);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 241);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const oc_r218 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const oc_r219 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", oc_r218.sllPE, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", oc_r219.sllPE, " ");
 } }
 const _c4 = function (a0, a1) { return { "ocStrikeStrategyCE": a0, "ocStrikeSLL": a1 }; };
 const _c5 = function (a0, a1) { return { "table-warning": a0, "oc-strike": a1 }; };
 const _c6 = function (a0, a1) { return { "ocStrikeStrategyPE": a0, "ocStrikeSLL": a1 }; };
 function ChartComponent_div_201_tr_17_Template(rf, ctx) { if (rf & 1) {
-    const _r231 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r232 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "td", 229);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "span", 230);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_2_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r231); const oc_r218 = restoredCtx.$implicit; const ctx_r230 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r230.update_chart_strike(oc_r218.strike + "CE", "CE", true); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "td", 231);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "span", 232);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_2_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r232); const oc_r219 = restoredCtx.$implicit; const ctx_r231 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r231.update_chart_strike(oc_r219.strike + "CE", "CE", true); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](3, "\u21AF");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "span", 231);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_4_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r231); const oc_r218 = restoredCtx.$implicit; const ctx_r232 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r232.addSLLOrder(oc_r218.strike, "CE", oc_r218.ltpCE); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "span", 233);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_4_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r232); const oc_r219 = restoredCtx.$implicit; const ctx_r233 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r233.addSLLOrder(oc_r219.strike, "CE", oc_r219.ltpCE); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](5, "\u2022");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "span", 232);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_6_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r231); const oc_r218 = restoredCtx.$implicit; const ctx_r233 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r233.addToStrategyBuilder(oc_r218.strike, "CE", oc_r218.ltpCE); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "span", 234);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_6_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r232); const oc_r219 = restoredCtx.$implicit; const ctx_r234 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r234.addToStrategyBuilder(oc_r219.strike, "CE", oc_r219.ltpCE); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](7);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](8, ChartComponent_div_201_tr_17_div_8_Template, 2, 2, "div", 233);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](9, ChartComponent_div_201_tr_17_div_9_Template, 2, 1, "div", 233);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](8, ChartComponent_div_201_tr_17_div_8_Template, 2, 2, "div", 235);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](9, ChartComponent_div_201_tr_17_div_9_Template, 2, 1, "div", 235);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "td", 234);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "td", 236);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](11);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](12, ChartComponent_div_201_tr_17_div_12_Template, 2, 1, "div", 235);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](13, ChartComponent_div_201_tr_17_div_13_Template, 2, 0, "div", 236);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](12, ChartComponent_div_201_tr_17_div_12_Template, 2, 1, "div", 237);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](13, ChartComponent_div_201_tr_17_div_13_Template, 2, 0, "div", 238);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "td", 229);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "span", 232);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_15_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r231); const oc_r218 = restoredCtx.$implicit; const ctx_r234 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r234.addToStrategyBuilder(oc_r218.strike, "PE", oc_r218.ltpPE); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "td", 231);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "span", 234);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_15_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r232); const oc_r219 = restoredCtx.$implicit; const ctx_r235 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r235.addToStrategyBuilder(oc_r219.strike, "PE", oc_r219.ltpPE); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](16);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "span", 237);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_17_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r231); const oc_r218 = restoredCtx.$implicit; const ctx_r235 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r235.update_chart_strike(oc_r218.strike + "PE", "PE", true); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "span", 239);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_17_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r232); const oc_r219 = restoredCtx.$implicit; const ctx_r236 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r236.update_chart_strike(oc_r219.strike + "PE", "PE", true); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](18, "\u21AF");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "span", 238);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_19_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r231); const oc_r218 = restoredCtx.$implicit; const ctx_r236 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r236.addSLLOrder(oc_r218.strike, "PE", oc_r218.ltpPE); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "span", 240);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_tr_17_Template_span_click_19_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r232); const oc_r219 = restoredCtx.$implicit; const ctx_r237 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r237.addSLLOrder(oc_r219.strike, "PE", oc_r219.ltpPE); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](20, "\u2022");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](21, ChartComponent_div_201_tr_17_div_21_Template, 2, 2, "div", 233);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](22, ChartComponent_div_201_tr_17_div_22_Template, 2, 1, "div", 233);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](21, ChartComponent_div_201_tr_17_div_21_Template, 2, 2, "div", 235);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](22, ChartComponent_div_201_tr_17_div_22_Template, 2, 1, "div", 235);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const oc_r218 = ctx.$implicit;
+    const oc_r219 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](12, _c4, oc_r218.inCurrStrategyCE, oc_r218.sllCE));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](12, _c4, oc_r219.inCurrStrategyCE, oc_r219.sllCE));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](oc_r218.ltpCE);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](oc_r219.ltpCE);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r218.inCurrStrategyCE);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r219.inCurrStrategyCE);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r218.sllCE);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r219.sllCE);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](15, _c5, oc_r218.isSpot, !oc_r218.isSpot));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](15, _c5, oc_r219.isSpot, !oc_r219.isSpot));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", oc_r218.strike, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", oc_r219.strike, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r218.isSpot);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r219.isSpot);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r218.showNudge);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r219.showNudge);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](18, _c6, oc_r218.inCurrStrategyPE, oc_r218.sllPE));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](18, _c6, oc_r219.inCurrStrategyPE, oc_r219.sllPE));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](oc_r218.ltpPE);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](oc_r219.ltpPE);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r218.inCurrStrategyPE);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r219.inCurrStrategyPE);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r218.sllPE);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", oc_r219.sllPE);
 } }
 function ChartComponent_div_201_Template(rf, ctx) { if (rf & 1) {
-    const _r238 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r239 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 221);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 222);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_201_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r238); const ctx_r237 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r237.inlineOC_higherRange = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 223);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 224);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_201_Template_input_ngModelChange_2_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r239); const ctx_r238 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r238.inlineOC_higherRange = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "input", 223);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_201_Template_input_ngModelChange_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r238); const ctx_r239 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r239.inlineOC_lowerRange = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "input", 225);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_201_Template_input_ngModelChange_3_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r239); const ctx_r240 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r240.inlineOC_lowerRange = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "button", 224);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r238); const ctx_r240 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r240.inlineOCRangeUpdate(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "button", 226);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_201_Template_button_click_4_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r239); const ctx_r241 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r241.inlineOCRangeUpdate(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](5, "\u2713");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 225);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_201_Template_input_ngModelChange_6_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r238); const ctx_r241 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r241.inlineOC_qty = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 227);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_201_Template_input_ngModelChange_6_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r239); const ctx_r242 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r242.inlineOC_qty = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "table", 226);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "table", 228);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "thead", 106);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "tr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "th", 227);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "th", 229);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](11, "Call LTP");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "th", 228);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "th", 230);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](13, "Strike");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "th", 227);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "th", 229);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](15, "Put LTP");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -8027,22 +8037,22 @@ function ChartComponent_div_201_Template(rf, ctx) { if (rf & 1) {
 } }
 function ChartComponent_div_215_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](1, "iframe", 242);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](1, "iframe", 244);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_div_216_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 13);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 243);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](3, "canvas", 204);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 245);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](3, "canvas", 206);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "div", 13);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 243);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](6, "canvas", 204);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 245);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](6, "canvas", 206);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "div", 243);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](8, "canvas", 204);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "div", 245);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](8, "canvas", 206);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -8092,176 +8102,176 @@ function ChartComponent_app_stock_chart_218_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](0, "app-stock-chart");
 } }
 function ChartComponent_div_219_div_21_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 253);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 254);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 257);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "div", 254);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 257);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](6);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "div", 258);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](8);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "div", 254);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "div", 257);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](11);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "div", 258);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](13);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "div", 254);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "div", 257);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](16);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "div", 258);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](18);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "div", 254);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](20, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](20, "div", 257);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](21);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](22, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](22, "div", 258);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](23);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](24, "div", 254);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](25, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](24, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](25, "div", 257);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](26);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "div", 258);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](28);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "div", 254);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](30, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](30, "div", 257);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](31);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](32, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](32, "div", 258);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](33);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](34, "div", 254);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](35, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](34, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](35, "div", 257);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](36);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](37, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](37, "div", 258);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](38);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](39, "div", 254);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](40, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](39, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](40, "div", 257);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](41);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](42, "div", 256);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](42, "div", 258);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](43);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const n_r243 = ctx.$implicit;
-    const ctx_r242 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2);
+    const n_r244 = ctx.$implicit;
+    const ctx_r243 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r243 + "_spot");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r244 + "_spot");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartLabel("opt_chart_" + n_r243 + "_spot"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartLabel("opt_chart_" + n_r244 + "_spot"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r243 + "_0");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r244 + "_0");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartLabel("opt_chart_" + n_r243 + "_0"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartLabel("opt_chart_" + n_r244 + "_0"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartValues("opt_chart_" + n_r243 + "_0"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartValues("opt_chart_" + n_r244 + "_0"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r243 + "_1");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r244 + "_1");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartLabel("opt_chart_" + n_r243 + "_1"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartLabel("opt_chart_" + n_r244 + "_1"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartValues("opt_chart_" + n_r243 + "_1"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartValues("opt_chart_" + n_r244 + "_1"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r243 + "_2");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r244 + "_2");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartLabel("opt_chart_" + n_r243 + "_2"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartLabel("opt_chart_" + n_r244 + "_2"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartValues("opt_chart_" + n_r243 + "_2"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartValues("opt_chart_" + n_r244 + "_2"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r243 + "_3");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r244 + "_3");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartLabel("opt_chart_" + n_r243 + "_3"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartLabel("opt_chart_" + n_r244 + "_3"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartValues("opt_chart_" + n_r243 + "_3"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartValues("opt_chart_" + n_r244 + "_3"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r243 + "_4");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r244 + "_4");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartLabel("opt_chart_" + n_r243 + "_4"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartLabel("opt_chart_" + n_r244 + "_4"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartValues("opt_chart_" + n_r243 + "_4"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartValues("opt_chart_" + n_r244 + "_4"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r243 + "_5");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r244 + "_5");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartLabel("opt_chart_" + n_r243 + "_5"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartLabel("opt_chart_" + n_r244 + "_5"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartValues("opt_chart_" + n_r243 + "_5"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartValues("opt_chart_" + n_r244 + "_5"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r243 + "_6");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r244 + "_6");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartLabel("opt_chart_" + n_r243 + "_5"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartLabel("opt_chart_" + n_r244 + "_5"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartValues("opt_chart_" + n_r243 + "_5"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartValues("opt_chart_" + n_r244 + "_5"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r243 + "_7");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r244 + "_7");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartLabel("opt_chart_" + n_r243 + "_5"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartLabel("opt_chart_" + n_r244 + "_5"));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r242.getChartValues("opt_chart_" + n_r243 + "_5"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r243.getChartValues("opt_chart_" + n_r244 + "_5"));
 } }
 const _c7 = function () { return [0, 1, 2, 3, 4]; };
 function ChartComponent_div_219_Template(rf, ctx) { if (rf & 1) {
-    const _r246 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 244);
+    const _r247 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 246);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 121);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "span", 245);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "span", 247);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "div", 246);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 247);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_219_Template_input_ngModelChange_5_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r246); const ctx_r245 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r245.st_chart_radio = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "div", 248);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 249);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_219_Template_input_ngModelChange_5_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r247); const ctx_r246 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r246.st_chart_radio = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "label", 248);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "label", 250);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](7, "5 min");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "div", 246);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "input", 249);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_219_Template_input_ngModelChange_9_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r246); const ctx_r247 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r247.st_chart_radio = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "div", 248);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "input", 251);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_219_Template_input_ngModelChange_9_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r247); const ctx_r248 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r248.st_chart_radio = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "label", 250);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "label", 252);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](11, "1 min");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "button", 251);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_219_Template_button_click_12_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r246); const ctx_r248 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r248.initSTCharts1(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "button", 253);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_219_Template_button_click_12_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r247); const ctx_r249 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r249.initSTCharts1(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](13, "ST 10 2");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "button", 47);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_219_Template_button_click_14_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r246); const ctx_r249 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r249.backtestExpiryStrangles(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_219_Template_button_click_14_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r247); const ctx_r250 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r250.backtestExpiryStrangles(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](15, "Expiry Strangles");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "button", 47);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_219_Template_button_click_16_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r246); const ctx_r250 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r250.backtestStrangleSL_Reentry(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_219_Template_button_click_16_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r247); const ctx_r251 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r251.backtestStrangleSL_Reentry(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](17, "Strangle SL Reentry");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](18, "button", 47);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_219_Template_button_click_18_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r246); const ctx_r251 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r251.backtestLongFly(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_219_Template_button_click_18_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r247); const ctx_r252 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r252.backtestLongFly(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](19, "Long Fly");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](20, "div", 95);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](21, ChartComponent_div_219_div_21_Template, 44, 26, "div", 252);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](21, ChartComponent_div_219_div_21_Template, 44, 26, "div", 254);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -8276,84 +8286,84 @@ function ChartComponent_div_219_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction0"](4, _c7));
 } }
 function ChartComponent_div_220_div_20_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 253);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](1, "div", 264);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](2, "div", 264);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](3, "div", 264);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](1, "div", 266);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](2, "div", 266);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](3, "div", 266);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const i_r255 = ctx.index;
+    const i_r256 = ctx.index;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r255 + "_spot");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r256 + "_spot");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r255 + "_CE");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r256 + "_CE");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r255 + "_PE");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r256 + "_PE");
 } }
 function ChartComponent_div_220_div_24_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 253);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](1, "div", 264);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](2, "div", 264);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](3, "div", 264);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 255);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](1, "div", 266);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](2, "div", 266);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](3, "div", 266);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const n_r256 = ctx.$implicit;
+    const n_r257 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r256 + "_spot");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r257 + "_spot");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r256 + "_CE");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r257 + "_CE");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r256 + "_PE");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + n_r257 + "_PE");
 } }
 const _c8 = function () { return []; };
 const _c9 = function () { return [5, 6]; };
 function ChartComponent_div_220_Template(rf, ctx) { if (rf & 1) {
-    const _r259 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 244);
+    const _r260 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 246);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 121);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "span", 245);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "span", 247);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "div", 246);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 257);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_220_Template_input_ngModelChange_5_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r259); const ctx_r258 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r258.st_chart_radio = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "div", 248);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 259);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_220_Template_input_ngModelChange_5_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r260); const ctx_r259 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r259.st_chart_radio = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "label", 258);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "label", 260);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](7, "10 2");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "div", 246);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "input", 259);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_220_Template_input_ngModelChange_9_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r259); const ctx_r260 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r260.st_chart_radio = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "div", 248);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "input", 261);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_220_Template_input_ngModelChange_9_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r260); const ctx_r261 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r261.st_chart_radio = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "label", 260);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "label", 262);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](11, "7 3");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "div", 246);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "input", 261);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_220_Template_input_ngModelChange_13_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r259); const ctx_r261 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r261.st_chart_radio = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "div", 248);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "input", 263);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_220_Template_input_ngModelChange_13_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r260); const ctx_r262 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r262.st_chart_radio = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "label", 262);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "label", 264);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](15, "Both");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "input", 263);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_220_Template_input_ngModelChange_16_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r259); const ctx_r262 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r262.st_chart_strike = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "input", 265);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_220_Template_input_ngModelChange_16_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r260); const ctx_r263 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r263.st_chart_strike = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "button", 47);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_220_Template_button_click_17_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r259); const ctx_r263 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r263.initSTCharts(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_220_Template_button_click_17_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r260); const ctx_r264 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r264.initSTCharts(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](18, "Init");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "div", 95);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](20, ChartComponent_div_220_div_20_Template, 4, 3, "div", 252);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](20, ChartComponent_div_220_div_20_Template, 4, 3, "div", 254);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](21, "span", 245);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](21, "span", 247);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](22);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](23, "div", 95);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](24, ChartComponent_div_220_div_24_Template, 4, 3, "div", 252);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](24, ChartComponent_div_220_div_24_Template, 4, 3, "div", 254);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -8376,14 +8386,14 @@ function ChartComponent_div_220_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction0"](9, _c9));
 } }
 function ChartComponent_option_223_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const item_r264 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r264);
+    const item_r265 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r265);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r264, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r265, " ");
 } }
 function ChartComponent_span_234_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span");
@@ -8395,7 +8405,7 @@ function ChartComponent_span_234_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate2"]("", ctx_r22.simulateCurrDateTimeString, " - Expiry: ", ctx_r22.simulateExpiryDate, "");
 } }
 function ChartComponent_div_238_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 220);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 222);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 68);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -8407,10 +8417,10 @@ function ChartComponent_div_238_Template(rf, ctx) { if (rf & 1) {
 } }
 const _c10 = function (a0, a1) { return { "chart-border-green": a0, "chart-border-red": a1 }; };
 function ChartComponent_div_239_Template(rf, ctx) { if (rf & 1) {
-    const _r268 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 265);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_239_Template_div_click_0_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r268); const i_r266 = restoredCtx.index; const ctx_r267 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r267.update_chart_strike(ctx_r267.chart_strikes_ce[i_r266], "CE"); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 266);
+    const _r269 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 267);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_239_Template_div_click_0_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r269); const i_r267 = restoredCtx.index; const ctx_r268 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r268.update_chart_strike(ctx_r268.chart_strikes_ce[i_r267], "CE"); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 268);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 68);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -8420,21 +8430,21 @@ function ChartComponent_div_239_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const i_r266 = ctx.index;
+    const i_r267 = ctx.index;
     const ctx_r24 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r266 + "CE");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](4, _c10, ctx_r24.isChartStrikeInCurrStrategy(ctx_r24.chart_strikes_ce[i_r266]) > 0, ctx_r24.isChartStrikeInCurrStrategy(ctx_r24.chart_strikes_ce[i_r266]) < 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r267 + "CE");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](4, _c10, ctx_r24.isChartStrikeInCurrStrategy(ctx_r24.chart_strikes_ce[i_r267]) > 0, ctx_r24.isChartStrikeInCurrStrategy(ctx_r24.chart_strikes_ce[i_r267]) < 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r24.chart_strikes_ce[i_r266]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r24.chart_strikes_ce[i_r267]);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r24.isChartStrikeInCurrStrategy(ctx_r24.chart_strikes_ce[i_r266]));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r24.isChartStrikeInCurrStrategy(ctx_r24.chart_strikes_ce[i_r267]));
 } }
 function ChartComponent_div_244_Template(rf, ctx) { if (rf & 1) {
-    const _r272 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 265);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_244_Template_div_click_0_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r272); const i_r270 = restoredCtx.index; const ctx_r271 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r271.update_chart_strike(ctx_r271.chart_strikes_pe[i_r270], "PE"); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 266);
+    const _r273 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 267);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_244_Template_div_click_0_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r273); const i_r271 = restoredCtx.index; const ctx_r272 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r272.update_chart_strike(ctx_r272.chart_strikes_pe[i_r271], "PE"); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 268);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "div", 68);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -8444,15 +8454,15 @@ function ChartComponent_div_244_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const i_r270 = ctx.index;
+    const i_r271 = ctx.index;
     const ctx_r25 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r270 + "PE");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](4, _c10, ctx_r25.isChartStrikeInCurrStrategy(ctx_r25.chart_strikes_pe[i_r270]) > 0, ctx_r25.isChartStrikeInCurrStrategy(ctx_r25.chart_strikes_pe[i_r270]) < 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpropertyInterpolate"]("id", "opt_chart_" + i_r271 + "PE");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](4, _c10, ctx_r25.isChartStrikeInCurrStrategy(ctx_r25.chart_strikes_pe[i_r271]) > 0, ctx_r25.isChartStrikeInCurrStrategy(ctx_r25.chart_strikes_pe[i_r271]) < 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r25.chart_strikes_pe[i_r270]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r25.chart_strikes_pe[i_r271]);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r25.isChartStrikeInCurrStrategy(ctx_r25.chart_strikes_pe[i_r270]));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r25.isChartStrikeInCurrStrategy(ctx_r25.chart_strikes_pe[i_r271]));
 } }
 function ChartComponent_tr_279_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "tr");
@@ -8482,99 +8492,99 @@ function ChartComponent_tr_279_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const k_r273 = ctx.$implicit;
+    const k_r274 = ctx.$implicit;
     const ctx_r26 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
     let tmp_7_0;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](k_r273.instru);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](k_r274.instru);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](k_r273.expiry_date);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](k_r274.expiry_date);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](k_r273.qty);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](k_r274.qty);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](k_r273.scrip);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](k_r274.scrip);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r26.getKnifeOrderStatus(k_r273)[0]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r26.getKnifeOrderStatus(k_r274)[0]);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r26.getKnifeOrderStatus(k_r273)[1]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r26.getKnifeOrderStatus(k_r274)[1]);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r26.getLTP(k_r273.expiry_date, k_r273.scrip, k_r273.instru));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r26.getLTP(k_r274.expiry_date, k_r274.scrip, k_r274.instru));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"]((tmp_7_0 = ctx_r26.getOHLC(k_r273.expiry_date, k_r273.scrip, k_r273.instru)) == null ? null : tmp_7_0.low);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"]((tmp_7_0 = ctx_r26.getOHLC(k_r274.expiry_date, k_r274.scrip, k_r274.instru)) == null ? null : tmp_7_0.low);
 } }
 function ChartComponent_div_286_option_4_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const item_r278 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r278);
+    const item_r279 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r279);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r278, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r279, " ");
 } }
 function ChartComponent_div_286_Template(rf, ctx) { if (rf & 1) {
-    const _r280 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 267);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 268);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 269);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_2_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r280); const alert_r275 = restoredCtx.$implicit; return alert_r275.selected = $event; });
+    const _r281 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 269);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 270);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 271);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_2_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r281); const alert_r276 = restoredCtx.$implicit; return alert_r276.selected = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "select", 270);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_select_ngModelChange_3_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r280); const alert_r275 = restoredCtx.$implicit; return alert_r275.instru = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "select", 272);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_select_ngModelChange_3_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r281); const alert_r276 = restoredCtx.$implicit; return alert_r276.instru = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](4, ChartComponent_div_286_option_4_Template, 2, 2, "option", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 271);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_5_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r280); const alert_r275 = restoredCtx.$implicit; return alert_r275.scrip1 = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 273);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_5_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r281); const alert_r276 = restoredCtx.$implicit; return alert_r276.scrip1 = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 272);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_6_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r280); const alert_r275 = restoredCtx.$implicit; return alert_r275.scrip2 = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 274);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_6_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r281); const alert_r276 = restoredCtx.$implicit; return alert_r276.scrip2 = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "input", 273);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_7_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r280); const alert_r275 = restoredCtx.$implicit; return alert_r275.expiry = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "input", 275);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_7_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r281); const alert_r276 = restoredCtx.$implicit; return alert_r276.expiry = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "select", 270);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_select_ngModelChange_8_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r280); const alert_r275 = restoredCtx.$implicit; return alert_r275.compare = $event; });
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "option", 274);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "select", 272);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_select_ngModelChange_8_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r281); const alert_r276 = restoredCtx.$implicit; return alert_r276.compare = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "option", 276);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](10, ">");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "option", 275);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "option", 277);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](12, "<");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "input", 276);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_13_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r280); const alert_r275 = restoredCtx.$implicit; return alert_r275.price = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "input", 278);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_286_Template_input_ngModelChange_13_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r281); const alert_r276 = restoredCtx.$implicit; return alert_r276.price = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "span");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](15);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "span", 181);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "span", 183);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](17);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const alert_r275 = ctx.$implicit;
+    const alert_r276 = ctx.$implicit;
     const ctx_r27 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r275.selected);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r276.selected);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r275.instru);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r276.instru);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngForOf", ctx_r27.supportedInstru);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r275.scrip1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r276.scrip1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r275.scrip2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r276.scrip2);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r275.expiry);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r276.expiry);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r275.compare);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r276.compare);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r275.price);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", alert_r276.price);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r27.getAlertLtp(alert_r275));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r27.getAlertLtp(alert_r276));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](alert_r275.status);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](alert_r276.status);
 } }
 function ChartComponent_div_295_tr_4_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "tr");
@@ -8592,45 +8602,45 @@ function ChartComponent_div_295_tr_4_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const o_r288 = ctx.$implicit;
+    const o_r289 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", o_r288.instru, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", o_r289.instru, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", o_r288.scrip, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", o_r289.scrip, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", o_r288.qty, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", o_r289.qty, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", o_r288.price, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", o_r289.price, " ");
 } }
 function ChartComponent_div_295_Template(rf, ctx) { if (rf & 1) {
-    const _r291 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r292 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "textarea", 277);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_295_Template_textarea_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r291); const ctx_r290 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r290.ordersTextarea = $event; })("ngModelChange", function ChartComponent_div_295_Template_textarea_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r291); const ctx_r292 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r292.ordersTextareaUpdated($event); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "textarea", 279);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_295_Template_textarea_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r292); const ctx_r291 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r291.ordersTextarea = $event; })("ngModelChange", function ChartComponent_div_295_Template_textarea_ngModelChange_1_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r292); const ctx_r293 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r293.ordersTextareaUpdated($event); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "table", 56);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "tbody");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](4, ChartComponent_div_295_tr_4_Template, 9, 4, "tr", 108);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 278);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 279);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_295_Template_input_ngModelChange_6_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r291); const ctx_r293 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r293.orders_broker = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 280);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "input", 281);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_295_Template_input_ngModelChange_6_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r292); const ctx_r294 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r294.orders_broker = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "label", 280);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "label", 282);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](8, "Upstox");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "div", 278);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "input", 281);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_295_Template_input_ngModelChange_10_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r291); const ctx_r294 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r294.orders_broker = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "div", 280);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "input", 283);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_295_Template_input_ngModelChange_10_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r292); const ctx_r295 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r295.orders_broker = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "label", 282);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "label", 284);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](12, "Zerodha");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "button", 283);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_295_Template_button_click_13_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r291); const ctx_r295 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r295.addOrdersToStrategy(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "button", 285);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_div_295_Template_button_click_13_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r292); const ctx_r296 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r296.addOrdersToStrategy(); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](14, "Add");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](15, "hr");
@@ -8647,133 +8657,123 @@ function ChartComponent_div_295_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx_r28.orders_broker);
 } }
 function ChartComponent_tr_330_option_3_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const item_r301 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r301);
+    const item_r302 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r302);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r301, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r302, " ");
 } }
 function ChartComponent_tr_330_span_12_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 292);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 294);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "N");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_tr_330_span_20_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 292);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 294);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "N");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function ChartComponent_tr_330_Template(rf, ctx) { if (rf & 1) {
-    const _r303 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    const _r304 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "tr");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "select", 284);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_select_ngModelChange_2_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r303); const pos_r296 = restoredCtx.$implicit; return pos_r296.instru = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "select", 286);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_select_ngModelChange_2_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r304); const pos_r297 = restoredCtx.$implicit; return pos_r297.instru = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](3, ChartComponent_tr_330_option_3_Template, 2, 2, "option", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 285);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_input_ngModelChange_5_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r303); const pos_r296 = restoredCtx.$implicit; return pos_r296.expiry_date = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "input", 287);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_input_ngModelChange_5_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r304); const pos_r297 = restoredCtx.$implicit; return pos_r297.expiry_date = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "input", 286);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_input_ngModelChange_7_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r303); const pos_r296 = restoredCtx.$implicit; return pos_r296.curr_qty = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "input", 288);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_input_ngModelChange_7_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r304); const pos_r297 = restoredCtx.$implicit; return pos_r297.curr_qty = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "input", 287);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_input_ngModelChange_9_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r303); const pos_r296 = restoredCtx.$implicit; return pos_r296.curr_scrip = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "input", 289);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_input_ngModelChange_9_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r304); const pos_r297 = restoredCtx.$implicit; return pos_r297.curr_scrip = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "span", 288);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "span", 290);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](11);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](12, ChartComponent_tr_330_span_12_Template, 2, 0, "span", 289);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](12, ChartComponent_tr_330_span_12_Template, 2, 0, "span", 291);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "div", 290);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "div", 292);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](15);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "input", 291);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_input_ngModelChange_17_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r303); const pos_r296 = restoredCtx.$implicit; return pos_r296.new_scrip = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "input", 293);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_tr_330_Template_input_ngModelChange_17_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r304); const pos_r297 = restoredCtx.$implicit; return pos_r297.new_scrip = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](18, "span", 288);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](18, "span", 290);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](19);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](20, ChartComponent_tr_330_span_20_Template, 2, 0, "span", 289);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](20, ChartComponent_tr_330_span_20_Template, 2, 0, "span", 291);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](21, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](22, "div", 290);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](22, "div", 292);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](23);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](24, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](25, "button", 153);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_330_Template_button_click_25_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r303); const i_r297 = restoredCtx.index; const ctx_r308 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r308.movePlaceOrder(i_r297, -1); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](25, "button", 155);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_330_Template_button_click_25_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r304); const i_r298 = restoredCtx.index; const ctx_r309 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r309.movePlaceOrder(i_r298, -1); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](26, "\u2191");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "button", 192);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_330_Template_button_click_27_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r303); const i_r297 = restoredCtx.index; const ctx_r309 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r309.movePlaceOrder(i_r297, 1); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "button", 194);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_330_Template_button_click_27_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r304); const i_r298 = restoredCtx.index; const ctx_r310 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r310.movePlaceOrder(i_r298, 1); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](28, "\u2193");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "td");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](30, "button", 118);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_330_Template_button_click_30_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r303); const pos_r296 = restoredCtx.$implicit; const ctx_r310 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r310.place_roll_orders(pos_r296, true); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function ChartComponent_tr_330_Template_button_click_30_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r304); const pos_r297 = restoredCtx.$implicit; const ctx_r311 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r311.place_roll_orders(pos_r297, true); });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](31, "Place");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const pos_r296 = ctx.$implicit;
+    const pos_r297 = ctx.$implicit;
     const ctx_r29 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r296.instru);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r297.instru);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngForOf", ctx_r29.supportedInstru);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r296.expiry_date);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", pos_r297.expiry_date);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](17, _c2, pos_r296.curr_qty < 0, pos_r296.curr_qty > 0))("ngModel", pos_r296.curr_qty);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](17, _c2, pos_r297.curr_qty < 0, pos_r297.curr_qty > 0))("ngModel", pos_r297.curr_qty);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](20, _c2, pos_r296.curr_scrip.includes("PE"), pos_r296.curr_scrip.includes("CE")))("ngModel", pos_r296.curr_scrip);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](20, _c2, pos_r297.curr_scrip.includes("PE"), pos_r297.curr_scrip.includes("CE")))("ngModel", pos_r297.curr_scrip);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](23, _c2, -pos_r296.curr_qty < 0, -pos_r296.curr_qty > 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](23, _c2, -pos_r297.curr_qty < 0, -pos_r297.curr_qty > 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](-pos_r296.curr_qty);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](-pos_r297.curr_qty);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r29.showOILimit(pos_r296.instru, pos_r296.curr_scrip));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r29.showOILimit(pos_r297.instru, pos_r297.curr_scrip));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r29.getOrderLtp(pos_r296, false));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r29.getOrderLtp(pos_r297, false));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](26, _c2, pos_r296.new_scrip.includes("PE"), pos_r296.new_scrip.includes("CE")))("ngModel", pos_r296.new_scrip);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](26, _c2, pos_r297.new_scrip.includes("PE"), pos_r297.new_scrip.includes("CE")))("ngModel", pos_r297.new_scrip);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](29, _c2, pos_r296.curr_qty < 0, pos_r296.curr_qty > 0));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](29, _c2, pos_r297.curr_qty < 0, pos_r297.curr_qty > 0));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](pos_r296.curr_qty);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](pos_r297.curr_qty);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r29.showOILimit(pos_r296.instru, pos_r296.new_scrip));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r29.showOILimit(pos_r297.instru, pos_r297.new_scrip));
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r29.getOrderLtp(pos_r296, true));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx_r29.getOrderLtp(pos_r297, true));
 } }
 function ChartComponent_div_331_option_9_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-} if (rf & 2) {
-    const item_r314 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r314);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r314, " ");
-} }
-function ChartComponent_div_331_option_13_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -8782,8 +8782,8 @@ function ChartComponent_div_331_option_13_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r315, " ");
 } }
-function ChartComponent_div_331_option_17_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 126);
+function ChartComponent_div_331_option_13_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
@@ -8792,51 +8792,61 @@ function ChartComponent_div_331_option_17_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r316, " ");
 } }
+function ChartComponent_div_331_option_17_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "option", 128);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const item_r317 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("value", item_r317);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", item_r317, " ");
+} }
 function ChartComponent_div_331_Template(rf, ctx) { if (rf & 1) {
-    const _r318 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 293);
+    const _r319 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 295);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "h2", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "button", 294);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "button", 296);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](4, " Straddle Charts ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 295);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 297);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "div", 13);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "div", 14);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "select", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_select_ngModelChange_8_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r318); const ctx_r317 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r317.straddle1instru = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_select_ngModelChange_8_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r319); const ctx_r318 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r318.straddle1instru = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](9, ChartComponent_div_331_option_9_Template, 2, 2, "option", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "input", 296);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_10_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r318); const ctx_r319 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r319.straddle1expiryDate = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "input", 298);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_10_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r319); const ctx_r320 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r320.straddle1expiryDate = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "input", 297);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_11_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r318); const ctx_r320 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r320.straddle1scrip = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "input", 299);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_11_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r319); const ctx_r321 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r321.straddle1scrip = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](12, "select", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_select_ngModelChange_12_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r318); const ctx_r321 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r321.straddle2instru = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_select_ngModelChange_12_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r319); const ctx_r322 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r322.straddle2instru = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](13, ChartComponent_div_331_option_13_Template, 2, 2, "option", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "input", 296);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_14_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r318); const ctx_r322 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r322.straddle2expiryDate = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](14, "input", 298);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_14_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r319); const ctx_r323 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r323.straddle2expiryDate = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "input", 297);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_15_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r318); const ctx_r323 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r323.straddle2scrip = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "input", 299);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_15_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r319); const ctx_r324 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r324.straddle2scrip = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](16, "select", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_select_ngModelChange_16_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r318); const ctx_r324 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r324.straddle3instru = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_select_ngModelChange_16_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r319); const ctx_r325 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r325.straddle3instru = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](17, ChartComponent_div_331_option_17_Template, 2, 2, "option", 45);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](18, "input", 296);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_18_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r318); const ctx_r325 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r325.straddle3expiryDate = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](18, "input", 298);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_18_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r319); const ctx_r326 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r326.straddle3expiryDate = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "input", 297);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_19_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r318); const ctx_r326 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r326.straddle3scrip = $event; });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "input", 299);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function ChartComponent_div_331_Template_input_ngModelChange_19_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r319); const ctx_r327 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r327.straddle3scrip = $event; });
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](20, "div", 202);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](21, "canvas", 204);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](20, "div", 204);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](21, "canvas", 206);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -8872,17 +8882,17 @@ function ChartComponent_div_331_Template(rf, ctx) { if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("datasets", ctx_r30.i1ChartData)("labels", ctx_r30.i1ChartLabels)("options", ctx_r30.i1ChartOptions)("colors", ctx_r30.i1ChartColors)("legend", ctx_r30.i1ChartLegend)("chartType", ctx_r30.i1ChartType)("plugins", ctx_r30.i1ChartPlugins);
 } }
 function ChartComponent_div_332_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 298);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 300);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 1);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "h2", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "button", 299);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "button", 301);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](4, " Charts ");
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 300);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "div", 302);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "div", 13);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](7, "iframe", 301);
-    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](8, "iframe", 302);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](7, "iframe", 303);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](8, "iframe", 304);
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
@@ -9035,7 +9045,8 @@ class ChartComponent {
         this.includeGUIDs = '';
         this.excludeGUIDs = '';
         // algo variables
-        this.show_algo = true;
+        this.show_algo = false;
+        this.algoSimulated = true;
         this.algoLog = '';
         this.enableAlgo = false;
         this.instruToTrade = '';
@@ -9291,6 +9302,16 @@ class ChartComponent {
                 setTimeout(() => {
                     this.refreshOILimits();
                 }, 4000);
+            }
+        });
+        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.miscEvent$.subscribe(res => {
+            console.log('chart component miscEvent: ', res);
+            if (res === 'ordersReceived') {
+                if (this.enableAlgo) {
+                    this.recreateAlgoPos();
+                    this.refreshPositions();
+                    this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
+                }
             }
         });
         /* window.addEventListener('storage', () => {
@@ -12877,7 +12898,7 @@ class ChartComponent {
             });
         }
     }
-    place_roll_orders(pos, first_order, confirm_orders = true, limit_price = null, orderId = null, product_type = "NRML", tag = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.defaultTag, trigger_price = 0) {
+    place_roll_orders(pos, first_order, confirm_orders = true, limit_price = null, orderId = null, product_type = "NRML", tag = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.defaultTag, trigger_price = 0, slabOrderId = null) {
         /*
           instru: 'BANKNIFTY',
           expiry_date: '2022-03-10',
@@ -12918,6 +12939,12 @@ class ChartComponent {
                             setTimeout(() => {
                                 this.place_roll_orders(pos, false);
                             }, 1000);
+                        }
+                        else {
+                            if (slabOrderId) {
+                                console.log('Algo - Order Id:', res.data.order_id);
+                                slabOrderId = res.data.order_id;
+                            }
                         }
                     }, error => {
                         console.log('place_roll_orders error', error);
@@ -13120,6 +13147,12 @@ class ChartComponent {
             _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabEntered = slabEntered;
             console.log('algo slabEntered', _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabEntered, slabEntered);
         }
+        let slabOrderId = JSON.parse(localStorage.getItem('algo_slabOrderId_' + dateString));
+        if (slabOrderId) {
+            this.addToAlgoLog('Loading slabOrderId from localStorage');
+            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId = slabOrderId;
+            console.log('algo slabOrderId', _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId, slabOrderId);
+        }
         let slabStrikes = JSON.parse(localStorage.getItem('algo_slabStrikes_' + dateString));
         if (slabStrikes) {
             this.addToAlgoLog('Loading slabStrikes from localStorage');
@@ -13138,6 +13171,7 @@ class ChartComponent {
         let dateString = '' + d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
         localStorage.setItem('algo_log_' + dateString, JSON.stringify(this.algoLog));
         localStorage.setItem('algo_slabEntered_' + dateString, JSON.stringify(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabEntered));
+        localStorage.setItem('algo_slabOrderId_' + dateString, JSON.stringify(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId));
         localStorage.setItem('algo_slabStrikes_' + dateString, JSON.stringify(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes));
         localStorage.setItem('algo_slabCurrEntryPrice_' + dateString, JSON.stringify(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice));
     }
@@ -13187,6 +13221,8 @@ class ChartComponent {
             _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade = 'MIDCPNIFTY';
             _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade = this.mapService.findTodayExpiry(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.midcapExpiries);
         }
+        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade = 'MIDCPNIFTY';
+        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade = new Date(2023, 9, 30);
         if (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade) {
             let expiryString = '' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade.getFullYear() + '-' + ('0' + (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade.getMonth() + 1)).slice(-2) + '-' + ('0' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade.getDate()).slice(-2);
             _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade = expiryString;
@@ -13213,11 +13249,11 @@ class ChartComponent {
     entryScheduler() {
         console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'entryInterval starting now');
         this.entryInterval = setInterval(() => {
-            if (this.isMarketClosed()) {
-                this.addToAlgoLog('Market closed. Stopping entryInterval');
-                clearInterval(this.entryInterval);
-                return;
-            }
+            /* if (this.isMarketClosed()) {
+              this.addToAlgoLog('Market closed. Stopping entryInterval');
+              clearInterval(this.entryInterval);
+              return;
+            } */
             if (!this.isSystemOkay()) {
                 console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'entryInterval - System not okay. Skipping...');
                 return;
@@ -13249,17 +13285,25 @@ class ChartComponent {
                         let ce_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, ce, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
                         let pe_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, pe, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
                         if (ce_ltp && pe_ltp) {
-                            this.addToAlgoLog('Enter - Slab ' + key + ' - ' + ce + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + ce_ltp + ' - marked for time ' + hrs + ':' + mins);
-                            this.addToAlgoLog('Enter - Slab ' + key + ' - ' + pe + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + pe_ltp + ' - marked for time ' + hrs + ':' + mins);
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = ce_strike;
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = ce_ltp;
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = pe_strike;
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = pe_ltp;
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabEntered[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] = true;
-                            this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], ce, ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                            this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], pe, pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                            this.recreateAlgoPos();
-                            this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
+                            if (this.algoSimulated) {
+                                this.addToAlgoLog('Enter - Slab ' + key + ' - ' + ce + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + ce_ltp + ' - marked for time ' + hrs + ':' + mins);
+                                this.addToAlgoLog('Enter - Slab ' + key + ' - ' + pe + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + pe_ltp + ' - marked for time ' + hrs + ':' + mins);
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = ce_strike;
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = pe_strike;
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabEntered[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] = true;
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = ce_ltp; // TODO: find from COMPLETE order_id
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = pe_ltp; // TODO: find from COMPLETE order_id
+                                this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], ce, ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], pe, pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                this.recreateAlgoPos();
+                                this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
+                            }
+                            else {
+                                this.executeAlgoOrder(key, ce, null, 'CE');
+                                this.executeAlgoOrder(key, pe, null, 'PE');
+                                this.addToAlgoLog('Enter - Slab ' + key + ' - ' + ce + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - marked for time ' + hrs + ':' + mins);
+                                this.addToAlgoLog('Enter - Slab ' + key + ' - ' + pe + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - marked for time ' + hrs + ':' + mins);
+                            }
                         }
                         else {
                             console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'LTPs not found for entering algo', ce, ce_ltp, pe, pe_ltp);
@@ -13335,39 +13379,81 @@ class ChartComponent {
             let sl_perc = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSL[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key];
             let rollin_perc = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollIn[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key];
             let qty = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key];
+            if (!this.algoSimulated) {
+                if (value['CE'] == '' || !_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE']) {
+                    if (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE']) {
+                        let obj_ce = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.orders.find(o => o.id === _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE']);
+                        if (obj_ce) {
+                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = this.mapService.parseScrip(obj_ce.scrip).scrip; // same as value['CE'] = ...
+                            if (obj_ce.status === 'COMPLETE') {
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = obj_ce.tradedPrice;
+                            }
+                        }
+                    }
+                }
+                if (value['PE'] == '' || _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE']) {
+                    if (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE']) {
+                        let obj_pe = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.orders.find(o => o.id === _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE']);
+                        if (obj_pe) {
+                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = this.mapService.parseScrip(obj_pe.scrip).scrip; // same as value['PE'] = ...
+                            if (obj_pe.status === 'COMPLETE') {
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = obj_pe.tradedPrice;
+                            }
+                        }
+                    }
+                }
+            }
             let ce_strike = value['CE'];
             if (ce_strike !== '') {
                 let ce_entry = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'];
-                ce_entry = (Math.round((ce_entry + 0.001) * 100) / 100);
-                let ce_sl = ce_entry + (ce_entry * sl_perc);
-                ce_sl = (Math.round((ce_sl + 0.001) * 100) / 100);
-                let ce_rollin = ce_entry - (ce_entry * rollin_perc);
-                ce_rollin = (Math.round((ce_rollin + 0.001) * 100) / 100);
+                let ce_sl = null;
+                let ce_rollin = null;
+                if (ce_entry) {
+                    ce_entry = (Math.round((ce_entry + 0.001) * 100) / 100);
+                    ce_sl = ce_entry + (ce_entry * sl_perc);
+                    ce_sl = (Math.round((ce_sl + 0.001) * 100) / 100);
+                    ce_rollin = ce_entry - (ce_entry * rollin_perc);
+                    ce_rollin = (Math.round((ce_rollin + 0.001) * 100) / 100);
+                }
                 this.algo_pos.push({ qty: qty, entry: ce_entry, scrip: ce_strike + 'CE', sl: ce_sl, rollin: ce_rollin, });
-                ce_entry = (Math.round((ce_entry + 0.001) * 100) / 100);
             }
             let pe_strike = value['PE'];
             if (pe_strike !== '') {
                 let pe_entry = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'];
-                pe_entry = (Math.round((pe_entry + 0.001) * 100) / 100);
-                let pe_sl = pe_entry + (pe_entry * sl_perc);
-                pe_sl = (Math.round((pe_sl + 0.001) * 100) / 100);
-                let pe_rollin = pe_entry - (pe_entry * rollin_perc);
-                pe_rollin = (Math.round((pe_rollin + 0.001) * 100) / 100);
+                let pe_sl = null;
+                let pe_rollin = null;
+                if (pe_entry) {
+                    pe_entry = (Math.round((pe_entry + 0.001) * 100) / 100);
+                    pe_sl = pe_entry + (pe_entry * sl_perc);
+                    pe_sl = (Math.round((pe_sl + 0.001) * 100) / 100);
+                    pe_rollin = pe_entry - (pe_entry * rollin_perc);
+                    pe_rollin = (Math.round((pe_rollin + 0.001) * 100) / 100);
+                }
                 this.algo_pos.push({ qty: qty, entry: pe_entry, scrip: pe_strike + 'PE', sl: pe_sl, rollin: pe_rollin, });
             }
         }
         this.sortAlgoPositions();
         this.saveAlgoPosToLocal();
     }
+    executeAlgoOrder(key, scrip, new_scrip, type) {
+        console.log('executeAlgoOrder', key, scrip, new_scrip, type);
+        let pos1 = {
+            instru: _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade,
+            expiry_date: _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade,
+            curr_qty: _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key],
+            curr_scrip: scrip,
+            new_scrip: new_scrip
+        };
+        this.place_roll_orders(pos1, true, false, null, null, "NRML", _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.defaultTag, 0, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key][type]);
+    }
     algoScheduler() {
         console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'algoInterval starting now');
         this.algoInterval = setInterval(() => {
-            if (this.isMarketClosed()) {
-                this.addToAlgoLog('Market closed. Stopping algoInterval');
-                clearInterval(this.algoInterval);
-                return;
-            }
+            /* if (this.isMarketClosed()) {
+              this.addToAlgoLog('Market closed. Stopping algoInterval');
+              clearInterval(this.algoInterval);
+              return;
+            } */
             if (!this.isSystemOkay()) {
                 console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'algoInterval - System not okay. Skipping...');
                 return;
@@ -13379,126 +13465,166 @@ class ChartComponent {
                     let sl_perc = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSL[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key];
                     let rollin_perc = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollIn[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key];
                     let ce_strike = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'];
-                    let ce_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, ce_strike + 'CE', _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
                     let ce_entry = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'];
-                    let ce_sl = ce_entry + (ce_entry * sl_perc);
-                    let ce_rollin = ce_entry - (ce_entry * rollin_perc);
-                    //console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' CE: ', key, ce_ltp, ce_sl);
-                    //////////////////////////////////// CE ROLL OUT //////////////////////////////////
-                    if (ce_ltp >= ce_sl) {
-                        let ce_sl_counter = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'];
-                        console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Counter-SL CE: ', key, ce_ltp, ce_sl, ce_sl_counter);
-                        if (ce_sl_counter >= _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.secsToWaitForSL) {
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = 0;
-                            let new_ce_strike = ce_strike + (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.strike_diff[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade] * _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.rolloutStrikeMultiple);
-                            let new_ce = new_ce_strike + 'CE';
-                            let new_ce_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, new_ce, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = new_ce_strike;
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = new_ce_ltp;
-                            this.addPosition(-_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], ce_strike + 'CE', ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                            this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], new_ce, new_ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                            this.recreateAlgoPos();
-                            this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
-                            this.addToAlgoLog('Exit - Slab ' + key + ' - ' + ce_strike + 'CE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + ce_ltp);
-                            this.addToAlgoLog('Rollout - Slab ' + key + ' - ' + new_ce + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + new_ce_ltp);
-                        }
-                        else {
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = ce_sl_counter + 1;
-                        }
-                    }
-                    else {
-                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = 0;
-                    }
-                    //////////////////////////////////// CE ROLL IN //////////////////////////////////
-                    if (ce_ltp <= ce_rollin || ce_ltp < 1) {
-                        let ce_rollin_counter = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'];
-                        console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Counter-RI CE: ', key, ce_ltp, ce_rollin, ce_rollin_counter);
-                        if (ce_rollin_counter >= _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.secsToWaitForSL) {
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = 0;
-                            let new_ce_strike = ce_strike - _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.strike_diff[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade];
-                            if (this.isMinDist(new_ce_strike)) {
+                    if (ce_strike && ce_entry) {
+                        let ce_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, ce_strike + 'CE', _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
+                        let ce_sl = ce_entry + (ce_entry * sl_perc);
+                        let ce_rollin = ce_entry - (ce_entry * rollin_perc);
+                        //console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' CE: ', key, ce_ltp, ce_sl);
+                        //////////////////////////////////// CE ROLL OUT //////////////////////////////////
+                        if (ce_ltp >= ce_sl) {
+                            let ce_sl_counter = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'];
+                            console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Counter-SL CE: ', key, ce_ltp, ce_sl, ce_sl_counter);
+                            if (ce_sl_counter >= _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.secsToWaitForSL) {
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = 0;
+                                let new_ce_strike = ce_strike + (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.strike_diff[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade] * _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.rolloutStrikeMultiple);
                                 let new_ce = new_ce_strike + 'CE';
-                                let new_ce_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, new_ce, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
-                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = new_ce_strike;
-                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = new_ce_ltp;
-                                this.addPosition(-_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], ce_strike + 'CE', ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                                this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], new_ce, new_ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                                this.recreateAlgoPos();
-                                this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
-                                this.addToAlgoLog('Exit - Slab ' + key + ' - ' + ce_strike + 'CE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + ce_ltp);
-                                this.addToAlgoLog('Rollin - Slab ' + key + ' - ' + new_ce + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + new_ce_ltp);
+                                if (this.algoSimulated) {
+                                    let new_ce_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, new_ce, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
+                                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = new_ce_strike;
+                                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = new_ce_ltp; // TODO: find from COMPLETE order_id
+                                    this.addPosition(-_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], ce_strike + 'CE', ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                    this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], new_ce, new_ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                    this.recreateAlgoPos();
+                                    this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
+                                    this.addToAlgoLog('Exit - Slab ' + key + ' - ' + ce_strike + 'CE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + ce_ltp);
+                                    this.addToAlgoLog('Rollout - Slab ' + key + ' - ' + new_ce + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + new_ce_ltp);
+                                }
+                                else {
+                                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = '';
+                                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = null;
+                                    this.executeAlgoOrder(key, ce_strike + 'CE', new_ce, 'CE');
+                                    this.addToAlgoLog('Exit - Slab ' + key + ' - ' + ce_strike + 'CE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]);
+                                    this.addToAlgoLog('Rollout - Slab ' + key + ' - ' + new_ce + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]);
+                                }
                             }
                             else {
-                                console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Cannot Roll In CE due to min. distance', key);
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = ce_sl_counter + 1;
                             }
                         }
                         else {
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = ce_rollin_counter + 1;
+                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = 0;
                         }
-                    }
-                    else {
-                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = 0;
+                        //////////////////////////////////// CE ROLL IN //////////////////////////////////
+                        if (ce_ltp <= ce_rollin || ce_ltp < 1) {
+                            let ce_rollin_counter = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'];
+                            console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Counter-RI CE: ', key, ce_ltp, ce_rollin, ce_rollin_counter);
+                            if (ce_rollin_counter >= _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.secsToWaitForSL) {
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = 0;
+                                let new_ce_strike = ce_strike - _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.strike_diff[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade];
+                                if (this.isMinDist(new_ce_strike)) {
+                                    let new_ce = new_ce_strike + 'CE';
+                                    if (this.algoSimulated) {
+                                        let new_ce_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, new_ce, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
+                                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = new_ce_strike;
+                                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = new_ce_ltp; // TODO: find from COMPLETE order_id
+                                        this.addPosition(-_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], ce_strike + 'CE', ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                        this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], new_ce, new_ce_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                        this.recreateAlgoPos();
+                                        this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
+                                        this.addToAlgoLog('Exit - Slab ' + key + ' - ' + ce_strike + 'CE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + ce_ltp);
+                                        this.addToAlgoLog('Rollin - Slab ' + key + ' - ' + new_ce + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + new_ce_ltp);
+                                    }
+                                    else {
+                                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = '';
+                                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = null;
+                                        this.executeAlgoOrder(key, ce_strike + 'CE', new_ce, 'CE');
+                                        this.addToAlgoLog('Exit - Slab ' + key + ' - ' + ce_strike + 'CE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]);
+                                        this.addToAlgoLog('Rollin - Slab ' + key + ' - ' + new_ce + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]);
+                                    }
+                                }
+                                else {
+                                    console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Cannot Roll In CE due to min. distance', key);
+                                }
+                            }
+                            else {
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = ce_rollin_counter + 1;
+                            }
+                        }
+                        else {
+                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['CE'] = 0;
+                        }
                     }
                     let pe_strike = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'];
-                    let pe_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, pe_strike + 'PE', _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
                     let pe_entry = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'];
-                    let pe_sl = pe_entry + (pe_entry * sl_perc);
-                    let pe_rollin = pe_entry - (pe_entry * rollin_perc);
-                    //console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' PE: ', key, pe_ltp, pe_sl);
-                    //////////////////////////////////// PE ROLL OUT //////////////////////////////////
-                    if (pe_ltp >= pe_sl) {
-                        let pe_sl_counter = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'];
-                        console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Counter-SL PE: ', key, pe_ltp, pe_sl, pe_sl_counter);
-                        if (pe_sl_counter >= _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.secsToWaitForSL) {
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = 0;
-                            let new_pe_strike = pe_strike - (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.strike_diff[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade] * _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.rolloutStrikeMultiple);
-                            let new_pe = new_pe_strike + 'PE';
-                            let new_pe_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, new_pe, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = new_pe_strike;
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = new_pe_ltp;
-                            this.addPosition(-_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], pe_strike + 'PE', pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                            this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], new_pe, new_pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                            this.recreateAlgoPos();
-                            this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
-                            this.addToAlgoLog('Exit - Slab ' + key + ' - ' + pe_strike + 'PE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + pe_ltp);
-                            this.addToAlgoLog('Rollout - Slab ' + key + ' - ' + new_pe + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + new_pe_ltp);
-                        }
-                        else {
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = pe_sl_counter + 1;
-                        }
-                    }
-                    else {
-                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = 0;
-                    }
-                    //////////////////////////////////// PE ROLL IN //////////////////////////////////
-                    if (pe_ltp <= pe_rollin || pe_ltp < 1) {
-                        let pe_rollin_counter = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'];
-                        console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Counter-RI PE: ', key, pe_ltp, pe_rollin, pe_rollin_counter);
-                        if (pe_rollin_counter >= _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.secsToWaitForSL) {
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = 0;
-                            let new_pe_strike = pe_strike + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.strike_diff[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade];
-                            if (this.isMinDist(new_pe_strike)) {
+                    if (pe_strike && pe_entry) {
+                        let pe_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, pe_strike + 'PE', _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
+                        let pe_sl = pe_entry + (pe_entry * sl_perc);
+                        let pe_rollin = pe_entry - (pe_entry * rollin_perc);
+                        //console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' PE: ', key, pe_ltp, pe_sl);
+                        //////////////////////////////////// PE ROLL OUT //////////////////////////////////
+                        if (pe_ltp >= pe_sl) {
+                            let pe_sl_counter = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'];
+                            console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Counter-SL PE: ', key, pe_ltp, pe_sl, pe_sl_counter);
+                            if (pe_sl_counter >= _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.secsToWaitForSL) {
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = 0;
+                                let new_pe_strike = pe_strike - (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.strike_diff[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade] * _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.rolloutStrikeMultiple);
                                 let new_pe = new_pe_strike + 'PE';
-                                let new_pe_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, new_pe, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
-                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = new_pe_strike;
-                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = new_pe_ltp;
-                                this.addPosition(-_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], pe_strike + 'PE', pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                                this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], new_pe, new_pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
-                                this.recreateAlgoPos();
-                                this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
-                                this.addToAlgoLog('Exit - Slab ' + key + ' - ' + pe_strike + 'PE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + pe_ltp);
-                                this.addToAlgoLog('Rollin - Slab ' + key + ' - ' + new_pe + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + new_pe_ltp);
+                                if (this.algoSimulated) {
+                                    let new_pe_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, new_pe, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
+                                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = new_pe_strike;
+                                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = new_pe_ltp; // TODO: find from COMPLETE order_id
+                                    this.addPosition(-_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], pe_strike + 'PE', pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                    this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], new_pe, new_pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                    this.recreateAlgoPos();
+                                    this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
+                                    this.addToAlgoLog('Exit - Slab ' + key + ' - ' + pe_strike + 'PE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + pe_ltp);
+                                    this.addToAlgoLog('Rollout - Slab ' + key + ' - ' + new_pe + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + new_pe_ltp);
+                                }
+                                else {
+                                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = '';
+                                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = null;
+                                    this.executeAlgoOrder(key, pe_strike + 'PE', new_pe, 'PE');
+                                    this.addToAlgoLog('Exit - Slab ' + key + ' - ' + pe_strike + 'PE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]);
+                                    this.addToAlgoLog('Rollout - Slab ' + key + ' - ' + new_pe + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]);
+                                }
                             }
                             else {
-                                console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Cannot Roll In PE due to min. distance', key);
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = pe_sl_counter + 1;
                             }
                         }
                         else {
-                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = pe_rollin_counter + 1;
+                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabSLCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = 0;
                         }
-                    }
-                    else {
-                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = 0;
+                        //////////////////////////////////// PE ROLL IN //////////////////////////////////
+                        if (pe_ltp <= pe_rollin || pe_ltp < 1) {
+                            let pe_rollin_counter = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'];
+                            console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Counter-RI PE: ', key, pe_ltp, pe_rollin, pe_rollin_counter);
+                            if (pe_rollin_counter >= _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.secsToWaitForSL) {
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = 0;
+                                let new_pe_strike = pe_strike + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.strike_diff[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade];
+                                if (this.isMinDist(new_pe_strike)) {
+                                    let new_pe = new_pe_strike + 'PE';
+                                    if (this.algoSimulated) {
+                                        let new_pe_ltp = this.getLTP(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade, new_pe, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade);
+                                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = new_pe_strike;
+                                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = new_pe_ltp; // TODO: find from COMPLETE order_id
+                                        this.addPosition(-_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], pe_strike + 'PE', pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                        this.addPosition(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key], new_pe, new_pe_ltp, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade);
+                                        this.recreateAlgoPos();
+                                        this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
+                                        this.addToAlgoLog('Exit - Slab ' + key + ' - ' + pe_strike + 'PE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + pe_ltp);
+                                        this.addToAlgoLog('Rollin - Slab ' + key + ' - ' + new_pe + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key] + ' - ' + new_pe_ltp);
+                                    }
+                                    else {
+                                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabStrikes[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = '';
+                                        _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = null;
+                                        this.executeAlgoOrder(key, pe_strike + 'PE', new_pe, 'PE');
+                                        this.addToAlgoLog('Exit - Slab ' + key + ' - ' + pe_strike + 'PE - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]);
+                                        this.addToAlgoLog('Rollin - Slab ' + key + ' - ' + new_pe + ' - ' + _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabQty[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]);
+                                    }
+                                }
+                                else {
+                                    console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + ' Cannot Roll In PE due to min. distance', key);
+                                }
+                            }
+                            else {
+                                _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = pe_rollin_counter + 1;
+                            }
+                        }
+                        else {
+                            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabRollInCounter[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = 0;
+                        }
                     }
                 }
             }
@@ -13511,7 +13637,7 @@ ChartComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_12__
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵloadQuery"]()) && (ctx.chart = _t.first);
-    } }, decls: 333, vars: 115, consts: [["id", "accordionPayoff", 1, "accordion", "mb-2"], [1, "accordion-item"], ["id", "headingOne", 1, "accordion-header"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#payOffSection", "aria-expanded", "true", "aria-controls", "payOffSection", 1, "accordion-button", "fw-bold"], ["id", "payOffSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionPayoff", 1, "accordion-collapse", "collapse", "show", "p-2"], [1, "chart-all-strategies-pnl", "text-center"], [1, "d-inline-block"], [1, "mb-2"], [1, "fw-bold", 3, "ngClass"], ["placeholder", "< Alert Price", "type", "number", 1, "ms-4", "me-2", "form-control", "form-control-sm", "strategy_alert_field", 3, "ngModel", "ngModelChange"], [1, "text-danger"], [1, "d-inline-block", "ps-4", "pe-4"], [2, "display", "flex", "justify-content", "space-between"], [1, "chart-flex-container"], [1, "chart-positions"], ["id", "algo-container"], [1, "form-check", "form-check-inline"], ["type", "checkbox", "value", "", "id", "show_algo", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_algo", 1, "form-check-label"], ["class", "d-inline", 4, "ngIf"], [4, "ngIf"], [1, "form-check", "form-check-inline", "use-hypo-future-class", 2, "padding-left", "0"], ["for", "use-range", 1, "form-check-label"], ["id", "use-range", "type", "number", "placeholder", "Payoff Range", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], [1, "form-check", "form-check-inline", "use-hypo-future-class"], ["type", "checkbox", "value", "", "id", "hide-closed", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-closed", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show_t0", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_t0", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "hide-roll", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-roll", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "hide-extra", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-extra", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-multit0", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-multit0", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "simulate_strategy", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "simulate_strategy", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "showInlineOC", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "showInlineOC", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "showExtraOptions", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "showExtraOptions", 1, "form-check-label"], ["class", "mb-2", 4, "ngIf"], ["class", "text-success", 4, "ngIf"], ["class", "text-danger", 4, "ngIf"], [1, "strategy_instru", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange"], [3, "value", 4, "ngFor", "ngForOf"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", "me-2", 3, "click"], ["type", "checkbox", "value", "", "id", "use_cf", 1, "form-check-input", 3, "ngModel", "ngModelChange", "change"], ["for", "use_cf", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "use_tag", 1, "form-check-input", "me-1", "mt-2", 3, "ngModel", "ngModelChange", "change"], ["placeholder", "Tag", "id", "tagSearch", 1, "me-2", "form-control", "form-control-sm", "d-inline-block", 2, "width", "200px", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "use_include_guid", 1, "form-check-input", "me-1", "mt-2", 3, "ngModel", "ngModelChange", "change"], ["type", "text", "id", "includeGUIDs", "placeholder", "Include GUIDs", 1, "form-control", "form-control-sm", "d-inline-block", "me-2", 2, "width", "400px", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "use_exclude_guid", 1, "form-check-input", "me-1", "mt-2", 3, "ngModel", "ngModelChange", "change"], ["type", "text", "id", "excludeGUIDs", "placeholder", "Exclude GUIDs", 1, "form-control", "form-control-sm", "d-inline-block", 2, "width", "400px", 3, "ngModel", "ngModelChange"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center"], [3, "ngClass", 4, "ngFor", "ngForOf"], ["class", "table table-sm table-bordered shadow text-center", 4, "ngIf"], ["class", "chart-chart", 4, "ngIf"], [2, "display", "flex"], [1, "form-select", "form-select-sm", "d-inline-block", "mb-2", "me-2", 2, "width", "120px", 3, "ngModel", "ngModelChange", "change"], ["type", "checkbox", "value", "", "id", "expand_single_charts", 1, "form-check-input", 3, "ngModel", "change", "ngModelChange"], ["for", "expand_single_charts", 1, "form-check-label"], [2, "display", "flex", "flex-wrap", "wrap"], ["id", "spot-chart", 1, "opt_chart", "me-4"], [1, "d-flex"], ["id", "chart-ce", 1, "opt_chart", "me-4"], [1, "chart-legend"], [1, "chart-legend-qty"], ["id", "chart-pe", 1, "opt_chart", "me-4"], [1, "ms-2"], ["type", "checkbox", "value", "", "id", "add_strangle_chart", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "add_strangle_chart", 1, "form-check-label"], ["placeholder", "Scrip 1", 1, "me-3", "form-control", "form-control-sm", 2, "display", "inline-block", "width", "80px", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip 2", 1, "me-3", "form-control", "form-control-sm", 2, "display", "inline-block", "width", "80px", 3, "ngModel", "ngModelChange"], ["class", "form-check form-check-inline use-hypo-future-class", 4, "ngIf"], ["type", "button", 1, "btn", "btn-light", "btn-sm", "me-2", 3, "click"], ["class", "opt_chart me-4", "id", "spot-chart-simulate", 4, "ngIf"], ["id", "strangle-chart", 1, "opt_chart"], ["type", "checkbox", "value", "", "id", "show_news", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_news", 1, "form-check-label"], ["href", "https://www.google.com/search?sca_esv=556714279&rlz=1C5CHFA_enIN1013IN1013&sxsrf=AB5stBj127G0qRSDvJgWwiqXPwupGLEmJQ:1692010519401&q=moneycontrol+top+10&tbm=nws&source=univ&tbo=u&sa=X&ved=2ahUKEwjD_duv_tuAAxW9SGwGHWA5BBgQt8YBKAF6BAgNEAY&biw=1728&bih=930&dpr=2", "target", "_blank", "rel", "noopener noreferrer", 1, "me-2"], ["href", "https://www.google.com/search?q=bq+prime+all+you+need+to+know&sca_esv=558740822&rlz=1C5CHFA_enIN1013IN1013&biw=1728&bih=930&tbm=nws&sxsrf=AB5stBiwZOAWiIkwVU-a2ny8zymQqmhjEQ%3A1692620043930&ei=C1XjZKi3OIuV-AaN0qyIBg&ved=0ahUKEwjo6NSD3e2AAxWLCt4KHQ0pC2EQ4dUDCA0&uact=5&oq=bq+prime+all+you+need+to+know&gs_lp=Egxnd3Mtd2l6LW5ld3MiHWJxIHByaW1lIGFsbCB5b3UgbmVlZCB0byBrbm93MgUQABiABDIIEAAYigUYhgMyCBAAGIoFGIYDMggQABiKBRiGA0jAC1COCViOCXAAeACQAQCYAXmgAe0BqgEDMC4yuAEDyAEA-AEBwgIHEAAYgAQYCogGAQ&sclient=gws-wiz-news", "target", "_blank", "rel", "noopener noreferrer", 1, "me-2"], ["href", "https://www.cnbctv18.com/live-tv/", "target", "_blank", "rel", "noopener noreferrer", 1, "me-2"], ["class", "opt-charts-parent-0", 4, "ngIf"], [1, "opt-charts-parent"], [1, "form-select", "form-select-sm", "me-2", "charts-inputs", 3, "ngModel", "ngModelChange", "change"], ["placeholder", "Expiry", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Call Lower", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Call Higher", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Put Lower", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Put Higher", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Multiple", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [1, "charts-heading", 2, "color", "green"], [1, "opt_chart_wrapper_parent"], ["class", "opt_chart_wrapper", 3, "click", 4, "ngFor", "ngForOf"], [2, "margin", "0"], [1, "charts-heading", 2, "color", "red"], ["id", "accordionKnife", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#knifeSection", "aria-expanded", "false", "aria-controls", "knifeSection", 1, "accordion-button", "fw-bold"], ["id", "knifeSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionKnife", 1, "accordion-collapse", "collapse", "p-2"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "me-4", 3, "click"], ["type", "checkbox", "value", "", "id", "auto_adjust_knife", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "auto_adjust_knife", 1, "form-check-label"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center", 2, "max-width", "1000px"], [1, "table-light"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["id", "accordionAlerts", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#alertsSection", "aria-expanded", "false", "aria-controls", "alertsSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "alertsSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionAlerts", 1, "accordion-collapse", "collapse", "p-2"], ["class", "alerts-flex-container", 4, "ngFor", "ngForOf"], ["type", "button", 1, "btn", "btn-link", 3, "click"], ["id", "accordionOrders", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#ordersSection", "aria-expanded", "false", "aria-controls", "ordersSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "ordersSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionOrders", 1, "accordion-collapse", "collapse", "p-2"], [1, "place_multi_orders"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "me-1", 3, "click"], ["class", "accordion mb-2", "id", "accordionStraddle", 4, "ngIf"], ["class", "accordion", "id", "accordionCharts", 4, "ngIf"], [1, "d-inline"], [1, "algo_params", "d-inline"], ["type", "button", "class", "btn btn-outline-primary btn-sm me-2", 3, "click", 4, "ngIf"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "me-2", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-outline-primary", "btn-sm", "me-2", 3, "click"], [3, "value"], [1, "mt-2"], ["readonly", "", 2, "width", "100%", "height", "300px", 3, "ngModel", "ngModelChange"], ["scope", "col", 1, "width80"], [1, "width80"], ["type", "checkbox", "value", "", "id", "hide-payoff", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-payoff", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "use-hypo-future", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "use-hypo-future", 1, "form-check-label"], ["type", "number", "placeholder", "Closest Strike", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "80px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "hide-roll3", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-roll3", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "ce_side_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "ce_side_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "pe_side_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "pe_side_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "straddle_shiftCE_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "straddle_shiftCE_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "straddle_shiftPE_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "straddle_shiftPE_overlay", 1, "form-check-label"], ["type", "number", "placeholder", "Straddle Qty", 1, "me-3", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "payoff_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange", "change"], ["for", "payoff_overlay", 1, "form-check-label"], ["type", "number", "placeholder", "Overlay strike", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], [1, "strategy_instru", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange", "change"], ["placeholder", "Expiry YYYY-MM-DD", 1, "simulateDate", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Start YYYY-MM-DD", 1, "simulateDate", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-light", "btn-sm", "me-1", 3, "click"], [1, "form-check-inline", "use-hypo-future-class"], ["type", "checkbox", "value", "", "id", "show_simulate_charts", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_simulate_charts", 1, "form-check-label"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], [1, "text-success"], [3, "ngClass"], [1, "width32"], [1, "form-check-inline", "posCheckbox"], ["type", "checkbox", "value", "", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], [1, "width160"], [2, "display", "flex", "align-items", "center"], ["type", "number", "placeholder", "Qty", 1, "form-control", "form-control-sm", "me-1", 3, "step", "ngModel", "ngClass", "ngModelChange"], ["type", "number", "placeholder", "Roll Qty", 1, "form-control", "form-control-sm", 3, "step", "ngModel", "ngClass", "ngModelChange"], [1, "fw-bold", "width48", 2, "padding-top", "8px"], ["type", "number", "placeholder", "Entry", 1, "form-control", "form-control-sm", 2, "max-width", "80px !important", 3, "ngModel", "ngModelChange"], [1, "nostretch"], ["placeholder", "Scrip 11500CE", 1, "form-control", "form-control-sm", "me-2", "width80", 3, "ngModel", "ngModelChange"], [2, "display", "inline-block", "width", "60px"], ["type", "button", "class", "btn btn-link", 3, "click", 4, "ngIf"], ["type", "button", "class", "btn btn-link red", 3, "click", 4, "ngIf"], ["class", "nostretch", 4, "ngIf"], ["class", "width110", 4, "ngIf"], ["class", "width80", 4, "ngIf"], ["style", "text-align: left;", 4, "ngIf"], [1, ""], ["type", "number", "placeholder", "> Alert", 1, "form-control", "form-control-sm", "d-inline-block", "width80", 3, "ngModel", "ngModelChange"], [1, "text-danger", "ms-2"], ["type", "checkbox", "value", "", 1, "form-check-input", "me-1", 3, "ngModel", "disabled", "ngModelChange"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "disabled", "ngModelChange"], ["type", "button", 1, "btn", "btn-link", "red", 3, "click"], ["type", "radio", 1, "form-check-input", 3, "name", "id", "value", "ngModel", "ngModelChange"], [1, "form-check-label", 3, "for"], ["placeholder", "Scrip 11500CE", 1, "form-control", "form-control-sm", "me-2", "width80", 3, "ngModel", "ngModelChange", "keyup"], [1, "width110"], ["placeholder", "Expiry 01OCT2020", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Exit", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [2, "text-align", "left"], ["type", "button", 1, "btn", "btn-light", "btn-sm", 3, "click"], ["scope", "col", 1, "width32"], ["scope", "col", 1, "nostretch"], ["type", "number", "placeholder", "Qty", 1, "form-control", "form-control-sm", 3, "step", "ngModel", "ngClass", "ngModelChange"], ["placeholder", "11500CE", 1, "form-control", "form-control-sm", "me-2", "width80", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Price", 1, "form-control", "form-control-sm", "me-1", 2, "max-width", "80px !important", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Trigger Price", 1, "form-control", "form-control-sm", 2, "max-width", "80px !important", 3, "ngModel", "ngModelChange"], ["style", "display: flex; align-items: center;", 4, "ngIf"], [1, "width32", 2, "text-align", "left"], ["type", "button", "class", "btn btn-light btn-sm", 3, "click", 4, "ngIf"], [1, "chart-chart"], [2, "min-width", "600px", "max-width", "600px", "margin-right", "20px"], ["baseChart", "", "width", "2", "height", "1", 3, "datasets", "labels", "options", "colors", "legend", "chartType", "plugins"], [2, "min-width", "450px"], [1, "mt-1", "mb-2"], [1, "me-4", "strategy_alert_field"], ["placeholder", "> Alert Price", "type", "number", 1, "me-2", "form-control", "form-control-sm", "strategy_alert_field", 3, "ngModel", "ngModelChange"], [1, "mt-2", "mb-2", "fw-bold"], [2, "display", "inline-block", "width", "200px"], [2, "font-weight", "normal"], [2, "margin-right", "20px"], [1, "me-3", 2, "display", "inline-block"], ["type", "file", "name", "File Upload 1", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInput1", ""], ["href", "assets/flyrr.png", "target", "_blank", "rel", "noopener noreferrer"], [1, "mt-1"], ["type", "checkbox", "value", "", "id", "strangle_chart_simulate_tillend", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "strangle_chart_simulate_tillend", 1, "form-check-label"], ["id", "spot-chart-simulate", 1, "opt_chart", "me-4"], [2, "width", "268px"], ["placeholder", "Higher", 1, "mb-1", "me-2", "form-control", "form-control-sm", "ocInputs", 3, "ngModel", "ngModelChange"], ["placeholder", "Lower", 1, "mb-1", "me-2", "form-control", "form-control-sm", "ocInputs", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "mb-1", "me-2", "btn", "btn-light", "btn-sm", 3, "click"], ["placeholder", "Qty", "type", "number", 1, "mb-1", "form-control", "form-control-sm", "ocInputs", 3, "ngModel", "ngModelChange"], [1, "table", "table-sm", "table-bordered", "shadow", "mb-0", "text-center"], ["scope", "col", 1, "oc-col"], ["scope", "col", 1, "text-center"], [2, "position", "relative", 3, "ngClass"], [1, "cursor-pointer", 2, "position", "absolute", "left", "4px", "font-size", "14px", "transform", "rotateX(180deg) rotate(-20deg)", 3, "click"], [1, "cursor-pointer", 2, "position", "absolute", "right", "4px", "top", "-5px", "font-size", "24px", 3, "click"], [1, "cursor-pointer", "text-primary", "fw-bold", 3, "click"], ["class", "ocStrategyStrikeQty fw-bold", 4, "ngIf"], [1, "fw-bold", "text-center", 3, "ngClass"], ["class", "ocStrategyStrikeQty oc-strike-spot", 4, "ngIf"], ["style", "color: orange;", 4, "ngIf"], [1, "cursor-pointer", 2, "position", "absolute", "right", "4px", "font-size", "14px", "transform", "rotateX(180deg) rotate(-20deg)", 3, "click"], [1, "cursor-pointer", 2, "position", "absolute", "left", "4px", "top", "-5px", "font-size", "24px", 3, "click"], [1, "ocStrategyStrikeQty", "fw-bold"], [1, "ocStrategyStrikeQty", "oc-strike-spot"], [2, "color", "orange"], ["height", "800", "width", "100%", "src", "https://pulse.zerodha.com/"], [1, "chart-finchart"], [1, "opt-charts-parent-0"], [1, "me-4"], [1, "form-check-inline", "mt-0"], ["type", "radio", "value", "5min", "id", "5min", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "5min", 1, "form-check-label"], ["type", "radio", "value", "1min", "id", "1min", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "1min", 1, "form-check-label"], ["type", "button", "title", "Charts of ST 10 2 for 40 premiums whenever ST breach. Also prints ST entry exit and strangle 25 fullday entry exit in console", 1, "btn", "btn-secondary", "btn-sm", "mb-1", "me-2", 3, "click"], ["class", "opt_chart_wrapper-0", 4, "ngFor", "ngForOf"], [1, "opt_chart_wrapper-0"], [1, "opt_chart-0", 3, "id"], [1, "chart-legend-0"], [1, "chart-legend-values"], ["type", "radio", "value", "10_2", "id", "st102", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "st102", 1, "form-check-label"], ["type", "radio", "value", "7_3", "id", "st73", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "st73", 1, "form-check-label"], ["type", "radio", "value", "both", "id", "stBoth", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "stBoth", 1, "form-check-label"], ["placeholder", "0", 1, "form-control", "form-control-sm", "me-2", "mb-2", "width80", "d-inline", 3, "ngModel", "ngModelChange"], [1, "opt_chart-0", 2, "width", "320px", "height", "240px", "background-color", "grey", 3, "id"], [1, "opt_chart_wrapper", 3, "click"], [1, "opt_chart", 3, "id", "ngClass"], [1, "alerts-flex-container"], [1, "form-check-inline"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "ngModelChange"], [1, "alert_field", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip1", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip2", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["placeholder", "Expiry YYYY-MM-DD", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["value", ">"], ["value", "<"], ["placeholder", "Price", "type", "number", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["rows", "5", 2, "width", "100%", 3, "ngModel", "ngModelChange"], [1, "confirmation-check", "form-check-inline", "mt-0"], ["type", "radio", "value", "upstox", "id", "upstox_orders", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "upstox_orders", 1, "form-check-label"], ["type", "radio", "value", "zerodha", "id", "zerodha_orders", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "zerodha_orders", 1, "form-check-label"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", 2, "margin-top", "-7px", 3, "click"], [1, "form-select", "form-select-sm", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["id", "place_expiry_date", "placeholder", "place_expiry_date", 1, "form-control", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["id", "place_qty", "placeholder", "qty", 1, "form-control", "fw-bold", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngClass", "ngModel", "ngModelChange"], ["id", "curr_pos", "placeholder", "curr_pos", 1, "form-control", "fw-bold", "me-1", 2, "width", "120px", "display", "inline-block", 3, "ngClass", "ngModel", "ngModelChange"], [2, "text-align", "left", "font-size", "10px", 3, "ngClass"], ["style", "color: orange; font-weight: bold; margin-left: 4px;", 4, "ngIf"], [1, "me-2", 2, "display", "inline-block"], ["id", "new_pos", "placeholder", "new_pos", 1, "form-control", "fw-bold", "me-1", 2, "width", "120px", "display", "inline-block", 3, "ngClass", "ngModel", "ngModelChange"], [2, "color", "orange", "font-weight", "bold", "margin-left", "4px"], ["id", "accordionStraddle", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#straddleSection", "aria-expanded", "true", "aria-controls", "straddleSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "straddleSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionStraddle", 1, "accordion-collapse", "collapse", "p-2"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "me-2", "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip", "id", "payOffExpiry", 1, "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["id", "accordionCharts", 1, "accordion"], ["type", "button", "data-toggle", "collapse", "data-target", "#chartsSection", "aria-expanded", "true", "aria-controls", "chartsSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "chartsSection", "aria-labelledby", "headingOne", "data-parent", "#accordionCharts", 1, "accordion-collapse", "collapse", "p-2"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=8985&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=160&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"]], template: function ChartComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 333, vars: 115, consts: [["id", "accordionPayoff", 1, "accordion", "mb-2"], [1, "accordion-item"], ["id", "headingOne", 1, "accordion-header"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#payOffSection", "aria-expanded", "true", "aria-controls", "payOffSection", 1, "accordion-button", "fw-bold"], ["id", "payOffSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionPayoff", 1, "accordion-collapse", "collapse", "show", "p-2"], [1, "chart-all-strategies-pnl", "text-center"], [1, "d-inline-block"], [1, "mb-2"], [1, "fw-bold", 3, "ngClass"], ["placeholder", "< Alert Price", "type", "number", 1, "ms-4", "me-2", "form-control", "form-control-sm", "strategy_alert_field", 3, "ngModel", "ngModelChange"], [1, "text-danger"], [1, "d-inline-block", "ps-4", "pe-4"], [2, "display", "flex", "justify-content", "space-between"], [1, "chart-flex-container"], [1, "chart-positions"], ["id", "algo-container"], [1, "form-check", "form-check-inline"], ["type", "checkbox", "value", "", "id", "show_algo", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_algo", 1, "form-check-label"], ["class", "d-inline", 4, "ngIf"], [4, "ngIf"], [1, "form-check", "form-check-inline", "use-hypo-future-class", 2, "padding-left", "0"], ["for", "use-range", 1, "form-check-label"], ["id", "use-range", "type", "number", "placeholder", "Payoff Range", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], [1, "form-check", "form-check-inline", "use-hypo-future-class"], ["type", "checkbox", "value", "", "id", "hide-closed", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-closed", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show_t0", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_t0", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "hide-roll", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-roll", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "hide-extra", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-extra", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-multit0", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-multit0", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "simulate_strategy", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "simulate_strategy", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "showInlineOC", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "showInlineOC", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "showExtraOptions", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "showExtraOptions", 1, "form-check-label"], ["class", "mb-2", 4, "ngIf"], ["class", "text-success", 4, "ngIf"], ["class", "text-danger", 4, "ngIf"], [1, "strategy_instru", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange"], [3, "value", 4, "ngFor", "ngForOf"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "mb-1", "me-2", 3, "click"], ["type", "checkbox", "value", "", "id", "use_cf", 1, "form-check-input", 3, "ngModel", "ngModelChange", "change"], ["for", "use_cf", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "use_tag", 1, "form-check-input", "me-1", "mt-2", 3, "ngModel", "ngModelChange", "change"], ["placeholder", "Tag", "id", "tagSearch", 1, "me-2", "form-control", "form-control-sm", "d-inline-block", 2, "width", "200px", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "use_include_guid", 1, "form-check-input", "me-1", "mt-2", 3, "ngModel", "ngModelChange", "change"], ["type", "text", "id", "includeGUIDs", "placeholder", "Include GUIDs", 1, "form-control", "form-control-sm", "d-inline-block", "me-2", 2, "width", "400px", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "use_exclude_guid", 1, "form-check-input", "me-1", "mt-2", 3, "ngModel", "ngModelChange", "change"], ["type", "text", "id", "excludeGUIDs", "placeholder", "Exclude GUIDs", 1, "form-control", "form-control-sm", "d-inline-block", 2, "width", "400px", 3, "ngModel", "ngModelChange"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center"], [3, "ngClass", 4, "ngFor", "ngForOf"], ["class", "table table-sm table-bordered shadow text-center", 4, "ngIf"], ["class", "chart-chart", 4, "ngIf"], [2, "display", "flex"], [1, "form-select", "form-select-sm", "d-inline-block", "mb-2", "me-2", 2, "width", "120px", 3, "ngModel", "ngModelChange", "change"], ["type", "checkbox", "value", "", "id", "expand_single_charts", 1, "form-check-input", 3, "ngModel", "change", "ngModelChange"], ["for", "expand_single_charts", 1, "form-check-label"], [2, "display", "flex", "flex-wrap", "wrap"], ["id", "spot-chart", 1, "opt_chart", "me-4"], [1, "d-flex"], ["id", "chart-ce", 1, "opt_chart", "me-4"], [1, "chart-legend"], [1, "chart-legend-qty"], ["id", "chart-pe", 1, "opt_chart", "me-4"], [1, "ms-2"], ["type", "checkbox", "value", "", "id", "add_strangle_chart", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "add_strangle_chart", 1, "form-check-label"], ["placeholder", "Scrip 1", 1, "me-3", "form-control", "form-control-sm", 2, "display", "inline-block", "width", "80px", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip 2", 1, "me-3", "form-control", "form-control-sm", 2, "display", "inline-block", "width", "80px", 3, "ngModel", "ngModelChange"], ["class", "form-check form-check-inline use-hypo-future-class", 4, "ngIf"], ["type", "button", 1, "btn", "btn-light", "btn-sm", "me-2", 3, "click"], ["class", "opt_chart me-4", "id", "spot-chart-simulate", 4, "ngIf"], ["id", "strangle-chart", 1, "opt_chart"], ["type", "checkbox", "value", "", "id", "show_news", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_news", 1, "form-check-label"], ["href", "https://www.google.com/search?sca_esv=556714279&rlz=1C5CHFA_enIN1013IN1013&sxsrf=AB5stBj127G0qRSDvJgWwiqXPwupGLEmJQ:1692010519401&q=moneycontrol+top+10&tbm=nws&source=univ&tbo=u&sa=X&ved=2ahUKEwjD_duv_tuAAxW9SGwGHWA5BBgQt8YBKAF6BAgNEAY&biw=1728&bih=930&dpr=2", "target", "_blank", "rel", "noopener noreferrer", 1, "me-2"], ["href", "https://www.google.com/search?q=bq+prime+all+you+need+to+know&sca_esv=558740822&rlz=1C5CHFA_enIN1013IN1013&biw=1728&bih=930&tbm=nws&sxsrf=AB5stBiwZOAWiIkwVU-a2ny8zymQqmhjEQ%3A1692620043930&ei=C1XjZKi3OIuV-AaN0qyIBg&ved=0ahUKEwjo6NSD3e2AAxWLCt4KHQ0pC2EQ4dUDCA0&uact=5&oq=bq+prime+all+you+need+to+know&gs_lp=Egxnd3Mtd2l6LW5ld3MiHWJxIHByaW1lIGFsbCB5b3UgbmVlZCB0byBrbm93MgUQABiABDIIEAAYigUYhgMyCBAAGIoFGIYDMggQABiKBRiGA0jAC1COCViOCXAAeACQAQCYAXmgAe0BqgEDMC4yuAEDyAEA-AEBwgIHEAAYgAQYCogGAQ&sclient=gws-wiz-news", "target", "_blank", "rel", "noopener noreferrer", 1, "me-2"], ["href", "https://www.cnbctv18.com/live-tv/", "target", "_blank", "rel", "noopener noreferrer", 1, "me-2"], ["class", "opt-charts-parent-0", 4, "ngIf"], [1, "opt-charts-parent"], [1, "form-select", "form-select-sm", "me-2", "charts-inputs", 3, "ngModel", "ngModelChange", "change"], ["placeholder", "Expiry", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Call Lower", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Call Higher", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Put Lower", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Put Higher", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Multiple", 1, "charts-inputs", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [1, "charts-heading", 2, "color", "green"], [1, "opt_chart_wrapper_parent"], ["class", "opt_chart_wrapper", 3, "click", 4, "ngFor", "ngForOf"], [2, "margin", "0"], [1, "charts-heading", 2, "color", "red"], ["id", "accordionKnife", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#knifeSection", "aria-expanded", "false", "aria-controls", "knifeSection", 1, "accordion-button", "fw-bold"], ["id", "knifeSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionKnife", 1, "accordion-collapse", "collapse", "p-2"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "me-4", 3, "click"], ["type", "checkbox", "value", "", "id", "auto_adjust_knife", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "auto_adjust_knife", 1, "form-check-label"], [1, "table", "table-sm", "table-bordered", "shadow", "text-center", 2, "max-width", "1000px"], [1, "table-light"], ["scope", "col"], [4, "ngFor", "ngForOf"], ["id", "accordionAlerts", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#alertsSection", "aria-expanded", "false", "aria-controls", "alertsSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "alertsSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionAlerts", 1, "accordion-collapse", "collapse", "p-2"], ["class", "alerts-flex-container", 4, "ngFor", "ngForOf"], ["type", "button", 1, "btn", "btn-link", 3, "click"], ["id", "accordionOrders", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#ordersSection", "aria-expanded", "false", "aria-controls", "ordersSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "ordersSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionOrders", 1, "accordion-collapse", "collapse", "p-2"], [1, "place_multi_orders"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", "me-1", 3, "click"], ["class", "accordion mb-2", "id", "accordionStraddle", 4, "ngIf"], ["class", "accordion", "id", "accordionCharts", 4, "ngIf"], [1, "d-inline"], [1, "algo_params", "d-inline"], ["type", "checkbox", "value", "", "id", "algoSimulated", "disabled", "", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "algoSimulated", 1, "form-check-label"], ["type", "button", "class", "btn btn-outline-primary btn-sm me-2", 3, "click", 4, "ngIf"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "me-2", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-outline-primary", "btn-sm", "me-2", 3, "click"], [3, "value"], [1, "mt-2"], ["readonly", "", 2, "width", "100%", "height", "300px", 3, "ngModel", "ngModelChange"], ["scope", "col", 1, "width80"], [1, "width80"], ["type", "checkbox", "value", "", "id", "hide-payoff", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-payoff", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "use-hypo-future", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "use-hypo-future", 1, "form-check-label"], ["type", "number", "placeholder", "Closest Strike", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "80px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "hide-roll3", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-roll3", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "ce_side_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "ce_side_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "pe_side_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "pe_side_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "straddle_shiftCE_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "straddle_shiftCE_overlay", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "straddle_shiftPE_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "straddle_shiftPE_overlay", 1, "form-check-label"], ["type", "number", "placeholder", "Straddle Qty", 1, "me-3", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["type", "checkbox", "value", "", "id", "payoff_overlay", 1, "form-check-input", 3, "ngModel", "ngModelChange", "change"], ["for", "payoff_overlay", 1, "form-check-label"], ["type", "number", "placeholder", "Overlay strike", 1, "ms-2", "form-control", "form-control-sm", 2, "width", "100px", "display", "inline-block", 3, "ngModel", "ngModelChange"], [1, "strategy_instru", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange", "change"], ["placeholder", "Expiry YYYY-MM-DD", 1, "simulateDate", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Start YYYY-MM-DD", 1, "simulateDate", "mb-1", "me-3", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "btn", "btn-light", "btn-sm", "me-1", 3, "click"], [1, "form-check-inline", "use-hypo-future-class"], ["type", "checkbox", "value", "", "id", "show_simulate_charts", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show_simulate_charts", 1, "form-check-label"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], [1, "text-success"], [3, "ngClass"], [1, "width32"], [1, "form-check-inline", "posCheckbox"], ["type", "checkbox", "value", "", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], [1, "width160"], [2, "display", "flex", "align-items", "center"], ["type", "number", "placeholder", "Qty", 1, "form-control", "form-control-sm", "me-1", 3, "step", "ngModel", "ngClass", "ngModelChange"], ["type", "number", "placeholder", "Roll Qty", 1, "form-control", "form-control-sm", 3, "step", "ngModel", "ngClass", "ngModelChange"], [1, "fw-bold", "width48", 2, "padding-top", "8px"], ["type", "number", "placeholder", "Entry", 1, "form-control", "form-control-sm", 2, "max-width", "80px !important", 3, "ngModel", "ngModelChange"], [1, "nostretch"], ["placeholder", "Scrip 11500CE", 1, "form-control", "form-control-sm", "me-2", "width80", 3, "ngModel", "ngModelChange"], [2, "display", "inline-block", "width", "60px"], ["type", "button", "class", "btn btn-link", 3, "click", 4, "ngIf"], ["type", "button", "class", "btn btn-link red", 3, "click", 4, "ngIf"], ["class", "nostretch", 4, "ngIf"], ["class", "width110", 4, "ngIf"], ["class", "width80", 4, "ngIf"], ["style", "text-align: left;", 4, "ngIf"], [1, ""], ["type", "number", "placeholder", "> Alert", 1, "form-control", "form-control-sm", "d-inline-block", "width80", 3, "ngModel", "ngModelChange"], [1, "text-danger", "ms-2"], ["type", "checkbox", "value", "", 1, "form-check-input", "me-1", 3, "ngModel", "disabled", "ngModelChange"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "disabled", "ngModelChange"], ["type", "button", 1, "btn", "btn-link", "red", 3, "click"], ["type", "radio", 1, "form-check-input", 3, "name", "id", "value", "ngModel", "ngModelChange"], [1, "form-check-label", 3, "for"], ["placeholder", "Scrip 11500CE", 1, "form-control", "form-control-sm", "me-2", "width80", 3, "ngModel", "ngModelChange", "keyup"], [1, "width110"], ["placeholder", "Expiry 01OCT2020", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Exit", 1, "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], [2, "text-align", "left"], ["type", "button", 1, "btn", "btn-light", "btn-sm", 3, "click"], ["scope", "col", 1, "width32"], ["scope", "col", 1, "nostretch"], ["type", "number", "placeholder", "Qty", 1, "form-control", "form-control-sm", 3, "step", "ngModel", "ngClass", "ngModelChange"], ["placeholder", "11500CE", 1, "form-control", "form-control-sm", "me-2", "width80", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Price", 1, "form-control", "form-control-sm", "me-1", 2, "max-width", "80px !important", 3, "ngModel", "ngModelChange"], ["type", "number", "placeholder", "Trigger Price", 1, "form-control", "form-control-sm", 2, "max-width", "80px !important", 3, "ngModel", "ngModelChange"], ["style", "display: flex; align-items: center;", 4, "ngIf"], [1, "width32", 2, "text-align", "left"], ["type", "button", "class", "btn btn-light btn-sm", 3, "click", 4, "ngIf"], [1, "chart-chart"], [2, "min-width", "600px", "max-width", "600px", "margin-right", "20px"], ["baseChart", "", "width", "2", "height", "1", 3, "datasets", "labels", "options", "colors", "legend", "chartType", "plugins"], [2, "min-width", "450px"], [1, "mt-1", "mb-2"], [1, "me-4", "strategy_alert_field"], ["placeholder", "> Alert Price", "type", "number", 1, "me-2", "form-control", "form-control-sm", "strategy_alert_field", 3, "ngModel", "ngModelChange"], [1, "mt-2", "mb-2", "fw-bold"], [2, "display", "inline-block", "width", "200px"], [2, "font-weight", "normal"], [2, "margin-right", "20px"], [1, "me-3", 2, "display", "inline-block"], ["type", "file", "name", "File Upload 1", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInput1", ""], ["href", "assets/flyrr.png", "target", "_blank", "rel", "noopener noreferrer"], [1, "mt-1"], ["type", "checkbox", "value", "", "id", "strangle_chart_simulate_tillend", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "strangle_chart_simulate_tillend", 1, "form-check-label"], ["id", "spot-chart-simulate", 1, "opt_chart", "me-4"], [2, "width", "268px"], ["placeholder", "Higher", 1, "mb-1", "me-2", "form-control", "form-control-sm", "ocInputs", 3, "ngModel", "ngModelChange"], ["placeholder", "Lower", 1, "mb-1", "me-2", "form-control", "form-control-sm", "ocInputs", 3, "ngModel", "ngModelChange"], ["type", "button", 1, "mb-1", "me-2", "btn", "btn-light", "btn-sm", 3, "click"], ["placeholder", "Qty", "type", "number", 1, "mb-1", "form-control", "form-control-sm", "ocInputs", 3, "ngModel", "ngModelChange"], [1, "table", "table-sm", "table-bordered", "shadow", "mb-0", "text-center"], ["scope", "col", 1, "oc-col"], ["scope", "col", 1, "text-center"], [2, "position", "relative", 3, "ngClass"], [1, "cursor-pointer", 2, "position", "absolute", "left", "4px", "font-size", "14px", "transform", "rotateX(180deg) rotate(-20deg)", 3, "click"], [1, "cursor-pointer", 2, "position", "absolute", "right", "4px", "top", "-5px", "font-size", "24px", 3, "click"], [1, "cursor-pointer", "text-primary", "fw-bold", 3, "click"], ["class", "ocStrategyStrikeQty fw-bold", 4, "ngIf"], [1, "fw-bold", "text-center", 3, "ngClass"], ["class", "ocStrategyStrikeQty oc-strike-spot", 4, "ngIf"], ["style", "color: orange;", 4, "ngIf"], [1, "cursor-pointer", 2, "position", "absolute", "right", "4px", "font-size", "14px", "transform", "rotateX(180deg) rotate(-20deg)", 3, "click"], [1, "cursor-pointer", 2, "position", "absolute", "left", "4px", "top", "-5px", "font-size", "24px", 3, "click"], [1, "ocStrategyStrikeQty", "fw-bold"], [1, "ocStrategyStrikeQty", "oc-strike-spot"], [2, "color", "orange"], ["height", "800", "width", "100%", "src", "https://pulse.zerodha.com/"], [1, "chart-finchart"], [1, "opt-charts-parent-0"], [1, "me-4"], [1, "form-check-inline", "mt-0"], ["type", "radio", "value", "5min", "id", "5min", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "5min", 1, "form-check-label"], ["type", "radio", "value", "1min", "id", "1min", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "1min", 1, "form-check-label"], ["type", "button", "title", "Charts of ST 10 2 for 40 premiums whenever ST breach. Also prints ST entry exit and strangle 25 fullday entry exit in console", 1, "btn", "btn-secondary", "btn-sm", "mb-1", "me-2", 3, "click"], ["class", "opt_chart_wrapper-0", 4, "ngFor", "ngForOf"], [1, "opt_chart_wrapper-0"], [1, "opt_chart-0", 3, "id"], [1, "chart-legend-0"], [1, "chart-legend-values"], ["type", "radio", "value", "10_2", "id", "st102", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "st102", 1, "form-check-label"], ["type", "radio", "value", "7_3", "id", "st73", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "st73", 1, "form-check-label"], ["type", "radio", "value", "both", "id", "stBoth", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "stBoth", 1, "form-check-label"], ["placeholder", "0", 1, "form-control", "form-control-sm", "me-2", "mb-2", "width80", "d-inline", 3, "ngModel", "ngModelChange"], [1, "opt_chart-0", 2, "width", "320px", "height", "240px", "background-color", "grey", 3, "id"], [1, "opt_chart_wrapper", 3, "click"], [1, "opt_chart", 3, "id", "ngClass"], [1, "alerts-flex-container"], [1, "form-check-inline"], ["type", "checkbox", "value", "", 1, "form-check-input", 3, "ngModel", "ngModelChange"], [1, "alert_field", "form-select", "form-select-sm", "me-2", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip1", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip2", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["placeholder", "Expiry YYYY-MM-DD", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["value", ">"], ["value", "<"], ["placeholder", "Price", "type", "number", 1, "me-2", "mb-1", "form-control", "form-control-sm", "alert_field", 3, "ngModel", "ngModelChange"], ["rows", "5", 2, "width", "100%", 3, "ngModel", "ngModelChange"], [1, "confirmation-check", "form-check-inline", "mt-0"], ["type", "radio", "value", "upstox", "id", "upstox_orders", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "upstox_orders", 1, "form-check-label"], ["type", "radio", "value", "zerodha", "id", "zerodha_orders", 1, "form-check-input", "me-1", 3, "ngModel", "ngModelChange"], ["for", "zerodha_orders", 1, "form-check-label"], ["type", "button", 1, "btn", "btn-secondary", "btn-sm", 2, "margin-top", "-7px", 3, "click"], [1, "form-select", "form-select-sm", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["id", "place_expiry_date", "placeholder", "place_expiry_date", 1, "form-control", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngModel", "ngModelChange"], ["id", "place_qty", "placeholder", "qty", 1, "form-control", "fw-bold", "me-2", 2, "width", "120px", "display", "inline-block", 3, "ngClass", "ngModel", "ngModelChange"], ["id", "curr_pos", "placeholder", "curr_pos", 1, "form-control", "fw-bold", "me-1", 2, "width", "120px", "display", "inline-block", 3, "ngClass", "ngModel", "ngModelChange"], [2, "text-align", "left", "font-size", "10px", 3, "ngClass"], ["style", "color: orange; font-weight: bold; margin-left: 4px;", 4, "ngIf"], [1, "me-2", 2, "display", "inline-block"], ["id", "new_pos", "placeholder", "new_pos", 1, "form-control", "fw-bold", "me-1", 2, "width", "120px", "display", "inline-block", 3, "ngClass", "ngModel", "ngModelChange"], [2, "color", "orange", "font-weight", "bold", "margin-left", "4px"], ["id", "accordionStraddle", 1, "accordion", "mb-2"], ["type", "button", "data-bs-toggle", "collapse", "data-bs-target", "#straddleSection", "aria-expanded", "true", "aria-controls", "straddleSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "straddleSection", "aria-labelledby", "headingOne", "data-bs-parent", "#accordionStraddle", 1, "accordion-collapse", "collapse", "p-2"], ["placeholder", "Expiry YYYY-MM-DD", "id", "payOffExpiry", 1, "me-2", "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["placeholder", "Scrip", "id", "payOffExpiry", 1, "mb-1", "form-control", "form-control-sm", 3, "ngModel", "ngModelChange"], ["id", "accordionCharts", 1, "accordion"], ["type", "button", "data-toggle", "collapse", "data-target", "#chartsSection", "aria-expanded", "true", "aria-controls", "chartsSection", 1, "accordion-button", "collapsed", "fw-bold"], ["id", "chartsSection", "aria-labelledby", "headingOne", "data-parent", "#accordionCharts", 1, "accordion-collapse", "collapse", "p-2"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=8985&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"], ["height", "600", "width", "760", "src", "https://ssltvc.forexprostools.com/?pair_ID=160&height=600&width=760&interval=300&plotStyle=candles&domain_ID=56&lang_ID=56&timezone_ID=20"]], template: function ChartComponent_Template(rf, ctx) { if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "div", 1);
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "h2", 2);
@@ -13659,7 +13785,7 @@ ChartComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_12__
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](86, "Algo");
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](87, ChartComponent_div_87_Template, 7, 5, "div", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](87, ChartComponent_div_87_Template, 11, 6, "div", 19);
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](88, ChartComponent_div_88_Template, 21, 2, "div", 20);
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](89, "div", 21);
@@ -17521,6 +17647,14 @@ AppConstants.numSlabs = {
     'SENSEX': 3,
     'BANKEX': 3,
 };
+AppConstants.slabOrderId = {
+    'MIDCPNIFTY': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'FINNIFTY': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'BANKNIFTY': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'NIFTY': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'SENSEX': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'BANKEX': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+};
 AppConstants.minDistTillTime = {
     'MIDCPNIFTY': { '12:00': 150, '13:30': 100, '14:30': 100, '15:31': 100, },
     'FINNIFTY': { '12:00': 150, '13:30': 150, '14:30': 100, '15:31': 50, },
@@ -17570,12 +17704,12 @@ AppConstants.slabStrikes = {
     'BANKEX': { 1: { 'CE': '', 'PE': '' }, 2: { 'CE': '', 'PE': '' }, 3: { 'CE': '', 'PE': '' }, },
 };
 AppConstants.slabCurrEntryPrice = {
-    'MIDCPNIFTY': { 1: { 'CE': 0.0, 'PE': 0.0 }, 2: { 'CE': 0.0, 'PE': 0.0 }, 3: { 'CE': 0.0, 'PE': 0.0 }, },
-    'FINNIFTY': { 1: { 'CE': 0.0, 'PE': 0.0 }, 2: { 'CE': 0.0, 'PE': 0.0 }, 3: { 'CE': 0.0, 'PE': 0.0 }, },
-    'BANKNIFTY': { 1: { 'CE': 0.0, 'PE': 0.0 }, 2: { 'CE': 0.0, 'PE': 0.0 }, 3: { 'CE': 0.0, 'PE': 0.0 }, },
-    'NIFTY': { 1: { 'CE': 0.0, 'PE': 0.0 }, 2: { 'CE': 0.0, 'PE': 0.0 }, 3: { 'CE': 0.0, 'PE': 0.0 }, },
-    'SENSEX': { 1: { 'CE': 0.0, 'PE': 0.0 }, 2: { 'CE': 0.0, 'PE': 0.0 }, 3: { 'CE': 0.0, 'PE': 0.0 }, },
-    'BANKEX': { 1: { 'CE': 0.0, 'PE': 0.0 }, 2: { 'CE': 0.0, 'PE': 0.0 }, 3: { 'CE': 0.0, 'PE': 0.0 }, },
+    'MIDCPNIFTY': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'FINNIFTY': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'BANKNIFTY': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'NIFTY': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'SENSEX': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
+    'BANKEX': { 1: { 'CE': null, 'PE': null }, 2: { 'CE': null, 'PE': null }, 3: { 'CE': null, 'PE': null }, },
 };
 AppConstants.slabSL = {
     'MIDCPNIFTY': { 1: 0.6, 2: 0.7, 3: 0.8 },
@@ -20291,18 +20425,21 @@ class ZerodhaWebsocketService {
                 let parsed = this.mapService.parseSymbol(data.tradingsymbol);
                 let scrip = parsed.strike + parsed.type;
                 _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'success', 'message': 'COMPLETE ' + scrip + ' ' + data.transaction_type + ' ' + data.quantity });
-                setTimeout(() => {
-                    _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.next('refreshAll');
-                }, 500);
+                /* setTimeout(() => {
+                  AppConstants.miscEvent$.next('refreshAll');
+                }, 500); */
             }
             if (data.status === 'REJECTED') {
                 let parsed = this.mapService.parseSymbol(data.tradingsymbol);
                 let scrip = parsed.strike + parsed.type;
                 _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': 'REJECTED ' + scrip + ' ' + data.transaction_type + ' ' + data.quantity + ' ' + data.status_message });
-                setTimeout(() => {
-                    _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.next('refreshAll');
-                }, 500);
+                /* setTimeout(() => {
+                  AppConstants.miscEvent$.next('refreshAll');
+                }, 500); */
             }
+            setTimeout(() => {
+                _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.next('refreshAll');
+            }, 500);
         }
     }
     // parse received binary message. each message is a combination of multiple tick packets
