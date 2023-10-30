@@ -9307,7 +9307,7 @@ class ChartComponent {
         _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.miscEvent$.subscribe(res => {
             console.log('chart component miscEvent: ', res);
             if (res === 'ordersReceived') {
-                if (this.enableAlgo) {
+                if (this.enableAlgo && !this.algoSimulated) {
                     this.recreateAlgoPos();
                     this.refreshPositions();
                     this.savePositions(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoStrategyNum, false);
