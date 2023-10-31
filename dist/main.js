@@ -1932,6 +1932,9 @@ class AppComponent {
             console.log('app miscEvent: ', res);
             if (res === 'refreshAll') {
                 this.refreshAll();
+                setTimeout(() => {
+                    this.refreshAll();
+                }, 2500);
             }
         });
     }
@@ -20514,7 +20517,7 @@ class ZerodhaWebsocketService {
             if (data.status === 'OPEN') {
                 //let scrip = this.mapService.parseSymbol(data.tradingsymbol);
                 //AppConstants.requestStatusEvent$.next({'status': 'secondary', 'message': 'OPEN ' + scrip + ' ' + data.transaction_type + ' ' + data.quantity});
-                _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.miscEvent$.next('refreshAll');
+                // AppConstants.miscEvent$.next('refreshAll');
             }
             if (data.status === 'COMPLETE') {
                 let parsed = this.mapService.parseSymbol(data.tradingsymbol);
