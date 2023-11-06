@@ -13306,22 +13306,22 @@ class ChartComponent {
         console.log(event);
         if (event.key === 'ArrowUp') {
             if (which === 'sl') {
-                algo_pos.sl_strike = this.changeAlgoStrike(this.strikeStepValue, algo_pos.sl_strike);
+                algo_pos.sl_strike = this.changeAlgoStrike(this.strikeStepValue, algo_pos.sl_strike, algo_pos.scrip, which);
             }
             if (which === 'rollin') {
-                algo_pos.rollin_strike = this.changeAlgoStrike(this.strikeStepValue, algo_pos.rollin_strike);
+                algo_pos.rollin_strike = this.changeAlgoStrike(this.strikeStepValue, algo_pos.rollin_strike, algo_pos.scrip, which);
             }
         }
         else if (event.key === 'ArrowDown') {
             if (which === 'sl') {
-                algo_pos.sl_strike = this.changeAlgoStrike(-this.strikeStepValue, algo_pos.sl_strike);
+                algo_pos.sl_strike = this.changeAlgoStrike(-this.strikeStepValue, algo_pos.sl_strike, algo_pos.scrip, which);
             }
             if (which === 'rollin') {
-                algo_pos.rollin_strike = this.changeAlgoStrike(-this.strikeStepValue, algo_pos.rollin_strike);
+                algo_pos.rollin_strike = this.changeAlgoStrike(-this.strikeStepValue, algo_pos.rollin_strike, algo_pos.scrip, which);
             }
         }
     }
-    changeAlgoStrike(step, strike) {
+    changeAlgoStrike(step, strike, compare_strike, which) {
         let symbol = strike;
         let type = '';
         if (symbol.includes('CE')) {
@@ -13331,8 +13331,33 @@ class ChartComponent {
             type = 'PE';
         }
         symbol = Number(symbol.slice(0, -2)); // remove CE PE at end
-        let new_strike = (symbol + step) + type;
-        return new_strike;
+        let c_strike = Number(compare_strike.slice(0, -2)); // remove CE PE at end
+        let new_strike = symbol + step;
+        if (type === "CE") {
+            if (which === 'sl') {
+                if (new_strike < c_strike) {
+                    new_strike = c_strike;
+                }
+            }
+            if (which === 'rollin') {
+                if (new_strike > c_strike) {
+                    new_strike = c_strike;
+                }
+            }
+        }
+        if (type === "PE") {
+            if (which === 'sl') {
+                if (new_strike > c_strike) {
+                    new_strike = c_strike;
+                }
+            }
+            if (which === 'rollin') {
+                if (new_strike < c_strike) {
+                    new_strike = c_strike;
+                }
+            }
+        }
+        return (new_strike + type);
     }
     isMarketClosed() {
         let curr_date = new Date();
@@ -13365,16 +13390,16 @@ class ChartComponent {
             _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade = this.mapService.findTodayExpiry(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.sensexExpiries);
         }
         if (!_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade) {
-            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade = 'BANKEX';
-            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade = this.mapService.findTodayExpiry(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bankexExpiries);
-        }
-        if (!_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade) {
             _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade = 'NIFTY';
             _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade = this.mapService.findTodayExpiry(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.niftyExpiries);
         }
         if (!_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade) {
             _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade = 'MIDCPNIFTY';
             _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade = this.mapService.findTodayExpiry(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.midcapExpiries);
+        }
+        if (!_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade) {
+            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade = 'BANKEX';
+            _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.expiryDateToTrade = this.mapService.findTodayExpiry(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.bankexExpiries);
         }
         // AppConstants.instruToTrade = 'MIDCPNIFTY';
         // AppConstants.expiryDateToTrade = new Date(2023, 9, 30);
@@ -13565,7 +13590,7 @@ class ChartComponent {
                     diffOrderIdPE = true;
                     _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE'] = copy_obj_pe.orderId;
                 }
-                if (diffOrderIdPE || value['PE'] == '' || _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE']) {
+                if (diffOrderIdPE || value['PE'] == '' || !_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabCurrEntryPrice[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE']) {
                     if (_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE']) {
                         let obj_pe = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.orders.find(o => o.id === _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.slabOrderId[_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.instruToTrade][key]['PE']);
                         if (obj_pe) {
@@ -18366,8 +18391,7 @@ AppConstants.monthlyExpiryDatesFINNIFTY = {
     '23SEP': new Date(2023, 8, 26),
     '23OCT': new Date(2023, 9, 31),
     '23NOV': new Date(2023, 10, 28),
-    // TODO below
-    '23DEC': new Date(2023, 11, 28),
+    '23DEC': new Date(2023, 11, 26),
 };
 AppConstants.monthlyExpiryDatesMidcap = {
     '23JAN': new Date(2023, 0, 31),
@@ -18380,9 +18404,8 @@ AppConstants.monthlyExpiryDatesMidcap = {
     '23AUG': new Date(2023, 7, 28),
     '23SEP': new Date(2023, 8, 25),
     '23OCT': new Date(2023, 9, 30),
-    // TODO below
     '23NOV': new Date(2023, 10, 24),
-    '23DEC': new Date(2023, 11, 28),
+    '23DEC': new Date(2023, 11, 22),
 };
 AppConstants.monthlyExpiryDatesSensex = {
     '23JAN': new Date(2023, 0, 25),
@@ -18580,11 +18603,12 @@ AppConstants.niftyExpiries = [
     new Date(2023, 9, 19),
     new Date(2023, 9, 26),
     new Date(2023, 10, 2),
+    new Date(2023, 10, 9),
+    new Date(2023, 10, 16),
+    new Date(2023, 10, 23),
+    new Date(2023, 10, 30),
     // TODO below
     /*
-    new Date(2023, 10, 10),
-    new Date(2023, 10, 17),
-    new Date(2023, 10, 24),
     new Date(2023, 11, 1),
     new Date(2023, 11, 8),
     new Date(2023, 11, 15),
@@ -18688,12 +18712,12 @@ AppConstants.bnfExpiries = [
     new Date(2023, 9, 18),
     new Date(2023, 9, 26),
     new Date(2023, 10, 1),
+    new Date(2023, 10, 8),
+    new Date(2023, 10, 15),
+    new Date(2023, 10, 22),
+    new Date(2023, 11, 30),
     // TODO below
     /*
-     new Date(2023, 10, 10),
-     new Date(2023, 10, 17),
-     new Date(2023, 10, 24),
-     new Date(2023, 11, 1),
      new Date(2023, 11, 8),
      new Date(2023, 11, 15),
      new Date(2023, 11, 22),
@@ -18743,12 +18767,12 @@ AppConstants.finniftyExpiries = [
     new Date(2023, 9, 17),
     new Date(2023, 9, 23),
     new Date(2023, 9, 31),
+    new Date(2023, 10, 7),
+    new Date(2023, 10, 13),
+    new Date(2023, 10, 21),
+    new Date(2023, 10, 28),
     // TODO below,
     /*
-    new Date(2023, 10, 3),
-    new Date(2023, 10, 10),
-    new Date(2023, 10, 17),
-    new Date(2023, 10, 24),
     new Date(2023, 11, 1),
     new Date(2023, 11, 8),
     new Date(2023, 11, 15),
@@ -18798,12 +18822,13 @@ AppConstants.midcapExpiries = [
     new Date(2023, 9, 16),
     new Date(2023, 9, 23),
     new Date(2023, 9, 30),
+    new Date(2023, 10, 6),
+    new Date(2023, 10, 13),
+    new Date(2023, 10, 20),
+    new Date(2023, 10, 24),
     // TODO below
     /*
-    new Date(2023, 10, 3),
-    new Date(2023, 10, 10),
-    new Date(2023, 10, 17),
-    new Date(2023, 10, 24),
+    
     new Date(2023, 11, 1),
     new Date(2023, 11, 8),
     new Date(2023, 11, 15),
@@ -18854,11 +18879,11 @@ AppConstants.sensexExpiries = [
     new Date(2023, 9, 27),
     new Date(2023, 10, 3),
     new Date(2023, 10, 10),
-    // TODO below,
-    /*
     new Date(2023, 10, 17),
     new Date(2023, 10, 24),
     new Date(2023, 11, 1),
+    // TODO below,
+    /*
     new Date(2023, 11, 8),
     new Date(2023, 11, 15),
     new Date(2023, 11, 22),
