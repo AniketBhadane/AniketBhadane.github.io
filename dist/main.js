@@ -10264,6 +10264,14 @@ class ChartComponent {
                 }
             }
         }
+        let mtm_interval = setInterval(() => {
+            if (this.isMarketClosed()) {
+                clearInterval(mtm_interval);
+            }
+            else {
+                this.saveMTMToLocal();
+            }
+        }, 30000);
     }
     ngAfterViewInit() {
         setTimeout(() => {
@@ -10457,6 +10465,20 @@ class ChartComponent {
                 str += 'END OF MTM\r\n';
                 str += this.algoLog + '\r\n';
                 // console.log('algo mtm', this.algo_mtm);
+            }
+            else if (num === 1) {
+                str += 'END OF DATA\r\n';
+                let d = new Date();
+                let dateString = '' + d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+                let strat_mtm = JSON.parse(localStorage.getItem('mtm_1_' + dateString));
+                strat_mtm.forEach(element => {
+                    let row = '';
+                    row += element[0] + ',' + element[1];
+                    str += row + '\r\n';
+                });
+                str += 'END OF MTM\r\n';
+                str += this.algoLog + '\r\n';
+                // console.log('strat mtm', this.strat_mtm);
             }
             const downloadFile = new Blob([str], {
                 type: 'application/x-msdownload',
@@ -13223,6 +13245,19 @@ class ChartComponent {
             });
             return found;
         }
+    }
+    saveMTMToLocal() {
+        let d = new Date();
+        let dateString = '' + d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
+        let dateTimeString = '' + d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) + ' ' + d.toTimeString().split(' ')[0];
+        let mtm = this.getStrategyPnL(1);
+        let strat_mtm = JSON.parse(localStorage.getItem('mtm_1_' + dateString));
+        console.log('mtm 1', this.algo_mtm);
+        if (!strat_mtm) {
+            strat_mtm = [];
+        }
+        strat_mtm.push([dateTimeString, mtm]);
+        localStorage.setItem('mtm_1_' + dateString, JSON.stringify(strat_mtm));
     }
     // algo code starts
     startAlgo() {
