@@ -13465,11 +13465,11 @@ class ChartComponent {
     entryScheduler() {
         console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'entryInterval starting now');
         this.entryInterval = setInterval(() => {
-            /* if (this.isMarketClosed()) {
-              this.addToAlgoLog('Market closed. Stopping entryInterval');
-              clearInterval(this.entryInterval);
-              return;
-            } */
+            if (this.isMarketClosed()) {
+                this.addToAlgoLog('Market closed. Stopping entryInterval');
+                clearInterval(this.entryInterval);
+                return;
+            }
             if (!this.isSystemOkay()) {
                 console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'entryInterval - System not okay. Skipping...');
                 return;
@@ -13766,11 +13766,11 @@ class ChartComponent {
     algoScheduler() {
         console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'algoInterval starting now');
         this.algoInterval = setInterval(() => {
-            /* if (this.isMarketClosed()) {
-              this.addToAlgoLog('Market closed. Stopping algoInterval');
-              clearInterval(this.algoInterval);
-              return;
-            } */
+            if (this.isMarketClosed()) {
+                this.addToAlgoLog('Market closed. Stopping algoInterval');
+                clearInterval(this.algoInterval);
+                return;
+            }
             if (!this.isSystemOkay()) {
                 console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'algoInterval - System not okay. Skipping...');
                 return;
@@ -13958,11 +13958,11 @@ class ChartComponent {
     algoSchedule2() {
         console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'algoInterval starting now');
         this.algoInterval = setInterval(() => {
-            /* if (this.isMarketClosed()) {
-              this.addToAlgoLog('Market closed. Stopping algoInterval');
-              clearInterval(this.algoInterval);
-              return;
-            } */
+            if (this.isMarketClosed()) {
+                this.addToAlgoLog('Market closed. Stopping algoInterval');
+                clearInterval(this.algoInterval);
+                return;
+            }
             if (!this.isSystemOkay()) {
                 console.log('ALGO ' + new Date().toLocaleTimeString() + ' - ' + 'algoInterval - System not okay. Skipping...');
                 return;
@@ -18642,13 +18642,11 @@ AppConstants.niftyExpiries = [
     new Date(2023, 10, 16),
     new Date(2023, 10, 23),
     new Date(2023, 10, 30),
+    new Date(2023, 11, 7),
+    new Date(2023, 11, 14),
+    new Date(2023, 11, 21),
+    new Date(2023, 11, 28),
     // TODO below
-    /*
-    new Date(2023, 11, 1),
-    new Date(2023, 11, 8),
-    new Date(2023, 11, 15),
-    new Date(2023, 11, 22),
-    new Date(2023, 11, 29), */
 ];
 AppConstants.bnfExpiries = [
     new Date(2022, 0, 6),
@@ -18751,12 +18749,11 @@ AppConstants.bnfExpiries = [
     new Date(2023, 10, 15),
     new Date(2023, 10, 22),
     new Date(2023, 11, 30),
+    new Date(2023, 11, 6),
+    new Date(2023, 11, 13),
+    new Date(2023, 11, 20),
+    new Date(2023, 11, 28),
     // TODO below
-    /*
-     new Date(2023, 11, 8),
-     new Date(2023, 11, 15),
-     new Date(2023, 11, 22),
-     new Date(2023, 11, 29), */
 ];
 AppConstants.finniftyExpiries = [
     new Date(2023, 0, 5),
@@ -18806,13 +18803,11 @@ AppConstants.finniftyExpiries = [
     new Date(2023, 10, 13),
     new Date(2023, 10, 21),
     new Date(2023, 10, 28),
-    // TODO below,
-    /*
-    new Date(2023, 11, 1),
-    new Date(2023, 11, 8),
-    new Date(2023, 11, 15),
-    new Date(2023, 11, 22),
-    new Date(2023, 11, 29), */
+    new Date(2023, 11, 5),
+    new Date(2023, 11, 12),
+    new Date(2023, 11, 19),
+    new Date(2023, 11, 26),
+    // TODO below
 ];
 AppConstants.midcapExpiries = [
     /* new Date(2023, 0, 5),
@@ -18861,14 +18856,11 @@ AppConstants.midcapExpiries = [
     new Date(2023, 10, 13),
     new Date(2023, 10, 20),
     new Date(2023, 10, 24),
-    // TODO below
-    /*
-    
-    new Date(2023, 11, 1),
-    new Date(2023, 11, 8),
-    new Date(2023, 11, 15),
+    new Date(2023, 11, 4),
+    new Date(2023, 11, 11),
+    new Date(2023, 11, 18),
     new Date(2023, 11, 22),
-    new Date(2023, 11, 29), */
+    // TODO below    
 ];
 AppConstants.sensexExpiries = [
     /* new Date(2023, 0, 5),
@@ -18917,12 +18909,11 @@ AppConstants.sensexExpiries = [
     new Date(2023, 10, 17),
     new Date(2023, 10, 24),
     new Date(2023, 11, 1),
-    // TODO below,
-    /*
     new Date(2023, 11, 8),
     new Date(2023, 11, 15),
     new Date(2023, 11, 22),
-    new Date(2023, 11, 29), */
+    new Date(2023, 11, 29),
+    // TODO below,
 ];
 AppConstants.bankexExpiries = [
     new Date(2023, 9, 23),
@@ -18931,13 +18922,11 @@ AppConstants.bankexExpiries = [
     new Date(2023, 10, 13),
     new Date(2023, 10, 20),
     new Date(2023, 10, 24),
-    // TODO below
-    /*
-    new Date(2023, 11, 1),
-    new Date(2023, 11, 8),
-    new Date(2023, 11, 15),
+    new Date(2023, 11, 4),
+    new Date(2023, 11, 11),
+    new Date(2023, 11, 18),
     new Date(2023, 11, 22),
-    new Date(2023, 11, 29), */
+    // TODO below
 ];
 AppConstants.usdinrExpiries = [
     new Date(2023, 0, 5),
