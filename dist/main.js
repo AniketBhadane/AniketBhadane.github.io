@@ -12147,6 +12147,8 @@ class ChartComponent {
         error => {
           console.log('getMargin error', error);
         }); */
+        // response:
+        // {"status":"success","data":{"equity":{"enabled":true,"net":741011.0126920007,"available":{"adhoc_margin":0,"cash":206957,"opening_balance":206957,"live_balance":214067,"collateral":12563249.8,"intraday_payin":0},"utilised":{"debits":12029195.787308,"exposure":3864110.787308,"m2m_realised":0,"m2m_unrealised":0,"option_premium":-17539.365404,"payout":-0,"span":8172195,"holding_sales":0,"turnover":0,"liquid_collateral":12563249.8,"stock_collateral":0,"equity":0,"delivery":0}},"commodity":{"enabled":false,"net":0,"available":{"adhoc_margin":0,"cash":0,"opening_balance":0,"live_balance":0,"collateral":0,"intraday_payin":0},"utilised":{"debits":0,"exposure":0,"m2m_realised":0,"m2m_unrealised":0,"option_premium":0,"payout":0,"span":0,"holding_sales":0,"turnover":0,"liquid_collateral":0,"stock_collateral":0,"equity":0,"delivery":0}}}}
         if (this.curr_positions_trades) {
             let d = new Date(this.expiryDate);
             // let month = d.toLocaleString('default', { month: 'short' }).toUpperCase();
@@ -12164,8 +12166,14 @@ class ChartComponent {
     }
     getROI() {
         // console.log('roi: ', this.getStrategyPnL(), parseFloat(this.margin.replace(/,/g, '')));
-        if (this.margin) {
-            let roi = (this.strategyPnl / parseFloat(this.margin.replace(/,/g, ''))) * 100;
+        /* if (this.margin) {
+          let roi = (this.strategyPnl / parseFloat(this.margin.replace(/,/g, ''))) * 100;
+          roi = (Math.round((roi + 0.00001) * 100) / 100);
+          return roi;
+        } */
+        if (this.avail_margin && this.used_margin) {
+            let total_capital = parseFloat(this.avail_margin.replace(/,/g, '')) + parseFloat(this.used_margin.replace(/,/g, ''));
+            let roi = (this.strategyPnl / total_capital) * 100;
             roi = (Math.round((roi + 0.00001) * 100) / 100);
             return roi;
         }
