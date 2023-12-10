@@ -11331,20 +11331,48 @@ class ChartComponent {
             for (let i = 0; i < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions.length; i++) {
                 let element = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.fetchedPositions[i];
                 if (element.instru === this.instru && element.netQty !== 0) {
-                    let a = { 'scrip': element.scrip, 'qty': element.netQty /* , 'expiry': element.expiry */ };
-                    fetched_pos.push(a);
+                    let object = { instru: element.instru, expiry: element.expiry, strike: this.mapService.parseScrip(element.scrip).scrip, optionType: this.mapService.parseScrip(element.scrip).type };
+                    let symbol = this.mapService.getMapKey(object);
+                    let qty = this.isCoveredCallPosition(symbol, element.netQty);
+                    // console.log('CC pos:', symbol, qty);
+                    if (qty !== null) {
+                        if (qty !== 0) {
+                            let a = { 'scrip': element.scrip, 'qty': qty /* , 'expiry': element.expiry */ };
+                            fetched_pos.push(a);
+                        }
+                    }
+                    else {
+                        let a = { 'scrip': element.scrip, 'qty': element.netQty /* , 'expiry': element.expiry */ };
+                        fetched_pos.push(a);
+                    }
                 }
             }
             //console.log('strat_pos',JSON.stringify(strat_pos));
             //console.log('fetched_pos',JSON.stringify(fetched_pos));
             //console.log('***', this.deepEqual(strat_pos, fetched_pos))
-            /* console.log('strat_pos',strat_pos);
-            console.log('fetched_pos',fetched_pos);
-            console.log('json1',JSON.stringify(strat_pos));
-            console.log('json2',JSON.stringify(fetched_pos));
-            console.log('equal',JSON.stringify(strat_pos) === JSON.stringify(fetched_pos)); */
+            /* console.log('cc strat_pos',strat_pos);
+            console.log('cc fetched_pos',fetched_pos);
+            console.log('cc json1',JSON.stringify(strat_pos));
+            console.log('cc json2',JSON.stringify(fetched_pos));
+            console.log('cc equal',JSON.stringify(strat_pos) === JSON.stringify(fetched_pos)); */
             this.matchPositions = JSON.stringify(strat_pos) === JSON.stringify(fetched_pos);
         }
+    }
+    isCoveredCallPosition(symbol, netQty) {
+        for (let i = 0; i < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.coveredCallPositions.length; i++) {
+            let element = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.coveredCallPositions[i];
+            if (symbol === element[0]) {
+                let qty = 0;
+                if (netQty < Number(element[1])) {
+                    qty = netQty - Number(element[1]);
+                }
+                else {
+                    qty = Number(element[1]) - netQty;
+                }
+                return qty;
+            }
+        }
+        return null;
     }
     deepEqual(x, y) {
         let ok = Object.keys, tx = typeof x, ty = typeof y;
@@ -19086,6 +19114,10 @@ AppConstants.usdinrExpiries = [
     new Date(2023, 11, 15),
     new Date(2023, 11, 22),
     new Date(2023, 11, 29),
+];
+AppConstants.coveredCallPositions = [
+    ['NIFTY23DEC19800CE', -50],
+    ['NIFTY23DEC20800CE', -50],
 ];
 /* Enter Supports from high to low, Enter Resistances from Low to High */
 AppConstants.holdings = {
