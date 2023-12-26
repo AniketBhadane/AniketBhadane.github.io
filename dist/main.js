@@ -5449,7 +5449,7 @@ class AppService {
     }
     getQtyUptoFreezeLimit(instru, qty, roll_qty) {
         let freezeLimit = _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.freezeLimit[instru];
-        if (roll_qty) {
+        if (roll_qty && (Math.abs(roll_qty) < Math.abs(qty))) {
             if (freezeLimit < Math.abs(roll_qty)) {
                 if (roll_qty < 0) {
                     return -freezeLimit;
