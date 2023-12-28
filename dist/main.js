@@ -2048,6 +2048,7 @@ class AppComponent {
         //this.zerodhaWebsocketService.connect();
         //console.log(sha256('AB03397849LHZEV09feJdK7c59mzI4vxZOpJ0McPVg6aYP0kKmnMq1Gbn3DQMBOAb8xE7b6EJCkOspKl1EBljBUEmVppzSTT39G7rd9gIy01cWqzZTocnuCHXpBSj14TiyP0SDF80B9E4QG3EXTP2M2UXGQ6TYCUD2FQAHNT'));
         // this.appService.dummyRequest();
+        //this.appService.coinRequest3();
         //this.startMonitoringGreeks();
         // this.getNSE_OC();
         this.calcBabyName(null);
@@ -2138,7 +2139,7 @@ class AppComponent {
                 from_date.setDate(d.getDate() - i - 50);
                 let fromString = '' + from_date.getFullYear() + '-' + ('0' + (from_date.getMonth() + 1)).slice(-2) + '-' + ('0' + from_date.getDate()).slice(-2);
                 this.holdingsService.getZerodhaInstruments(append, _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth, fromString, toDateString, expiryString, true);
-            }, counter * 60000);
+            }, counter * 120000);
             counter++;
         }
     }
@@ -4666,6 +4667,86 @@ class AppService {
             console.log('success', response);
         }, error => {
             console.log('error', error);
+            let errmsg = 'Error (mostly timeout)';
+            if (error.error && error.error.message) {
+                errmsg = error.error.message;
+            }
+            else {
+                errmsg = error.message;
+            }
+            _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': errmsg });
+            //this.playAudio('error');
+        });
+    }
+    coinRequest() {
+        let httpOptions = {
+            withCredentials: true,
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpHeaders({
+                'cookie': '_ga=GA1.2.1309723177.1657258383; coin_session=pcJknMigqOhgkkMqqVzVsNrS3XcgvOy9; _pk_id.1.35a4=7cc08132c0469b55.1678078440.; signup_csrftoken=OF2XrKuTPpUNJZGGK5ODQJVW4joNdL7YjkuA7LEYwAX8SeWJqULTjbSe8Ucrqexg; AMP_MKTG_d9d4ec74fa=JTdCJTdE; _ga_Y19MKQM0YF=GS1.2.1700802963.1.0.1700802963.0.0.0; AMP_d9d4ec74fa=JTdCJTIyZGV2aWNlSWQlMjIlM0ElMjJlMjdiOGYwOS1mZWUzLTQ3OWMtYjIzNy02OTA4YjAwNTliYjQlMjIlMkMlMjJzZXNzaW9uSWQlMjIlM0ExNzAwODAyOTYyNzU0JTJDJTIyb3B0T3V0JTIyJTNBZmFsc2UlMkMlMjJsYXN0RXZlbnRUaW1lJTIyJTNBMTcwMDgwMjk3MzE3OSUyQyUyMmxhc3RFdmVudElkJTIyJTNBMiU3RA==; cf_clearance=QcTTs0eM7QOX7QqkJ..WB6SxuV4BMtvtclA_wV0RFxo-1702439681-0-1-aa6e5b56.99ac5591.5bd7611e-160.0.0; public_token=W7msMal5BeMrBUeLH4NnyEgLR6zMpAXa; _cfuvid=745C8KuaaVvRRW4gl8oox4K.jm3iqePintSSSArejws-1703667311507-0-604800000; __cf_bm=vQXpFrgA1cJCeU.22dFnMGaJyyN6rvKuZgPY7xcSysk-1703681906-1-AekhZ3Q2fm30ewvnalldMjowBNU6kpt1v9t2bR5/pcI9op+6FikhnmazsZzXrvSa4Q1/yKjPPEYrupu8554kSCQ=; _pk_ref.1.35a4=%5B%22%22%2C%22%22%2C1703682483%2C%22https%3A%2F%2Fconsole.zerodha.com%2F%22%5D; _pk_ses.1.35a4=1',
+                'x-csrftoken': 'W7msMal5BeMrBUeLH4NnyEgLR6zMpAXa'
+            }),
+            /* responseType: 'json' as 'json', */
+        };
+        let url = 'https://coin.zerodha.com/api/mf/holdings';
+        console.log('*** making coin request');
+        this.http.get(url, httpOptions)
+            .subscribe(response => {
+            console.log('*** success', response);
+        }, error => {
+            console.log('*** error', error);
+            let errmsg = 'Error (mostly timeout)';
+            if (error.error && error.error.message) {
+                errmsg = error.error.message;
+            }
+            else {
+                errmsg = error.message;
+            }
+            _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': errmsg });
+            //this.playAudio('error');
+        });
+    }
+    coinRequest2() {
+        let httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpHeaders({
+                Authorization: 'enctoken 2yAOdBPOZ/+KPIvhO3XXZxa6FheVGkciQfm+zluD8KX9tlc4yaVLLqqPSx/SKtZx9Uv97XGtIM02ipPEktyvV06q6l8cFidfuqAbbMVUjUihABNuDug0Vw==',
+                'Content-Type': 'application/json'
+            }),
+            responseType: 'json',
+        };
+        let url = 'https://api.kite.trade/mf/holdings';
+        console.log('*** making mf request');
+        this.http.get(url, httpOptions)
+            .subscribe(response => {
+            console.log('*** success', response);
+        }, error => {
+            console.log('*** error', error);
+            let errmsg = 'Error (mostly timeout)';
+            if (error.error && error.error.message) {
+                errmsg = error.error.message;
+            }
+            else {
+                errmsg = error.message;
+            }
+            _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': errmsg });
+            //this.playAudio('error');
+        });
+    }
+    // https://staticassets.zerodha.com/coin/historical-nav/INF179K01WM1.json
+    coinRequest3() {
+        let httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_9__.HttpHeaders({
+                Authorization: 'enctoken 2yAOdBPOZ/+KPIvhO3XXZxa6FheVGkciQfm+zluD8KX9tlc4yaVLLqqPSx/SKtZx9Uv97XGtIM02ipPEktyvV06q6l8cFidfuqAbbMVUjUihABNuDug0Vw==',
+                'Content-Type': 'application/json'
+            }),
+            responseType: 'json',
+        };
+        let url = 'https://staticassets.zerodha.com/coin/historical-nav/INF179K01WM1.json';
+        console.log('*** making mf request');
+        this.http.get(url)
+            .subscribe(response => {
+            console.log('*** success', response);
+        }, error => {
+            console.log('*** error', error);
             let errmsg = 'Error (mostly timeout)';
             if (error.error && error.error.message) {
                 errmsg = error.error.message;
@@ -10479,6 +10560,7 @@ class ChartComponent {
         this.chartingService.resizeSingleCharts(this.expand_single_charts);
     }
     ngOnInit() {
+        // console.log(AppConstants.mfInvested.find(o => o[0] === 'NIFTYBEES'));
         /* let positions = {
           instru: 'NIFTY',
           expiry: '2020-10-01',
@@ -12441,7 +12523,7 @@ class ChartComponent {
                     let mkt_price = this.mapService.getScripLTP(this.instru, expiry, this.mapService.parseScrip(element.scrip).scrip, this.mapService.parseScrip(element.scrip).type);
                     let iv = this.calculateIV(ltp, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, typet0, mkt_price);
                     // console.log('*** ', pos_strike, typet0, expiry, iv);
-                    let t0_ = this.calculateT0AtPointForStrike(point, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, iv, typet0, add_days);
+                    let t0_ = this.calculateT0AtPointForStrike(point, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, iv, typet0, add_days, element);
                     t0_ = t0_ - element.entry;
                     t0_ = t0_ * element.qty;
                     pnl += t0_;
@@ -12453,17 +12535,17 @@ class ChartComponent {
                 else {
                     let mkt_price = this.mapService.getScripLTP(this.instru, expiry, this.mapService.parseScrip(element.scrip).scrip, this.mapService.parseScrip(element.scrip).type);
                     let iv = this.calculateIV(ltp, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, typet0, mkt_price);
-                    let t0_ = this.calculateT0AtPointForStrike(point, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, iv, typet0);
+                    let t0_ = this.calculateT0AtPointForStrike(point, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, iv, typet0, 0, element);
                     // console.log('*** ', pos_strike, typet0, expiry, mkt_price, iv, t0_);
                     t0_ = t0_ - element.entry;
                     t0_ = t0_ * element.qty;
                     t0 += t0_;
                     if (this.multi_t0) {
-                        let t1_ = this.calculateT0AtPointForStrike(point, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, iv, typet0, 1);
+                        let t1_ = this.calculateT0AtPointForStrike(point, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, iv, typet0, 1, element);
                         t1_ = t1_ - element.entry;
                         t1_ = t1_ * element.qty;
                         t1 += t1_;
-                        let t2_ = this.calculateT0AtPointForStrike(point, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, iv, typet0, 2);
+                        let t2_ = this.calculateT0AtPointForStrike(point, pos_strike, _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.INTEREST_RATE, expiry, iv, typet0, 2, element);
                         t2_ = t2_ - element.entry;
                         t2_ = t2_ * element.qty;
                         t2 += t2_;
@@ -12507,8 +12589,11 @@ class ChartComponent {
         return iv;
     }
     // this logic is combination of CallOption and PutOption code in zerodha bl.js
-    calculateT0AtPointForStrike(spot, strike, int_rate, expiry_date, volatility, type, add_days) {
+    calculateT0AtPointForStrike(spot, strike, int_rate, expiry_date, volatility, type, add_days, pos) {
         let t0 = 0;
+        if (pos && _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.mfInvested.find(o => o[0] === pos.scrip)) {
+            return this.calculatePnLAtPointforNonOption(spot, pos);
+        }
         let date_expiry = new Date(expiry_date);
         if (this.instru === 'USDINR') {
             date_expiry.setHours(12, 30, 0);
@@ -12578,6 +12663,17 @@ class ChartComponent {
                 t * (0.27886807 + t * (-1.13520398 + t * (1.48851587 +
                     t * (-0.82215223 + t * 0.17087277)))))))));
         return x >= 0 ? r : 2 - r;
+    }
+    calculatePnLAtPointforNonOption(spot, pos) {
+        let o = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.mfInvested.find(o => o[0] === pos.scrip);
+        let priceAtPoint = spot * Number(o[1]);
+        return priceAtPoint;
+        // let pnl = (priceAtPoint - pos.entry) * pos.qty;
+        // console.log('aniket', spot, Number(o[1]), priceAtPoint, pos.entry, pos.qty, pnl);
+        // multiplying factor with respect to spot is defined in appconstants
+        /* price at point = point * multiplying factor
+        pnl = (price at point - entry) * qty; */
+        // return pnl;
     }
     calculatePnLAtPointForStrike(point, pos_strike, qty, entry, type) {
         let pnl = 0;
@@ -19771,6 +19867,10 @@ AppConstants.coveredCallPositions = [
     ['NIFTY23DEC19800CE', -50],
     ['NIFTY23DEC20800CE', -50],
 ];
+AppConstants.mfInvested = [
+    ['NIFTYBEES', 0.011038],
+    ['INF179K01WM1', 0.009539861],
+];
 /* Enter Supports from high to low, Enter Resistances from Low to High */
 AppConstants.holdings = {
     /* 'NIFTY 50': { 'ltp': null, 'volume': null, 'oned': null, 'onew': null, 'onem': null, 'threem': null, 'fiftytwow': null, 'avgp': 17369, 'qty': 161, 'support': [16800, 16500], 'resistance': [18350, 18600] }, */ /* 187.97 * 92.4 */ /* 185.4 * 92.4 */
@@ -20070,7 +20170,7 @@ class HoldingsService {
         this.to_date = '';
         this.expiry_date = '';
         this.instruments = [];
-        this.delay = 200;
+        this.delay = 300;
         this.data = {};
         this.niftyReturn = {};
     }
@@ -20857,8 +20957,8 @@ class MapService {
         else if (strike === 'BANKEX') {
             symbol = 'BANKEX';
         }
-        else if (strike === 'NIFTYBEES') {
-            symbol = 'NIFTYBEES';
+        else if (_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.mfInvested.find(o => o[0] === strike)) {
+            symbol = strike;
         }
         else if (strike === 'USDINR') {
             symbol = 'USDINR';
@@ -21045,15 +21145,20 @@ class MapService {
     }
     parseScrip(scrip) {
         if (scrip) {
-            let type = '';
-            if (scrip.includes('CE')) {
-                type = 'CE';
+            if (_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.mfInvested.find(o => o[0] === scrip)) {
+                return { scrip: scrip, type: '' };
             }
-            if (scrip.includes('PE')) {
-                type = 'PE';
+            else {
+                let type = '';
+                if (scrip.includes('CE')) {
+                    type = 'CE';
+                }
+                if (scrip.includes('PE')) {
+                    type = 'PE';
+                }
+                scrip = scrip.slice(0, -2); // remove CE PE at end
+                return { scrip: scrip, type: type };
             }
-            scrip = scrip.slice(0, -2); // remove CE PE at end
-            return { scrip: scrip, type: type };
         }
     }
     getScripLTP(instru, expiryRecvd, strike, optionType) {
@@ -21980,7 +22085,23 @@ class ZerodhaService {
             }
         }
         console.log('ZerodhaService getMastersContract mastersContract', _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.mastersContract);
+        this.getInvestedMFData();
         this.connectWebsocket();
+    }
+    getInvestedMFData() {
+        _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.mfInvested.forEach(element => {
+            if (element[0] !== 'NIFTYBEES') {
+                this.getMFData(element[0]).subscribe((res) => {
+                    console.log('zerodha getMFData response', res);
+                    let nav = res.data.at(-1)[1];
+                    this.mapService.setLtp(String(element[0]), nav);
+                    console.log('mf ltpMap', this.mapService.ltpMap);
+                }, error => {
+                    console.log('zerodha getMFData error', error);
+                    _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': 'MF Fetch Failed' });
+                });
+            }
+        });
     }
     isSocketConnected() {
         return this.zerodhaWebsocketService.isSocketConnected();
@@ -22036,6 +22157,10 @@ class ZerodhaService {
             }
         });
         return return_instru;
+    }
+    getMFData(mf) {
+        let url = 'https://staticassets.zerodha.com/coin/historical-nav/' + mf + '.json';
+        return this.http.get(url);
     }
     getFunds() {
         let access_token = _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth;
