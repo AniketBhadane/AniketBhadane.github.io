@@ -11768,7 +11768,6 @@ class ChartComponent {
         //this.getSelectedPnL();
         this.crossCheckPositions();
         this.copyProperties(this.prev_positions[num]);
-        this.updateAlertPrices();
         // after setting new currLoadNum
         if (this.use_cf_strategies[this.currLoadNum]) {
             this.use_cf = this.use_cf_strategies[this.currLoadNum];
@@ -13825,24 +13824,9 @@ class ChartComponent {
         this.getMargin();
         this.crossCheckPositions();
         this.copyProperties(prev_positions);
-        this.updateAlertPrices();
         //this.reloadPayoffData(this.currLoadNum);
         this.sortSLLPositions();
         this.updateOCValuesForSLL();
-    }
-    updateAlertPrices() {
-        if (this.curr_positions_trades) {
-            this.curr_positions_trades.forEach(a => {
-                if (a.exit === 0 && !a.alertPrice) {
-                    _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.orders.forEach((o) => {
-                        if (o.scrip === a.scrip && o.status === 'COMPLETE') {
-                            a.alertPrice = o.tradedPrice + (o.tradedPrice * 0.3);
-                            return;
-                        }
-                    });
-                }
-            });
-        }
     }
     copyProperties(prev_positions) {
         console.log('prev pos', prev_positions);
@@ -13863,6 +13847,15 @@ class ChartComponent {
                         }
                         else {
                             a.roll_qty = this.appService.getQtyUptoFreezeLimit(this.instru, a.qty, this.inlineOC_qty);
+                        }
+                    }
+                    if (!a.alertPrice) {
+                        for (let i = 0; i < _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.orders.length; i++) {
+                            let o = _common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.orders[i];
+                            if (o.scrip === a.scrip && o.status === 'COMPLETE' && o.qty < 0) {
+                                a.alertPrice = o.tradedPrice + (o.tradedPrice * 0.3);
+                                break;
+                            }
                         }
                     }
                 }
@@ -19864,9 +19857,13 @@ AppConstants.usdinrExpiries = [
     new Date(2023, 11, 29),
 ];
 AppConstants.coveredCallPositions = [
-    ['NIFTY23DEC19800CE', -50],
-    ['NIFTY23DEC20800CE', -50],
+    ['NIFTY23JAN21800CE', -100],
+    ['NIFTY23JAN21700CE', -50],
+    ['NIFTY23JAN21800PE', 100],
+    ['NIFTY23JAN20650CE', -50],
+    ['NIFTY23JAN20600CE', -50],
 ];
+// etf, mf invested with their ratio to underlying
 AppConstants.mfInvested = [
     ['NIFTYBEES', 0.011038],
     ['INF179K01WM1', 0.009539861],
