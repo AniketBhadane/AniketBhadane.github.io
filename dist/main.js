@@ -20065,7 +20065,7 @@ AppConstants.midcapExpiries = [
     new Date(2024, 0, 1),
     new Date(2024, 0, 8),
     new Date(2024, 0, 15),
-    new Date(2024, 0, 22),
+    new Date(2024, 0, 20),
     new Date(2024, 0, 29),
     // TODO below  
 ];
@@ -20142,7 +20142,7 @@ AppConstants.bankexExpiries = [
     new Date(2024, 0, 1),
     new Date(2024, 0, 8),
     new Date(2024, 0, 15),
-    new Date(2024, 0, 22),
+    new Date(2024, 0, 20),
     new Date(2024, 0, 29),
     new Date(2024, 1, 5),
     new Date(2024, 1, 12),
