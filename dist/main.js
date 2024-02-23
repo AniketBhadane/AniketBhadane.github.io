@@ -2109,7 +2109,7 @@ class AppComponent {
                             || this.mapService.isMonthlyExpiry(expiryString, 'MIDCPNIFTY') || this.mapService.isMonthlyExpiry(expiryString, 'SENSEX') || this.mapService.isMonthlyExpiry(expiryString, 'BANKEX')
                             || this.mapService.isMonthlyExpiry(expiryString, 'USDINR')) {
                             append = '';
-                            daysToRetrieve = 90;
+                            daysToRetrieve = 60;
                         }
                         let from_date = new Date(d);
                         from_date.setDate(d.getDate() - daysToRetrieve);
