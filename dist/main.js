@@ -20024,6 +20024,16 @@ AppConstants.niftyExpiries = [
     new Date(2024, 1, 15),
     new Date(2024, 1, 22),
     new Date(2024, 1, 29),
+    new Date(2023, 2, 7),
+    new Date(2023, 2, 14),
+    new Date(2023, 2, 21),
+    new Date(2023, 2, 28),
+    new Date(2023, 3, 4),
+    new Date(2023, 3, 10),
+    new Date(2023, 3, 18),
+    new Date(2023, 3, 25),
+    new Date(2023, 4, 2),
+    new Date(2023, 4, 9),
     // TODO below
 ];
 AppConstants.bnfExpiries = [
@@ -20140,6 +20150,16 @@ AppConstants.bnfExpiries = [
     new Date(2024, 1, 14),
     new Date(2024, 1, 21),
     new Date(2024, 1, 29),
+    new Date(2023, 2, 6),
+    new Date(2023, 2, 13),
+    new Date(2023, 2, 20),
+    new Date(2023, 2, 27),
+    new Date(2023, 3, 3),
+    new Date(2023, 3, 10),
+    new Date(2023, 3, 16),
+    new Date(2023, 3, 24),
+    new Date(2023, 3, 30),
+    new Date(2023, 4, 8),
     // TODO below
 ];
 AppConstants.finniftyExpiries = [
@@ -20203,6 +20223,17 @@ AppConstants.finniftyExpiries = [
     new Date(2024, 1, 13),
     new Date(2024, 1, 20),
     new Date(2024, 1, 27),
+    new Date(2023, 2, 5),
+    new Date(2023, 2, 12),
+    new Date(2023, 2, 19),
+    new Date(2023, 2, 26),
+    new Date(2023, 3, 2),
+    new Date(2023, 3, 9),
+    new Date(2023, 3, 16),
+    new Date(2023, 3, 23),
+    new Date(2023, 3, 30),
+    new Date(2023, 4, 7),
+    new Date(2023, 4, 14),
     // TODO below
 ];
 AppConstants.midcapExpiries = [
@@ -20265,6 +20296,16 @@ AppConstants.midcapExpiries = [
     new Date(2024, 1, 12),
     new Date(2024, 1, 19),
     new Date(2024, 1, 26),
+    new Date(2023, 2, 11),
+    new Date(2023, 2, 18),
+    new Date(2023, 2, 22),
+    new Date(2023, 3, 1),
+    new Date(2023, 3, 8),
+    new Date(2023, 3, 15),
+    new Date(2023, 3, 22),
+    new Date(2023, 3, 29),
+    new Date(2023, 4, 6),
+    new Date(2023, 4, 13),
     // TODO below  
 ];
 AppConstants.sensexExpiries = [
@@ -20326,6 +20367,20 @@ AppConstants.sensexExpiries = [
     new Date(2024, 1, 9),
     new Date(2024, 1, 16),
     new Date(2024, 1, 23),
+    new Date(2023, 2, 1),
+    new Date(2023, 2, 7),
+    new Date(2023, 2, 15),
+    new Date(2023, 2, 22),
+    new Date(2023, 2, 28),
+    new Date(2023, 3, 5),
+    new Date(2023, 3, 12),
+    new Date(2023, 3, 19),
+    new Date(2023, 3, 26),
+    new Date(2023, 4, 3),
+    new Date(2023, 4, 10),
+    new Date(2023, 4, 17),
+    new Date(2023, 4, 24),
+    new Date(2023, 4, 31),
     // TODO below
 ];
 AppConstants.bankexExpiries = [
@@ -20348,6 +20403,16 @@ AppConstants.bankexExpiries = [
     new Date(2024, 1, 12),
     new Date(2024, 1, 19),
     new Date(2024, 1, 26),
+    new Date(2023, 2, 11),
+    new Date(2023, 2, 18),
+    new Date(2023, 2, 22),
+    new Date(2023, 3, 1),
+    new Date(2023, 3, 8),
+    new Date(2023, 3, 15),
+    new Date(2023, 3, 22),
+    new Date(2023, 3, 29),
+    new Date(2023, 4, 6),
+    new Date(2023, 4, 13),
     // TODO below
 ];
 AppConstants.usdinrExpiries = [
@@ -20412,11 +20477,11 @@ AppConstants.coveredCallPositions = [
     ['NIFTY24FEB21450CE', -50],
     ['NIFTY24FEB21400CE', -50],
 ];
-// etf, mf invested with their ratio to underlying
+// etf, mf invested with their ratio to underlying - last updated 10 Apr 2024
 AppConstants.mfInvested = [
-    ['NIFTYBEES', 0.011038, 0],
-    ['INF179K01WM1', 0.009539861, 0],
-    ['INF109K012M7', 0.010310475, 0],
+    ['NIFTYBEES', 0.01107, 0],
+    ['INF179K01WM1', 0.009548, 0],
+    ['INF109K012M7', 0.010321, 0],
 ];
 /* Enter Supports from high to low, Enter Resistances from Low to High */
 AppConstants.holdings = {
