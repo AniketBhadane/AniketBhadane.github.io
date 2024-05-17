@@ -9835,7 +9835,7 @@ class ChartComponent {
         this.use_exclude_guid = true;
         this.use_exclude_guid_strategies = [];
         this.use_curr_expiry = false;
-        this.expand_single_charts = false;
+        this.expand_single_charts = true;
         this.show_news = true;
         this.saveMTM1 = true;
         this.playAlertSound = true;
@@ -19810,8 +19810,8 @@ AppConstants.monthlyExpiryDates = {
     '24APR': new Date(2024, 3, 25),
     '24MAY': new Date(2024, 4, 30),
     '24JUN': new Date(2024, 5, 27),
+    '24JUL': new Date(2024, 6, 25),
     // TODO below
-    '24JUL': new Date(2024, 6, 27),
     '24AUG': new Date(2024, 7, 31),
     '24SEP': new Date(2024, 8, 28),
     '24OCT': new Date(2024, 9, 26),
@@ -19861,8 +19861,8 @@ AppConstants.monthlyExpiryDatesBNF = {
     '24APR': new Date(2024, 3, 24),
     '24MAY': new Date(2024, 4, 29),
     '24JUN': new Date(2024, 5, 26),
+    '24JUL': new Date(2024, 6, 31),
     // TODO below
-    '24JUL': new Date(2024, 6, 27),
     '24AUG': new Date(2024, 7, 31),
     '24SEP': new Date(2024, 8, 28),
     '24OCT': new Date(2024, 9, 26),
@@ -19887,9 +19887,9 @@ AppConstants.monthlyExpiryDatesFINNIFTY = {
     '24MAR': new Date(2024, 2, 26),
     '24APR': new Date(2024, 3, 30),
     '24MAY': new Date(2024, 4, 28),
+    '24JUN': new Date(2024, 5, 28),
+    '24JUL': new Date(2024, 6, 30),
     // TODO below
-    '24JUN': new Date(2024, 5, 27),
-    '24JUL': new Date(2024, 6, 25),
     '24AUG': new Date(2024, 7, 29),
     '24SEP': new Date(2024, 8, 26),
     '24OCT': new Date(2024, 9, 31),
@@ -19914,9 +19914,9 @@ AppConstants.monthlyExpiryDatesMidcap = {
     '24MAR': new Date(2024, 2, 22),
     '24APR': new Date(2024, 3, 29),
     '24MAY': new Date(2024, 4, 27),
+    '24JUN': new Date(2024, 5, 24),
+    '24JUL': new Date(2024, 6, 29),
     // TODO below
-    '24JUN': new Date(2024, 5, 27),
-    '24JUL': new Date(2024, 6, 26),
     '24AUG': new Date(2024, 7, 28),
     '24SEP': new Date(2024, 8, 25),
     '24OCT': new Date(2024, 9, 30),
@@ -19942,8 +19942,8 @@ AppConstants.monthlyExpiryDatesSensex = {
     '24APR': new Date(2024, 3, 26),
     '24MAY': new Date(2024, 4, 31),
     '24JUN': new Date(2024, 5, 28),
+    '24JUL': new Date(2024, 6, 26),
     // TODO below
-    '24JUL': new Date(2024, 6, 28),
     '24AUG': new Date(2024, 7, 25),
     '24SEP': new Date(2024, 8, 29),
     '24OCT': new Date(2024, 9, 27),
@@ -19969,8 +19969,8 @@ AppConstants.monthlyExpiryDatesBankex = {
     '24APR': new Date(2024, 3, 29),
     '24MAY': new Date(2024, 4, 27),
     '24JUN': new Date(2024, 5, 24),
+    '24JUL': new Date(2024, 6, 29),
     // TODO below
-    '24JUL': new Date(2024, 6, 26),
     '24AUG': new Date(2024, 7, 28),
     '24SEP': new Date(2024, 8, 25),
     '24OCT': new Date(2024, 9, 30),
@@ -20065,6 +20065,7 @@ AppConstants.holidays = [
     new Date(2024, 3, 11),
     new Date(2024, 3, 17),
     new Date(2024, 4, 1),
+    new Date(2024, 4, 20),
     new Date(2024, 5, 17),
     new Date(2024, 6, 17),
     new Date(2024, 7, 15),
@@ -20197,6 +20198,13 @@ AppConstants.niftyExpiries = [
     new Date(2024, 3, 25),
     new Date(2024, 4, 2),
     new Date(2024, 4, 9),
+    new Date(2024, 4, 16),
+    new Date(2024, 4, 23),
+    new Date(2024, 4, 30),
+    new Date(2024, 5, 6),
+    new Date(2024, 5, 13),
+    new Date(2024, 5, 20),
+    new Date(2024, 5, 27),
     // TODO below
 ];
 AppConstants.bnfExpiries = [
@@ -20323,6 +20331,13 @@ AppConstants.bnfExpiries = [
     new Date(2024, 3, 24),
     new Date(2024, 3, 30),
     new Date(2024, 4, 8),
+    new Date(2024, 4, 15),
+    new Date(2024, 4, 22),
+    new Date(2024, 4, 29),
+    new Date(2024, 5, 5),
+    new Date(2024, 5, 12),
+    new Date(2024, 5, 19),
+    new Date(2024, 5, 26),
     // TODO below
 ];
 AppConstants.finniftyExpiries = [
@@ -20397,6 +20412,12 @@ AppConstants.finniftyExpiries = [
     new Date(2024, 3, 30),
     new Date(2024, 4, 7),
     new Date(2024, 4, 14),
+    new Date(2024, 4, 21),
+    new Date(2024, 4, 28),
+    new Date(2024, 5, 4),
+    new Date(2024, 5, 11),
+    new Date(2024, 5, 18),
+    new Date(2024, 5, 25),
     // TODO below
 ];
 AppConstants.midcapExpiries = [
@@ -20469,6 +20490,12 @@ AppConstants.midcapExpiries = [
     new Date(2024, 3, 29),
     new Date(2024, 4, 6),
     new Date(2024, 4, 13),
+    new Date(2024, 4, 17),
+    new Date(2024, 4, 27),
+    new Date(2024, 5, 3),
+    new Date(2024, 5, 10),
+    new Date(2024, 5, 14),
+    new Date(2024, 5, 24),
     // TODO below  
 ];
 AppConstants.sensexExpiries = [
@@ -20544,6 +20571,10 @@ AppConstants.sensexExpiries = [
     new Date(2024, 4, 17),
     new Date(2024, 4, 24),
     new Date(2024, 4, 31),
+    new Date(2024, 5, 7),
+    new Date(2024, 5, 14),
+    new Date(2024, 5, 21),
+    new Date(2024, 5, 28),
     // TODO below
 ];
 AppConstants.bankexExpiries = [
@@ -20576,6 +20607,12 @@ AppConstants.bankexExpiries = [
     new Date(2024, 3, 29),
     new Date(2024, 4, 6),
     new Date(2024, 4, 13),
+    new Date(2024, 4, 17),
+    new Date(2024, 4, 27),
+    new Date(2024, 5, 3),
+    new Date(2024, 5, 10),
+    new Date(2024, 5, 14),
+    new Date(2024, 5, 24),
     // TODO below
 ];
 AppConstants.usdinrExpiries = [
