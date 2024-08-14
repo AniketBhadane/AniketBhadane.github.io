@@ -17635,6 +17635,12 @@ class ChartingService {
                 close: ltpCE
             };
             this.single_chart_ce_candlestickSeries.update(currentBarCE);
+            let atpCE = this.mapService.getScripATP(this.charts_instru, this.charts_expiry, this.mapService.parseScrip(this.single_strike_ce).scrip, this.mapService.parseScrip(this.single_strike_ce).type);
+            let currentLineCE = {
+                time: Date.parse(lastCE[0]) / 1000,
+                value: atpCE
+            };
+            this.single_chart_ce_lineSeries.update(currentLineCE);
         }
         if (this.single_strike_pe) {
             let ltpPE = this.mapService.getScripLTP(this.charts_instru, this.charts_expiry, this.mapService.parseScrip(this.single_strike_pe).scrip, this.mapService.parseScrip(this.single_strike_pe).type);
@@ -17649,6 +17655,12 @@ class ChartingService {
                 close: ltpPE
             };
             this.single_chart_pe_candlestickSeries.update(currentBarPE);
+            let atpPE = this.mapService.getScripATP(this.charts_instru, this.charts_expiry, this.mapService.parseScrip(this.single_strike_pe).scrip, this.mapService.parseScrip(this.single_strike_pe).type);
+            let currentLinePE = {
+                time: Date.parse(lastPE[0]) / 1000,
+                value: atpPE
+            };
+            this.single_chart_pe_lineSeries.update(currentLinePE);
         }
         if (this.strangle_strike_ce && this.strangle_strike_pe) {
             let ltpCE = this.mapService.getScripLTP(this.charts_instru, this.charts_expiry, this.mapService.parseScrip(this.strangle_strike_ce).scrip, this.mapService.parseScrip(this.strangle_strike_ce).type);
@@ -17687,17 +17699,19 @@ class ChartingService {
     updateSingleChart(strike, type, recreate = true, expand = false) {
         if (strike) {
             let data = [];
-            let lineData1 = [];
-            let lineData2 = [];
+            let lineData = [];
             let obj = this.charts_data[strike]; // getting all data for strike
             // console.log('chart data', obj);
             if (!obj) {
                 return;
             }
             // obj.push([ d, element[1], element[2], element[3], element[4], element[5], element[6] ]);
+            let atp = this.mapService.getScripATP(this.charts_instru, this.charts_expiry, this.mapService.parseScrip(strike).scrip, this.mapService.parseScrip(strike).type);
             obj.forEach(element => {
                 let data_entry = { time: Date.parse(element[0]) / 1000, open: element[1], high: element[2], low: element[3], close: element[4] };
                 data.push(data_entry);
+                let data_entry_line = { time: Date.parse(element[0]) / 1000, value: atp };
+                lineData.push(data_entry_line);
             });
             let width = 320;
             let height = 200;
@@ -17727,8 +17741,10 @@ class ChartingService {
                         }, */
                     });
                     this.single_chart_ce_candlestickSeries = this.single_chart_ce.addCandlestickSeries();
+                    this.single_chart_ce_lineSeries = this.single_chart_ce.addLineSeries({ color: '#2962FF', lineWidth: 2 });
                 }
                 this.single_chart_ce_candlestickSeries.setData(data);
+                this.single_chart_ce_lineSeries.setData(lineData);
             }
             else if (type === 'PE') {
                 this.single_strike_pe = strike;
@@ -17752,8 +17768,10 @@ class ChartingService {
                         }, */
                     });
                     this.single_chart_pe_candlestickSeries = this.single_chart_pe.addCandlestickSeries();
+                    this.single_chart_pe_lineSeries = this.single_chart_pe.addLineSeries({ color: '#2962FF', lineWidth: 2 });
                 }
                 this.single_chart_pe_candlestickSeries.setData(data);
+                this.single_chart_pe_lineSeries.setData(lineData);
             }
         }
     }
@@ -22344,8 +22362,10 @@ class MapService {
         if (_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.logWSFeed) {
             console.log('updateMaps symbol is', symbol);
         }
+        console.log('average price', symbol, p.average_traded_price);
+        // console.log('average traded price', symbol, p.average_traded_price);
         this.setLtp(symbol, p.last_price);
-        this.setAtp(symbol, p.average_price);
+        this.setAtp(symbol, p.average_traded_price);
         this.setVolume(symbol, p.volume);
         this.setOI(symbol, p.oi);
         this.setOHLC(symbol, p.ohlc);
@@ -22651,6 +22671,11 @@ class MapService {
         let object = { instru: instru, expiry: expiryRecvd, strike: strike, optionType: optionType };
         let symbol = this.getMapKey(object);
         return this.getLtp(symbol);
+    }
+    getScripATP(instru, expiryRecvd, strike, optionType) {
+        let object = { instru: instru, expiry: expiryRecvd, strike: strike, optionType: optionType };
+        let symbol = this.getMapKey(object);
+        return this.getAtp(symbol);
     }
     getScripOI(instru, expiryRecvd, strike, optionType) {
         let object = { instru: instru, expiry: expiryRecvd, strike: strike, optionType: optionType };
