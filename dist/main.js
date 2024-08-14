@@ -22362,8 +22362,7 @@ class MapService {
         if (_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.logWSFeed) {
             console.log('updateMaps symbol is', symbol);
         }
-        console.log('average price', symbol, p.average_traded_price);
-        // console.log('average traded price', symbol, p.average_traded_price);
+        // console.log('average price', symbol, p.average_traded_price);
         this.setLtp(symbol, p.last_price);
         this.setAtp(symbol, p.average_traded_price);
         this.setVolume(symbol, p.volume);
