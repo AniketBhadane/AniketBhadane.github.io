@@ -16170,7 +16170,7 @@ class ChartComponent {
                 this.addToAlgoSSLog('Reentry');
                 // send reentry order
                 let ceil_entry = Math.ceil(obj.entry);
-                this.placeAlgoSSOrder(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoSSStrike + type, this.algoSSQty, ceil_entry - 1, ceil_entry);
+                this.placeAlgoSSOrder(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoSSStrike + type, this.algoSSQty, ceil_entry - this.algoSSTriggerDifference, ceil_entry);
                 // make true only on positive response
                 //obj.reentry_order_sent = true;
             }
@@ -16183,7 +16183,7 @@ class ChartComponent {
             // send SLL order
             let ceil_entry = Math.ceil(obj.entry);
             let trigger = Math.ceil(ceil_entry + (ceil_entry * this.algoSSSLPerc / 100));
-            this.placeAlgoSSOrder(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoSSStrike + type, Math.abs(this.algoSSQty), trigger + 1, trigger);
+            this.placeAlgoSSOrder(_common_application_constant__WEBPACK_IMPORTED_MODULE_2__.AppConstants.algoSSStrike + type, Math.abs(this.algoSSQty), trigger + this.algoSSTriggerDifference, trigger);
             // make true only on positive response
             //obj.sl_order_sent = true;
         }
