@@ -10168,7 +10168,7 @@ class ChartComponent {
         this.algoSSSLPerc = 40;
         this.algoTimeToEnter = '10:10';
         this.algoSSQty = -30;
-        this.algoSSMaxSLTimes = 1;
+        this.algoSSMaxSLTimes = 2;
         this.algoSSTriggerDifference = 1;
         this.algoSSIncludeGUIDs = '';
         this.algoSSExcludeGUIDs = '';
@@ -11749,14 +11749,16 @@ class ChartComponent {
                 let d = new Date();
                 let dateString = '' + d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2);
                 let strat_mtm = JSON.parse(localStorage.getItem('mtm_1_' + dateString));
-                strat_mtm.forEach(element => {
-                    let row = '';
-                    row += element[0] + ',' + element[1];
-                    str += row + '\r\n';
-                });
-                str += 'END OF MTM\r\n';
-                str += this.algoLog + '\r\n';
-                // console.log('strat mtm', this.strat_mtm);
+                if (strat_mtm) {
+                    strat_mtm.forEach(element => {
+                        let row = '';
+                        row += element[0] + ',' + element[1];
+                        str += row + '\r\n';
+                    });
+                    str += 'END OF MTM\r\n';
+                    str += this.algoLog + '\r\n';
+                    // console.log('strat mtm', this.strat_mtm);
+                }
             }
             const downloadFile = new Blob([str], {
                 type: 'application/x-msdownload',
