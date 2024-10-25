@@ -10104,7 +10104,7 @@ class ChartComponent {
         this.expiryDate_multi5 = '2024-12-26';
         this.oc_instru = 'NIFTY';
         this.strategyAlertText = '';
-        this.inlineOC_qty = -900;
+        this.inlineOC_qty = -1800;
         this.inlineOC_qty_fixed = false;
         this.currentSold = 0;
         this.strategyPnl = 0;
@@ -21741,6 +21741,10 @@ AppConstants.niftyExpiries = [
     new Date(2024, 9, 17),
     new Date(2024, 9, 24),
     new Date(2024, 9, 31),
+    new Date(2024, 10, 7),
+    new Date(2024, 10, 14),
+    new Date(2024, 10, 21),
+    new Date(2024, 10, 28),
     // TODO below
 ];
 AppConstants.bnfExpiries = [
@@ -21892,6 +21896,9 @@ AppConstants.bnfExpiries = [
     new Date(2024, 9, 16),
     new Date(2024, 9, 23),
     new Date(2024, 9, 30),
+    new Date(2024, 10, 6),
+    new Date(2024, 10, 13),
+    new Date(2024, 10, 27),
     // TODO below
 ];
 AppConstants.finniftyExpiries = [
@@ -21990,6 +21997,10 @@ AppConstants.finniftyExpiries = [
     new Date(2024, 9, 15),
     new Date(2024, 9, 22),
     new Date(2024, 9, 29),
+    new Date(2024, 10, 5),
+    new Date(2024, 10, 12),
+    new Date(2024, 10, 19),
+    new Date(2024, 10, 26),
     // TODO below
 ];
 AppConstants.midcapExpiries = [
@@ -22086,6 +22097,10 @@ AppConstants.midcapExpiries = [
     new Date(2024, 9, 14),
     new Date(2024, 9, 21),
     new Date(2024, 9, 28),
+    new Date(2024, 10, 4),
+    new Date(2024, 10, 11),
+    new Date(2024, 10, 18),
+    new Date(2024, 10, 25),
     // TODO below  
 ];
 AppConstants.sensexExpiries = [
@@ -22182,6 +22197,10 @@ AppConstants.sensexExpiries = [
     new Date(2024, 9, 11),
     new Date(2024, 9, 18),
     new Date(2024, 9, 25),
+    new Date(2024, 10, 8),
+    new Date(2024, 10, 14),
+    new Date(2024, 10, 22),
+    new Date(2024, 10, 29),
     // TODO below
 ];
 AppConstants.bankexExpiries = [
@@ -22238,6 +22257,10 @@ AppConstants.bankexExpiries = [
     new Date(2024, 9, 14),
     new Date(2024, 9, 21),
     new Date(2024, 9, 28),
+    new Date(2024, 10, 4),
+    new Date(2024, 10, 11),
+    new Date(2024, 10, 18),
+    new Date(2024, 10, 25),
     // TODO below  
 ];
 AppConstants.usdinrExpiries = [
@@ -22302,11 +22325,11 @@ AppConstants.coveredCallPositions = [
     ['NIFTY24FEB21450CE', -50],
     ['NIFTY24FEB21400CE', -50],
 ];
-// etf, mf invested with their ratio to underlying - last updated 10 Apr 2024
+// etf, mf invested with their ratio to underlying - last updated 25 Oct 2024
 AppConstants.mfInvested = [
-    ['NIFTYBEES', 0.01107, 0],
-    ['INF179K01WM1', 0.009548, 0],
-    ['INF109K012M7', 0.010321, 0],
+    ['NIFTYBEES', 0.01116, 0],
+    ['INF179K01WM1', 0.00962, 0],
+    ['INF109K012M7', 0.0104, 0],
 ];
 /* Enter Supports from high to low, Enter Resistances from Low to High */
 AppConstants.holdings = {
@@ -27792,38 +27815,38 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function StocksComponent_ng_container_112_span_3_Template(rf, ctx) { if (rf & 1) {
+function StocksComponent_ng_container_114_span_3_Template(rf, ctx) { if (rf & 1) {
     const _r11 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 38);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_112_span_3_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r11); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r9.expandCollapseIndex(h_r2); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_114_span_3_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r11); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r9.expandCollapseIndex(h_r2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "\u2261");
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
 } }
-function StocksComponent_ng_container_112_span_4_Template(rf, ctx) { if (rf & 1) {
+function StocksComponent_ng_container_114_span_4_Template(rf, ctx) { if (rf & 1) {
     const _r14 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 39);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_112_span_4_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r14); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r12.loadStocksData(h_r2); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_114_span_4_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r14); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r12.loadStocksData(h_r2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "\u21BB");
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
 } }
-function StocksComponent_ng_container_112_span_5_Template(rf, ctx) { if (rf & 1) {
+function StocksComponent_ng_container_114_span_5_Template(rf, ctx) { if (rf & 1) {
     const _r17 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 40);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_112_span_5_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r17); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r15.plotRSCharts(h_r2); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_114_span_5_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r17); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r15.plotRSCharts(h_r2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "RS");
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
 } }
-function StocksComponent_ng_container_112_span_6_Template(rf, ctx) { if (rf & 1) {
+function StocksComponent_ng_container_114_span_6_Template(rf, ctx) { if (rf & 1) {
     const _r20 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 41);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_112_span_6_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r20); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r18.addToWatchlist(h_r2); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_114_span_6_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r20); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r18.addToWatchlist(h_r2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "W");
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
 } }
-function StocksComponent_ng_container_112_span_7_Template(rf, ctx) { if (rf & 1) {
+function StocksComponent_ng_container_114_span_7_Template(rf, ctx) { if (rf & 1) {
     const _r23 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_112_span_7_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r23); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r21.removeFromWatchlist(h_r2); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_114_span_7_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r23); const h_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r21.removeFromWatchlist(h_r2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "X");
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
 } }
@@ -27831,18 +27854,18 @@ const _c0 = function (a0, a1, a2, a3) { return { "indexRow": a0, "niftyRow": a1,
 const _c1 = function (a0) { return { "stockHolding": a0 }; };
 const _c2 = function (a0, a1, a2) { return { "green": a0, "red": a1, "bold-higher": a2 }; };
 const _c3 = function (a0, a1) { return { "green": a0, "red": a1 }; };
-function StocksComponent_ng_container_112_Template(rf, ctx) { if (rf & 1) {
+function StocksComponent_ng_container_114_Template(rf, ctx) { if (rf & 1) {
     const _r25 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementContainerStart"](0);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](1, "tr", 28);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](2, "td", 29);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](3, StocksComponent_ng_container_112_span_3_Template, 2, 0, "span", 30);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](4, StocksComponent_ng_container_112_span_4_Template, 2, 0, "span", 31);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](5, StocksComponent_ng_container_112_span_5_Template, 2, 0, "span", 32);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](6, StocksComponent_ng_container_112_span_6_Template, 2, 0, "span", 33);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](7, StocksComponent_ng_container_112_span_7_Template, 2, 0, "span", 34);
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](3, StocksComponent_ng_container_114_span_3_Template, 2, 0, "span", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](4, StocksComponent_ng_container_114_span_4_Template, 2, 0, "span", 31);
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](5, StocksComponent_ng_container_114_span_5_Template, 2, 0, "span", 32);
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](6, StocksComponent_ng_container_114_span_6_Template, 2, 0, "span", 33);
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](7, StocksComponent_ng_container_114_span_7_Template, 2, 0, "span", 34);
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](8, "span", 35);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_112_Template_span_click_8_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r25); const h_r2 = restoredCtx.$implicit; const ctx_r24 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r24.openPopup(h_r2); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_114_Template_span_click_8_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r25); const h_r2 = restoredCtx.$implicit; const ctx_r24 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r24.openPopup(h_r2); });
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](9, "\u2197");
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
@@ -28642,6 +28665,12 @@ class StocksComponent {
             }
         }
     }
+    backtest1() {
+        this.stocksService.backtest1('NIFTY 50', 1, 50);
+        this.stocksService.backtest1('NIFTY 50', 1, 10);
+        this.stocksService.backtest1('NIFTY 50', 1, 20);
+        this.stocksService.backtest1('NIFTY 50', 10, 20);
+    }
 }
 StocksComponent.ɵfac = function StocksComponent_Factory(t) { return new (t || StocksComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_app_service__WEBPACK_IMPORTED_MODULE_4__.AppService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_zerodha_service__WEBPACK_IMPORTED_MODULE_5__.ZerodhaService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_map_service__WEBPACK_IMPORTED_MODULE_6__.MapService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_7__.WebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_8__.AngelWebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_stocks_service__WEBPACK_IMPORTED_MODULE_9__.StocksService)); };
 StocksComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineComponent"]({ type: StocksComponent, selectors: [["app-stocks"]], viewQuery: function StocksComponent_Query(rf, ctx) { if (rf & 1) {
@@ -28649,7 +28678,7 @@ StocksComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10_
     } if (rf & 2) {
         let _t;
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵloadQuery"]()) && (ctx.chart = _t.first);
-    } }, decls: 113, vars: 94, consts: [[1, "custom-popup", 3, "ngClass"], [1, "custom-popup-close", 3, "click"], [1, "table", "table-sm", "table-bordered", "mb-0"], [1, "chart-popup-table"], [1, "chart-popup-table", 3, "ngClass"], ["id", "chart-popup-1", 1, "chart-stock"], [1, "chart-legend"], ["id", "chart-popup-2", 1, "chart-stock"], ["id", "chart-popup-3", 1, "chart-stock"], ["type", "button", 1, "btn", "btn-link", 3, "click"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], [1, "form-check", "form-check-inline", "use-hypo-future-class", "ms-4"], ["type", "checkbox", "value", "", "id", "show-st", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-st", 1, "form-check-label"], ["type", "text", 1, "form-control", "form-control-sm", "d-inline-block", "ms-2", 2, "width", "50px", 3, "ngModel", "ngModelChange"], [1, "form-check", "form-check-inline", "use-hypo-future-class", "ms-2"], ["type", "checkbox", "value", "", "id", "hide-nonwatch", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-nonwatch", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-ema1", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema1", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-ema2", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema2", 1, "form-check-label"], [1, "table", "table-sm", "table-bordered", "shadow", "mb-0", "text-center"], [1, "table-light"], ["scope", "col", 1, "s-col"], ["scope", "col", 1, "s-col", "cursor-pointer", 3, "click"], [4, "ngFor", "ngForOf"], [3, "ngClass"], [2, "width", "40px"], ["class", "cursor-pointer me-3", "title", "Show/Hide Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Fetch Data of Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Plot RS Charts of Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Add to Watchlist", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Remove from Watchlist", 3, "click", 4, "ngIf"], ["title", "Open Popup", 1, "cursor-pointer", 3, "click"], [2, "width", "300px"], [1, "chart-stock", 3, "id"], ["title", "Show/Hide Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Fetch Data of Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Plot RS Charts of Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Add to Watchlist", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Remove from Watchlist", 1, "cursor-pointer", "me-3", 3, "click"]], template: function StocksComponent_Template(rf, ctx) { if (rf & 1) {
+    } }, decls: 115, vars: 94, consts: [[1, "custom-popup", 3, "ngClass"], [1, "custom-popup-close", 3, "click"], [1, "table", "table-sm", "table-bordered", "mb-0"], [1, "chart-popup-table"], [1, "chart-popup-table", 3, "ngClass"], ["id", "chart-popup-1", 1, "chart-stock"], [1, "chart-legend"], ["id", "chart-popup-2", 1, "chart-stock"], ["id", "chart-popup-3", 1, "chart-stock"], ["type", "button", 1, "btn", "btn-link", 3, "click"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], [1, "form-check", "form-check-inline", "use-hypo-future-class", "ms-4"], ["type", "checkbox", "value", "", "id", "show-st", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-st", 1, "form-check-label"], ["type", "text", 1, "form-control", "form-control-sm", "d-inline-block", "ms-2", 2, "width", "50px", 3, "ngModel", "ngModelChange"], [1, "form-check", "form-check-inline", "use-hypo-future-class", "ms-2"], ["type", "checkbox", "value", "", "id", "hide-nonwatch", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-nonwatch", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-ema1", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema1", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-ema2", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema2", 1, "form-check-label"], [1, "table", "table-sm", "table-bordered", "shadow", "mb-0", "text-center"], [1, "table-light"], ["scope", "col", 1, "s-col"], ["scope", "col", 1, "s-col", "cursor-pointer", 3, "click"], [4, "ngFor", "ngForOf"], [3, "ngClass"], [2, "width", "40px"], ["class", "cursor-pointer me-3", "title", "Show/Hide Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Fetch Data of Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Plot RS Charts of Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Add to Watchlist", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Remove from Watchlist", 3, "click", 4, "ngIf"], ["title", "Open Popup", 1, "cursor-pointer", 3, "click"], [2, "width", "300px"], [1, "chart-stock", 3, "id"], ["title", "Show/Hide Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Fetch Data of Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Plot RS Charts of Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Add to Watchlist", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Remove from Watchlist", 1, "cursor-pointer", "me-3", 3, "click"]], template: function StocksComponent_Template(rf, ctx) { if (rf & 1) {
         const _r26 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 0);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](1, "span", 1);
@@ -28750,106 +28779,110 @@ StocksComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10_
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](60, "Export Watchlist");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](61, "button", 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_61_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r26); const _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵreference"](64); return _r0.click(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_61_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r26); const _r0 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵreference"](66); return _r0.click(); });
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](62, "Import Watchlist");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](63, "input", 10, 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("change", function StocksComponent_Template_input_change_63_listener($event) { return ctx.importWatchlist($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](63, "button", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_63_listener() { return ctx.backtest1(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](64, "Backtest1");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](65, "div", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](66, "input", 13);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_66_listener($event) { return ctx.showST = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](65, "input", 10, 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("change", function StocksComponent_Template_input_change_65_listener($event) { return ctx.importWatchlist($event); });
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](67, "label", 14);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](68, "ST");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](67, "div", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](68, "input", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_68_listener($event) { return ctx.showST = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](69, "input", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_69_listener($event) { return ctx.stPeriod = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](69, "label", 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](70, "ST");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](70, "input", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_70_listener($event) { return ctx.stVol = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](71, "input", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_71_listener($event) { return ctx.stPeriod = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](71, "div", 16);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](72, "input", 17);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_72_listener($event) { return ctx.hideNonWatchlist = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](73, "label", 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](74, "Hide Non-Watchlist");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](72, "input", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_72_listener($event) { return ctx.stVol = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](75, "div", 16);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](76, "input", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_76_listener($event) { return ctx.showEMA1 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](73, "div", 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](74, "input", 17);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_74_listener($event) { return ctx.hideNonWatchlist = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](77, "label", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](78, "EMA 1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](79, "input", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_79_listener($event) { return ctx.emaPeriod1 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](75, "label", 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](76, "Hide Non-Watchlist");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](80, "div", 16);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](81, "input", 21);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_81_listener($event) { return ctx.showEMA2 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](77, "div", 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](78, "input", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_78_listener($event) { return ctx.showEMA1 = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](82, "label", 22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](83, "EMA 2");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](79, "label", 20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](80, "EMA 1");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](84, "input", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_84_listener($event) { return ctx.emaPeriod2 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](81, "input", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_81_listener($event) { return ctx.emaPeriod1 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](82, "div", 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](83, "input", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_83_listener($event) { return ctx.showEMA2 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](84, "label", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](85, "EMA 2");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](86, "input", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_86_listener($event) { return ctx.emaPeriod2 = $event; });
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](85, "table", 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](86, "thead", 24);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](87, "tr");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelement"](88, "th", 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](89, "th", 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](90, "Name");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](87, "table", 23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](88, "thead", 24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](89, "tr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelement"](90, "th", 25);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](91, "th", 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](92, "LTP");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](92, "Name");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](93, "th", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_93_listener() { return ctx.sortTableColumn("return1"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](94, "1D%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](93, "th", 25);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](94, "LTP");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](95, "th", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_95_listener() { return ctx.sortTableColumn("return2"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](96, "5D%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_95_listener() { return ctx.sortTableColumn("return1"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](96, "1D%");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](97, "th", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_97_listener() { return ctx.sortTableColumn("return3"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](98, "21D%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_97_listener() { return ctx.sortTableColumn("return2"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](98, "5D%");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](99, "th", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_99_listener() { return ctx.sortTableColumn("return4"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](100, "55D%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_99_listener() { return ctx.sortTableColumn("return3"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](100, "21D%");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](101, "th", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_101_listener() { return ctx.sortTableColumn("dist1"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](102, "21H Dist%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_101_listener() { return ctx.sortTableColumn("return4"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](102, "55D%");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](103, "th", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_103_listener() { return ctx.sortTableColumn("dist2"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](104, "55H Dist%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_103_listener() { return ctx.sortTableColumn("dist1"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](104, "21H Dist%");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](105, "th", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_105_listener() { return ctx.sortTableColumn("dist3"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](106, "144H Dist%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_105_listener() { return ctx.sortTableColumn("dist2"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](106, "55H Dist%");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](107, "th", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_107_listener() { return ctx.sortTableColumn("dist4"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](108, "252H Dist%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_107_listener() { return ctx.sortTableColumn("dist3"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](108, "144H Dist%");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](109, "th", 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](110, "RS");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](109, "th", 26);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_109_listener() { return ctx.sortTableColumn("dist4"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](110, "252H Dist%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](111, "th", 25);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](112, "RS");
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](111, "tbody");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](112, StocksComponent_ng_container_112_Template, 32, 61, "ng-container", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](113, "tbody");
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](114, StocksComponent_ng_container_114_Template, 32, 61, "ng-container", 27);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
@@ -28923,7 +28956,7 @@ StocksComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10_
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx.getChartLabel("chart-popup-1"));
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx.getChartLabel("chart-popup-2"));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](17);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.showST);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
         _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.stPeriod);
@@ -28965,7 +28998,7 @@ class StockData {
 class StocksConstants {
 }
 StocksConstants.RS_period = 55;
-StocksConstants.chartDayToFetch = 600;
+StocksConstants.chartDayToFetch = 2000;
 StocksConstants.stocksEvent$ = new rxjs__WEBPACK_IMPORTED_MODULE_0__.Subject();
 StocksConstants.all_rows = [];
 StocksConstants.candlesData = {};
@@ -30506,6 +30539,191 @@ StocksConstants.stocksList = [
             "M&MFIN"
         ]
     },
+    {
+        "tradingsymbol": "NIFTY 100",
+        "stocks": [
+            "TRENT",
+            "DIXON",
+            "INDIAMART",
+            "PFC",
+            "BALKRISIND",
+            "SIEMENS",
+            "ADANIPORTS",
+            "HAL",
+            "ABB",
+            "RECLTD",
+            "INDHOTEL",
+            "ADANIENT",
+            "BEL",
+            "ATUL",
+            "TVSMOTOR",
+            "TATAPOWER",
+            "PVRINOX",
+            "CHOLAFIN",
+            "BALRAMCHIN",
+            "MCX",
+            "IPCALAB",
+            "GODREJPROP",
+            "METROPOLIS",
+            "BHARATFORG",
+            "M&M",
+            "GLENMARK",
+            "BHEL",
+            "CANFINHOME",
+            "BOSCHLTD",
+            "CHAMBLFERT",
+            "POLYCAB",
+            "TORNTPHARM",
+            "CUMMINSIND",
+            "EXIDEIND",
+            "IDEA",
+            "ABFRL",
+            "IEX",
+            "NAUKRI",
+            "DIVISLAB",
+            "CUB",
+            "LALPATHLAB",
+            "MARICO",
+            "CONCOR",
+            "HDFCBANK",
+            "INDIGO",
+            "BATAINDIA",
+            "RBLBANK",
+            "BAJAJ-AUTO",
+            "LTIM",
+            "COALINDIA",
+            "FEDERALBNK",
+            "OFSS",
+            "APOLLOHOSP",
+            "GMRINFRA",
+            "PEL",
+            "GRANULES",
+            "DLF",
+            "RELIANCE",
+            "UBL",
+            "INDUSTOWER",
+            "BANKBARODA",
+            "AMBUJACEM",
+            "IRCTC",
+            "ULTRACEMCO",
+            "PAGEIND",
+            "LT",
+            "MOTHERSON",
+            "DALBHARAT",
+            "PETRONET",
+            "LTF",
+            "SBIN",
+            "ABBOTINDIA",
+            "HAVELLS",
+            "COFORGE",
+            "CIPLA",
+            "JKCEMENT",
+            "LUPIN",
+            "ALKEM",
+            "VOLTAS",
+            "ONGC",
+            "NTPC",
+            "LAURUSLABS",
+            "PIIND",
+            "AUROPHARMA",
+            "HDFCAMC",
+            "IDFCFIRSTB",
+            "PERSISTENT",
+            "GUJGASLTD",
+            "APOLLOTYRE",
+            "CANBK",
+            "GNFC",
+            "COLPAL",
+            "INFY",
+            "AXISBANK",
+            "BANDHANBNK",
+            "ACC",
+            "DEEPAKNTR",
+            "BRITANNIA",
+            "TATACOMM",
+            "TATACHEM",
+            "KOTAKBANK",
+            "BSOFT",
+            "MPHASIS",
+            "CROMPTON",
+            "LICHSGFIN",
+            "GRASIM",
+            "NAVINFLUOR",
+            "IOC",
+            "UNITDSPR",
+            "INDUSINDBK",
+            "TECHM",
+            "SUNPHARMA",
+            "BPCL",
+            "SHRIRAMFIN",
+            "ASIANPAINT",
+            "PIDILITIND",
+            "HDFCLIFE",
+            "EICHERMOT",
+            "BERGEPAINT",
+            "MGL",
+            "AARTIIND",
+            "ICICIBANK",
+            "MARUTI",
+            "SRF",
+            "SYNGENE",
+            "DRREDDY",
+            "BIOCON",
+            "COROMANDEL",
+            "SHREECEM",
+            "HINDCOPPER",
+            "TATACONSUM",
+            "ZYDUSLIFE",
+            "OBEROIRLTY",
+            "MRF",
+            "LTTS",
+            "MFSL",
+            "HEROMOTOCO",
+            "NESTLEIND",
+            "ESCORTS",
+            "SUNTV",
+            "HCLTECH",
+            "ASTRAL",
+            "PNB",
+            "SBICARD",
+            "ASHOKLEY",
+            "BHARTIARTL",
+            "GAIL",
+            "MANAPPURAM",
+            "DABUR",
+            "RAMCOCEM",
+            "ITC",
+            "TCS",
+            "HINDUNILVR",
+            "JUBLFOOD",
+            "POWERGRID",
+            "UPL",
+            "SAIL",
+            "IDFC",
+            "MUTHOOTFIN",
+            "IGL",
+            "ICICIGI",
+            "AUBANK",
+            "VEDL",
+            "ABCAPITAL",
+            "WIPRO",
+            "M&MFIN",
+            "BAJFINANCE",
+            "HINDPETRO",
+            "NATIONALUM",
+            "HINDALCO",
+            "TATAMOTORS",
+            "JINDALSTEL",
+            "ICICIPRULI",
+            "GODREJCP",
+            "JSWSTEEL",
+            "TITAN",
+            "BAJAJFINSV",
+            "TATASTEEL",
+            "SBILIFE",
+            "NMDC"
+        ]
+    },
 ];
 
 
@@ -30799,11 +31017,17 @@ class StocksService {
             return 0;
         }
         if (ltp) {
-            let close = Object.values(stockData)[Object.keys(stockData).length - 1 - numDayStart - numDayBefore][3];
-            let returns = ltp / close;
-            // console.log(element.tradingsymbol, Object.keys(stockData)[Object.keys(stockData).length - 1 - numDayStart - numDayBefore], close, ltp, returns);
-            returns = Math.round((returns + 0.00001) * 100) / 100;
-            return returns;
+            let close_candle = Object.values(stockData)[Object.keys(stockData).length - 1 - numDayStart - numDayBefore];
+            if (close_candle) {
+                let close = close_candle[3];
+                let returns = ltp / close;
+                // console.log(element.tradingsymbol, Object.keys(stockData)[Object.keys(stockData).length - 1 - numDayStart - numDayBefore], close, ltp, returns);
+                returns = Math.round((returns + 0.00001) * 100) / 100;
+                return returns;
+            }
+            else {
+                return 0;
+            }
         }
         /* let data = null;
         let i = 0;
@@ -30830,8 +31054,8 @@ class StocksService {
         return returns; */
     }
     getDataOfDate(element, stockData, numDayStart) {
-        let ltp = Object.values(stockData)[Object.keys(stockData).length - 1 - numDayStart];
-        return ltp;
+        let ohlc = Object.values(stockData)[Object.keys(stockData).length - 1 - numDayStart];
+        return ohlc;
     }
     sortByReturns(col = 'return1') {
         let new_list = [];
@@ -30925,6 +31149,144 @@ class StocksService {
             _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.watchlist = [];
         }
         console.log('loading watchlist from LS:', _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.watchlist);
+    }
+    // Sort stocks in an index based on 5 day returns, on end of friday. Choose top N stocks to enter. Enter at next week Monday open and exit at friday's close
+    backtest1(indexToBacktest = 'NIFTY 500', stockStart = 1, stockEnd = 5) {
+        let friday = 6;
+        let t = new Date().getDate() + (friday - new Date().getDay() - 1) - 7;
+        let refLastWeek = new Date();
+        refLastWeek.setDate(t);
+        t = refLastWeek.getDate() + (6 - refLastWeek.getDay() - 1) - 7;
+        refLastWeek.setDate(t);
+        refLastWeek.setHours(0, 0, 0, 0);
+        console.log('Last to Last Week: ', refLastWeek);
+        let indexElement = _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.all_rows.find(x => x.tradingsymbol === indexToBacktest);
+        let stocksInIndex = _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.all_rows.filter(x => x.index === indexElement.tradingsymbol && !x.isIndex);
+        let lastWeek = new Date(refLastWeek);
+        let all_returns = 0;
+        let all_returns_arr = [];
+        for (let week = 0; week < 156; week++) { // for N weeks
+            let stocksInIndexCopy = stocksInIndex.map(a => Object.assign({}, a));
+            //let stocksInIndexCopy = Object.assign({}, stocksInIndex);  
+            // DONE: FIRST FIND LAST WEEK FRIDAY
+            // TODO: THEN CALCULATE RETURNS FOR THAT PARTICULAR WEEK
+            // DONE: THEN SORT
+            // TODO: THEN LOOP ON THAT SORTED LIST - refer dataEnd and dataStart code below. 
+            // TODO: GET NEXT WORKING DAY AFTER THIS WEEK"S FRIDAY AND FIND RETURNS IN THAT WEEK, below loop is incorrect, 
+            // it was calculating current week returns which needs to be done for previous step
+            for (let i = 0; i < stocksInIndexCopy.length; i++) {
+                let element = stocksInIndexCopy[i];
+                let stockData = _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.candlesData[element.tradingsymbol];
+                let dataEnd = null;
+                let dateEnd = null;
+                let counter = 0;
+                while (!dataEnd) {
+                    let date_obj = new Date(lastWeek);
+                    date_obj.setDate(date_obj.getDate() - counter);
+                    dateEnd = this.getDateInFormat(date_obj);
+                    dataEnd = stockData[dateEnd];
+                    // console.log(numDayBefore, i, date_obj, data);
+                    counter++;
+                }
+                //console.log('Last Week End Stock Data', element, dateEnd, dataEnd);
+                let day = lastWeek.getDay();
+                let diff = lastWeek.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+                let mon = new Date(lastWeek);
+                mon.setDate(diff);
+                // let dStart = this.getDateInFormat(mon);
+                let dataStart = null;
+                let dateStart = null;
+                counter = 0;
+                while (!dataStart) {
+                    let date_obj = new Date(mon);
+                    date_obj.setDate(date_obj.getDate() + counter);
+                    dateStart = this.getDateInFormat(date_obj);
+                    dataStart = stockData[dateStart];
+                    // console.log(numDayBefore, i, date_obj, data);
+                    counter++;
+                }
+                //console.log('Last Week Start Stock Data', element, dateStart, dataStart);
+                let startOpen = dataStart[0];
+                let endClose = dataEnd[3];
+                let returns = (endClose - startOpen) * 100 / startOpen;
+                // console.log(element.tradingsymbol, Object.keys(stockData)[Object.keys(stockData).length - 1 - numDayStart - numDayBefore], close, ltp, returns);
+                returns = Math.round((returns + 0.00001) * 100) / 100;
+                element.return2 = returns;
+                //console.log('Last Week Returns:', returns, dateStart, dateEnd);
+            }
+            stocksInIndexCopy.sort((a, b) => b.return2 - a.return2);
+            //console.log('stocksInIndexCopy', week, lastWeek, stocksInIndexCopy);
+            let cum_returns_week = 0;
+            for (let i = stockStart - 1; i < stockEnd; i++) { // for N stocks
+                let element = stocksInIndexCopy[i];
+                let stockData = _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.candlesData[element.tradingsymbol];
+                // let dEnd = this.getDateInFormat(lastWeek);
+                // Enter Last week Friday
+                let dataStart = null;
+                let dateStart = null;
+                let counter = 0;
+                while (!dataStart) {
+                    let date_obj = new Date(lastWeek);
+                    date_obj.setDate(date_obj.getDate() - counter);
+                    dateStart = this.getDateInFormat(date_obj);
+                    dataStart = stockData[dateStart];
+                    // console.log(numDayBefore, i, date_obj, data);
+                    counter++;
+                }
+                //console.log('Start Stock Data', element, dateStart, dataStart);
+                // Exit Next Week Friday
+                let day = new Date(lastWeek);
+                let days = 7 - day.getDay() + 5;
+                let nextFri = new Date(day.setDate(day.getDate() + days));
+                //console.log(nextFri.toString());
+                let dataEnd = null;
+                let dateEnd = null;
+                counter = 0;
+                while (!dataEnd) {
+                    let date_obj = new Date(nextFri);
+                    date_obj.setDate(date_obj.getDate() - counter);
+                    dateEnd = this.getDateInFormat(date_obj);
+                    dataEnd = stockData[dateEnd];
+                    // console.log(numDayBefore, i, date_obj, data);
+                    counter++;
+                }
+                //console.log('End Stock Data', element, dateEnd, dataEnd);
+                let startClose = dataStart[3];
+                let endClose = dataEnd[3];
+                let returns = (endClose - startClose) * 100 / startClose;
+                // console.log(element.tradingsymbol, Object.keys(stockData)[Object.keys(stockData).length - 1 - numDayStart - numDayBefore], close, ltp, returns);
+                returns = Math.round((returns + 0.00001) * 100) / 100;
+                console.log('Curr Week Returns:', element.tradingsymbol, returns, dateStart, dateEnd);
+                cum_returns_week += returns;
+            }
+            all_returns += cum_returns_week;
+            all_returns_arr.push(cum_returns_week);
+            console.log('cum_returns', lastWeek, cum_returns_week);
+            let prev = lastWeek.getDate() + (6 - lastWeek.getDay() - 1) - 7;
+            lastWeek.setDate(prev);
+        }
+        console.log('all_returns', all_returns);
+        this.exportBacktest(all_returns_arr);
+    }
+    exportBacktest(arr) {
+        let export_file_name = 'stocks_backtest.csv';
+        console.log('exporting: ', export_file_name);
+        let str = '';
+        for (let index = 0; index < arr.length; index++) {
+            let element = arr[index];
+            str += element + '\r\n';
+        }
+        const downloadFile = new Blob([str], {
+            type: 'application/x-msdownload',
+        });
+        const fileURL = URL.createObjectURL(downloadFile);
+        const link = document.createElement('a');
+        link.href = fileURL;
+        link.target = '_blank';
+        document.body.appendChild(link);
+        link.download = export_file_name;
+        link.click();
+        link.parentNode.removeChild(link);
     }
 }
 StocksService.ɵfac = function StocksService_Factory(t) { return new (t || StocksService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_2__.HttpClient)); };
