@@ -21590,6 +21590,7 @@ AppConstants.holidays = [
     new Date(2024, 9, 2),
     new Date(2024, 10, 1),
     new Date(2024, 10, 15),
+    new Date(2024, 10, 20),
     new Date(2024, 11, 25),
 ];
 AppConstants.niftyExpiries = [
@@ -21745,6 +21746,10 @@ AppConstants.niftyExpiries = [
     new Date(2024, 10, 14),
     new Date(2024, 10, 21),
     new Date(2024, 10, 28),
+    new Date(2024, 11, 5),
+    new Date(2024, 11, 12),
+    new Date(2024, 11, 19),
+    new Date(2024, 11, 26),
     // TODO below
 ];
 AppConstants.bnfExpiries = [
@@ -21899,6 +21904,7 @@ AppConstants.bnfExpiries = [
     new Date(2024, 10, 6),
     new Date(2024, 10, 13),
     new Date(2024, 10, 27),
+    new Date(2024, 11, 24),
     // TODO below
 ];
 AppConstants.finniftyExpiries = [
@@ -22001,6 +22007,7 @@ AppConstants.finniftyExpiries = [
     new Date(2024, 10, 12),
     new Date(2024, 10, 19),
     new Date(2024, 10, 26),
+    new Date(2024, 11, 31),
     // TODO below
 ];
 AppConstants.midcapExpiries = [
@@ -22101,6 +22108,7 @@ AppConstants.midcapExpiries = [
     new Date(2024, 10, 11),
     new Date(2024, 10, 18),
     new Date(2024, 10, 25),
+    new Date(2024, 11, 30),
     // TODO below  
 ];
 AppConstants.sensexExpiries = [
@@ -22201,6 +22209,10 @@ AppConstants.sensexExpiries = [
     new Date(2024, 10, 14),
     new Date(2024, 10, 22),
     new Date(2024, 10, 29),
+    new Date(2024, 11, 6),
+    new Date(2024, 11, 13),
+    new Date(2024, 11, 20),
+    new Date(2024, 11, 27),
     // TODO below
 ];
 AppConstants.bankexExpiries = [
@@ -22261,6 +22273,7 @@ AppConstants.bankexExpiries = [
     new Date(2024, 10, 11),
     new Date(2024, 10, 18),
     new Date(2024, 10, 25),
+    new Date(2024, 11, 30),
     // TODO below  
 ];
 AppConstants.usdinrExpiries = [
@@ -28258,7 +28271,7 @@ class StocksComponent {
         let stockData = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.candlesData[element.tradingsymbol];
         let indexData = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.candlesData[element.index];
         let niftyData = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.candlesData["NIFTY 50"];
-        for (let j = 252; j >= 0; j--) {
+        for (let j = 756; j >= 0; j--) {
             let stockOHLC = null;
             let indexOHLC = null;
             let niftyOHLC = null;
@@ -28272,7 +28285,14 @@ class StocksComponent {
                 //console.log(stockReturn, indexReturn, value, Object.keys(stockData)[Object.keys(stockData).length - 1 - j]);
                 //console.log('date', value, Object.keys(stockData)[Object.keys(stockData).length - 1 - j]);
                 //console.log('date', value, Object.keys(stockData).length);
-                let split = Object.keys(stockData)[Object.keys(stockData).length - 1 - j].split(' ');
+                let split_ = Object.keys(stockData)[Object.keys(stockData).length - 1 - j];
+                let split = null;
+                if (split_) {
+                    split = split_.split(' ');
+                }
+                else {
+                    continue;
+                }
                 let split_date = split[0].split('-');
                 // let d = +new Date(+split_date[2], +split_date[1], +split_date[0], 0, 0, 0, 0);
                 let d = new Date(parseInt(split_date[2]), parseInt(split_date[1]) - 1, parseInt(split_date[0]), 0, 0, 0, 0).getTime();
@@ -28475,7 +28495,7 @@ class StocksComponent {
         let tzoffset = (new Date()).getTimezoneOffset() * 60000; // offset in milliseconds
         let data = [];
         let dataVsNifty = [];
-        for (let j = 252; j >= 0; j--) {
+        for (let j = 756; j >= 0; j--) {
             let stockReturn = null;
             let indexReturn = null;
             let niftyReturn = null;
@@ -28499,7 +28519,14 @@ class StocksComponent {
                 //console.log(stockReturn, indexReturn, value, Object.keys(stockData)[Object.keys(stockData).length - 1 - j]);
                 //console.log('date', value, Object.keys(stockData)[Object.keys(stockData).length - 1 - j]);
                 //console.log('date', value, Object.keys(stockData).length);
-                let split = Object.keys(stockData)[Object.keys(stockData).length - 1 - j].split(' ');
+                let split_ = Object.keys(stockData)[Object.keys(stockData).length - 1 - j];
+                let split = null;
+                if (split_) {
+                    split = split_.split(' ');
+                }
+                else {
+                    continue;
+                }
                 let split_date = split[0].split('-');
                 // let d = +new Date(+split_date[2], +split_date[1], +split_date[0], 0, 0, 0, 0);
                 let d = new Date(parseInt(split_date[2]), parseInt(split_date[1]) - 1, parseInt(split_date[0]), 0, 0, 0, 0).getTime();
@@ -28666,10 +28693,10 @@ class StocksComponent {
         }
     }
     backtest1() {
-        this.stocksService.backtest1('NIFTY 50', 1, 50);
-        this.stocksService.backtest1('NIFTY 50', 1, 10);
+        this.stocksService.backtest1('NIFTY 100', 91, 100);
+        /* this.stocksService.backtest1('NIFTY 50', 1, 10);
         this.stocksService.backtest1('NIFTY 50', 1, 20);
-        this.stocksService.backtest1('NIFTY 50', 10, 20);
+        this.stocksService.backtest1('NIFTY 50', 10, 20); */
     }
 }
 StocksComponent.ɵfac = function StocksComponent_Factory(t) { return new (t || StocksComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_app_service__WEBPACK_IMPORTED_MODULE_4__.AppService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_zerodha_service__WEBPACK_IMPORTED_MODULE_5__.ZerodhaService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_map_service__WEBPACK_IMPORTED_MODULE_6__.MapService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_7__.WebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_8__.AngelWebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_stocks_service__WEBPACK_IMPORTED_MODULE_9__.StocksService)); };
@@ -31012,9 +31039,13 @@ class StocksService {
         return returns; */
     }
     getRSReturns(element, stockData, numDayBefore, numDayStart = 0) {
-        let ltp = Object.values(stockData)[Object.keys(stockData).length - 1 - numDayStart][3];
         if (numDayBefore === 0) { // returns not to be calculated for day 0, which is today itself
             return 0;
+        }
+        let ltp = 0;
+        let values = Object.values(stockData)[Object.keys(stockData).length - 1 - numDayStart];
+        if (values) {
+            ltp = values[3];
         }
         if (ltp) {
             let close_candle = Object.values(stockData)[Object.keys(stockData).length - 1 - numDayStart - numDayBefore];
@@ -31028,6 +31059,9 @@ class StocksService {
             else {
                 return 0;
             }
+        }
+        else {
+            return 0;
         }
         /* let data = null;
         let i = 0;
@@ -31177,6 +31211,9 @@ class StocksService {
             for (let i = 0; i < stocksInIndexCopy.length; i++) {
                 let element = stocksInIndexCopy[i];
                 let stockData = _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.candlesData[element.tradingsymbol];
+                if (!stockData) {
+                    continue;
+                }
                 let dataEnd = null;
                 let dateEnd = null;
                 let counter = 0;
@@ -31215,7 +31252,7 @@ class StocksService {
                 //console.log('Last Week Returns:', returns, dateStart, dateEnd);
             }
             stocksInIndexCopy.sort((a, b) => b.return2 - a.return2);
-            //console.log('stocksInIndexCopy', week, lastWeek, stocksInIndexCopy);
+            console.log('stocksInIndexCopy', week, lastWeek, stocksInIndexCopy);
             let cum_returns_week = 0;
             for (let i = stockStart - 1; i < stockEnd; i++) { // for N stocks
                 let element = stocksInIndexCopy[i];
