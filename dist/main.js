@@ -21082,11 +21082,11 @@ AppConstants.freezeLimit = {
     'BANKEX': 900,
 };
 AppConstants.qtyStep = {
-    'NIFTY': 25,
+    'NIFTY': 75,
     'BANKNIFTY': 15,
     'FINNIFTY': 25,
     'MIDCPNIFTY': 50,
-    'SENSEX': 10,
+    'SENSEX': 20,
     'BANKEX': 15,
 };
 /***************** algo variables start **************************/
