@@ -10097,11 +10097,11 @@ class ChartComponent {
         this.selectedMaxLoss = 0;
         this.matchPositions = false;
         this.multiOC_instru = 'NIFTY';
-        this.expiryDate_multi1 = '2024-08-01';
-        this.expiryDate_multi2 = '2024-08-08';
-        this.expiryDate_multi3 = '2024-08-29';
-        this.expiryDate_multi4 = '2024-09-26';
-        this.expiryDate_multi5 = '2024-12-26';
+        this.expiryDate_multi1 = '2025-01-30';
+        this.expiryDate_multi2 = '2025-02-06';
+        this.expiryDate_multi3 = '2025-02-27';
+        this.expiryDate_multi4 = '2025-03-27';
+        this.expiryDate_multi5 = '2025-12-24';
         this.oc_instru = 'NIFTY';
         this.strategyAlertText = '';
         this.inlineOC_qty = -1800;
@@ -10187,7 +10187,7 @@ class ChartComponent {
         this.chart_strikes_ce = [];
         this.chart_strikes_pe = [];
         this.spot_chart_instru = 'NIFTY';
-        this.spot_chart_instru2 = 'BANKNIFTY';
+        this.spot_chart_instru2 = 'SENSEX';
         this.st_chart_radio = '5min';
         this.st_chart_strike = 0;
         this.includeGUIDs = '';
@@ -21806,6 +21806,10 @@ AppConstants.niftyExpiries = [
     new Date(2025, 0, 16),
     new Date(2025, 0, 23),
     new Date(2025, 0, 30),
+    new Date(2025, 1, 6),
+    new Date(2025, 1, 13),
+    new Date(2025, 1, 20),
+    new Date(2025, 1, 27),
     // TODO below
 ];
 AppConstants.bnfExpiries = [
@@ -21962,8 +21966,8 @@ AppConstants.bnfExpiries = [
     new Date(2024, 10, 27),
     new Date(2024, 11, 24),
     new Date(2025, 0, 29),
-    new Date(2025, 1, 26),
-    new Date(2025, 2, 26),
+    new Date(2025, 1, 27),
+    new Date(2025, 2, 27),
     // TODO below
 ];
 AppConstants.finniftyExpiries = [
@@ -22068,7 +22072,8 @@ AppConstants.finniftyExpiries = [
     new Date(2024, 10, 26),
     new Date(2024, 11, 31),
     new Date(2025, 0, 28),
-    new Date(2025, 1, 25),
+    new Date(2025, 1, 27),
+    new Date(2025, 2, 27),
     // TODO below
 ];
 AppConstants.midcapExpiries = [
@@ -22171,7 +22176,8 @@ AppConstants.midcapExpiries = [
     new Date(2024, 10, 25),
     new Date(2024, 11, 30),
     new Date(2025, 0, 27),
-    new Date(2025, 1, 24),
+    new Date(2025, 1, 27),
+    new Date(2025, 2, 27),
     // TODO below  
 ];
 AppConstants.sensexExpiries = [
@@ -22277,10 +22283,14 @@ AppConstants.sensexExpiries = [
     new Date(2024, 11, 20),
     new Date(2024, 11, 27),
     new Date(2025, 0, 3),
-    new Date(2025, 0, 10),
-    new Date(2025, 0, 17),
-    new Date(2025, 0, 24),
-    new Date(2025, 1, 31),
+    new Date(2025, 0, 7),
+    new Date(2025, 0, 14),
+    new Date(2025, 0, 21),
+    new Date(2025, 0, 28),
+    new Date(2025, 1, 4),
+    new Date(2025, 1, 11),
+    new Date(2025, 1, 18),
+    new Date(2025, 1, 25),
     // TODO below
 ];
 AppConstants.bankexExpiries = [
@@ -22342,8 +22352,9 @@ AppConstants.bankexExpiries = [
     new Date(2024, 10, 18),
     new Date(2024, 10, 25),
     new Date(2024, 11, 30),
-    new Date(2025, 0, 27),
-    new Date(2025, 1, 24),
+    new Date(2025, 0, 28),
+    new Date(2025, 1, 25),
+    new Date(2025, 2, 25),
     // TODO below  
 ];
 AppConstants.usdinrExpiries = [
