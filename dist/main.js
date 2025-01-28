@@ -21336,7 +21336,7 @@ AppConstants.monthlyExpiryDates = {
     '24DEC': new Date(2024, 11, 26),
     '25JAN': new Date(2025, 0, 30),
     '25FEB': new Date(2025, 1, 27),
-    //'25MAR': new Date(2025, 2, 27),
+    '25MAR': new Date(2025, 2, 27),
     // TODO below
 };
 AppConstants.monthlyExpiryDatesBNF = {
@@ -21388,9 +21388,9 @@ AppConstants.monthlyExpiryDatesBNF = {
     '24OCT': new Date(2024, 9, 30),
     '24NOV': new Date(2024, 10, 27),
     '24DEC': new Date(2024, 11, 24),
-    '25JAN': new Date(2025, 0, 29),
-    '25FEB': new Date(2025, 1, 26),
-    //'25MAR': new Date(2025, 2, 26),
+    '25JAN': new Date(2025, 0, 30),
+    '25FEB': new Date(2025, 1, 27),
+    '25MAR': new Date(2025, 2, 27),
     // TODO below
 };
 AppConstants.monthlyExpiryDatesFINNIFTY = {
@@ -21418,8 +21418,9 @@ AppConstants.monthlyExpiryDatesFINNIFTY = {
     '24OCT': new Date(2024, 9, 29),
     '24NOV': new Date(2024, 10, 26),
     '24DEC': new Date(2024, 11, 31),
-    '25JAN': new Date(2025, 0, 28),
-    '25FEB': new Date(2025, 1, 25),
+    '25JAN': new Date(2025, 0, 30),
+    '25FEB': new Date(2025, 1, 27),
+    '25MAR': new Date(2025, 2, 27),
     // TODO below
 };
 AppConstants.monthlyExpiryDatesMidcap = {
@@ -21447,8 +21448,9 @@ AppConstants.monthlyExpiryDatesMidcap = {
     '24OCT': new Date(2024, 9, 28),
     '24NOV': new Date(2024, 10, 25),
     '24DEC': new Date(2024, 11, 30),
-    '25JAN': new Date(2025, 0, 27),
-    '25FEB': new Date(2025, 1, 24),
+    '25JAN': new Date(2025, 0, 30),
+    '25FEB': new Date(2025, 1, 27),
+    '25MAR': new Date(2025, 2, 27),
     // TODO below
 };
 AppConstants.monthlyExpiryDatesSensex = {
@@ -21476,9 +21478,9 @@ AppConstants.monthlyExpiryDatesSensex = {
     '24OCT': new Date(2024, 9, 25),
     '24NOV': new Date(2024, 10, 29),
     '24DEC': new Date(2024, 11, 27),
-    '25JAN': new Date(2025, 0, 31),
-    '25FEB': new Date(2025, 1, 28),
-    //'25MAR': new Date(2025, 2, 28),
+    '25JAN': new Date(2025, 0, 28),
+    '25FEB': new Date(2025, 1, 25),
+    '25MAR': new Date(2025, 2, 25),
     // TODO below
 };
 AppConstants.monthlyExpiryDatesBankex = {
@@ -21506,8 +21508,9 @@ AppConstants.monthlyExpiryDatesBankex = {
     '24OCT': new Date(2024, 9, 28),
     '24NOV': new Date(2024, 10, 25),
     '24DEC': new Date(2024, 11, 30),
-    '25JAN': new Date(2025, 0, 27),
-    '25FEB': new Date(2025, 1, 24),
+    '25JAN': new Date(2025, 0, 28),
+    '25FEB': new Date(2025, 1, 25),
+    '25MAR': new Date(2025, 2, 25),
     // TODO below
 };
 AppConstants.monthlyExpiryDatesUSDINR = {
@@ -21965,7 +21968,7 @@ AppConstants.bnfExpiries = [
     new Date(2024, 10, 13),
     new Date(2024, 10, 27),
     new Date(2024, 11, 24),
-    new Date(2025, 0, 29),
+    new Date(2025, 0, 30),
     new Date(2025, 1, 27),
     new Date(2025, 2, 27),
     // TODO below
@@ -28774,10 +28777,10 @@ class StocksComponent {
         }
     }
     backtest1() {
-        this.stocksService.backtest1('NIFTY 100', 91, 100);
-        /* this.stocksService.backtest1('NIFTY 50', 1, 10);
-        this.stocksService.backtest1('NIFTY 50', 1, 20);
-        this.stocksService.backtest1('NIFTY 50', 10, 20); */
+        //this.stocksService.backtest1('NIFTY 500', 491, 500);
+        this.stocksService.backtest1('NIFTY 500', 491, 500);
+        this.stocksService.backtest1('NIFTY 500', 251, 260);
+        //this.stocksService.backtest1('NIFTY 50', 10, 20);
     }
 }
 StocksComponent.ɵfac = function StocksComponent_Factory(t) { return new (t || StocksComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_app_service__WEBPACK_IMPORTED_MODULE_4__.AppService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_zerodha_service__WEBPACK_IMPORTED_MODULE_5__.ZerodhaService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_map_service__WEBPACK_IMPORTED_MODULE_6__.MapService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_7__.WebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_8__.AngelWebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_stocks_service__WEBPACK_IMPORTED_MODULE_9__.StocksService)); };
@@ -29189,7 +29192,7 @@ StocksConstants.stocksList = [
         "stocks": [
             "HDFCLIFE",
             "AXISBANK",
-            "IDFC",
+            "MCX",
             "SBIN",
             "ICICIPRULI",
             "HDFCAMC",
@@ -29481,7 +29484,7 @@ StocksConstants.stocksList = [
             "VEDL",
             "PAGEIND",
             "BHARATFORG",
-            "COCHINSHIP-BE",
+            "COCHINSHIP",
             "HONAUT",
             "UPL",
             "KPRMILL",
@@ -29526,7 +29529,7 @@ StocksConstants.stocksList = [
             "SRF",
             "LINDEINDIA",
             "ESCORTS",
-            "CENTURYTEX",
+            "ABREL",
             "BALKRISIND",
             "M&M",
             "SOLARINDS",
@@ -29649,7 +29652,7 @@ StocksConstants.stocksList = [
             "DISHTV",
             "NAZARA",
             "ZEEL",
-            "TV18BRDCST",
+            "DEN",
             "SAREGAMA"
         ]
     },
@@ -29755,7 +29758,7 @@ StocksConstants.stocksList = [
             "POLYCAB",
             "NAM-INDIA",
             "SAREGAMA",
-            "HBLPOWER",
+            "HBLENGINE",
             "JPPOWER",
             "ALKYLAMINE",
             "BLUEDART",
@@ -29772,7 +29775,7 @@ StocksConstants.stocksList = [
             "GNFC",
             "LALPATHLAB",
             "COROMANDEL",
-            "ITI",
+            "ITI-BE",
             "RAINBOW",
             "CHAMBLFERT",
             "CLEAN",
@@ -29851,7 +29854,7 @@ StocksConstants.stocksList = [
             "CEATLTD",
             "LTF",
             "TRIDENT",
-            "CENTURYTEX",
+            "ABREL",
             "MRF",
             "ALKEM",
             "ZFCVINDIA",
@@ -29882,7 +29885,7 @@ StocksConstants.stocksList = [
             "KANSAINER",
             "HINDPETRO",
             "PETRONET",
-            "TV18BRDCST",
+            "AKUMS",
             "METROBRAND",
             "CHEMPLASTS",
             "PERSISTENT",
@@ -29958,7 +29961,7 @@ StocksConstants.stocksList = [
             "OBEROIRLTY",
             "NETWORK18",
             "FINPIPE",
-            "GET&D-BE",
+            "GVT&D",
             "PPLPHARMA",
             "SAPPHIRE",
             "KARURVYSYA",
@@ -29980,7 +29983,7 @@ StocksConstants.stocksList = [
             "INDIACEM",
             "SOLARINDS",
             "GLENMARK",
-            "GMRINFRA",
+            "GMRAIRPORT",
             "CESC",
             "SCI",
             "SUZLON",
@@ -30043,7 +30046,7 @@ StocksConstants.stocksList = [
             "MAZDOCK",
             "UJJIVANSFB",
             "ASTRAL",
-            "IDFC",
+            "EMCURE",
             "GPPL",
             "BATAINDIA",
             "CGPOWER",
@@ -30095,7 +30098,7 @@ StocksConstants.stocksList = [
             "BANDHANBNK",
             "IDEA",
             "NEWGEN",
-            "COCHINSHIP-BE",
+            "COCHINSHIP",
             "POWERINDIA",
             "SWANENERGY",
             "ASAHIINDIA",
@@ -30125,7 +30128,7 @@ StocksConstants.stocksList = [
             "PFIZER",
             "JSL",
             "GODREJAGRO",
-            "PTCIL-BE",
+            "PTCIL",
             "BDL",
             "CONCORDBIO",
             "GODREJIND",
@@ -30178,7 +30181,7 @@ StocksConstants.stocksList = [
             "INDIANB",
             "POLYMED",
             "KIMS",
-            "GET&D-BE",
+            "GVT&D",
             "ERIS",
             "INFY",
             "IPCALAB",
@@ -30201,7 +30204,7 @@ StocksConstants.stocksList = [
             "HDFCLIFE",
             "GILLETTE",
             "MRPL",
-            "GMRINFRA",
+            "GMRAIRPORT",
             "LUPIN",
             "GODFRYPHLP",
             "BEML",
@@ -30232,7 +30235,7 @@ StocksConstants.stocksList = [
             "CYIENT",
             "MAHSEAMLES",
             "MAPMYINDIA",
-            "IDFC",
+            "EMCURE",
             "TECHM",
             "DBREALTY",
             "VIJAYA",
@@ -30364,7 +30367,7 @@ StocksConstants.stocksList = [
             "BHARATFORG",
             "GRAPHITE",
             "SWANENERGY",
-            "COCHINSHIP-BE",
+            "COCHINSHIP",
             "IOB",
             "HONAUT",
             "AVANTIFEED",
@@ -30464,7 +30467,7 @@ StocksConstants.stocksList = [
             "IOC",
             "INDHOTEL",
             "DABUR",
-            "PTCIL-BE",
+            "PTCIL",
             "DRREDDY",
             "IRCTC",
             "CHOLAFIN",
@@ -30585,7 +30588,7 @@ StocksConstants.stocksList = [
             "BLUEDART",
             "CHOLAHLDNG",
             "FORTIS",
-            "HBLPOWER",
+            "HBLENGINE",
             "ASTRAZEN",
             "ZEEL",
             "APOLLOTYRE",
@@ -30595,7 +30598,7 @@ StocksConstants.stocksList = [
             "RVNL",
             "SRF",
             "BERGEPAINT",
-            "TV18BRDCST",
+            "AKUMS",
             "VINATIORGA",
             "ENDURANCE",
             "KANSAINER",
@@ -30606,11 +30609,11 @@ StocksConstants.stocksList = [
             "ABFRL",
             "ESCORTS",
             "ANGELONE",
-            "ITI",
+            "ITI-BE",
             "TATACOMM",
             "KAYNES",
             "LTF",
-            "CENTURYTEX",
+            "ABREL",
             "DEEPAKFERT",
             "ACE",
             "RCF",
@@ -30703,7 +30706,7 @@ StocksConstants.stocksList = [
             "FEDERALBNK",
             "OFSS",
             "APOLLOHOSP",
-            "GMRINFRA",
+            "GMRAIRPORT",
             "PEL",
             "GRANULES",
             "DLF",
@@ -30807,7 +30810,7 @@ StocksConstants.stocksList = [
             "POWERGRID",
             "UPL",
             "SAIL",
-            "IDFC",
+            "EMCURE",
             "MUTHOOTFIN",
             "IGL",
             "ICICIGI",
