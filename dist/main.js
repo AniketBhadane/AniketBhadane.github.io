@@ -25286,6 +25286,7 @@ class HoldingsService {
         let export_file_name = this.expiry_date + ' ' + expiry_string + '.csv';
         console.log('exporting: ', export_file_name);
         if (this.data) {
+            let count_lines = 0;
             let str = '';
             str += 'Ticker,Date/Time,Open,High,Low,Close,Volume,Open Interest\r\n';
             for (let key in this.data) { // for each scrip
@@ -25294,6 +25295,22 @@ class HoldingsService {
                     let arr = this.data[key][key1];
                     row += key + ',' + key1 + ',' + arr[0] + ',' + arr[1] + ',' + arr[2] + ',' + arr[3] + ',' + arr[4] + ',' + arr[5];
                     str += row + '\r\n';
+                    count_lines++;
+                }
+                if (count_lines > 2000000) {
+                    const downloadFile = new Blob([str], {
+                        type: 'application/x-msdownload',
+                    });
+                    const fileURL = URL.createObjectURL(downloadFile);
+                    const link = document.createElement('a');
+                    link.href = fileURL;
+                    link.target = '_blank';
+                    document.body.appendChild(link);
+                    link.download = export_file_name;
+                    link.click();
+                    link.parentNode.removeChild(link);
+                    str = '';
+                    count_lines = 0;
                 }
             }
             const downloadFile = new Blob([str], {
@@ -25311,6 +25328,32 @@ class HoldingsService {
             link.click();
             link.parentNode.removeChild(link);
             // }
+            // Use StreamSaver to download the file
+            /* const encoder = new TextEncoder();
+            const readableStream = new ReadableStream({
+              start(controller) {
+                controller.enqueue(encoder.encode(str));
+                controller.close();
+              }
+            });
+      
+            // Use StreamSaver to download the file
+            const fileStream = StreamSaver.createWriteStream(export_file_name, {
+              size: str.length, // optional size
+            });
+      
+            const writer = fileStream.getWriter();
+            const reader = readableStream.getReader();
+      
+            const pump = () => reader.read().then(({ done, value }) => {
+              if (done) {
+                writer.close();
+                return;
+              }
+              writer.write(value).then(pump);
+            });
+      
+            pump(); */
         }
         localStorage.setItem('export_' + this.expiry_date, JSON.stringify('true'));
         _application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.isHistoricalRunning = false;
