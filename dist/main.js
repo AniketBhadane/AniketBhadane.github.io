@@ -4709,6 +4709,7 @@ class AppService {
     dummyRequest() {
         let url = 'https://httpstat.us/200?sleep=10000';
         url = 'https://www.nseindia.com/api/option-chain-indices?symbol=BANKNIFTY';
+        // url = 'https://www.niftyindices.com/IndexConstituent/ind_nifty500list.csv';
         console.log('making dummy request');
         this.http.get(url)
             .subscribe(response => {
@@ -4725,6 +4726,10 @@ class AppService {
             _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.requestStatusEvent$.next({ 'status': 'danger', 'message': errmsg });
             //this.playAudio('error');
         });
+    }
+    getRawCsvData() {
+        let csvUrl = 'https://www.niftyindices.com/IndexConstituent/ind_nifty500list.csv';
+        return this.http.get(csvUrl, { responseType: 'text' });
     }
     coinRequest() {
         let httpOptions = {
@@ -28251,22 +28256,30 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "StocksComponent": () => (/* binding */ StocksComponent)
 /* harmony export */ });
-/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ng2-charts */ 3808);
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ng2-charts */ 3808);
 /* harmony import */ var chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chartjs-plugin-annotation */ 2057);
 /* harmony import */ var chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(chartjs_plugin_annotation__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _debut_indicators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @debut/indicators */ 9726);
-/* harmony import */ var _debut_indicators__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_debut_indicators__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _stocks_constants__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./stocks.constants */ 6039);
-/* harmony import */ var lightweight_charts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! lightweight-charts */ 3412);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/core */ 3184);
-/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../app.service */ 900);
-/* harmony import */ var _common_zerodha_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../common/zerodha.service */ 1102);
-/* harmony import */ var _common_map_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../common/map.service */ 397);
-/* harmony import */ var _common_websocket_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/websocket.service */ 4440);
-/* harmony import */ var _common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/angelwebsocket.service */ 4991);
-/* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./stocks.service */ 6458);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/common */ 6362);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ 587);
+/* harmony import */ var _common_application_constant__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../common/application.constant */ 8001);
+/* harmony import */ var _debut_indicators__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @debut/indicators */ 9726);
+/* harmony import */ var _debut_indicators__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_debut_indicators__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _stocks_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./stocks.constants */ 6039);
+/* harmony import */ var lightweight_charts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! lightweight-charts */ 3412);
+/* harmony import */ var papaparse__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! papaparse */ 1302);
+/* harmony import */ var papaparse__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(papaparse__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! rxjs */ 4350);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var _app_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../app.service */ 900);
+/* harmony import */ var _common_zerodha_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../common/zerodha.service */ 1102);
+/* harmony import */ var _common_map_service__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../common/map.service */ 397);
+/* harmony import */ var _common_websocket_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../common/websocket.service */ 4440);
+/* harmony import */ var _common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../common/angelwebsocket.service */ 4991);
+/* harmony import */ var _stocks_service__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./stocks.service */ 6458);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/common */ 6362);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @angular/forms */ 587);
+
+
+// import { prependOnceListener } from 'process';
+
 
 
 
@@ -28282,274 +28295,389 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function StocksComponent_div_43_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 40);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "M150M50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "M150M50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function StocksComponent_div_44_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 40);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "N500M50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "N500M50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function StocksComponent_div_45_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 40);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "A50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "A50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function StocksComponent_div_46_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 41);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "N50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "N50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function StocksComponent_div_47_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 41);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "N100");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "N100");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
 function StocksComponent_div_48_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 41);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "M150");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "M150");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
-function StocksComponent_div_104_input_4_Template(rf, ctx) { if (rf & 1) {
-    const _r14 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "input", 45);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_div_104_input_4_Template_input_ngModelChange_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r14); const key_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r13.filterCriteria[key_r11].value = $event; })("input", function StocksComponent_div_104_input_4_Template_input_input_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r14); const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](2); return ctx_r16.filterData(); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+function StocksComponent_div_106_input_4_Template(rf, ctx) { if (rf & 1) {
+    const _r14 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "input", 45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_div_106_input_4_Template_input_ngModelChange_0_listener($event) { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r14); const key_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r13.filterCriteria[key_r11].value = $event; })("input", function StocksComponent_div_106_input_4_Template_input_input_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r14); const ctx_r16 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](2); return ctx_r16.filterData(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const key_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit;
-    const ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx_r12.filterCriteria[key_r11].value)("disabled", !ctx_r12.filterCriteria[key_r11].selected);
+    const key_r11 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const ctx_r12 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx_r12.filterCriteria[key_r11].value)("disabled", !ctx_r12.filterCriteria[key_r11].selected);
 } }
-function StocksComponent_div_104_Template(rf, ctx) { if (rf & 1) {
-    const _r19 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 42);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](1, "label");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](2, "input", 43);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_div_104_Template_input_ngModelChange_2_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r19); const key_r11 = restoredCtx.$implicit; const ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r18.filterCriteria[key_r11].selected = $event; })("change", function StocksComponent_div_104_Template_input_change_2_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r19); const ctx_r20 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r20.filterData(); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](4, StocksComponent_div_104_input_4_Template, 1, 2, "input", 44);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+function StocksComponent_div_106_Template(rf, ctx) { if (rf & 1) {
+    const _r19 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 42);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "label");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "input", 43);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_div_106_Template_input_ngModelChange_2_listener($event) { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r19); const key_r11 = restoredCtx.$implicit; const ctx_r18 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r18.filterCriteria[key_r11].selected = $event; })("change", function StocksComponent_div_106_Template_input_change_2_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r19); const ctx_r20 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r20.filterData(); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](4, StocksComponent_div_106_input_4_Template, 1, 2, "input", 44);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
     const key_r11 = ctx.$implicit;
-    const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx_r9.filterCriteria[key_r11].selected);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"](" ", ctx_r9.filterKeysLabels[key_r11], " ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", key_r11 !== "DMA200");
+    const ctx_r9 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx_r9.filterCriteria[key_r11].selected);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", ctx_r9.filterKeysLabels[key_r11], " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", key_r11 !== "DMA200");
 } }
-function StocksComponent_ng_container_133_span_3_Template(rf, ctx) { if (rf & 1) {
-    const _r31 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 57);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_133_span_3_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r31); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r29 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r29.expandCollapseIndex(h_r21); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "\u2261");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+function StocksComponent_ng_container_135_span_3_Template(rf, ctx) { if (rf & 1) {
+    const _r39 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 61);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_ng_container_135_span_3_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r39); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r37 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r37.expandCollapseIndex(h_r21); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "\u2261");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
-function StocksComponent_ng_container_133_span_4_Template(rf, ctx) { if (rf & 1) {
-    const _r34 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 58);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_133_span_4_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r34); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r32 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r32.loadStocksData(h_r21); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "\u21BB");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+function StocksComponent_ng_container_135_span_4_Template(rf, ctx) { if (rf & 1) {
+    const _r42 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 62);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_ng_container_135_span_4_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r42); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r40 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r40.loadStocksData(h_r21); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "\u21BB");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
-function StocksComponent_ng_container_133_span_5_Template(rf, ctx) { if (rf & 1) {
-    const _r37 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 59);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_133_span_5_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r37); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r35 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r35.plotRSCharts(h_r21); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "RS");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+function StocksComponent_ng_container_135_span_5_Template(rf, ctx) { if (rf & 1) {
+    const _r45 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 63);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_ng_container_135_span_5_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r45); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r43 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r43.plotRSCharts(h_r21); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "RS");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
-function StocksComponent_ng_container_133_span_6_Template(rf, ctx) { if (rf & 1) {
-    const _r40 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 60);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_133_span_6_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r40); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r38 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r38.addToWatchlist(h_r21); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "W");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+function StocksComponent_ng_container_135_span_6_Template(rf, ctx) { if (rf & 1) {
+    const _r48 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 64);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_ng_container_135_span_6_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r48); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r46 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r46.addToWatchlist(h_r21); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "W");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
-function StocksComponent_ng_container_133_span_7_Template(rf, ctx) { if (rf & 1) {
-    const _r43 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "span", 61);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_133_span_7_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r43); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit; const ctx_r41 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r41.removeFromWatchlist(h_r21); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "X");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+function StocksComponent_ng_container_135_span_7_Template(rf, ctx) { if (rf & 1) {
+    const _r51 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 65);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_ng_container_135_span_7_Template_span_click_0_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r51); const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit; const ctx_r49 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r49.removeFromWatchlist(h_r21); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "X");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } }
-function StocksComponent_ng_container_133_div_34_div_1_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 40);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "M150M50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-} }
-function StocksComponent_ng_container_133_div_34_div_2_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 40);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "N500M50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-} }
-function StocksComponent_ng_container_133_div_34_div_3_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 40);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "A50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-} }
-function StocksComponent_ng_container_133_div_34_div_4_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 41);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "N50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-} }
-function StocksComponent_ng_container_133_div_34_div_5_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 41);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "N100");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-} }
-function StocksComponent_ng_container_133_div_34_div_6_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 41);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](1, "M150");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-} }
-function StocksComponent_ng_container_133_div_34_Template(rf, ctx) { if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](1, StocksComponent_ng_container_133_div_34_div_1_Template, 2, 0, "div", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](2, StocksComponent_ng_container_133_div_34_div_2_Template, 2, 0, "div", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](3, StocksComponent_ng_container_133_div_34_div_3_Template, 2, 0, "div", 6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](4, StocksComponent_ng_container_133_div_34_div_4_Template, 2, 0, "div", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](5, StocksComponent_ng_container_133_div_34_div_5_Template, 2, 0, "div", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](6, StocksComponent_ng_container_133_div_34_div_6_Template, 2, 0, "div", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+function StocksComponent_ng_container_135_span_21_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 66);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
 } if (rf & 2) {
-    const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]().$implicit;
-    const ctx_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx_r28.isStockInIndex("NIFTYM150MOMNTM50", h_r21.tradingsymbol) && h_r21.index !== "NIFTYM150MOMNTM50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx_r28.isStockInIndex("MOMENTUM50", h_r21.tradingsymbol) && h_r21.index !== "MOMENTUM50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx_r28.isStockInIndex("NIFTY ALPHA 50", h_r21.tradingsymbol) && h_r21.index !== "NIFTY ALPHA 50");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx_r28.isStockInIndex("NIFTY 50", h_r21.tradingsymbol));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx_r28.isStockInIndex("NIFTY 100", h_r21.tradingsymbol));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx_r28.isStockInIndex("NIFTY MIDCAP 150", h_r21.tradingsymbol));
+    const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("(", h_r21.return1_rank, ")");
+} }
+function StocksComponent_ng_container_135_span_26_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 66);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("(", h_r21.return2_rank, ")");
+} }
+function StocksComponent_ng_container_135_span_31_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 66);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("(", h_r21.return3_rank, ")");
+} }
+function StocksComponent_ng_container_135_span_36_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 66);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("(", h_r21.return4_rank, ")");
+} }
+function StocksComponent_ng_container_135_span_41_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 66);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("(", h_r21.return5_rank, ")");
+} }
+function StocksComponent_ng_container_135_span_46_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 66);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("(", h_r21.return6_rank, ")");
+} }
+function StocksComponent_ng_container_135_span_51_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "span", 66);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("(", h_r21.dist4_rank, ")");
+} }
+function StocksComponent_ng_container_135_div_52_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 67);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "1M");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} }
+function StocksComponent_ng_container_135_div_54_div_1_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "M150M50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} }
+function StocksComponent_ng_container_135_div_54_div_2_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "N500M50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} }
+function StocksComponent_ng_container_135_div_54_div_3_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "A50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} }
+function StocksComponent_ng_container_135_div_54_div_4_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "N50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} }
+function StocksComponent_ng_container_135_div_54_div_5_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "N100");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} }
+function StocksComponent_ng_container_135_div_54_div_6_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 41);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](1, "M150");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} }
+function StocksComponent_ng_container_135_div_54_Template(rf, ctx) { if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](1, StocksComponent_ng_container_135_div_54_div_1_Template, 2, 0, "div", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](2, StocksComponent_ng_container_135_div_54_div_2_Template, 2, 0, "div", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](3, StocksComponent_ng_container_135_div_54_div_3_Template, 2, 0, "div", 6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](4, StocksComponent_ng_container_135_div_54_div_4_Template, 2, 0, "div", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](5, StocksComponent_ng_container_135_div_54_div_5_Template, 2, 0, "div", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](6, StocksComponent_ng_container_135_div_54_div_6_Template, 2, 0, "div", 7);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+} if (rf & 2) {
+    const h_r21 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]().$implicit;
+    const ctx_r36 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r36.isStockInIndex("NIFTYM150MOMNTM50", h_r21.tradingsymbol) && h_r21.index !== "NIFTYM150MOMNTM50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r36.isStockInIndex("MOMENTUM50", h_r21.tradingsymbol) && h_r21.index !== "MOMENTUM50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r36.isStockInIndex("NIFTY ALPHA 50", h_r21.tradingsymbol) && h_r21.index !== "NIFTY ALPHA 50");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r36.isStockInIndex("NIFTY 50", h_r21.tradingsymbol));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r36.isStockInIndex("NIFTY 100", h_r21.tradingsymbol));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx_r36.isStockInIndex("NIFTY MIDCAP 150", h_r21.tradingsymbol));
 } }
 const _c0 = function (a0, a1, a2, a3, a4) { return { "notmatchingfilter-row": a0, "indexRow": a1, "niftyRow": a2, "watchlist-row": a3, "d-none": a4 }; };
 const _c1 = function (a0) { return { "stockHolding": a0 }; };
 const _c2 = function (a0, a1) { return { "green": a0, "red": a1 }; };
 const _c3 = function (a0, a1, a2) { return { "green": a0, "red": a1, "bold-higher": a2 }; };
-function StocksComponent_ng_container_133_Template(rf, ctx) { if (rf & 1) {
-    const _r52 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementContainerStart"](0);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](1, "tr", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](2, "td", 47);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](3, StocksComponent_ng_container_133_span_3_Template, 2, 0, "span", 48);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](4, StocksComponent_ng_container_133_span_4_Template, 2, 0, "span", 49);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](5, StocksComponent_ng_container_133_span_5_Template, 2, 0, "span", 50);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](6, StocksComponent_ng_container_133_span_6_Template, 2, 0, "span", 51);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](7, StocksComponent_ng_container_133_span_7_Template, 2, 0, "span", 52);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](8, "span", 53);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_ng_container_133_Template_span_click_8_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r52); const h_r21 = restoredCtx.$implicit; const ctx_r51 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"](); return ctx_r51.openPopup(h_r21); });
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](9, "\u2197");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](10, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](11);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](12, "td", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](13, "a", 54);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](14);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](15, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](16);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](17, "td", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](18);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](19, "td", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](21, "td", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](22);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](23, "td", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](24);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](25, "td", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](27, "td", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](28);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](29, "td", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](30);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](31, "td", 46);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](32);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](33, "td", 55);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](34, StocksComponent_ng_container_133_div_34_Template, 7, 6, "div", 56);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementContainerEnd"]();
+function StocksComponent_ng_container_135_Template(rf, ctx) { if (rf & 1) {
+    const _r67 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementContainerStart"](0);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "tr", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](2, "td", 47);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](3, StocksComponent_ng_container_135_span_3_Template, 2, 0, "span", 48);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](4, StocksComponent_ng_container_135_span_4_Template, 2, 0, "span", 49);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](5, StocksComponent_ng_container_135_span_5_Template, 2, 0, "span", 50);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](6, StocksComponent_ng_container_135_span_6_Template, 2, 0, "span", 51);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](7, StocksComponent_ng_container_135_span_7_Template, 2, 0, "span", 52);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](8, "span", 53);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_ng_container_135_Template_span_click_8_listener() { const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r67); const h_r21 = restoredCtx.$implicit; const ctx_r66 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"](); return ctx_r66.openPopup(h_r21); });
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](9, "\u2197");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](10, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "a", 54);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](12);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "td");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](14);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](18, "div", 55);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "span", 56);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](20);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](21, StocksComponent_ng_container_135_span_21_Template, 2, 1, "span", 57);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](22, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](23, "div", 55);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](24, "span", 56);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](26, StocksComponent_ng_container_135_span_26_Template, 2, 1, "span", 57);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](27, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](28, "div", 55);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](29, "span", 56);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](31, StocksComponent_ng_container_135_span_31_Template, 2, 1, "span", 57);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](32, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](33, "div", 55);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](34, "span", 56);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](35);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](36, StocksComponent_ng_container_135_span_36_Template, 2, 1, "span", 57);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](37, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](38, "div", 55);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](39, "span", 56);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](40);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](41, StocksComponent_ng_container_135_span_41_Template, 2, 1, "span", 57);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](42, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](43, "div", 55);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](44, "span", 56);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](45);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](46, StocksComponent_ng_container_135_span_46_Template, 2, 1, "span", 57);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](47, "td", 46);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](48, "div", 55);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](49, "span", 56);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](50);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](51, StocksComponent_ng_container_135_span_51_Template, 2, 1, "span", 57);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](52, StocksComponent_ng_container_135_div_52_Template, 2, 0, "div", 58);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](53, "td", 59);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](54, StocksComponent_ng_container_135_div_54_Template, 7, 6, "div", 60);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementContainerEnd"]();
 } if (rf & 2) {
     const h_r21 = ctx.$implicit;
-    const ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵnextContext"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction5"](28, _c0, !h_r21.isMatchingFilter, h_r21.isIndex, h_r21.isIndex && h_r21.tradingsymbol === "NIFTY 50", h_r21.watchlist, ctx_r10.isRowHidden(h_r21) || ctx_r10.isRowHiddenFilter(h_r21)));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", h_r21.isIndex === true);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", h_r21.isIndex === true);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", h_r21.isIndex === true);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", h_r21.isIndex === false && h_r21.watchlist === false);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", h_r21.watchlist);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.rank);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction1"](34, _c1, ctx_r10.isStockHolding(h_r21)));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("href", "https://www.google.com/search?q=" + h_r21.tradingsymbol + "&tbm=nws", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵsanitizeUrl"]);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"](" ", h_r21.tradingsymbol, " ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.ltp);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](36, _c2, h_r21.ltp > h_r21.DMA200, h_r21.ltp < h_r21.DMA200));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.DMA200);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction3"](39, _c3, h_r21.return1 > 0, h_r21.return1 < 0, h_r21.return1 > 2 || h_r21.return1 < -2));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.return1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction3"](43, _c3, h_r21.return2 > 0, h_r21.return2 < 0, h_r21.return2 > 5 || h_r21.return2 < -5));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.return2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction3"](47, _c3, h_r21.return3 > 0, h_r21.return3 < 0, h_r21.return3 > 7 || h_r21.return3 < -7));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.return3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction3"](51, _c3, h_r21.return4 > 0, h_r21.return4 < 0, h_r21.return4 > 10 || h_r21.return4 < -10));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.return4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction3"](55, _c3, h_r21.return5 > 0, h_r21.return5 < 0, h_r21.return5 > 10 || h_r21.return5 < -10));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.return5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction3"](59, _c3, h_r21.return6 > 0, h_r21.return6 < 0, h_r21.return6 > 10 || h_r21.return6 < -10));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.return6);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](63, _c2, h_r21.dist4 >= -15, h_r21.dist4 < -15));
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](h_r21.dist4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", !h_r21.isIndex);
+    const ctx_r10 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction5"](35, _c0, !h_r21.isMatchingFilter, h_r21.isIndex, h_r21.isIndex && h_r21.tradingsymbol === "NIFTY 50", h_r21.watchlist, ctx_r10.isRowHidden(h_r21) || ctx_r10.isRowHiddenFilter(h_r21)));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", h_r21.isIndex === true);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", h_r21.isIndex === true);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", h_r21.isIndex === true);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", h_r21.isIndex === false && h_r21.watchlist === false);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", h_r21.watchlist);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction1"](41, _c1, ctx_r10.isStockHolding(h_r21)));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("href", "https://www.google.com/search?q=" + h_r21.tradingsymbol + "&tbm=nws", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"](" ", h_r21.tradingsymbol, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](h_r21.ltp);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](43, _c2, h_r21.ltp > h_r21.DMA200, h_r21.ltp < h_r21.DMA200));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](h_r21.DMA200);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction3"](46, _c3, h_r21.return1 > 0, h_r21.return1 < 0, h_r21.return1 > 2 || h_r21.return1 < -2));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](h_r21.return1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !h_r21.isIndex);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction3"](50, _c3, h_r21.return2 > 0, h_r21.return2 < 0, h_r21.return2 > 5 || h_r21.return2 < -5));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](h_r21.return2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !h_r21.isIndex);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction3"](54, _c3, h_r21.return3 > 0, h_r21.return3 < 0, h_r21.return3 > 7 || h_r21.return3 < -7));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](h_r21.return3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !h_r21.isIndex);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction3"](58, _c3, h_r21.return4 > 0, h_r21.return4 < 0, h_r21.return4 > 10 || h_r21.return4 < -10));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](h_r21.return4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !h_r21.isIndex);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction3"](62, _c3, h_r21.return5 > 0, h_r21.return5 < 0, h_r21.return5 > 10 || h_r21.return5 < -10));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](h_r21.return5);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !h_r21.isIndex);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction3"](66, _c3, h_r21.return6 > 0, h_r21.return6 < 0, h_r21.return6 > 10 || h_r21.return6 < -10));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](h_r21.return6);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !h_r21.isIndex);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](70, _c2, h_r21.dist4 >= -15, h_r21.dist4 < -15));
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](h_r21.dist4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !h_r21.isIndex);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !h_r21.isIndex && h_r21.isDist4Within1Month);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", !h_r21.isIndex);
 } }
 const _c4 = function (a0) { return { "d-none": a0 }; };
 class StocksComponent {
@@ -28763,10 +28891,10 @@ class StocksComponent {
             'dist4': { selected: false, value: -27 },
             'DMA200': { selected: false }
         };
-        _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.stocksEvent$.subscribe(res => {
+        _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.stocksEvent$.subscribe(res => {
             console.log('stocksEvent subcribe: ', res);
             if (res === 'refresh') {
-                this.all_rows = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.all_rows;
+                this.all_rows = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows;
             }
         });
     }
@@ -28776,6 +28904,55 @@ class StocksComponent {
         }
     }
     ngOnInit() {
+        /* if (StocksConstants.fetchFromWebsite) {
+          this.fetchAllStocksInIndices();
+        } else {
+          this.initialProcessing();
+        } */
+    }
+    fetchAllStocksInIndices() {
+        if (!_stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.fetchFromWebsite) {
+            this.initialProcessing();
+            return;
+        }
+        const requests = [];
+        // Iterate over stocksList to create the HTTP requests for each CSV file
+        _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.stocksList.forEach(entry => {
+            const request = this.stocksService.getRawCsvData(entry.niftyIndicesSymbol);
+            requests.push(request);
+        });
+        // Use forkJoin to handle all the HTTP requests in parallel
+        (0,rxjs__WEBPACK_IMPORTED_MODULE_13__.forkJoin)(requests).subscribe({
+            next: responses => {
+                responses.forEach(response => {
+                    // Log the entire response to see its structure
+                    console.log("Response Data:", response);
+                    // Check if response has 'csvData' and parse it
+                    if (response && response.csvData) {
+                        const parsedData = papaparse__WEBPACK_IMPORTED_MODULE_5__.parse(response.csvData, { header: true }).data;
+                        console.log("Parsed Data:", parsedData); // Log parsed data to inspect it
+                        const symbolList = parsedData.map(row => row["Symbol"]);
+                        // Find the corresponding entry in stocksList and update the "stocks" array
+                        const targetEntry = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.stocksList.find(e => e.niftyIndicesSymbol === response.niftyIndicesSymbol);
+                        if (targetEntry) {
+                            targetEntry.stocks = [...symbolList]; // Update the stocks array
+                        }
+                    }
+                    else {
+                        console.error("No 'csvData' found in response:", response);
+                    }
+                });
+                // Call initialProcessing after all requests have completed
+                _common_application_constant__WEBPACK_IMPORTED_MODULE_1__.AppConstants.requestStatusEvent$.next({ 'status': 'success', 'message': 'Fetched all stocks in indices. Please verify.' });
+                this.initialProcessing();
+            },
+            error: (err) => {
+                console.error('Error during API call:', err);
+            }
+        });
+    }
+    initialProcessing() {
+        console.log('initialProcessing');
         this.all_rows = [];
         this.watchlist_rows = [];
         /* this.loadWatchlistFromLS();
@@ -28790,9 +28967,9 @@ class StocksComponent {
           this.watchlist_rows.push(s_);
         }
         StocksConstants.watchlist = this.watchlist_rows; */
-        for (let j = 0; j < _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.stocksList.length; j++) {
-            let index = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.stocksList[j];
-            let s = new _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StockData();
+        for (let j = 0; j < _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.stocksList.length; j++) {
+            let index = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.stocksList[j];
+            let s = new _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StockData();
             s.tradingsymbol = index.tradingsymbol;
             s.watchlist = false;
             s.isIndex = true;
@@ -28801,7 +28978,7 @@ class StocksComponent {
             this.all_rows.push(s);
             for (let i = 0; i < index.stocks.length; i++) {
                 let stock = index.stocks[i];
-                let s_ = new _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StockData();
+                let s_ = new _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StockData();
                 s_.tradingsymbol = stock;
                 s_.watchlist = false;
                 s_.isIndex = false;
@@ -28810,11 +28987,11 @@ class StocksComponent {
                 this.all_rows.push(s_);
             }
         }
-        _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.all_rows = this.all_rows;
+        _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows = this.all_rows;
         this.loadWatchlistFromLS();
-        for (let k = 0; k < _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist.length; k++) {
-            let w = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist[k];
-            let arr = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.all_rows.filter(x => x.tradingsymbol === w);
+        for (let k = 0; k < _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist.length; k++) {
+            let w = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist[k];
+            let arr = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows.filter(x => x.tradingsymbol === w);
             for (let k = 0; k < arr.length; k++) {
                 let e = arr[k];
                 e.watchlist = true;
@@ -28830,7 +29007,7 @@ class StocksComponent {
     }
     isStockInIndex(index, stock) {
         var _a;
-        return ((_a = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.stocksList.find(item => item.tradingsymbol === index)) === null || _a === void 0 ? void 0 : _a.stocks.includes(stock)) || false;
+        return ((_a = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.stocksList.find(item => item.tradingsymbol === index)) === null || _a === void 0 ? void 0 : _a.stocks.includes(stock)) || false;
     }
     isRowHidden(element) {
         if (element.isIndex) {
@@ -28879,7 +29056,7 @@ class StocksComponent {
     getChartInfo(num) {
         let obj;
         if (num === 1) {
-            let nifty50 = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.all_rows.find(x => x.tradingsymbol === 'NIFTY 50');
+            let nifty50 = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows.find(x => x.tradingsymbol === 'NIFTY 50');
             obj = nifty50;
         }
         if (num === 2) {
@@ -28908,18 +29085,18 @@ class StocksComponent {
         let data_3 = [];
         let data_4 = [];
         let volume_2 = [];
-        let st_1 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_1__.SuperTrend(this.stPeriod, this.stVol, 'WEMA');
-        let st_2 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_1__.SuperTrend(this.stPeriod, this.stVol, 'WEMA');
-        let ema_1_1 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_1__.EMA(this.emaPeriod1);
-        let ema_1_2 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_1__.EMA(this.emaPeriod2);
-        let ema_2_1 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_1__.EMA(this.emaPeriod1);
-        let ema_2_2 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_1__.EMA(this.emaPeriod2);
-        let sma_1 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_1__.SMA(this.smaPeriod);
-        let sma_2 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_1__.SMA(this.smaPeriod);
-        let stockData = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.candlesData[element.tradingsymbol];
-        let indexData = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.candlesData[element.index];
-        let niftyData = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.candlesData["NIFTY 50"];
-        for (let j = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.chartDaysToPlot; j >= 0; j--) {
+        let st_1 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_2__.SuperTrend(this.stPeriod, this.stVol, 'WEMA');
+        let st_2 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_2__.SuperTrend(this.stPeriod, this.stVol, 'WEMA');
+        let ema_1_1 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_2__.EMA(this.emaPeriod1);
+        let ema_1_2 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_2__.EMA(this.emaPeriod2);
+        let ema_2_1 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_2__.EMA(this.emaPeriod1);
+        let ema_2_2 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_2__.EMA(this.emaPeriod2);
+        let sma_1 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_2__.SMA(this.smaPeriod);
+        let sma_2 = new _debut_indicators__WEBPACK_IMPORTED_MODULE_2__.SMA(this.smaPeriod);
+        let stockData = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.candlesData[element.tradingsymbol];
+        let indexData = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.candlesData[element.index];
+        let niftyData = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.candlesData["NIFTY 50"];
+        for (let j = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.chartDaysToPlot; j >= 0; j--) {
             let stockOHLC = null;
             let indexOHLC = null;
             let niftyOHLC = null;
@@ -29027,14 +29204,14 @@ class StocksComponent {
         }
         let div_id1 = chartId1;
         console.log('chartId1', div_id1);
-        let chartObj1 = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_3__.createChart)(div_id1, {
+        let chartObj1 = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_4__.createChart)(div_id1, {
             width: 1200,
             height: 320,
             timeScale: {
                 timeVisible: true,
             },
             crosshair: {
-                mode: lightweight_charts__WEBPACK_IMPORTED_MODULE_3__.CrosshairMode.Normal,
+                mode: lightweight_charts__WEBPACK_IMPORTED_MODULE_4__.CrosshairMode.Normal,
             },
         });
         let c = chartObj1.addCandlestickSeries();
@@ -29065,14 +29242,14 @@ class StocksComponent {
         }
         let div_id2 = chartId2;
         console.log('chartId2', div_id2);
-        let chartObj2 = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_3__.createChart)(div_id2, {
+        let chartObj2 = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_4__.createChart)(div_id2, {
             width: 1200,
             height: 320,
             timeScale: {
                 timeVisible: true,
             },
             crosshair: {
-                mode: lightweight_charts__WEBPACK_IMPORTED_MODULE_3__.CrosshairMode.Normal,
+                mode: lightweight_charts__WEBPACK_IMPORTED_MODULE_4__.CrosshairMode.Normal,
             },
         });
         let c2 = chartObj2.addCandlestickSeries();
@@ -29122,14 +29299,14 @@ class StocksComponent {
         }
         let div_id3 = chartId3;
         console.log('chartId3', div_id3);
-        let chartObj3 = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_3__.createChart)(div_id3, {
+        let chartObj3 = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_4__.createChart)(div_id3, {
             width: 1200,
             height: 150,
             timeScale: {
                 timeVisible: true,
             },
             crosshair: {
-                mode: lightweight_charts__WEBPACK_IMPORTED_MODULE_3__.CrosshairMode.Normal,
+                mode: lightweight_charts__WEBPACK_IMPORTED_MODULE_4__.CrosshairMode.Normal,
             },
         });
         let c3 = chartObj3.addLineSeries({ lineWidth: 2 });
@@ -29147,8 +29324,8 @@ class StocksComponent {
         this.stocksService.loadStocksData(object);
     }
     plotRSCharts(object) {
-        for (let index = 0; index < _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.all_rows.length; index++) {
-            let element = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.all_rows[index];
+        for (let index = 0; index < _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows.length; index++) {
+            let element = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows[index];
             if (element.index === object.index) {
                 this.plotRSChart(element);
             }
@@ -29162,9 +29339,9 @@ class StocksComponent {
             let stockReturn = null;
             let indexReturn = null;
             let niftyReturn = null;
-            let stockData = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.candlesData[element.tradingsymbol];
-            let indexData = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.candlesData[element.index];
-            let niftyData = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.candlesData["NIFTY 50"];
+            let stockData = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.candlesData[element.tradingsymbol];
+            let indexData = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.candlesData[element.index];
+            let niftyData = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.candlesData["NIFTY 50"];
             if (stockData) {
                 stockReturn = this.stocksService.getRSReturns(element, stockData, 55, j);
                 indexReturn = this.stocksService.getRSReturns(element, indexData, 55, j);
@@ -29209,14 +29386,14 @@ class StocksComponent {
         }
         let div_id = chartId;
         console.log('chartId', div_id);
-        let chart = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_3__.createChart)(div_id, {
+        let chart = (0,lightweight_charts__WEBPACK_IMPORTED_MODULE_4__.createChart)(div_id, {
             width: 280,
             height: 100,
             timeScale: {
                 timeVisible: true,
             },
             crosshair: {
-                mode: lightweight_charts__WEBPACK_IMPORTED_MODULE_3__.CrosshairMode.Normal,
+                mode: lightweight_charts__WEBPACK_IMPORTED_MODULE_4__.CrosshairMode.Normal,
             },
         });
         /* let c = chart.addCandlestickSeries(); */
@@ -29239,10 +29416,10 @@ class StocksComponent {
         }
     }
     addToWatchlist(element) {
-        if (!_stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist.includes(element.tradingsymbol)) {
-            _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist.push(element.tradingsymbol);
+        if (!_stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist.includes(element.tradingsymbol)) {
+            _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist.push(element.tradingsymbol);
             this.saveWatchlistToLS();
-            let arr = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.all_rows.filter(x => x.tradingsymbol === element.tradingsymbol);
+            let arr = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows.filter(x => x.tradingsymbol === element.tradingsymbol);
             for (let k = 0; k < arr.length; k++) {
                 let e = arr[k];
                 e.watchlist = true;
@@ -29250,13 +29427,24 @@ class StocksComponent {
             //this.stocksService.sortByReturns();
         }
     }
+    countWatchlist() {
+        let count = 0;
+        let arr = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows.filter(x => x.index === 'NIFTY 500' && !x.isIndex);
+        for (let k = 0; k < arr.length; k++) {
+            let e = arr[k];
+            if (e.watchlist) {
+                count++;
+            }
+        }
+        return count;
+    }
     removeFromWatchlist(element) {
-        let index = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist.indexOf(element.tradingsymbol);
+        let index = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist.indexOf(element.tradingsymbol);
         if (index > -1) { // only splice array when item is found
-            _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist.splice(index, 1); // 2nd parameter means remove one item only
+            _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist.splice(index, 1); // 2nd parameter means remove one item only
         }
         this.saveWatchlistToLS();
-        let arr = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.all_rows.filter(x => x.tradingsymbol === element.tradingsymbol);
+        let arr = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows.filter(x => x.tradingsymbol === element.tradingsymbol);
         for (let k = 0; k < arr.length; k++) {
             let e = arr[k];
             e.watchlist = false;
@@ -29264,19 +29452,19 @@ class StocksComponent {
         //this.stocksService.sortByReturns();
     }
     saveWatchlistToLS() {
-        localStorage.setItem('stocks_watchlist', JSON.stringify(_stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist));
+        localStorage.setItem('stocks_watchlist', JSON.stringify(_stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist));
     }
     loadWatchlistFromLS() {
-        _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist = JSON.parse(localStorage.getItem('stocks_watchlist'));
-        if (_stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist === null) {
-            _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist = [];
+        _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist = JSON.parse(localStorage.getItem('stocks_watchlist'));
+        if (_stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist === null) {
+            _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist = [];
         }
     }
     exportWatchlist() {
         let export_file_name = 'watchlist.csv';
         console.log('exporting: ', export_file_name);
         let str = '';
-        _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist.forEach(w => {
+        _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist.forEach(w => {
             str += w + '\r\n';
         });
         const downloadFile = new Blob([str], {
@@ -29305,16 +29493,16 @@ class StocksComponent {
             let allTextLines = allTextLines_all_data.filter(function (elem) {
                 return elem !== '';
             });
-            _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist = [];
+            _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist = [];
             for (let index = 0; index < allTextLines.length; index++) {
                 let split = allTextLines[index].split(',');
                 let instru_name = split[0];
-                _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist.push(instru_name);
+                _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist.push(instru_name);
             }
             this.saveWatchlistToLS();
-            for (let k = 0; k < _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist.length; k++) {
-                let w = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.watchlist[k];
-                let arr = _stocks_constants__WEBPACK_IMPORTED_MODULE_2__.StocksConstants.all_rows.filter(x => x.tradingsymbol === w);
+            for (let k = 0; k < _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist.length; k++) {
+                let w = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.watchlist[k];
+                let arr = _stocks_constants__WEBPACK_IMPORTED_MODULE_3__.StocksConstants.all_rows.filter(x => x.tradingsymbol === w);
                 for (let k = 0; k < arr.length; k++) {
                     let e = arr[k];
                     e.watchlist = true;
@@ -29395,351 +29583,357 @@ class StocksComponent {
         reader.readAsText(file);
     }
 }
-StocksComponent.ɵfac = function StocksComponent_Factory(t) { return new (t || StocksComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_app_service__WEBPACK_IMPORTED_MODULE_4__.AppService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_zerodha_service__WEBPACK_IMPORTED_MODULE_5__.ZerodhaService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_map_service__WEBPACK_IMPORTED_MODULE_6__.MapService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_7__.WebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_8__.AngelWebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdirectiveInject"](_stocks_service__WEBPACK_IMPORTED_MODULE_9__.StocksService)); };
-StocksComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵdefineComponent"]({ type: StocksComponent, selectors: [["app-stocks"]], viewQuery: function StocksComponent_Query(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵviewQuery"](ng2_charts__WEBPACK_IMPORTED_MODULE_11__.BaseChartDirective, 7);
+StocksComponent.ɵfac = function StocksComponent_Factory(t) { return new (t || StocksComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_app_service__WEBPACK_IMPORTED_MODULE_6__.AppService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_common_zerodha_service__WEBPACK_IMPORTED_MODULE_7__.ZerodhaService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_common_map_service__WEBPACK_IMPORTED_MODULE_8__.MapService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_common_websocket_service__WEBPACK_IMPORTED_MODULE_9__.WebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_common_angelwebsocket_service__WEBPACK_IMPORTED_MODULE_10__.AngelWebsocketService), _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdirectiveInject"](_stocks_service__WEBPACK_IMPORTED_MODULE_11__.StocksService)); };
+StocksComponent.ɵcmp = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵdefineComponent"]({ type: StocksComponent, selectors: [["app-stocks"]], viewQuery: function StocksComponent_Query(rf, ctx) { if (rf & 1) {
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵviewQuery"](ng2_charts__WEBPACK_IMPORTED_MODULE_14__.BaseChartDirective, 7);
     } if (rf & 2) {
         let _t;
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵloadQuery"]()) && (ctx.chart = _t.first);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵloadQuery"]()) && (ctx.chart = _t.first);
     } }, hostBindings: function StocksComponent_HostBindings(rf, ctx) { if (rf & 1) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("keydown", function StocksComponent_keydown_HostBindingHandler($event) { return ctx.handleKeyDown($event); }, false, _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵresolveWindow"]);
-    } }, decls: 134, vars: 93, consts: [[1, "custom-popup", 3, "ngClass"], [1, "custom-popup-close", 3, "click"], [1, "table", "table-sm", "table-bordered", "mb-0"], [1, "chart-popup-table"], [1, "chart-popup-table", 3, "ngClass"], [1, "mt-2", "mb-2"], ["class", "stockChip stockChipRed", 4, "ngIf"], ["class", "stockChip", 4, "ngIf"], ["id", "chart-popup-1", 1, "chart-stock"], [1, "chart-legend"], ["id", "chart-popup-2", 1, "chart-stock"], ["id", "chart-popup-3", 1, "chart-stock"], ["type", "button", 1, "btn", "btn-link", 3, "click"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], ["type", "file", "name", "File Upload Stocks", "accept", ".json", 2, "display", "none", 3, "change"], ["fileImportInputStocks", ""], ["type", "file", "name", "backtestIndexMA", "accept", ".csv", 2, "display", "none", 3, "change"], ["backtestIndexMA_", ""], [1, "form-check", "form-check-inline", "use-hypo-future-class", "ms-4"], ["type", "checkbox", "value", "", "id", "show-st", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-st", 1, "form-check-label"], ["type", "text", 1, "form-control", "form-control-sm", "d-inline-block", "ms-2", 2, "width", "50px", 3, "ngModel", "ngModelChange"], [1, "form-check", "form-check-inline", "use-hypo-future-class", "ms-2"], ["type", "checkbox", "value", "", "id", "hide-nonwatch", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-nonwatch", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-ema1", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema1", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-ema2", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema2", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-sma", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema", 1, "form-check-label"], [2, "display", "flex", "gap", "20px", "margin", "10px 0 20px 0"], ["style", "display: flex; gap: 5px; align-items: center;", 4, "ngFor", "ngForOf"], [1, "table", "table-sm", "table-bordered", "shadow", "mb-0", "text-center"], [1, "table-light"], ["scope", "col", 1, "s-col"], ["scope", "col", 1, "s-col", "cursor-pointer", 3, "click"], ["scope", "col", "title", "52 Week High Dist %", 1, "s-col", "cursor-pointer", 3, "click"], [4, "ngFor", "ngForOf"], [1, "stockChip", "stockChipRed"], [1, "stockChip"], [2, "display", "flex", "gap", "5px", "align-items", "center"], ["type", "checkbox", 3, "ngModel", "ngModelChange", "change"], ["type", "number", 3, "ngModel", "disabled", "ngModelChange", "input", 4, "ngIf"], ["type", "number", 3, "ngModel", "disabled", "ngModelChange", "input"], [3, "ngClass"], [2, "width", "40px"], ["class", "cursor-pointer me-3", "title", "Show/Hide Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Fetch Data of Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Plot RS Charts of Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Add to Watchlist", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Remove from Watchlist", 3, "click", 4, "ngIf"], ["title", "Open Popup", 1, "cursor-pointer", 3, "click"], ["target", "_blank", "rel", "noopener noreferrer", 3, "href"], [1, "text-start"], [4, "ngIf"], ["title", "Show/Hide Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Fetch Data of Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Plot RS Charts of Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Add to Watchlist", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Remove from Watchlist", 1, "cursor-pointer", "me-3", 3, "click"]], template: function StocksComponent_Template(rf, ctx) { if (rf & 1) {
-        const _r53 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵgetCurrentView"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](0, "div", 0);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](1, "span", 1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_span_click_1_listener() { return ctx.closePopup(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](2, "\u2715");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](3, "div");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](4, "table", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](5, "tbody");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](6, "tr");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](7, "td", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](8, "NIFTY 50");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](9, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](11, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](13, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](14);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](15, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](16);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](17, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](19, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](21, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](23, "table", 2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](24, "tbody");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](25, "tr");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](26, "td", 3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](27, "Stock");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](28, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](29);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](30, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](31);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](32, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](33);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](34, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](35);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](36, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](37);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](38, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](39);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](40, "td", 4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](41);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](42, "div", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](43, StocksComponent_div_43_Template, 2, 0, "div", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](44, StocksComponent_div_44_Template, 2, 0, "div", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](45, StocksComponent_div_45_Template, 2, 0, "div", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](46, StocksComponent_div_46_Template, 2, 0, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](47, StocksComponent_div_47_Template, 2, 0, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](48, StocksComponent_div_48_Template, 2, 0, "div", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](49, "div", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](50, "div", 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](51);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](52, "div", 10);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](53, "div", 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](54);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelement"](55, "div", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](56, "div");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](57, "div");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](58, "span");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](59, "RS - Dark Line: Index, Light Line: Nifty 50");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](60, "button", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_60_listener() { return ctx.fetchAllIndices(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](61, "Fetch All Indices");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](62, "button", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_62_listener() { return ctx.exportWatchlist(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](63, "Export Watchlist");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](64, "button", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_64_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r53); const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵreference"](67); return _r6.click(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](65, "Import Watchlist");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](66, "input", 13, 14);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("change", function StocksComponent_Template_input_change_66_listener($event) { return ctx.importWatchlist($event); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](68, "button", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_68_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r53); const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵreference"](71); return _r7.click(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](69, "Import Stocks Data");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](70, "input", 15, 16);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("change", function StocksComponent_Template_input_change_70_listener($event) { return ctx.importStocksData($event); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](72, "button", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_72_listener() { return ctx.backtest1(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](73, "Backtest1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](74, "button", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_74_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵrestoreView"](_r53); const _r8 = _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵreference"](77); return _r8.click(); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](75, "backtestIndexMA");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](76, "input", 17, 18);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("change", function StocksComponent_Template_input_change_76_listener($event) { return ctx.backtestIndexMA($event); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](78, "div", 19);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](79, "input", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_79_listener($event) { return ctx.showST = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](80, "label", 21);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](81, "ST");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](82, "input", 22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_82_listener($event) { return ctx.stPeriod = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](83, "input", 22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_83_listener($event) { return ctx.stVol = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](84, "div", 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](85, "input", 24);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_85_listener($event) { return ctx.hideNonWatchlist = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](86, "label", 25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](87, "Hide Non-Watchlist");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](88, "div", 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](89, "input", 26);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_89_listener($event) { return ctx.showEMA1 = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](90, "label", 27);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](91, "EMA 1");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](92, "input", 22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_92_listener($event) { return ctx.emaPeriod1 = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](93, "div", 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](94, "input", 28);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_94_listener($event) { return ctx.showEMA2 = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](95, "label", 29);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](96, "EMA 2");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](97, "input", 22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_97_listener($event) { return ctx.emaPeriod2 = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](98, "div", 23);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](99, "input", 30);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_99_listener($event) { return ctx.showSMA = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](100, "label", 31);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](101, "SMA");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](102, "input", 22);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_102_listener($event) { return ctx.smaPeriod = $event; });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](103, "div", 32);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](104, StocksComponent_div_104_Template, 5, 3, "div", 33);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](105, "table", 34);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](106, "thead", 35);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](107, "tr");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelement"](108, "th", 36);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](109, "th", 36);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](110, "Rank");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](111, "th", 36);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](112, "Name");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](113, "th", 36);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](114, "LTP");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](115, "th", 36);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](116, "200DMA");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](117, "th", 37);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_117_listener() { return ctx.sortTableColumn("return1"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](118, "1D%");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](119, "th", 37);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_119_listener() { return ctx.sortTableColumn("return2"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](120, "5D%");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](121, "th", 37);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_121_listener() { return ctx.sortTableColumn("return3"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](122, "1M%");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](123, "th", 37);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_123_listener() { return ctx.sortTableColumn("return4"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](124, "3M%");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](125, "th", 37);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_125_listener() { return ctx.sortTableColumn("return5"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](126, "6M%");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](127, "th", 37);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_127_listener() { return ctx.sortTableColumn("return6"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](128, "1Y%");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](129, "th", 38);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_129_listener() { return ctx.sortTableColumn("dist4"); });
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtext"](130, "52WHD%");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelement"](131, "th", 36);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementStart"](132, "tbody");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtemplate"](133, StocksComponent_ng_container_133_Template, 35, 66, "ng-container", 39);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("keydown", function StocksComponent_keydown_HostBindingHandler($event) { return ctx.handleKeyDown($event); }, false, _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵresolveWindow"]);
+    } }, decls: 136, vars: 94, consts: [[1, "custom-popup", 3, "ngClass"], [1, "custom-popup-close", 3, "click"], [1, "table", "table-sm", "table-bordered", "mb-0"], [1, "chart-popup-table"], [1, "chart-popup-table", 3, "ngClass"], [1, "mt-2", "mb-2"], ["class", "stockChip stockChipRed", 4, "ngIf"], ["class", "stockChip", 4, "ngIf"], ["id", "chart-popup-1", 1, "chart-stock"], [1, "chart-legend"], ["id", "chart-popup-2", 1, "chart-stock"], ["id", "chart-popup-3", 1, "chart-stock"], ["type", "button", 1, "btn", "btn-link", 3, "click"], ["type", "file", "name", "File Upload Expiry", "accept", ".csv", 2, "display", "none", 3, "change"], ["fileImportInputExpiry", ""], ["type", "file", "name", "File Upload Stocks", "accept", ".json", 2, "display", "none", 3, "change"], ["fileImportInputStocks", ""], ["type", "file", "name", "backtestIndexMA", "accept", ".csv", 2, "display", "none", 3, "change"], ["backtestIndexMA_", ""], [1, "form-check", "form-check-inline", "use-hypo-future-class", "ms-4"], ["type", "checkbox", "value", "", "id", "show-st", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-st", 1, "form-check-label"], ["type", "text", 1, "form-control", "form-control-sm", "d-inline-block", "ms-2", 2, "width", "50px", 3, "ngModel", "ngModelChange"], [1, "form-check", "form-check-inline", "use-hypo-future-class", "ms-2"], ["type", "checkbox", "value", "", "id", "hide-nonwatch", 1, "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "hide-nonwatch", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-ema1", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema1", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-ema2", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema2", 1, "form-check-label"], ["type", "checkbox", "value", "", "id", "show-sma", 1, "mt-2", "form-check-input", 3, "ngModel", "ngModelChange"], ["for", "show-ema", 1, "form-check-label"], [2, "display", "flex", "gap", "20px", "margin", "10px 0 20px 0", "align-items", "center"], ["style", "display: flex; gap: 5px; align-items: center;", 4, "ngFor", "ngForOf"], [1, "table", "table-sm", "table-bordered", "shadow", "mb-0", "text-center"], [1, "table-light"], ["scope", "col", 1, "s-col"], ["scope", "col", 1, "s-col", "cursor-pointer", 3, "click"], ["scope", "col", "title", "52 Week High Dist %", 1, "s-col", "cursor-pointer", 3, "click"], [4, "ngFor", "ngForOf"], [1, "stockChip", "stockChipRed"], [1, "stockChip"], [2, "display", "flex", "gap", "5px", "align-items", "center"], ["type", "checkbox", 3, "ngModel", "ngModelChange", "change"], ["type", "number", 3, "ngModel", "disabled", "ngModelChange", "input", 4, "ngIf"], ["type", "number", 3, "ngModel", "disabled", "ngModelChange", "input"], [3, "ngClass"], [2, "width", "40px"], ["class", "cursor-pointer me-3", "title", "Show/Hide Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Fetch Data of Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Plot RS Charts of Stocks in this Index", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Add to Watchlist", 3, "click", 4, "ngIf"], ["class", "cursor-pointer me-3", "title", "Remove from Watchlist", 3, "click", 4, "ngIf"], ["title", "Open Popup", 1, "cursor-pointer", 3, "click"], ["target", "_blank", "rel", "noopener noreferrer", 3, "href"], [2, "display", "flex", "align-items", "center"], [1, "returns-value"], ["class", "rank", 4, "ngIf"], ["class", "stockChip stockChipGreen", "style", "margin-left: 5px;", 4, "ngIf"], [1, "text-start"], [4, "ngIf"], ["title", "Show/Hide Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Fetch Data of Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Plot RS Charts of Stocks in this Index", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Add to Watchlist", 1, "cursor-pointer", "me-3", 3, "click"], ["title", "Remove from Watchlist", 1, "cursor-pointer", "me-3", 3, "click"], [1, "rank"], [1, "stockChip", "stockChipGreen", 2, "margin-left", "5px"]], template: function StocksComponent_Template(rf, ctx) { if (rf & 1) {
+        const _r68 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵgetCurrentView"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](0, "div", 0);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](1, "span", 1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_span_click_1_listener() { return ctx.closePopup(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](2, "\u2715");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](3, "div");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](4, "table", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](5, "tbody");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](6, "tr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](7, "td", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](8, "NIFTY 50");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](9, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](11, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](13, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](15, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](17, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](19, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](21, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](23, "table", 2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](24, "tbody");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](25, "tr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](26, "td", 3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](27, "Stock");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](28, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](29);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](30, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](32, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](33);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](34, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](35);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](36, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](37);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](38, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](39);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](40, "td", 4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](41);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](42, "div", 5);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](43, StocksComponent_div_43_Template, 2, 0, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](44, StocksComponent_div_44_Template, 2, 0, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](45, StocksComponent_div_45_Template, 2, 0, "div", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](46, StocksComponent_div_46_Template, 2, 0, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](47, StocksComponent_div_47_Template, 2, 0, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](48, StocksComponent_div_48_Template, 2, 0, "div", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](49, "div", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](50, "div", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](51);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](52, "div", 10);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](53, "div", 9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](54);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](55, "div", 11);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](56, "div");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](57, "div");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](58, "span");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](59, "RS - Dark Line: Index, Light Line: Nifty 50");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](60, "button", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_60_listener() { return ctx.fetchAllStocksInIndices(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](61, "Fetch Stocks List");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](62, "button", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_62_listener() { return ctx.fetchAllIndices(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](63, "Fetch Indices Values");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](64, "button", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_64_listener() { return ctx.exportWatchlist(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](65, "Export Watchlist");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](66, "button", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_66_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵreference"](69); return _r6.click(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](67, "Import Watchlist");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](68, "input", 13, 14);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("change", function StocksComponent_Template_input_change_68_listener($event) { return ctx.importWatchlist($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](70, "button", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_70_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const _r7 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵreference"](73); return _r7.click(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](71, "Import Stocks Data");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](72, "input", 15, 16);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("change", function StocksComponent_Template_input_change_72_listener($event) { return ctx.importStocksData($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](74, "button", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_74_listener() { return ctx.backtest1(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](75, "Backtest1");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](76, "button", 12);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_button_click_76_listener() { _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵrestoreView"](_r68); const _r8 = _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵreference"](79); return _r8.click(); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](77, "backtestIndexMA");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](78, "input", 17, 18);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("change", function StocksComponent_Template_input_change_78_listener($event) { return ctx.backtestIndexMA($event); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](80, "div", 19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](81, "input", 20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_81_listener($event) { return ctx.showST = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](82, "label", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](83, "ST");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](84, "input", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_84_listener($event) { return ctx.stPeriod = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](85, "input", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_85_listener($event) { return ctx.stVol = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](86, "div", 23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](87, "input", 24);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_87_listener($event) { return ctx.hideNonWatchlist = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](88, "label", 25);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](89, "Hide Non-Watchlist");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](90, "div", 23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](91, "input", 26);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_91_listener($event) { return ctx.showEMA1 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](92, "label", 27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](93, "EMA 1");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](94, "input", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_94_listener($event) { return ctx.emaPeriod1 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](95, "div", 23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](96, "input", 28);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_96_listener($event) { return ctx.showEMA2 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](97, "label", 29);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](98, "EMA 2");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](99, "input", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_99_listener($event) { return ctx.emaPeriod2 = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](100, "div", 23);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](101, "input", 30);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_101_listener($event) { return ctx.showSMA = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](102, "label", 31);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](103, "SMA");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](104, "input", 22);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("ngModelChange", function StocksComponent_Template_input_ngModelChange_104_listener($event) { return ctx.smaPeriod = $event; });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](105, "div", 32);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](106, StocksComponent_div_106_Template, 5, 3, "div", 33);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](107, "span");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](108);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](109, "table", 34);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](110, "thead", 35);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](111, "tr");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](112, "th", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](113, "th", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](114, "Name");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](115, "th", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](116, "LTP");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](117, "th", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](118, "200DMA");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](119, "th", 37);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_119_listener() { return ctx.sortTableColumn("return1"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](120, "1D%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](121, "th", 37);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_121_listener() { return ctx.sortTableColumn("return2"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](122, "5D%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](123, "th", 37);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_123_listener() { return ctx.sortTableColumn("return3"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](124, "1M%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](125, "th", 37);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_125_listener() { return ctx.sortTableColumn("return4"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](126, "3M%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](127, "th", 37);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_127_listener() { return ctx.sortTableColumn("return5"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](128, "6M%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](129, "th", 37);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_129_listener() { return ctx.sortTableColumn("return6"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](130, "1Y%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](131, "th", 38);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵlistener"]("click", function StocksComponent_Template_th_click_131_listener() { return ctx.sortTableColumn("dist4"); });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtext"](132, "52WHD%");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelement"](133, "th", 36);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementStart"](134, "tbody");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtemplate"](135, StocksComponent_ng_container_135_Template, 55, 73, "ng-container", 39);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵelementEnd"]();
     } if (rf & 2) {
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction1"](49, _c4, ctx.showPopup === false));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](51, _c2, ctx.getChartInfo(1)[0] > 0, ctx.getChartInfo(1)[0] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("1D%: ", ctx.getChartInfo(1)[0], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](54, _c2, ctx.getChartInfo(1)[1] > 0, ctx.getChartInfo(1)[1] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("5D%: ", ctx.getChartInfo(1)[1], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](57, _c2, ctx.getChartInfo(1)[2] > 0, ctx.getChartInfo(1)[2] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("1M%: ", ctx.getChartInfo(1)[2], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](60, _c2, ctx.getChartInfo(1)[3] > 0, ctx.getChartInfo(1)[3] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("3M%: ", ctx.getChartInfo(1)[3], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](63, _c2, ctx.getChartInfo(1)[4] > 0, ctx.getChartInfo(1)[4] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("6M%: ", ctx.getChartInfo(1)[4], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](66, _c2, ctx.getChartInfo(1)[5] > 0, ctx.getChartInfo(1)[5] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("1Y%: ", ctx.getChartInfo(1)[5], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](69, _c2, ctx.getChartInfo(1)[6] >= -15, ctx.getChartInfo(1)[6] < -15));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("52WHD%: ", ctx.getChartInfo(1)[6], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](72, _c2, ctx.getChartInfo(2)[0] > 0, ctx.getChartInfo(2)[0] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("1D%: ", ctx.getChartInfo(2)[0], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](75, _c2, ctx.getChartInfo(2)[1] > 0, ctx.getChartInfo(2)[1] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("5D%: ", ctx.getChartInfo(2)[1], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](78, _c2, ctx.getChartInfo(2)[2] > 0, ctx.getChartInfo(2)[2] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("1M%: ", ctx.getChartInfo(2)[2], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](81, _c2, ctx.getChartInfo(2)[3] > 0, ctx.getChartInfo(2)[3] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("3M%: ", ctx.getChartInfo(2)[3], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](84, _c2, ctx.getChartInfo(2)[4] > 0, ctx.getChartInfo(2)[4] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("6M%: ", ctx.getChartInfo(2)[4], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](87, _c2, ctx.getChartInfo(2)[5] > 0, ctx.getChartInfo(2)[5] < 0));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("1Y%: ", ctx.getChartInfo(2)[5], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵpureFunction2"](90, _c2, ctx.getChartInfo(2)[6] >= -15, ctx.getChartInfo(2)[6] < -15));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate1"]("52WHD%: ", ctx.getChartInfo(2)[6], "");
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTYM150MOMNTM50", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("MOMENTUM50", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTY ALPHA 50", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTY 50", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTY 100", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTY MIDCAP 150", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx.getChartLabel("chart-popup-1"));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵtextInterpolate"](ctx.getChartLabel("chart-popup-2"));
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](25);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.showST);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.stPeriod);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.stVol);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.hideNonWatchlist);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](4);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.showEMA1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.emaPeriod1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.showEMA2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.emaPeriod2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.showSMA);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](3);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngModel", ctx.smaPeriod);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](2);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngForOf", ctx.filterKeys);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵadvance"](29);
-        _angular_core__WEBPACK_IMPORTED_MODULE_10__["ɵɵproperty"]("ngForOf", ctx.all_rows);
-    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_12__.NgClass, _angular_common__WEBPACK_IMPORTED_MODULE_12__.NgIf, _angular_forms__WEBPACK_IMPORTED_MODULE_13__.CheckboxControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_13__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_13__.NgModel, _angular_forms__WEBPACK_IMPORTED_MODULE_13__.DefaultValueAccessor, _angular_common__WEBPACK_IMPORTED_MODULE_12__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_13__.NumberValueAccessor], styles: ["[_nghost-%COMP%], input[_ngcontent-%COMP%], .input-group-text[_ngcontent-%COMP%], select[_ngcontent-%COMP%], button[_ngcontent-%COMP%] {\n  font-size: 12px !important;\n}\n\n.indexRow[_ngcontent-%COMP%] {\n  background: #d8f5ff;\n  font-weight: bold;\n}\n\n.niftyRow[_ngcontent-%COMP%] {\n  background: #c3e4ef;\n}\n\n.cursor-pointer[_ngcontent-%COMP%] {\n  cursor: pointer;\n}\n\n.custom-popup[_ngcontent-%COMP%] {\n  \n  position: fixed;\n  top: 0;\n  \n  width: 1240px;\n  height: 100%;\n  right: 0px;\n  background: white;\n  padding: 20px;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  overflow: scroll;\n  z-index: 999;\n}\n\n.custom-popup-close[_ngcontent-%COMP%] {\n  cursor: pointer;\n  font-size: 18px;\n  position: absolute;\n  right: 5px;\n  top: 0px;\n}\n\n.green[_ngcontent-%COMP%] {\n  color: green;\n}\n\n.red[_ngcontent-%COMP%] {\n  color: #ff6347;\n}\n\n.chart-stock[_ngcontent-%COMP%] {\n  position: relative;\n}\n\n.chart-legend[_ngcontent-%COMP%] {\n  position: absolute;\n  left: 4px;\n  top: 2px;\n  z-index: 2;\n  font-size: 18px;\n  line-height: 28px;\n  font-weight: 300;\n  color: black;\n}\n\n.chart-popup-table[_ngcontent-%COMP%] {\n  width: 120px;\n}\n\n.watchlist-row[_ngcontent-%COMP%] {\n  background: #e1ebfe !important;\n}\n\n.notmatchingfilter-row[_ngcontent-%COMP%] {\n  background: lightgrey;\n}\n\n.stockChip[_ngcontent-%COMP%] {\n  background: #f0f0f0;\n  border-radius: 4px;\n  display: inline-block;\n  margin-right: 4px;\n  padding: 0 4px;\n}\n\n.stockChipRed[_ngcontent-%COMP%] {\n  background: #ff6347;\n  color: white;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0b2Nrcy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLDBCQUFBO0FBQUo7O0FBR0E7RUFDSSxtQkFBQTtFQUNBLGlCQUFBO0FBQUo7O0FBR0E7RUFDSSxtQkFBQTtBQUFKOztBQUdBO0VBQ0ksZUFBQTtBQUFKOztBQUdBO0VBQ0k7Ozs7Ozs7OztpQkFBQTtFQVdBLGVBQUE7RUFDQSxNQUFBO0VBQ0Esd0JBQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtFQUNBLFVBQUE7RUFDQSxpQkFBQTtFQUNBLGFBQUE7RUFDQSwyQ0FBQTtFQUNBLGdCQUFBO0VBQ0EsWUFBQTtBQURKOztBQUlBO0VBQ0ksZUFBQTtFQUNBLGVBQUE7RUFDQSxrQkFBQTtFQUNBLFVBQUE7RUFDQSxRQUFBO0FBREo7O0FBSUE7RUFDSSxZQUFBO0FBREo7O0FBSUE7RUFDSSxjQUFBO0FBREo7O0FBSUE7RUFDSSxrQkFBQTtBQURKOztBQUlBO0VBQ0Msa0JBQUE7RUFDQSxTQUFBO0VBQ0EsUUFBQTtFQUNBLFVBQUE7RUFDQSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxnQkFBQTtFQUNHLFlBQUE7QUFESjs7QUFJQTtFQUNJLFlBQUE7QUFESjs7QUFJQTtFQUNJLDhCQUFBO0FBREo7O0FBSUE7RUFDSSxxQkFBQTtBQURKOztBQUlBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtFQUNBLHFCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FBREo7O0FBSUE7RUFDSSxtQkFBQTtFQUNBLFlBQUE7QUFESiIsImZpbGUiOiJzdG9ja3MuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuOmhvc3QsIGlucHV0LCAuaW5wdXQtZ3JvdXAtdGV4dCwgc2VsZWN0LCBidXR0b24ge1xyXG4gICAgZm9udC1zaXplOiAxMnB4ICFpbXBvcnRhbnQ7XHJcbn1cclxuXHJcbi5pbmRleFJvdyB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjZDhmNWZmO1xyXG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XHJcbn1cclxuXHJcbi5uaWZ0eVJvdyB7XHJcbiAgICBiYWNrZ3JvdW5kOiAjYzNlNGVmO1xyXG59XHJcblxyXG4uY3Vyc29yLXBvaW50ZXIge1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG59XHJcblxyXG4uY3VzdG9tLXBvcHVwIHtcclxuICAgIC8qIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICAgIHdpZHRoOiA5MCU7XHJcbiAgICBoZWlnaHQ6IDkwJTtcclxuICAgIGxlZnQ6IDUlO1xyXG4gICAgdG9wOiA1JTtcclxuICAgIGJhY2tncm91bmQ6IHdoaXRlO1xyXG4gICAgcGFkZGluZzogMjBweDtcclxuICAgIGJveC1zaGFkb3c6IHJnYmEoMCwgMCwgMCwgMC4yNCkgMHB4IDNweCA4cHg7XHJcbiAgICBvdmVyZmxvdzogc2Nyb2xsO1xyXG4gICAgei1pbmRleDogOTk5OyAqL1xyXG5cclxuICAgIHBvc2l0aW9uOiBmaXhlZDtcclxuICAgIHRvcDogMDtcclxuICAgIC8qIHBvc2l0aW9uOiBhYnNvbHV0ZTsgKi9cclxuICAgIHdpZHRoOiAxMjQwcHg7XHJcbiAgICBoZWlnaHQ6IDEwMCU7XHJcbiAgICByaWdodDogMHB4O1xyXG4gICAgYmFja2dyb3VuZDogd2hpdGU7XHJcbiAgICBwYWRkaW5nOiAyMHB4O1xyXG4gICAgYm94LXNoYWRvdzogcmdiYSgwLCAwLCAwLCAwLjI0KSAwcHggM3B4IDhweDtcclxuICAgIG92ZXJmbG93OiBzY3JvbGw7XHJcbiAgICB6LWluZGV4OiA5OTk7XHJcbn1cclxuXHJcbi5jdXN0b20tcG9wdXAtY2xvc2Uge1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG4gICAgZm9udC1zaXplOiAxOHB4O1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgcmlnaHQ6IDVweDtcclxuICAgIHRvcDogMHB4O1xyXG59XHJcblxyXG4uZ3JlZW4ge1xyXG4gICAgY29sb3I6IGdyZWVuO1xyXG59XHJcblxyXG4ucmVkIHtcclxuICAgIGNvbG9yOiAjZmY2MzQ3O1xyXG59XHJcblxyXG4uY2hhcnQtc3RvY2sge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcblxyXG4uY2hhcnQtbGVnZW5kIHtcclxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XHJcblx0bGVmdDogNHB4O1xyXG5cdHRvcDogMnB4O1xyXG5cdHotaW5kZXg6IDI7XHJcblx0Zm9udC1zaXplOiAxOHB4O1xyXG5cdGxpbmUtaGVpZ2h0OiAyOHB4O1xyXG5cdGZvbnQtd2VpZ2h0OiAzMDA7XHJcbiAgICBjb2xvcjogYmxhY2s7XHJcbn1cclxuXHJcbi5jaGFydC1wb3B1cC10YWJsZSB7XHJcbiAgICB3aWR0aDogMTIwcHg7XHJcbn1cclxuXHJcbi53YXRjaGxpc3Qtcm93IHtcclxuICAgIGJhY2tncm91bmQ6ICNlMWViZmUgIWltcG9ydGFudDtcclxufVxyXG5cclxuLm5vdG1hdGNoaW5nZmlsdGVyLXJvdyB7XHJcbiAgICBiYWNrZ3JvdW5kOiBsaWdodGdyZXk7XHJcbn1cclxuXHJcbi5zdG9ja0NoaXAge1xyXG4gICAgYmFja2dyb3VuZDogI2YwZjBmMDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIG1hcmdpbi1yaWdodDogNHB4O1xyXG4gICAgcGFkZGluZzogMCA0cHg7XHJcbn1cclxuXHJcbi5zdG9ja0NoaXBSZWQge1xyXG4gICAgYmFja2dyb3VuZDogI2ZmNjM0NztcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxufSJdfQ== */"] });
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction1"](50, _c4, ctx.showPopup === false));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](9);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](52, _c2, ctx.getChartInfo(1)[0] > 0, ctx.getChartInfo(1)[0] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("1D%: ", ctx.getChartInfo(1)[0], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](55, _c2, ctx.getChartInfo(1)[1] > 0, ctx.getChartInfo(1)[1] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("5D%: ", ctx.getChartInfo(1)[1], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](58, _c2, ctx.getChartInfo(1)[2] > 0, ctx.getChartInfo(1)[2] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("1M%: ", ctx.getChartInfo(1)[2], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](61, _c2, ctx.getChartInfo(1)[3] > 0, ctx.getChartInfo(1)[3] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("3M%: ", ctx.getChartInfo(1)[3], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](64, _c2, ctx.getChartInfo(1)[4] > 0, ctx.getChartInfo(1)[4] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("6M%: ", ctx.getChartInfo(1)[4], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](67, _c2, ctx.getChartInfo(1)[5] > 0, ctx.getChartInfo(1)[5] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("1Y%: ", ctx.getChartInfo(1)[5], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](70, _c2, ctx.getChartInfo(1)[6] >= -15, ctx.getChartInfo(1)[6] < -15));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("52WHD%: ", ctx.getChartInfo(1)[6], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](73, _c2, ctx.getChartInfo(2)[0] > 0, ctx.getChartInfo(2)[0] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("1D%: ", ctx.getChartInfo(2)[0], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](76, _c2, ctx.getChartInfo(2)[1] > 0, ctx.getChartInfo(2)[1] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("5D%: ", ctx.getChartInfo(2)[1], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](79, _c2, ctx.getChartInfo(2)[2] > 0, ctx.getChartInfo(2)[2] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("1M%: ", ctx.getChartInfo(2)[2], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](82, _c2, ctx.getChartInfo(2)[3] > 0, ctx.getChartInfo(2)[3] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("3M%: ", ctx.getChartInfo(2)[3], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](85, _c2, ctx.getChartInfo(2)[4] > 0, ctx.getChartInfo(2)[4] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("6M%: ", ctx.getChartInfo(2)[4], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](88, _c2, ctx.getChartInfo(2)[5] > 0, ctx.getChartInfo(2)[5] < 0));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("1Y%: ", ctx.getChartInfo(2)[5], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵpureFunction2"](91, _c2, ctx.getChartInfo(2)[6] >= -15, ctx.getChartInfo(2)[6] < -15));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("52WHD%: ", ctx.getChartInfo(2)[6], "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTYM150MOMNTM50", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("MOMENTUM50", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTY ALPHA 50", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTY 50", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTY 100", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngIf", ctx.isStockInIndex("NIFTY MIDCAP 150", ctx.popupChart2 == null ? null : ctx.popupChart2.tradingsymbol));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx.getChartLabel("chart-popup-1"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate"](ctx.getChartLabel("chart-popup-2"));
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.showST);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.stPeriod);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.stVol);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.hideNonWatchlist);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](4);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.showEMA1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.emaPeriod1);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.showEMA2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.emaPeriod2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.showSMA);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](3);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngModel", ctx.smaPeriod);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngForOf", ctx.filterKeys);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](2);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵtextInterpolate1"]("Watchlist: ", ctx.countWatchlist(), "");
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵadvance"](27);
+        _angular_core__WEBPACK_IMPORTED_MODULE_12__["ɵɵproperty"]("ngForOf", ctx.all_rows);
+    } }, directives: [_angular_common__WEBPACK_IMPORTED_MODULE_15__.NgClass, _angular_common__WEBPACK_IMPORTED_MODULE_15__.NgIf, _angular_forms__WEBPACK_IMPORTED_MODULE_16__.CheckboxControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_16__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_16__.NgModel, _angular_forms__WEBPACK_IMPORTED_MODULE_16__.DefaultValueAccessor, _angular_common__WEBPACK_IMPORTED_MODULE_15__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_16__.NumberValueAccessor], styles: ["[_nghost-%COMP%], input[_ngcontent-%COMP%], .input-group-text[_ngcontent-%COMP%], select[_ngcontent-%COMP%], button[_ngcontent-%COMP%] {\n  font-size: 12px !important;\n}\n\n.indexRow[_ngcontent-%COMP%] {\n  background: #d8f5ff;\n  font-weight: bold;\n}\n\n.niftyRow[_ngcontent-%COMP%] {\n  background: #c3e4ef;\n}\n\n.cursor-pointer[_ngcontent-%COMP%] {\n  cursor: pointer;\n}\n\n.custom-popup[_ngcontent-%COMP%] {\n  \n  position: fixed;\n  top: 0;\n  \n  width: 1240px;\n  height: 100%;\n  right: 0px;\n  background: white;\n  padding: 20px;\n  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;\n  overflow: scroll;\n  z-index: 1021;\n}\n\n.custom-popup-close[_ngcontent-%COMP%] {\n  cursor: pointer;\n  font-size: 18px;\n  position: absolute;\n  right: 5px;\n  top: 0px;\n}\n\n.green[_ngcontent-%COMP%] {\n  color: green;\n}\n\n.red[_ngcontent-%COMP%] {\n  color: #ff6347;\n}\n\n.chart-stock[_ngcontent-%COMP%] {\n  position: relative;\n}\n\n.chart-legend[_ngcontent-%COMP%] {\n  position: absolute;\n  left: 4px;\n  top: 2px;\n  z-index: 2;\n  font-size: 18px;\n  line-height: 28px;\n  font-weight: 300;\n  color: black;\n}\n\n.chart-popup-table[_ngcontent-%COMP%] {\n  width: 120px;\n}\n\n.watchlist-row[_ngcontent-%COMP%] {\n  background: #e1ebfe !important;\n}\n\n.notmatchingfilter-row[_ngcontent-%COMP%] {\n  background: lightgrey;\n}\n\n.stockChip[_ngcontent-%COMP%] {\n  background: #f0f0f0;\n  border-radius: 4px;\n  display: inline-block;\n  margin-right: 4px;\n  padding: 0 4px;\n}\n\n.stockChipRed[_ngcontent-%COMP%] {\n  background: #ff6347;\n  color: white;\n}\n\n.stockChipGreen[_ngcontent-%COMP%] {\n  background: #28a745;\n  \n  color: white;\n  \n}\n\n.rank[_ngcontent-%COMP%] {\n  color: black;\n  font-size: 10px;\n  margin-left: 5px;\n}\n\n.returns-value[_ngcontent-%COMP%] {\n  width: 50px;\n  text-align: right;\n  display: inline-block;\n}\n\n.table[_ngcontent-%COMP%]   thead[_ngcontent-%COMP%] {\n  position: -webkit-sticky;\n  position: sticky;\n  top: 0;\n  z-index: 1020;\n  \n  background: white;\n  \n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInN0b2Nrcy5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQTtFQUNJLDBCQUFBO0FBQUo7O0FBR0E7RUFDSSxtQkFBQTtFQUNBLGlCQUFBO0FBQUo7O0FBR0E7RUFDSSxtQkFBQTtBQUFKOztBQUdBO0VBQ0ksZUFBQTtBQUFKOztBQUdBO0VBQ0k7Ozs7Ozs7OztpQkFBQTtFQVdBLGVBQUE7RUFDQSxNQUFBO0VBQ0Esd0JBQUE7RUFDQSxhQUFBO0VBQ0EsWUFBQTtFQUNBLFVBQUE7RUFDQSxpQkFBQTtFQUNBLGFBQUE7RUFDQSwyQ0FBQTtFQUNBLGdCQUFBO0VBQ0EsYUFBQTtBQURKOztBQUlBO0VBQ0ksZUFBQTtFQUNBLGVBQUE7RUFDQSxrQkFBQTtFQUNBLFVBQUE7RUFDQSxRQUFBO0FBREo7O0FBSUE7RUFDSSxZQUFBO0FBREo7O0FBSUE7RUFDSSxjQUFBO0FBREo7O0FBSUE7RUFDSSxrQkFBQTtBQURKOztBQUlBO0VBQ0Msa0JBQUE7RUFDQSxTQUFBO0VBQ0EsUUFBQTtFQUNBLFVBQUE7RUFDQSxlQUFBO0VBQ0EsaUJBQUE7RUFDQSxnQkFBQTtFQUNHLFlBQUE7QUFESjs7QUFJQTtFQUNJLFlBQUE7QUFESjs7QUFJQTtFQUNJLDhCQUFBO0FBREo7O0FBSUE7RUFDSSxxQkFBQTtBQURKOztBQUlBO0VBQ0ksbUJBQUE7RUFDQSxrQkFBQTtFQUNBLHFCQUFBO0VBQ0EsaUJBQUE7RUFDQSxjQUFBO0FBREo7O0FBSUE7RUFDSSxtQkFBQTtFQUNBLFlBQUE7QUFESjs7QUFJQTtFQUNJLG1CQUFBO0VBQXFCLHFCQUFBO0VBQ3JCLFlBQUE7RUFBYyxrQ0FBQTtBQUNsQjs7QUFFQTtFQUNJLFlBQUE7RUFDQSxlQUFBO0VBQ0EsZ0JBQUE7QUFDSjs7QUFFQTtFQUNJLFdBQUE7RUFDQSxpQkFBQTtFQUNBLHFCQUFBO0FBQ0o7O0FBRUE7RUFDSSx3QkFBQTtFQUFBLGdCQUFBO0VBQ0EsTUFBQTtFQUNBLGFBQUE7RUFBZSxvQ0FBQTtFQUNmLGlCQUFBO0VBQW1CLGlDQUFBO0FBR3ZCIiwiZmlsZSI6InN0b2Nrcy5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIlxyXG46aG9zdCwgaW5wdXQsIC5pbnB1dC1ncm91cC10ZXh0LCBzZWxlY3QsIGJ1dHRvbiB7XHJcbiAgICBmb250LXNpemU6IDEycHggIWltcG9ydGFudDtcclxufVxyXG5cclxuLmluZGV4Um93IHtcclxuICAgIGJhY2tncm91bmQ6ICNkOGY1ZmY7XHJcbiAgICBmb250LXdlaWdodDogYm9sZDtcclxufVxyXG5cclxuLm5pZnR5Um93IHtcclxuICAgIGJhY2tncm91bmQ6ICNjM2U0ZWY7XHJcbn1cclxuXHJcbi5jdXJzb3ItcG9pbnRlciB7XHJcbiAgICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbi5jdXN0b20tcG9wdXAge1xyXG4gICAgLyogcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgd2lkdGg6IDkwJTtcclxuICAgIGhlaWdodDogOTAlO1xyXG4gICAgbGVmdDogNSU7XHJcbiAgICB0b3A6IDUlO1xyXG4gICAgYmFja2dyb3VuZDogd2hpdGU7XHJcbiAgICBwYWRkaW5nOiAyMHB4O1xyXG4gICAgYm94LXNoYWRvdzogcmdiYSgwLCAwLCAwLCAwLjI0KSAwcHggM3B4IDhweDtcclxuICAgIG92ZXJmbG93OiBzY3JvbGw7XHJcbiAgICB6LWluZGV4OiA5OTk7ICovXHJcblxyXG4gICAgcG9zaXRpb246IGZpeGVkO1xyXG4gICAgdG9wOiAwO1xyXG4gICAgLyogcG9zaXRpb246IGFic29sdXRlOyAqL1xyXG4gICAgd2lkdGg6IDEyNDBweDtcclxuICAgIGhlaWdodDogMTAwJTtcclxuICAgIHJpZ2h0OiAwcHg7XHJcbiAgICBiYWNrZ3JvdW5kOiB3aGl0ZTtcclxuICAgIHBhZGRpbmc6IDIwcHg7XHJcbiAgICBib3gtc2hhZG93OiByZ2JhKDAsIDAsIDAsIDAuMjQpIDBweCAzcHggOHB4O1xyXG4gICAgb3ZlcmZsb3c6IHNjcm9sbDtcclxuICAgIHotaW5kZXg6IDEwMjE7XHJcbn1cclxuXHJcbi5jdXN0b20tcG9wdXAtY2xvc2Uge1xyXG4gICAgY3Vyc29yOiBwb2ludGVyO1xyXG4gICAgZm9udC1zaXplOiAxOHB4O1xyXG4gICAgcG9zaXRpb246IGFic29sdXRlO1xyXG4gICAgcmlnaHQ6IDVweDtcclxuICAgIHRvcDogMHB4O1xyXG59XHJcblxyXG4uZ3JlZW4ge1xyXG4gICAgY29sb3I6IGdyZWVuO1xyXG59XHJcblxyXG4ucmVkIHtcclxuICAgIGNvbG9yOiAjZmY2MzQ3O1xyXG59XHJcblxyXG4uY2hhcnQtc3RvY2sge1xyXG4gICAgcG9zaXRpb246IHJlbGF0aXZlO1xyXG59XHJcblxyXG4uY2hhcnQtbGVnZW5kIHtcclxuXHRwb3NpdGlvbjogYWJzb2x1dGU7XHJcblx0bGVmdDogNHB4O1xyXG5cdHRvcDogMnB4O1xyXG5cdHotaW5kZXg6IDI7XHJcblx0Zm9udC1zaXplOiAxOHB4O1xyXG5cdGxpbmUtaGVpZ2h0OiAyOHB4O1xyXG5cdGZvbnQtd2VpZ2h0OiAzMDA7XHJcbiAgICBjb2xvcjogYmxhY2s7XHJcbn1cclxuXHJcbi5jaGFydC1wb3B1cC10YWJsZSB7XHJcbiAgICB3aWR0aDogMTIwcHg7XHJcbn1cclxuXHJcbi53YXRjaGxpc3Qtcm93IHtcclxuICAgIGJhY2tncm91bmQ6ICNlMWViZmUgIWltcG9ydGFudDtcclxufVxyXG5cclxuLm5vdG1hdGNoaW5nZmlsdGVyLXJvdyB7XHJcbiAgICBiYWNrZ3JvdW5kOiBsaWdodGdyZXk7XHJcbn1cclxuXHJcbi5zdG9ja0NoaXAge1xyXG4gICAgYmFja2dyb3VuZDogI2YwZjBmMDtcclxuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcclxuICAgIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICAgIG1hcmdpbi1yaWdodDogNHB4O1xyXG4gICAgcGFkZGluZzogMCA0cHg7XHJcbn1cclxuXHJcbi5zdG9ja0NoaXBSZWQge1xyXG4gICAgYmFja2dyb3VuZDogI2ZmNjM0NztcclxuICAgIGNvbG9yOiB3aGl0ZTtcclxufVxyXG5cclxuLnN0b2NrQ2hpcEdyZWVuIHtcclxuICAgIGJhY2tncm91bmQ6ICMyOGE3NDU7IC8qIEdyZWVuIGJhY2tncm91bmQgKi9cclxuICAgIGNvbG9yOiB3aGl0ZTsgLyogV2hpdGUgdGV4dCBjb2xvciBmb3IgY29udHJhc3QgKi9cclxufVxyXG5cclxuLnJhbmsge1xyXG4gICAgY29sb3I6IGJsYWNrO1xyXG4gICAgZm9udC1zaXplOiAxMHB4O1xyXG4gICAgbWFyZ2luLWxlZnQ6IDVweDtcclxufVxyXG5cclxuLnJldHVybnMtdmFsdWUge1xyXG4gICAgd2lkdGg6IDUwcHg7IFxyXG4gICAgdGV4dC1hbGlnbjogcmlnaHQ7IFxyXG4gICAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG59XHJcblxyXG4udGFibGUgdGhlYWQge1xyXG4gICAgcG9zaXRpb246IHN0aWNreTtcclxuICAgIHRvcDogMDtcclxuICAgIHotaW5kZXg6IDEwMjA7IC8qIEVuc3VyZXMgdGhlIGhlYWRlciBzdGF5cyBvbiB0b3AgKi9cclxuICAgIGJhY2tncm91bmQ6IHdoaXRlOyAvKiBUbyBhdm9pZCB0cmFuc3BhcmVuY3kgaXNzdWVzICovXHJcbn1cclxuIl19 */"] });
 
 
 /***/ }),
@@ -29773,166 +29967,171 @@ StocksConstants.all_rows = [];
 StocksConstants.candlesData = {};
 StocksConstants.watchlist = [];
 StocksConstants.riskFreeRate = 0.067;
+StocksConstants.fetchFromWebsite = true;
 StocksConstants.stocksList = [
     {
         "tradingsymbol": "NIFTY 50",
-        "stocks": [
-            "TECHM",
-            "M&M",
-            "BRITANNIA",
-            "INFY",
-            "ADANIENT",
-            "KOTAKBANK",
-            "HCLTECH",
-            "ADANIPORTS",
-            "SBIN",
-            "HEROMOTOCO",
-            "WIPRO",
-            "TRENT",
-            "NESTLEIND",
-            "CIPLA",
-            "HINDALCO",
-            "GRASIM",
-            "ULTRACEMCO",
-            "TCS",
-            "ICICIBANK",
-            "BAJFINANCE",
-            "BAJAJFINSV",
-            "DRREDDY",
-            "TATACONSUM",
-            "HDFCBANK",
-            "SHRIRAMFIN",
-            "JSWSTEEL",
-            "BHARTIARTL",
-            "ITC",
-            "COALINDIA",
-            "SUNPHARMA",
-            "SBILIFE",
-            "AXISBANK",
-            "BEL",
-            "NTPC",
-            "BPCL",
-            "POWERGRID",
-            "MARUTI",
-            "LT",
-            "TATAMOTORS",
-            "RELIANCE",
-            "APOLLOHOSP",
-            "EICHERMOT",
-            "HDFCLIFE",
-            "HINDUNILVR",
-            "TITAN",
-            "TATASTEEL",
-            "BAJAJ-AUTO",
-            "ASIANPAINT",
-            "ONGC",
-            "INDUSINDBK"
-        ]
+        "niftyIndicesSymbol": "ind_nifty50list.csv",
+        "stocks": [],
+        /* "stocks": [
+          "TECHM",
+          "M&M",
+          "BRITANNIA",
+          "INFY",
+          "ADANIENT",
+          "KOTAKBANK",
+          "HCLTECH",
+          "ADANIPORTS",
+          "SBIN",
+          "HEROMOTOCO",
+          "WIPRO",
+          "TRENT",
+          "NESTLEIND",
+          "CIPLA",
+          "HINDALCO",
+          "GRASIM",
+          "ULTRACEMCO",
+          "TCS",
+          "ICICIBANK",
+          "BAJFINANCE",
+          "BAJAJFINSV",
+          "DRREDDY",
+          "TATACONSUM",
+          "HDFCBANK",
+          "SHRIRAMFIN",
+          "JSWSTEEL",
+          "BHARTIARTL",
+          "ITC",
+          "COALINDIA",
+          "SUNPHARMA",
+          "SBILIFE",
+          "AXISBANK",
+          "BEL",
+          "NTPC",
+          "BPCL",
+          "POWERGRID",
+          "MARUTI",
+          "LT",
+          "TATAMOTORS",
+          "RELIANCE",
+          "APOLLOHOSP",
+          "EICHERMOT",
+          "HDFCLIFE",
+          "HINDUNILVR",
+          "TITAN",
+          "TATASTEEL",
+          "BAJAJ-AUTO",
+          "ASIANPAINT",
+          "ONGC",
+          "INDUSINDBK"
+        ] */
     },
     {
         "tradingsymbol": "NIFTY 100",
-        "stocks": [
-            "ABB",
-            "ADANIENSOL",
-            "ADANIENT",
-            "ADANIGREEN",
-            "ADANIPORTS",
-            "ADANIPOWER",
-            "ATGL",
-            "AMBUJACEM",
-            "APOLLOHOSP",
-            "ASIANPAINT",
-            "DMART",
-            "AXISBANK",
-            "BAJAJ-AUTO",
-            "BAJFINANCE",
-            "BAJAJFINSV",
-            "BAJAJHLDNG",
-            "BANKBARODA",
-            "BEL",
-            "BHEL",
-            "BPCL",
-            "BHARTIARTL",
-            "BOSCHLTD",
-            "BRITANNIA",
-            "CANBK",
-            "CHOLAFIN",
-            "CIPLA",
-            "COALINDIA",
-            "DLF",
-            "DABUR",
-            "DIVISLAB",
-            "DRREDDY",
-            "EICHERMOT",
-            "GAIL",
-            "GODREJCP",
-            "GRASIM",
-            "HCLTECH",
-            "HDFCBANK",
-            "HDFCLIFE",
-            "HAVELLS",
-            "HEROMOTOCO",
-            "HINDALCO",
-            "HAL",
-            "HINDUNILVR",
-            "ICICIBANK",
-            "ICICIGI",
-            "ICICIPRULI",
-            "ITC",
-            "IOC",
-            "IRCTC",
-            "IRFC",
-            "INDUSINDBK",
-            "NAUKRI",
-            "INFY",
-            "INDIGO",
-            "JSWENERGY",
-            "JSWSTEEL",
-            "JINDALSTEL",
-            "JIOFIN",
-            "KOTAKBANK",
-            "LTIM",
-            "LT",
-            "LICI",
-            "LODHA",
-            "M&M",
-            "MARUTI",
-            "NHPC",
-            "NTPC",
-            "NESTLEIND",
-            "ONGC",
-            "PIDILITIND",
-            "PFC",
-            "POWERGRID",
-            "PNB",
-            "RECLTD",
-            "RELIANCE",
-            "SBILIFE",
-            "MOTHERSON",
-            "SHREECEM",
-            "SHRIRAMFIN",
-            "SIEMENS",
-            "SBIN",
-            "SUNPHARMA",
-            "TVSMOTOR",
-            "TCS",
-            "TATACONSUM",
-            "TATAMOTORS",
-            "TATAPOWER",
-            "TATASTEEL",
-            "TECHM",
-            "TITAN",
-            "TORNTPHARM",
-            "TRENT",
-            "ULTRACEMCO",
-            "UNIONBANK",
-            "UNITDSPR",
-            "VBL",
-            "VEDL",
-            "WIPRO",
-            "ZOMATO",
-            "ZYDUSLIFE"
-        ]
+        "niftyIndicesSymbol": "ind_nifty100list.csv",
+        "stocks": [],
+        /* "stocks": [
+          "ABB",
+          "ADANIENSOL",
+          "ADANIENT",
+          "ADANIGREEN",
+          "ADANIPORTS",
+          "ADANIPOWER",
+          "ATGL",
+          "AMBUJACEM",
+          "APOLLOHOSP",
+          "ASIANPAINT",
+          "DMART",
+          "AXISBANK",
+          "BAJAJ-AUTO",
+          "BAJFINANCE",
+          "BAJAJFINSV",
+          "BAJAJHLDNG",
+          "BANKBARODA",
+          "BEL",
+          "BHEL",
+          "BPCL",
+          "BHARTIARTL",
+          "BOSCHLTD",
+          "BRITANNIA",
+          "CANBK",
+          "CHOLAFIN",
+          "CIPLA",
+          "COALINDIA",
+          "DLF",
+          "DABUR",
+          "DIVISLAB",
+          "DRREDDY",
+          "EICHERMOT",
+          "GAIL",
+          "GODREJCP",
+          "GRASIM",
+          "HCLTECH",
+          "HDFCBANK",
+          "HDFCLIFE",
+          "HAVELLS",
+          "HEROMOTOCO",
+          "HINDALCO",
+          "HAL",
+          "HINDUNILVR",
+          "ICICIBANK",
+          "ICICIGI",
+          "ICICIPRULI",
+          "ITC",
+          "IOC",
+          "IRCTC",
+          "IRFC",
+          "INDUSINDBK",
+          "NAUKRI",
+          "INFY",
+          "INDIGO",
+          "JSWENERGY",
+          "JSWSTEEL",
+          "JINDALSTEL",
+          "JIOFIN",
+          "KOTAKBANK",
+          "LTIM",
+          "LT",
+          "LICI",
+          "LODHA",
+          "M&M",
+          "MARUTI",
+          "NHPC",
+          "NTPC",
+          "NESTLEIND",
+          "ONGC",
+          "PIDILITIND",
+          "PFC",
+          "POWERGRID",
+          "PNB",
+          "RECLTD",
+          "RELIANCE",
+          "SBILIFE",
+          "MOTHERSON",
+          "SHREECEM",
+          "SHRIRAMFIN",
+          "SIEMENS",
+          "SBIN",
+          "SUNPHARMA",
+          "TVSMOTOR",
+          "TCS",
+          "TATACONSUM",
+          "TATAMOTORS",
+          "TATAPOWER",
+          "TATASTEEL",
+          "TECHM",
+          "TITAN",
+          "TORNTPHARM",
+          "TRENT",
+          "ULTRACEMCO",
+          "UNIONBANK",
+          "UNITDSPR",
+          "VBL",
+          "VEDL",
+          "WIPRO",
+          "ZOMATO",
+          "ZYDUSLIFE"
+        ] */
     },
     /* {
       "tradingsymbol": "NIFTY 200",
@@ -30141,945 +30340,965 @@ StocksConstants.stocksList = [
     }, */
     {
         "tradingsymbol": "NIFTY 500",
-        "stocks": [
-            "360ONE",
-            "3MINDIA",
-            "ABB",
-            "ACC",
-            "AIAENG",
-            "APLAPOLLO",
-            "AUBANK",
-            "AADHARHFC",
-            "AARTIIND",
-            "AAVAS",
-            "ABBOTINDIA",
-            "ACE",
-            "ADANIENSOL",
-            "ADANIENT",
-            "ADANIGREEN",
-            "ADANIPORTS",
-            "ADANIPOWER",
-            "ATGL",
-            "AWL",
-            "ABCAPITAL",
-            "ABFRL",
-            "ABREL",
-            "ABSLAMC",
-            "AEGISLOG",
-            "AFFLE",
-            "AJANTPHARM",
-            "AKUMS",
-            "APLLTD",
-            "ALKEM",
-            "ALKYLAMINE",
-            "ALOKINDS",
-            "ARE&M",
-            "AMBER",
-            "AMBUJACEM",
-            "ANANDRATHI",
-            "ANANTRAJ",
-            "ANGELONE",
-            "APARINDS",
-            "APOLLOHOSP",
-            "APOLLOTYRE",
-            "APTUS",
-            "ACI",
-            "ASAHIINDIA",
-            "ASHOKLEY",
-            "ASIANPAINT",
-            "ASTERDM",
-            "ASTRAZEN",
-            "ASTRAL",
-            "ATUL",
-            "AUROPHARMA",
-            "AVANTIFEED",
-            "DMART",
-            "AXISBANK",
-            "BASF",
-            "BEML",
-            "BLS",
-            "BSE",
-            "BAJAJ-AUTO",
-            "BAJFINANCE",
-            "BAJAJFINSV",
-            "BAJAJHLDNG",
-            "BALAMINES",
-            "BALKRISIND",
-            "BALRAMCHIN",
-            "BANDHANBNK",
-            "BANKBARODA",
-            "BANKINDIA",
-            "MAHABANK",
-            "BATAINDIA",
-            "BAYERCROP",
-            "BERGEPAINT",
-            "BDL",
-            "BEL",
-            "BHARATFORG",
-            "BHEL",
-            "BPCL",
-            "BHARTIARTL",
-            "BHARTIHEXA",
-            "BIKAJI",
-            "BIOCON",
-            "BIRLACORPN",
-            "BSOFT",
-            "BLUEDART",
-            "BLUESTARCO",
-            "BBTC",
-            "BOSCHLTD",
-            "BRIGADE",
-            "BRITANNIA",
-            "MAPMYINDIA",
-            "CCL",
-            "CESC",
-            "CGPOWER",
-            "CIEINDIA",
-            "CRISIL",
-            "CAMPUS",
-            "CANFINHOME",
-            "CANBK",
-            "CAPLIPOINT",
-            "CGCL",
-            "CARBORUNIV",
-            "CASTROLIND",
-            "CEATLTD",
-            "CELLO",
-            "CENTRALBK",
-            "CDSL",
-            "CENTURYPLY",
-            "CERA",
-            "CHALET",
-            "CHAMBLFERT",
-            "CHEMPLASTS",
-            "CHENNPETRO",
-            "CHOLAHLDNG",
-            "CHOLAFIN",
-            "CIPLA",
-            "CUB",
-            "CLEAN",
-            "COALINDIA",
-            "COCHINSHIP",
-            "COFORGE",
-            "COLPAL",
-            "CAMS",
-            "CONCORDBIO",
-            "CONCOR",
-            "COROMANDEL",
-            "CRAFTSMAN",
-            "CREDITACC",
-            "CROMPTON",
-            "CUMMINSIND",
-            "CYIENT",
-            "DLF",
-            "DOMS",
-            "DABUR",
-            "DALBHARAT",
-            "DATAPATTNS",
-            "DEEPAKFERT",
-            "DEEPAKNTR",
-            "DELHIVERY",
-            "DEVYANI",
-            "DIVISLAB",
-            "DIXON",
-            "LALPATHLAB",
-            "DRREDDY",
-            "EIDPARRY",
-            "EIHOTEL",
-            "EASEMYTRIP",
-            "EICHERMOT",
-            "ELECON",
-            "ELGIEQUIP",
-            "EMAMILTD",
-            "EMCURE",
-            "ENDURANCE",
-            "ENGINERSIN",
-            "EQUITASBNK",
-            "ERIS",
-            "ESCORTS",
-            "EXIDEIND",
-            "NYKAA",
-            "FEDERALBNK",
-            "FACT",
-            "FINEORG",
-            "FINCABLES",
-            "FINPIPE",
-            "FSL",
-            "FIVESTAR",
-            "FORTIS",
-            "GRINFRA",
-            "GAIL",
-            "GVT&D",
-            "GMRAIRPORT",
-            "GRSE",
-            "GICRE",
-            "GILLETTE",
-            "GLAND",
-            "GLAXO",
-            "GLENMARK",
-            "MEDANTA",
-            "GODIGIT",
-            "GPIL",
-            "GODFRYPHLP",
-            "GODREJAGRO",
-            "GODREJCP",
-            "GODREJIND",
-            "GODREJPROP",
-            "GRANULES",
-            "GRAPHITE",
-            "GRASIM",
-            "GESHIP",
-            "GRINDWELL",
-            "GAEL",
-            "FLUOROCHEM",
-            "GUJGASLTD",
-            "GMDCLTD",
-            "GNFC",
-            "GPPL",
-            "GSFC",
-            "GSPL",
-            "HEG",
-            "HBLENGINE",
-            "HCLTECH",
-            "HDFCAMC",
-            "HDFCBANK",
-            "HDFCLIFE",
-            "HFCL",
-            "HAPPSTMNDS",
-            "HAVELLS",
-            "HEROMOTOCO",
-            "HSCL",
-            "HINDALCO",
-            "HAL",
-            "HINDCOPPER",
-            "HINDPETRO",
-            "HINDUNILVR",
-            "HINDZINC",
-            "POWERINDIA",
-            "HOMEFIRST",
-            "HONASA",
-            "HONAUT",
-            "HUDCO",
-            "ICICIBANK",
-            "ICICIGI",
-            "ICICIPRULI",
-            "ISEC",
-            "IDBI",
-            "IDFCFIRSTB",
-            "IFCI",
-            "IIFL",
-            "INOXINDIA",
-            "IRB",
-            "IRCON",
-            "ITC",
-            "ITI-BE",
-            "INDGN",
-            "INDIACEM",
-            "INDIAMART",
-            "INDIANB",
-            "IEX",
-            "INDHOTEL",
-            "IOC",
-            "IOB",
-            "IRCTC",
-            "IRFC",
-            "IREDA",
-            "IGL",
-            "INDUSTOWER",
-            "INDUSINDBK",
-            "NAUKRI",
-            "INFY",
-            "INOXWIND",
-            "INTELLECT",
-            "INDIGO",
-            "IPCALAB",
-            "JBCHEPHARM",
-            "JKCEMENT",
-            "JBMA",
-            "JKLAKSHMI",
-            "JKTYRE",
-            "JMFINANCIL",
-            "JSWENERGY",
-            "JSWINFRA",
-            "JSWSTEEL",
-            "JPPOWER",
-            "J&KBANK",
-            "JINDALSAW",
-            "JSL",
-            "JINDALSTEL",
-            "JIOFIN",
-            "JUBLFOOD",
-            "JUBLINGREA",
-            "JUBLPHARMA",
-            "JWL",
-            "JUSTDIAL",
-            "JYOTHYLAB",
-            "JYOTICNC",
-            "KPRMILL",
-            "KEI",
-            "KNRCON",
-            "KPITTECH",
-            "KSB",
-            "KAJARIACER",
-            "KPIL",
-            "KALYANKJIL",
-            "KANSAINER",
-            "KARURVYSYA",
-            "KAYNES",
-            "KEC",
-            "KFINTECH",
-            "KIRLOSBROS",
-            "KIRLOSENG",
-            "KOTAKBANK",
-            "KIMS",
-            "LTF",
-            "LTTS",
-            "LICHSGFIN",
-            "LTIM",
-            "LT",
-            "LATENTVIEW",
-            "LAURUSLABS",
-            "LEMONTREE",
-            "LICI",
-            "LINDEINDIA",
-            "LLOYDSME",
-            "LUPIN",
-            "MMTC",
-            "MRF",
-            "LODHA",
-            "MGL",
-            "MAHSEAMLES",
-            "M&MFIN",
-            "M&M",
-            "MAHLIFE",
-            "MANAPPURAM",
-            "MRPL",
-            "MANKIND",
-            "MARICO",
-            "MARUTI",
-            "MASTEK",
-            "MFSL",
-            "MAXHEALTH",
-            "MAZDOCK",
-            "METROBRAND",
-            "METROPOLIS",
-            "MINDACORP",
-            "MSUMI",
-            "MOTILALOFS",
-            "MPHASIS",
-            "MCX",
-            "MUTHOOTFIN",
-            "NATCOPHARM",
-            "NBCC",
-            "NCC",
-            "NHPC",
-            "NLCINDIA",
-            "NMDC",
-            "NSLNISP",
-            "NTPC",
-            "NH",
-            "NATIONALUM",
-            "NAVINFLUOR",
-            "NESTLEIND",
-            "NETWEB",
-            "NETWORK18",
-            "NEWGEN",
-            "NAM-INDIA",
-            "NUVAMA",
-            "NUVOCO",
-            "OBEROIRLTY",
-            "ONGC",
-            "OIL",
-            "OLECTRA",
-            "PAYTM",
-            "OFSS",
-            "POLICYBZR",
-            "PCBL",
-            "PIIND",
-            "PNBHOUSING",
-            "PNCINFRA",
-            "PTCIL",
-            "PVRINOX",
-            "PAGEIND",
-            "PATANJALI",
-            "PERSISTENT",
-            "PETRONET",
-            "PFIZER",
-            "PHOENIXLTD",
-            "PIDILITIND",
-            "PEL",
-            "PPLPHARMA",
-            "POLYMED",
-            "POLYCAB",
-            "POONAWALLA",
-            "PFC",
-            "POWERGRID",
-            "PRAJIND",
-            "PRESTIGE",
-            "PGHH",
-            "PNB",
-            "QUESS",
-            "RRKABEL",
-            "RBLBANK",
-            "RECLTD",
-            "RHIM",
-            "RITES",
-            "RADICO",
-            "RVNL",
-            "RAILTEL",
-            "RAINBOW",
-            "RAJESHEXPO",
-            "RKFORGE",
-            "RCF",
-            "RATNAMANI",
-            "RTNINDIA",
-            "RAYMOND",
-            "REDINGTON",
-            "RELIANCE",
-            "ROUTE",
-            "SBFC",
-            "SBICARD",
-            "SBILIFE",
-            "SJVN",
-            "SKFINDIA",
-            "SRF",
-            "SAMMAANCAP",
-            "MOTHERSON",
-            "SANOFI",
-            "SAPPHIRE",
-            "SAREGAMA",
-            "SCHAEFFLER",
-            "SCHNEIDER",
-            "SCI",
-            "SHREECEM",
-            "RENUKA",
-            "SHRIRAMFIN",
-            "SHYAMMETL",
-            "SIEMENS",
-            "SIGNATURE",
-            "SOBHA",
-            "SOLARINDS",
-            "SONACOMS",
-            "SONATSOFTW",
-            "STARHEALTH",
-            "SBIN",
-            "SAIL",
-            "SWSOLAR",
-            "SUMICHEM",
-            "SPARC",
-            "SUNPHARMA",
-            "SUNTV",
-            "SUNDARMFIN",
-            "SUNDRMFAST",
-            "SUPREMEIND",
-            "SUVENPHAR",
-            "SUZLON",
-            "SWANENERGY",
-            "SYNGENE",
-            "SYRMA",
-            "TBOTEK",
-            "TVSMOTOR",
-            "TVSSCS",
-            "TANLA",
-            "TATACHEM",
-            "TATACOMM",
-            "TCS",
-            "TATACONSUM",
-            "TATAELXSI",
-            "TATAINVEST",
-            "TATAMOTORS",
-            "TATAPOWER",
-            "TATASTEEL",
-            "TATATECH",
-            "TTML",
-            "TECHM",
-            "TECHNOE",
-            "TEJASNET",
-            "NIACL",
-            "RAMCOCEM",
-            "THERMAX",
-            "TIMKEN",
-            "TITAGARH",
-            "TITAN",
-            "TORNTPHARM",
-            "TORNTPOWER",
-            "TRENT",
-            "TRIDENT",
-            "TRIVENI",
-            "TRITURBINE",
-            "TIINDIA",
-            "UCOBANK",
-            "UNOMINDA",
-            "UPL",
-            "UTIAMC",
-            "UJJIVANSFB",
-            "ULTRACEMCO",
-            "UNIONBANK",
-            "UBL",
-            "UNITDSPR",
-            "USHAMART",
-            "VGUARD",
-            "VIPIND",
-            "DBREALTY",
-            "VTL",
-            "VARROC",
-            "VBL",
-            "MANYAVAR",
-            "VEDL",
-            "VIJAYA",
-            "VINATIORGA",
-            "IDEA",
-            "VOLTAS",
-            "WELCORP",
-            "WELSPUNLIV",
-            "WESTLIFE",
-            "WHIRLPOOL",
-            "WIPRO",
-            "YESBANK",
-            "ZFCVINDIA",
-            "ZEEL",
-            "ZENSARTECH",
-            "ZOMATO",
-            "ZYDUSLIFE",
-            "ECLERX"
-        ]
+        "niftyIndicesSymbol": "ind_nifty500list.csv",
+        "stocks": [],
+        /* "stocks": [
+          "360ONE",
+          "3MINDIA",
+          "ABB",
+          "ACC",
+          "ACMESOLAR",
+          "AIAENG",
+          "APLAPOLLO",
+          "AUBANK",
+          "AADHARHFC",
+          "AARTIIND",
+          "AAVAS",
+          "ABBOTINDIA",
+          "ACE",
+          "ADANIENSOL",
+          "ADANIENT",
+          "ADANIGREEN",
+          "ADANIPORTS",
+          "ADANIPOWER",
+          "ATGL",
+          "AWL",
+          "ABCAPITAL",
+          "ABFRL",
+          "ABREL",
+          "ABSLAMC",
+          "AEGISLOG",
+          "AFCONS",
+          "AFFLE",
+          "AJANTPHARM",
+          "AKUMS",
+          "APLLTD",
+          "ALIVUS",
+          "ALKEM",
+          "ALKYLAMINE",
+          "ALOKINDS",
+          "ARE&M",
+          "AMBER",
+          "AMBUJACEM",
+          "ANANDRATHI",
+          "ANANTRAJ",
+          "ANGELONE",
+          "APARINDS",
+          "APOLLOHOSP",
+          "APOLLOTYRE",
+          "APTUS",
+          "ASAHIINDIA",
+          "ASHOKLEY",
+          "ASIANPAINT",
+          "ASTERDM",
+          "ASTRAZEN",
+          "ASTRAL",
+          "ATUL",
+          "AUROPHARMA",
+          "AIIL",
+          "DMART",
+          "AXISBANK",
+          "BASF",
+          "BEML",
+          "BLS",
+          "BSE",
+          "BAJAJ-AUTO",
+          "BAJFINANCE",
+          "BAJAJFINSV",
+          "BAJAJHLDNG",
+          "BAJAJHFL",
+          "BALKRISIND",
+          "BALRAMCHIN",
+          "BANDHANBNK",
+          "BANKBARODA",
+          "BANKINDIA",
+          "MAHABANK",
+          "BATAINDIA",
+          "BAYERCROP",
+          "BERGEPAINT",
+          "BDL",
+          "BEL",
+          "BHARATFORG",
+          "BHEL",
+          "BPCL",
+          "BHARTIARTL",
+          "BHARTIHEXA",
+          "BIKAJI",
+          "BIOCON",
+          "BSOFT",
+          "BLUEDART",
+          "BLUESTARCO",
+          "BBTC",
+          "BOSCHLTD",
+          "FIRSTCRY",
+          "BRIGADE",
+          "BRITANNIA",
+          "MAPMYINDIA",
+          "CCL",
+          "CESC",
+          "CGPOWER",
+          "CRISIL",
+          "CAMPUS",
+          "CANFINHOME",
+          "CANBK",
+          "CAPLIPOINT",
+          "CGCL",
+          "CARBORUNIV",
+          "CASTROLIND",
+          "CEATLTD",
+          "CENTRALBK",
+          "CDSL",
+          "CENTURYPLY",
+          "CERA",
+          "CHALET",
+          "CHAMBLFERT",
+          "CHENNPETRO",
+          "CHOLAHLDNG",
+          "CHOLAFIN",
+          "CIPLA",
+          "CUB",
+          "CLEAN",
+          "COALINDIA",
+          "COCHINSHIP",
+          "COFORGE",
+          "COLPAL",
+          "CAMS",
+          "CONCORDBIO",
+          "CONCOR",
+          "COROMANDEL",
+          "CRAFTSMAN",
+          "CREDITACC",
+          "CROMPTON",
+          "CUMMINSIND",
+          "CYIENT",
+          "DCMSHRIRAM",
+          "DLF",
+          "DOMS",
+          "DABUR",
+          "DALBHARAT",
+          "DATAPATTNS",
+          "DEEPAKFERT",
+          "DEEPAKNTR",
+          "DELHIVERY",
+          "DEVYANI",
+          "DIVISLAB",
+          "DIXON",
+          "LALPATHLAB",
+          "DRREDDY",
+          "EIDPARRY",
+          "EIHOTEL",
+          "EICHERMOT",
+          "ELECON",
+          "ELGIEQUIP",
+          "EMAMILTD",
+          "EMCURE",
+          "ENDURANCE",
+          "ENGINERSIN",
+          "ERIS",
+          "ESCORTS",
+          "EXIDEIND",
+          "NYKAA",
+          "FEDERALBNK",
+          "FACT",
+          "FINCABLES",
+          "FINPIPE",
+          "FSL",
+          "FIVESTAR",
+          "FORTIS",
+          "GAIL",
+          "GVT&D",
+          "GMRAIRPORT",
+          "GRSE",
+          "GICRE",
+          "GILLETTE",
+          "GLAND",
+          "GLAXO",
+          "GLENMARK",
+          "MEDANTA",
+          "GODIGIT",
+          "GPIL",
+          "GODFRYPHLP",
+          "GODREJAGRO",
+          "GODREJCP",
+          "GODREJIND",
+          "GODREJPROP",
+          "GRANULES",
+          "GRAPHITE",
+          "GRASIM",
+          "GRAVITA",
+          "GESHIP",
+          "FLUOROCHEM",
+          "GUJGASLTD",
+          "GMDCLTD",
+          "GNFC",
+          "GPPL",
+          "GSPL",
+          "HEG",
+          "HBLENGINE",
+          "HCLTECH",
+          "HDFCAMC",
+          "HDFCBANK",
+          "HDFCLIFE",
+          "HFCL",
+          "HAPPSTMNDS",
+          "HAVELLS",
+          "HEROMOTOCO",
+          "HSCL",
+          "HINDALCO",
+          "HAL",
+          "HINDCOPPER",
+          "HINDPETRO",
+          "HINDUNILVR",
+          "HINDZINC",
+          "POWERINDIA",
+          "HOMEFIRST",
+          "HONASA",
+          "HONAUT",
+          "HUDCO",
+          "HYUNDAI",
+          "ICICIBANK",
+          "ICICIGI",
+          "ICICIPRULI",
+          "IDBI",
+          "IDFCFIRSTB",
+          "IFCI",
+          "IIFL",
+          "INOXINDIA",
+          "IRB",
+          "IRCON",
+          "ITC",
+          "ITI",
+          "INDGN",
+          "INDIACEM",
+          "INDIAMART",
+          "INDIANB",
+          "IEX",
+          "INDHOTEL",
+          "IOC",
+          "IOB",
+          "IRCTC",
+          "IRFC",
+          "IREDA",
+          "IGL",
+          "INDUSTOWER",
+          "INDUSINDBK",
+          "NAUKRI",
+          "INFY",
+          "INOXWIND",
+          "INTELLECT",
+          "INDIGO",
+          "IGIL",
+          "IKS",
+          "IPCALAB",
+          "JBCHEPHARM",
+          "JKCEMENT",
+          "JBMA",
+          "JKTYRE",
+          "JMFINANCIL",
+          "JSWENERGY",
+          "JSWHL",
+          "JSWINFRA",
+          "JSWSTEEL",
+          "JPPOWER",
+          "J&KBANK",
+          "JINDALSAW",
+          "JSL",
+          "JINDALSTEL",
+          "JIOFIN",
+          "JUBLFOOD",
+          "JUBLINGREA",
+          "JUBLPHARMA",
+          "JWL",
+          "JUSTDIAL",
+          "JYOTHYLAB",
+          "JYOTICNC",
+          "KPRMILL",
+          "KEI",
+          "KNRCON",
+          "KPITTECH",
+          "KAJARIACER",
+          "KPIL",
+          "KALYANKJIL",
+          "KANSAINER",
+          "KARURVYSYA",
+          "KAYNES",
+          "KEC",
+          "KFINTECH",
+          "KIRLOSBROS",
+          "KIRLOSENG",
+          "KOTAKBANK",
+          "KIMS",
+          "LTF",
+          "LTTS",
+          "LICHSGFIN",
+          "LTFOODS",
+          "LTIM",
+          "LT",
+          "LATENTVIEW",
+          "LAURUSLABS",
+          "LEMONTREE",
+          "LICI",
+          "LINDEINDIA",
+          "LLOYDSME",
+          "LUPIN",
+          "MMTC",
+          "MRF",
+          "LODHA",
+          "MGL",
+          "MAHSEAMLES",
+          "M&MFIN",
+          "M&M",
+          "MANAPPURAM",
+          "MRPL",
+          "MANKIND",
+          "MARICO",
+          "MARUTI",
+          "MASTEK",
+          "MFSL",
+          "MAXHEALTH",
+          "MAZDOCK",
+          "METROPOLIS",
+          "MINDACORP",
+          "MSUMI",
+          "MOTILALOFS",
+          "MPHASIS",
+          "MCX",
+          "MUTHOOTFIN",
+          "NATCOPHARM",
+          "NBCC",
+          "NCC",
+          "NHPC",
+          "NLCINDIA",
+          "NMDC",
+          "NSLNISP",
+          "NTPCGREEN",
+          "NTPC",
+          "NH",
+          "NATIONALUM",
+          "NAVA",
+          "NAVINFLUOR",
+          "NESTLEIND",
+          "NETWEB",
+          "NETWORK18",
+          "NEULANDLAB",
+          "NEWGEN",
+          "NAM-INDIA",
+          "NIVABUPA",
+          "NUVAMA",
+          "OBEROIRLTY",
+          "ONGC",
+          "OIL",
+          "OLAELEC",
+          "OLECTRA",
+          "PAYTM",
+          "OFSS",
+          "POLICYBZR",
+          "PCBL",
+          "PGEL",
+          "PIIND",
+          "PNBHOUSING",
+          "PNCINFRA",
+          "PTCIL",
+          "PVRINOX",
+          "PAGEIND",
+          "PATANJALI",
+          "PERSISTENT",
+          "PETRONET",
+          "PFIZER",
+          "PHOENIXLTD",
+          "PIDILITIND",
+          "PEL",
+          "PPLPHARMA",
+          "POLYMED",
+          "POLYCAB",
+          "POONAWALLA",
+          "PFC",
+          "POWERGRID",
+          "PRAJIND",
+          "PREMIERENE",
+          "PRESTIGE",
+          "PNB",
+          "QUESS",
+          "RRKABEL",
+          "RBLBANK",
+          "RECLTD",
+          "RHIM",
+          "RITES",
+          "RADICO",
+          "RVNL",
+          "RAILTEL",
+          "RAINBOW",
+          "RKFORGE",
+          "RCF",
+          "RTNINDIA",
+          "RAYMONDLSL",
+          "RAYMOND",
+          "REDINGTON",
+          "RELIANCE",
+          "RPOWER",
+          "ROUTE",
+          "SBFC",
+          "SBICARD",
+          "SBILIFE",
+          "SJVN",
+          "SKFINDIA",
+          "SRF",
+          "SAGILITY",
+          "SAILIFE",
+          "SAMMAANCAP",
+          "MOTHERSON",
+          "SAPPHIRE",
+          "SARDAEN",
+          "SAREGAMA",
+          "SCHAEFFLER",
+          "SCHNEIDER",
+          "SCI",
+          "SHREECEM",
+          "RENUKA",
+          "SHRIRAMFIN",
+          "SHYAMMETL",
+          "SIEMENS",
+          "SIGNATURE",
+          "SOBHA",
+          "SOLARINDS",
+          "SONACOMS",
+          "SONATSOFTW",
+          "STARHEALTH",
+          "SBIN",
+          "SAIL",
+          "SWSOLAR",
+          "SUMICHEM",
+          "SUNPHARMA",
+          "SUNTV",
+          "SUNDARMFIN",
+          "SUPREMEIND",
+          "SUVENPHAR",
+          "SUZLON",
+          "SWANENERGY",
+          "SWIGGY",
+          "SYNGENE",
+          "SYRMA",
+          "TBOTEK",
+          "TVSMOTOR",
+          "TANLA",
+          "TATACHEM",
+          "TATACOMM",
+          "TCS",
+          "TATACONSUM",
+          "TATAELXSI",
+          "TATAINVEST",
+          "TATAMOTORS",
+          "TATAPOWER",
+          "TATASTEEL",
+          "TATATECH",
+          "TTML",
+          "TECHM",
+          "TECHNOE",
+          "TEJASNET",
+          "NIACL",
+          "RAMCOCEM",
+          "THERMAX",
+          "TIMKEN",
+          "TITAGARH",
+          "TITAN",
+          "TORNTPHARM",
+          "TORNTPOWER",
+          "TARIL",
+          "TRENT",
+          "TRIDENT",
+          "TRIVENI",
+          "TRITURBINE",
+          "TIINDIA",
+          "UCOBANK",
+          "UNOMINDA",
+          "UPL",
+          "UTIAMC",
+          "ULTRACEMCO",
+          "UNIONBANK",
+          "UBL",
+          "UNITDSPR",
+          "USHAMART",
+          "VGUARD",
+          "DBREALTY",
+          "VTL",
+          "VBL",
+          "MANYAVAR",
+          "VEDL",
+          "VIJAYA",
+          "VMM",
+          "IDEA",
+          "VOLTAS",
+          "WAAREEENER",
+          "WELCORP",
+          "WELSPUNLIV",
+          "WESTLIFE",
+          "WHIRLPOOL",
+          "WIPRO",
+          "WOCKPHARMA",
+          "YESBANK",
+          "ZFCVINDIA",
+          "ZEEL",
+          "ZENTEC",
+          "ZENSARTECH",
+          "ZOMATO",
+          "ZYDUSLIFE",
+          "ECLERX"
+        ] */
     },
     {
         "tradingsymbol": "NIFTY MIDCAP 150",
-        "stocks": [
-            "3MINDIA",
-            "ACC",
-            "AIAENG",
-            "APLAPOLLO",
-            "AUBANK",
-            "ABBOTINDIA",
-            "AWL",
-            "ABCAPITAL",
-            "ABFRL",
-            "AJANTPHARM",
-            "ALKEM",
-            "APOLLOTYRE",
-            "ASHOKLEY",
-            "ASTRAL",
-            "AUROPHARMA",
-            "BSE",
-            "BALKRISIND",
-            "BANDHANBNK",
-            "BANKINDIA",
-            "MAHABANK",
-            "BAYERCROP",
-            "BERGEPAINT",
-            "BDL",
-            "BHARATFORG",
-            "BHARTIHEXA",
-            "BIOCON",
-            "CGPOWER",
-            "CRISIL",
-            "CARBORUNIV",
-            "COCHINSHIP",
-            "COFORGE",
-            "COLPAL",
-            "CONCOR",
-            "COROMANDEL",
-            "CUMMINSIND",
-            "DALBHARAT",
-            "DEEPAKNTR",
-            "DELHIVERY",
-            "DIXON",
-            "EMAMILTD",
-            "ENDURANCE",
-            "ESCORTS",
-            "EXIDEIND",
-            "NYKAA",
-            "FEDERALBNK",
-            "FACT",
-            "FORTIS",
-            "GMRAIRPORT",
-            "GICRE",
-            "GLAND",
-            "GLAXO",
-            "MEDANTA",
-            "GODREJIND",
-            "GODREJPROP",
-            "GRINDWELL",
-            "FLUOROCHEM",
-            "GUJGASLTD",
-            "HDFCAMC",
-            "HINDPETRO",
-            "HINDZINC",
-            "POWERINDIA",
-            "HONAUT",
-            "HUDCO",
-            "IDBI",
-            "IDFCFIRSTB",
-            "IRB",
-            "INDIANB",
-            "INDHOTEL",
-            "IOB",
-            "IREDA",
-            "IGL",
-            "INDUSTOWER",
-            "IPCALAB",
-            "JKCEMENT",
-            "JSWINFRA",
-            "JSL",
-            "JUBLFOOD",
-            "KPRMILL",
-            "KEI",
-            "KPITTECH",
-            "KALYANKJIL",
-            "LTF",
-            "LTTS",
-            "LICHSGFIN",
-            "LINDEINDIA",
-            "LLOYDSME",
-            "LUPIN",
-            "MRF",
-            "M&MFIN",
-            "MRPL",
-            "MANKIND",
-            "MARICO",
-            "MFSL",
-            "MAXHEALTH",
-            "MAZDOCK",
-            "METROBRAND",
-            "MSUMI",
-            "MPHASIS",
-            "MUTHOOTFIN",
-            "NLCINDIA",
-            "NMDC",
-            "NAM-INDIA",
-            "OBEROIRLTY",
-            "OIL",
-            "PAYTM",
-            "OFSS",
-            "POLICYBZR",
-            "PIIND",
-            "PAGEIND",
-            "PATANJALI",
-            "PERSISTENT",
-            "PETRONET",
-            "PHOENIXLTD",
-            "POLYCAB",
-            "POONAWALLA",
-            "PRESTIGE",
-            "PGHH",
-            "RVNL",
-            "SBICARD",
-            "SJVN",
-            "SKFINDIA",
-            "SRF",
-            "SCHAEFFLER",
-            "SOLARINDS",
-            "SONACOMS",
-            "STARHEALTH",
-            "SAIL",
-            "SUNTV",
-            "SUNDARMFIN",
-            "SUNDRMFAST",
-            "SUPREMEIND",
-            "SUZLON",
-            "SYNGENE",
-            "TATACHEM",
-            "TATACOMM",
-            "TATAELXSI",
-            "TATAINVEST",
-            "TATATECH",
-            "NIACL",
-            "THERMAX",
-            "TIMKEN",
-            "TORNTPOWER",
-            "TIINDIA",
-            "UNOMINDA",
-            "UPL",
-            "UBL",
-            "IDEA",
-            "VOLTAS",
-            "YESBANK",
-            "ZFCVINDIA"
-        ]
+        "niftyIndicesSymbol": "ind_niftymidcap150list.csv",
+        "stocks": [],
+        /* "stocks": [
+          "3MINDIA",
+          "ACC",
+          "AIAENG",
+          "APLAPOLLO",
+          "AUBANK",
+          "ABBOTINDIA",
+          "AWL",
+          "ABCAPITAL",
+          "ABFRL",
+          "AJANTPHARM",
+          "ALKEM",
+          "APOLLOTYRE",
+          "ASHOKLEY",
+          "ASTRAL",
+          "AUROPHARMA",
+          "BSE",
+          "BALKRISIND",
+          "BANDHANBNK",
+          "BANKINDIA",
+          "MAHABANK",
+          "BAYERCROP",
+          "BERGEPAINT",
+          "BDL",
+          "BHARATFORG",
+          "BHARTIHEXA",
+          "BIOCON",
+          "CGPOWER",
+          "CRISIL",
+          "CARBORUNIV",
+          "COCHINSHIP",
+          "COFORGE",
+          "COLPAL",
+          "CONCOR",
+          "COROMANDEL",
+          "CUMMINSIND",
+          "DALBHARAT",
+          "DEEPAKNTR",
+          "DELHIVERY",
+          "DIXON",
+          "EMAMILTD",
+          "ENDURANCE",
+          "ESCORTS",
+          "EXIDEIND",
+          "NYKAA",
+          "FEDERALBNK",
+          "FACT",
+          "FORTIS",
+          "GMRAIRPORT",
+          "GICRE",
+          "GLAND",
+          "GLAXO",
+          "MEDANTA",
+          "GODREJIND",
+          "GODREJPROP",
+          "GRINDWELL",
+          "FLUOROCHEM",
+          "GUJGASLTD",
+          "HDFCAMC",
+          "HINDPETRO",
+          "HINDZINC",
+          "POWERINDIA",
+          "HONAUT",
+          "HUDCO",
+          "IDBI",
+          "IDFCFIRSTB",
+          "IRB",
+          "INDIANB",
+          "INDHOTEL",
+          "IOB",
+          "IREDA",
+          "IGL",
+          "INDUSTOWER",
+          "IPCALAB",
+          "JKCEMENT",
+          "JSWINFRA",
+          "JSL",
+          "JUBLFOOD",
+          "KPRMILL",
+          "KEI",
+          "KPITTECH",
+          "KALYANKJIL",
+          "LTF",
+          "LTTS",
+          "LICHSGFIN",
+          "LINDEINDIA",
+          "LLOYDSME",
+          "LUPIN",
+          "MRF",
+          "M&MFIN",
+          "MRPL",
+          "MANKIND",
+          "MARICO",
+          "MFSL",
+          "MAXHEALTH",
+          "MAZDOCK",
+          "METROBRAND",
+          "MSUMI",
+          "MPHASIS",
+          "MUTHOOTFIN",
+          "NLCINDIA",
+          "NMDC",
+          "NAM-INDIA",
+          "OBEROIRLTY",
+          "OIL",
+          "PAYTM",
+          "OFSS",
+          "POLICYBZR",
+          "PIIND",
+          "PAGEIND",
+          "PATANJALI",
+          "PERSISTENT",
+          "PETRONET",
+          "PHOENIXLTD",
+          "POLYCAB",
+          "POONAWALLA",
+          "PRESTIGE",
+          "PGHH",
+          "RVNL",
+          "SBICARD",
+          "SJVN",
+          "SKFINDIA",
+          "SRF",
+          "SCHAEFFLER",
+          "SOLARINDS",
+          "SONACOMS",
+          "STARHEALTH",
+          "SAIL",
+          "SUNTV",
+          "SUNDARMFIN",
+          "SUNDRMFAST",
+          "SUPREMEIND",
+          "SUZLON",
+          "SYNGENE",
+          "TATACHEM",
+          "TATACOMM",
+          "TATAELXSI",
+          "TATAINVEST",
+          "TATATECH",
+          "NIACL",
+          "THERMAX",
+          "TIMKEN",
+          "TORNTPOWER",
+          "TIINDIA",
+          "UNOMINDA",
+          "UPL",
+          "UBL",
+          "IDEA",
+          "VOLTAS",
+          "YESBANK",
+          "ZFCVINDIA"
+        ] */
     },
     {
         "tradingsymbol": "NIFTYM150MOMNTM50",
-        "stocks": [
-            "AJANTPHARM",
-            "AUROPHARMA",
-            "BSE",
-            "BDL",
-            "BIOCON",
-            "CGPOWER",
-            "CRISIL",
-            "COFORGE",
-            "COROMANDEL",
-            "CUMMINSIND",
-            "DIXON",
-            "FEDERALBNK",
-            "FORTIS",
-            "GODREJIND",
-            "GODREJPROP",
-            "HDFCAMC",
-            "HINDPETRO",
-            "POWERINDIA",
-            "HUDCO",
-            "INDIANB",
-            "INDHOTEL",
-            "IREDA",
-            "INDUSTOWER",
-            "IPCALAB",
-            "JUBLFOOD",
-            "KEI",
-            "KALYANKJIL",
-            "LLOYDSME",
-            "LUPIN",
-            "MAXHEALTH",
-            "MAZDOCK",
-            "MPHASIS",
-            "OBEROIRLTY",
-            "OIL",
-            "PAYTM",
-            "OFSS",
-            "POLICYBZR",
-            "PAGEIND",
-            "PERSISTENT",
-            "PETRONET",
-            "PHOENIXLTD",
-            "POLYCAB",
-            "PRESTIGE",
-            "RVNL",
-            "SOLARINDS",
-            "SYNGENE",
-            "THERMAX",
-            "TORNTPOWER",
-            "UNOMINDA",
-            "VOLTAS"
-        ]
+        "niftyIndicesSymbol": "ind_niftymidcap150momentum50_list.csv",
+        "stocks": [],
+        /* "stocks": [
+          "AJANTPHARM",
+          "AUROPHARMA",
+          "BSE",
+          "BDL",
+          "BIOCON",
+          "CGPOWER",
+          "CRISIL",
+          "COFORGE",
+          "COROMANDEL",
+          "CUMMINSIND",
+          "DIXON",
+          "FEDERALBNK",
+          "FORTIS",
+          "GODREJIND",
+          "GODREJPROP",
+          "HDFCAMC",
+          "HINDPETRO",
+          "POWERINDIA",
+          "HUDCO",
+          "INDIANB",
+          "INDHOTEL",
+          "IREDA",
+          "INDUSTOWER",
+          "IPCALAB",
+          "JUBLFOOD",
+          "KEI",
+          "KALYANKJIL",
+          "LLOYDSME",
+          "LUPIN",
+          "MAXHEALTH",
+          "MAZDOCK",
+          "MPHASIS",
+          "OBEROIRLTY",
+          "OIL",
+          "PAYTM",
+          "OFSS",
+          "POLICYBZR",
+          "PAGEIND",
+          "PERSISTENT",
+          "PETRONET",
+          "PHOENIXLTD",
+          "POLYCAB",
+          "PRESTIGE",
+          "RVNL",
+          "SOLARINDS",
+          "SYNGENE",
+          "THERMAX",
+          "TORNTPOWER",
+          "UNOMINDA",
+          "VOLTAS"
+        ] */
     },
     {
         "tradingsymbol": "MOMENTUM50",
-        "stocks": [
-            "360ONE",
-            "ABSLAMC",
-            "AMBER",
-            "ANANTRAJ",
-            "BSE",
-            "CAPLIPOINT",
-            "CHOLAHLDNG",
-            "COFORGE",
-            "COROMANDEL",
-            "DEEPAKFERT",
-            "DIVISLAB",
-            "DIXON",
-            "FSL",
-            "FORTIS",
-            "GLENMARK",
-            "GODFRYPHLP",
-            "HSCL",
-            "POWERINDIA",
-            "INDIACEM",
-            "INDHOTEL",
-            "NAUKRI",
-            "JUBLPHARMA",
-            "KALYANKJIL",
-            "KAYNES",
-            "KEC",
-            "KFINTECH",
-            "LLOYDSME",
-            "LUPIN",
-            "M&M",
-            "MAZDOCK",
-            "MOTILALOFS",
-            "MCX",
-            "NATCOPHARM",
-            "NATIONALUM",
-            "NETWEB",
-            "OIL",
-            "OFSS",
-            "POLICYBZR",
-            "PCBL",
-            "PERSISTENT",
-            "PPLPHARMA",
-            "POLYMED",
-            "RADICO",
-            "SIEMENS",
-            "SUVENPHAR",
-            "TECHM",
-            "TRENT",
-            "UNITDSPR",
-            "VOLTAS",
-            "ZOMATO"
-        ]
+        "niftyIndicesSymbol": "ind_nifty500Momentum50_list.csv",
+        "stocks": [],
+        /* "stocks": [
+          "360ONE",
+          "ABSLAMC",
+          "AMBER",
+          "ANANTRAJ",
+          "BSE",
+          "CAPLIPOINT",
+          "CHOLAHLDNG",
+          "COFORGE",
+          "COROMANDEL",
+          "DEEPAKFERT",
+          "DIVISLAB",
+          "DIXON",
+          "FSL",
+          "FORTIS",
+          "GLENMARK",
+          "GODFRYPHLP",
+          "HSCL",
+          "POWERINDIA",
+          "INDIACEM",
+          "INDHOTEL",
+          "NAUKRI",
+          "JUBLPHARMA",
+          "KALYANKJIL",
+          "KAYNES",
+          "KEC",
+          "KFINTECH",
+          "LLOYDSME",
+          "LUPIN",
+          "M&M",
+          "MAZDOCK",
+          "MOTILALOFS",
+          "MCX",
+          "NATCOPHARM",
+          "NATIONALUM",
+          "NETWEB",
+          "OIL",
+          "OFSS",
+          "POLICYBZR",
+          "PCBL",
+          "PERSISTENT",
+          "PPLPHARMA",
+          "POLYMED",
+          "RADICO",
+          "SIEMENS",
+          "SUVENPHAR",
+          "TECHM",
+          "TRENT",
+          "UNITDSPR",
+          "VOLTAS",
+          "ZOMATO"
+        ] */
     },
     {
         "tradingsymbol": "NIFTY ALPHA 50",
-        "stocks": [
-            "ABB",
-            "ABREL",
-            "ARE&M",
-            "APARINDS",
-            "BSE",
-            "BAJAJ-AUTO",
-            "BDL",
-            "BEL",
-            "CDSL",
-            "COCHINSHIP",
-            "COLPAL",
-            "CUMMINSIND",
-            "DIXON",
-            "GLENMARK",
-            "HSCL",
-            "HAL",
-            "HINDCOPPER",
-            "HINDPETRO",
-            "HUDCO",
-            "IRFC",
-            "IREDA",
-            "INDUSTOWER",
-            "INOXWIND",
-            "KEI",
-            "KALYANKJIL",
-            "KAYNES",
-            "KFINTECH",
-            "LUPIN",
-            "MAZDOCK",
-            "MOTILALOFS",
-            "MCX",
-            "NBCC",
-            "NHPC",
-            "NATIONALUM",
-            "OIL",
-            "OFSS",
-            "POLICYBZR",
-            "PHOENIXLTD",
-            "PPLPHARMA",
-            "PRESTIGE",
-            "RVNL",
-            "SIEMENS",
-            "SOLARINDS",
-            "SUZLON",
-            "TORNTPOWER",
-            "TRENT",
-            "VBL",
-            "VOLTAS",
-            "ZOMATO",
-            "ZYDUSLIFE"
-        ]
+        "niftyIndicesSymbol": "ind_nifty_Alpha_Index.csv",
+        "stocks": [],
+        /* "stocks": [
+          "ABB",
+          "ABREL",
+          "ARE&M",
+          "APARINDS",
+          "BSE",
+          "BAJAJ-AUTO",
+          "BDL",
+          "BEL",
+          "CDSL",
+          "COCHINSHIP",
+          "COLPAL",
+          "CUMMINSIND",
+          "DIXON",
+          "GLENMARK",
+          "HSCL",
+          "HAL",
+          "HINDCOPPER",
+          "HINDPETRO",
+          "HUDCO",
+          "IRFC",
+          "IREDA",
+          "INDUSTOWER",
+          "INOXWIND",
+          "KEI",
+          "KALYANKJIL",
+          "KAYNES",
+          "KFINTECH",
+          "LUPIN",
+          "MAZDOCK",
+          "MOTILALOFS",
+          "MCX",
+          "NBCC",
+          "NHPC",
+          "NATIONALUM",
+          "OIL",
+          "OFSS",
+          "POLICYBZR",
+          "PHOENIXLTD",
+          "PPLPHARMA",
+          "PRESTIGE",
+          "RVNL",
+          "SIEMENS",
+          "SOLARINDS",
+          "SUZLON",
+          "TORNTPOWER",
+          "TRENT",
+          "VBL",
+          "VOLTAS",
+          "ZOMATO",
+          "ZYDUSLIFE"
+        ] */
     },
     {
         "tradingsymbol": "NIFTY BANK",
-        "stocks": [
-            "BANKBARODA",
-            "PNB",
-            "AXISBANK",
-            "SBIN",
-            "FEDERALBNK",
-            "IDFCFIRSTB",
-            "INDUSINDBK",
-            "CANBK",
-            "KOTAKBANK",
-            "ICICIBANK",
-            "HDFCBANK",
-            "AUBANK"
-        ]
+        "niftyIndicesSymbol": "ind_niftybanklist.csv",
+        "stocks": [],
+        /* "stocks": [
+          "BANKBARODA",
+          "PNB",
+          "AXISBANK",
+          "SBIN",
+          "FEDERALBNK",
+          "IDFCFIRSTB",
+          "INDUSINDBK",
+          "CANBK",
+          "KOTAKBANK",
+          "ICICIBANK",
+          "HDFCBANK",
+          "AUBANK"
+        ] */
     },
     {
         "tradingsymbol": "NIFTY PHARMA",
-        "stocks": [
-            "TORNTPHARM",
-            "MANKIND",
-            "IPCALAB",
-            "GLENMARK",
-            "LUPIN",
-            "ALKEM",
-            "AUROPHARMA",
-            "SUNPHARMA",
-            "DIVISLAB",
-            "NATCOPHARM",
-            "ABBOTINDIA",
-            "JBCHEPHARM",
-            "ZYDUSLIFE",
-            "AJANTPHARM",
-            "DRREDDY",
-            "CIPLA",
-            "GLAND",
-            "BIOCON",
-            "LAURUSLABS",
-            "GRANULES"
-        ]
+        "niftyIndicesSymbol": "ind_niftypharmalist.csv",
+        "stocks": [],
+        /* "stocks": [
+          "TORNTPHARM",
+          "MANKIND",
+          "IPCALAB",
+          "GLENMARK",
+          "LUPIN",
+          "ALKEM",
+          "AUROPHARMA",
+          "SUNPHARMA",
+          "DIVISLAB",
+          "NATCOPHARM",
+          "ABBOTINDIA",
+          "JBCHEPHARM",
+          "ZYDUSLIFE",
+          "AJANTPHARM",
+          "DRREDDY",
+          "CIPLA",
+          "GLAND",
+          "BIOCON",
+          "LAURUSLABS",
+          "GRANULES"
+        ] */
     },
     {
         "tradingsymbol": "NIFTY HEALTHCARE",
-        "stocks": [
-            "LALPATHLAB",
-            "TORNTPHARM",
-            "IPCALAB",
-            "GLENMARK",
-            "LUPIN",
-            "ALKEM",
-            "AUROPHARMA",
-            "SUNPHARMA",
-            "DIVISLAB",
-            "ABBOTINDIA",
-            "METROPOLIS",
-            "ZYDUSLIFE",
-            "DRREDDY",
-            "APOLLOHOSP",
-            "SYNGENE",
-            "MAXHEALTH",
-            "CIPLA",
-            "BIOCON",
-            "LAURUSLABS",
-            "GRANULES"
-        ]
+        "niftyIndicesSymbol": "ind_niftyhealthcarelist.csv",
+        "stocks": [],
+        /* "stocks": [
+          "LALPATHLAB",
+          "TORNTPHARM",
+          "IPCALAB",
+          "GLENMARK",
+          "LUPIN",
+          "ALKEM",
+          "AUROPHARMA",
+          "SUNPHARMA",
+          "DIVISLAB",
+          "ABBOTINDIA",
+          "METROPOLIS",
+          "ZYDUSLIFE",
+          "DRREDDY",
+          "APOLLOHOSP",
+          "SYNGENE",
+          "MAXHEALTH",
+          "CIPLA",
+          "BIOCON",
+          "LAURUSLABS",
+          "GRANULES"
+        ] */
     },
     {
         "tradingsymbol": "NIFTY MIDSML HLTH",
-        "stocks": [
-            "PPLPHARMA",
-            "LALPATHLAB",
-            "MANKIND",
-            "POLYMED",
-            "KIMS",
-            "IPCALAB",
-            "GLENMARK",
-            "LUPIN",
-            "ALKEM",
-            "GLAXO",
-            "AUROPHARMA",
-            "SUVENPHAR",
-            "NATCOPHARM",
-            "ABBOTINDIA",
-            "MEDANTA",
-            "METROPOLIS",
-            "APLLTD",
-            "NH",
-            "JBCHEPHARM",
-            "SANOFI",
-            "AJANTPHARM",
-            "SYNGENE",
-            "MAXHEALTH",
-            "RAINBOW",
-            "GLAND",
-            "ASTERDM",
-            "FORTIS",
-            "BIOCON",
-            "LAURUSLABS",
-            "GRANULES"
-        ]
+        "niftyIndicesSymbol": "ind_niftymidsmallhealthcare_list.csv",
+        "stocks": [],
+        /* "stocks": [
+          "PPLPHARMA",
+          "LALPATHLAB",
+          "MANKIND",
+          "POLYMED",
+          "KIMS",
+          "IPCALAB",
+          "GLENMARK",
+          "LUPIN",
+          "ALKEM",
+          "GLAXO",
+          "AUROPHARMA",
+          "SUVENPHAR",
+          "NATCOPHARM",
+          "ABBOTINDIA",
+          "MEDANTA",
+          "METROPOLIS",
+          "APLLTD",
+          "NH",
+          "JBCHEPHARM",
+          "SANOFI",
+          "AJANTPHARM",
+          "SYNGENE",
+          "MAXHEALTH",
+          "RAINBOW",
+          "GLAND",
+          "ASTERDM",
+          "FORTIS",
+          "BIOCON",
+          "LAURUSLABS",
+          "GRANULES"
+        ] */
     },
     {
         "tradingsymbol": "NIFTY IT",
-        "stocks": [
-            "INFY",
-            "COFORGE",
-            "WIPRO",
-            "TECHM",
-            "TCS",
-            "HCLTECH",
-            "LTTS",
-            "LTIM",
-            "PERSISTENT",
-            "MPHASIS"
-        ]
+        "niftyIndicesSymbol": "ind_niftyitlist.csv",
+        "stocks": [],
+        /* "stocks": [
+          "INFY",
+          "COFORGE",
+          "WIPRO",
+          "TECHM",
+          "TCS",
+          "HCLTECH",
+          "LTTS",
+          "LTIM",
+          "PERSISTENT",
+          "MPHASIS"
+        ] */
     },
     /*    {
           "tradingsymbol": "NIFTY FIN SERVICE",
@@ -32018,11 +32237,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "StocksService": () => (/* binding */ StocksService)
 /* harmony export */ });
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 8784);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! rxjs */ 4139);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common/http */ 8784);
 /* harmony import */ var _common_application_constant__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../common/application.constant */ 8001);
 /* harmony import */ var _stocks_constants__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./stocks.constants */ 6039);
 /* harmony import */ var simple_statistics__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! simple-statistics */ 4101);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 3184);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ 6942);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ 7418);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/core */ 3184);
+
+
 
 
 
@@ -32035,6 +32259,32 @@ class StocksService {
         // GET https://www.nseindia.com/api/equity-stockIndices?index=NIFTY%20MIDSMALLCAP%20400
         // GET https://www.nseindia.com/api/equity-stockIndices?csv=true&index=NIFTY%20MIDSMALLCAP%20400&selectValFormat=crores
         this.delay = 300;
+    }
+    /* getRawCsvData() {
+      let csvUrl = 'https://www.niftyindices.com/IndexConstituent/ind_nifty500list.csv';
+      return this.http.get(csvUrl, { responseType: 'text' });
+    } */
+    getRawCsvData(niftyIndicesSymbol) {
+        const url = `https://www.niftyindices.com/IndexConstituent/${niftyIndicesSymbol}`;
+        // Perform the HTTP request and return both 'csvData' and 'niftyIndicesSymbol'
+        return this.http.get(url, { responseType: 'text' }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.map)(response => {
+            // Split the response by lines
+            const lines = response.split('\n');
+            // Check if the last line is empty, and if so, remove it
+            if (lines[lines.length - 1].trim() === '') {
+                lines.pop(); // Remove the last line if it's empty
+            }
+            // Join the remaining lines back into a single string
+            const cleanedCsvData = lines.join('\n');
+            // Return the cleaned CSV data along with the niftyIndicesSymbol
+            return {
+                csvData: cleanedCsvData,
+                niftyIndicesSymbol: niftyIndicesSymbol
+            };
+        }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.catchError)(error => {
+            console.error('Error fetching CSV:', error);
+            return (0,rxjs__WEBPACK_IMPORTED_MODULE_5__.of)({ csvData: '', niftyIndicesSymbol: niftyIndicesSymbol }); // Return an empty response in case of error
+        }));
     }
     loadIndicesData() {
         let index_stocks = [];
@@ -32107,6 +32357,23 @@ class StocksService {
     }
     fetchChartData(object, isLastItem) {
         let stock = this.findStockInMasters(object);
+        // Check if the stock is valid (modify the condition as per your validation logic)
+        if (!stock) {
+            // Stock is not valid, append '-BE' to tradingSymbol and find the stock again
+            object.tradingsymbol = object.tradingsymbol + "-BE"; // Append "-BE" to the tradingSymbol
+            stock = this.findStockInMasters(object); // Call findStockInMasters again
+        }
+        // If stock is valid, update tradingSymbol from stocksList
+        if (stock) {
+            // Find the corresponding entry in stocksList by matching the tradingSymbol
+            let targetStock = _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.stocksList.find(entry => entry.tradingsymbol === object.tradingsymbol.replace("-BE", ""));
+            if (targetStock) {
+                targetStock.tradingsymbol = object.tradingsymbol;
+            }
+        }
+        else {
+            console.error('Stock not found after appending "-BE"');
+        }
         console.log('fetchChartData element:', stock.tradingSymbol, stock.token, stock.exchange);
         let today = new Date();
         let from_date_obj = new Date();
@@ -32117,7 +32384,7 @@ class StocksService {
         let to_date = '' + today.getFullYear() + '-' + ('0' + (today.getMonth() + 1)).slice(-2) + '-' + ('0' + today.getDate()).slice(-2);
         //console.log('fetchChartData dates:', from_date, to_date);
         if (stock && stock.token) {
-            const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpHeaders({
+            const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpHeaders({
                 'authorization': _common_application_constant__WEBPACK_IMPORTED_MODULE_0__.AppConstants.broker_auth,
             });
             let httpOptions = {
@@ -32203,11 +32470,34 @@ class StocksService {
                 element.dist2 = this.getDist(element, stockData, 55);
                 element.dist3 = this.getDist(element, stockData, 144); */
                 element.dist4 = this.getDist(element, stockData, 252);
+                element.isDist4Within1Month = this.checkIsDist4Within1Month(element);
                 element.DMA200 = this.getMovingAverage(stockData, 200);
                 // console.log(element.tradingsymbol, element.ltp, element.onedayperc, element.oneweekperc);
             }
         }
+        // need to call for all columns so that ranks can be updated
+        this.sortByReturns('return1');
+        this.sortByReturns('return2');
+        this.sortByReturns('return3');
+        this.sortByReturns('return4');
+        this.sortByReturns('return6');
+        this.sortByReturns('dist4');
         this.sortByReturns('return5');
+    }
+    checkIsDist4Within1Month(element) {
+        let stockData = _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.candlesData[element.tradingsymbol];
+        let closeValues = [];
+        // sort as per ascending dates
+        const dates = Object.keys(stockData).sort((a, b) => this.parseDate(a).getTime() - this.parseDate(b).getTime());
+        //console.log('dates', dates);
+        for (const date of dates) {
+            closeValues.push(stockData[date][3]);
+        }
+        //console.log('closeValues', closeValues.length, currentDate, oneYearAgo);
+        // arr.push({stock: element.tradingsymbol, dailyPrices: closeValues, dataAtCurrDate: element.dataAtCurrDate, currDate_obj: element.currDate_obj });
+        const highestValue = Math.max(...closeValues); // Find the highest value
+        const last20Elements = closeValues.slice(-20); // Get last 20 elements
+        return last20Elements.includes(highestValue); // Check if highest value is in last 20
     }
     getMovingAverageFromDate(stockData, period, currDate) {
         /* if (stockData.length < period) {
@@ -32442,7 +32732,8 @@ class StocksService {
             new_list.push(element);
             for (let j = 0; j < stocksInIndex.length; j++) {
                 let s = stocksInIndex[j];
-                s.rank = j + 1;
+                // s.rank = j + 1;
+                s[`${col}_rank`] = j + 1; // Dynamically sets return1_rank, return2_rank, etc.
                 new_list.push(s);
             }
         }
@@ -32770,6 +33061,7 @@ class StocksService {
     backtestMomentum2(indexToBacktest = 'NIFTY 500', numStocks = 20, strategy = '3MReturns') {
         let capital = 1000000;
         let excess_capital = 0;
+        let stockDetails = {};
         let min_capital_in_stock = capital / numStocks;
         let curr_stocks = [];
         let indexElement = _stocks_constants__WEBPACK_IMPORTED_MODULE_1__.StocksConstants.all_rows.find(x => x.tradingsymbol === indexToBacktest);
@@ -32852,7 +33144,10 @@ class StocksService {
             else if (strategy === 'NormalizedMomentum') {
                 selectedStocks = this.getTopStocksWithNormalizedMomentum(flattenData, numStocks);
             }
-            if (strategy !== '3MReturns' && strategy !== '6MReturns' && strategy !== '1YReturns' && strategy !== '1MReturns') {
+            else if (strategy === 'WeightedMomentum') {
+                selectedStocks = this.getTopStocksWithWeightedReturns(selectedStocks, numStocks, week);
+            }
+            if (strategy !== '3MReturns' && strategy !== '6MReturns' && strategy !== '1YReturns' && strategy !== '1MReturns' && strategy !== 'WeightedMomentum') {
                 let arr = [];
                 for (let i = 0; i < selectedStocks.length; i++) {
                     let element = selectedStocks[i];
@@ -32907,6 +33202,11 @@ class StocksService {
                     }
                     new_capital += excess_capital;
                     cum_returns_week += returns;
+                    if (!stockDetails.hasOwnProperty(element)) {
+                        stockDetails[element] = { return: 0, count: 0 };
+                    }
+                    stockDetails[element].return += returns;
+                    stockDetails[element].count += 1;
                     console.log('Curr Week Returns:', element, returns, exit_cap, curr_stock_capital, this.getLastToLastWeekDay(week, 2), startClose, endClose);
                     // console.log('Curr Week Returns:', element, exit_cap, curr_stock_capital, new_capital, returns, startClose, endClose);
                 }
@@ -32922,6 +33222,7 @@ class StocksService {
             //let stocksNewInSelected = this.findDifferenceInArrays(selectedStocks, curr_stocks);
         }
         console.log('all_returns', all_returns);
+        console.log('stockDetails', stockDetails);
         this.exportBacktest(all_returns_arr);
     }
     backtestIndexAboveMA(csvData) {
@@ -33048,6 +33349,14 @@ class StocksService {
     }
     calculateDailyReturns(prices) {
         return prices.slice(1).map((price, index) => (price - prices[index]) / prices[index]);
+    }
+    getTopStocksWithWeightedReturns(selectedStocks, numStocks, week) {
+        // Sort stocks based on the weighted return formula
+        selectedStocks.sort((a, b) => (0.4 * b.oneYearReturn + 0.3 * b.sixMonthsReturn + 0.3 * b.threeMonthsReturn) -
+            (0.4 * a.oneYearReturn + 0.3 * a.sixMonthsReturn + 0.3 * a.threeMonthsReturn));
+        console.log('selectedStocks sorted by weighted returns', selectedStocks, this.getLastToLastWeekDay(week, 2));
+        // Return the top 'numStocks' stocks
+        return selectedStocks.slice(0, numStocks);
     }
     getTopStocksWith3MReturns(selectedStocks, numStocks, week) {
         // Sort the stocks based on their 3-month returns in descending order
@@ -33279,8 +33588,8 @@ class StocksService {
         return lastToLastWeekDay;
     }
 }
-StocksService.ɵfac = function StocksService_Factory(t) { return new (t || StocksService)(_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpClient)); };
-StocksService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineInjectable"]({ token: StocksService, factory: StocksService.ɵfac, providedIn: 'root' });
+StocksService.ɵfac = function StocksService_Factory(t) { return new (t || StocksService)(_angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵinject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_6__.HttpClient)); };
+StocksService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_7__["ɵɵdefineInjectable"]({ token: StocksService, factory: StocksService.ɵfac, providedIn: 'root' });
 
 
 /***/ }),
