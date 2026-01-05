@@ -55,6 +55,7 @@
                     const referrer = document.referrer || 'Direct visit';
                     const screenSize = `${window.innerWidth}x${window.innerHeight}`;
                     const language = navigator.language || 'Unknown';
+                    const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
                     
                     // Create Discord message payload
                     const payload = {
@@ -66,6 +67,11 @@
                                     name: '⏰ Time (UTC)',
                                     value: utcTime,
                                     inline: false
+                                },
+                                {
+                                    name: '🕒 Timezone',
+                                    value: timezone,
+                                    inline: true
                                 },
                                 {
                                     name: '📱 Device Type',
