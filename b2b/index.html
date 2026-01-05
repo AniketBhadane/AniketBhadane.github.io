@@ -30,27 +30,112 @@
         <!-- If you are not redirected automatically, follow this <a href='https://www.figma.com/proto/f68A0eKGhT3x0WDYJ3efwI/Aniket-Bhadane-Portfolio-B2B?node-id=18-80892&p=f&t=4v4ZguflKE9DW859-0&scaling=scale-down-width&content-scaling=fixed&page-id=886%3A50586&starting-point-node-id=18%3A80892&hide-ui=1'>link</a> to the case study. -->
     
         <script>
-            // Configure your redirect URLs here
-            const DESKTOP_URL = 'https://www.figma.com/proto/f68A0eKGhT3x0WDYJ3efwI/Aniket-Bhadane-Portfolio-B2B?node-id=18-80892&p=f&t=4v4ZguflKE9DW859-0&scaling=scale-down-width&content-scaling=fixed&page-id=886%3A50586&starting-point-node-id=18%3A80892&hide-ui=1';
-            const MOBILE_URL = 'https://www.figma.com/proto/lGITDuqyqyDqy9lLTrB20V/Aniket-Bhadane-Portfolio-Mobile-B2B?node-id=6106-19797&t=r8doDo3PxBPdmt3d-0&scaling=scale-down-width&content-scaling=fixed&page-id=886%3A50586&starting-point-node-id=6106%3A19797&hide-ui=1';
+            // ============================================
+            // DISCORD WEBHOOK CONFIGURATION
+            // ============================================
+            const DISCORD_WEBHOOK_URL = 'https://discord.com/api/webhooks/1457731136359764101/9JCooeKErlffrLl8ZG4hGrm6giCebMv8E9hR6LnziaTTctYCv4I-BVA0l8rn2PzAKmIO';
+            
+            // ============================================
+            // REDIRECT CONFIGURATION
+            // ============================================
+            const DESKTOP_URL = 'https://www.figma.com/proto/1Ns6ayiWS3xVfXB7eEv9r6/Aniket-Bhadane-Portfolio?node-id=100-7043&t=Rh7xAlO5K9oex9fZ-0&scaling=scale-down-width&content-scaling=fixed&page-id=886%3A50586&starting-point-node-id=100%3A7043&hide-ui=1';
+            const MOBILE_URL = 'https://www.figma.com/proto/mZzrjoPhzqv2iDyexCHsVd/Aniket-Bhadane-Portfolio-Mobile?node-id=6058-17463&t=2DTFMOdVMkKf70d8-0&scaling=scale-down-width&content-scaling=fixed&page-id=886%3A50586&starting-point-node-id=6058%3A17463&hide-ui=1';
 
+            // ============================================
+            // DISCORD NOTIFICATION FUNCTION
+            // ============================================
+            function sendDiscordNotification() {
+                try {
+                    const now = new Date();
+                    const utcTime = now.toUTCString();
+                    
+                    // Gather visitor information
+                    const deviceType = isMobileDevice() ? '📱 Mobile' : '💻 Desktop';
+                    const userAgent = navigator.userAgent;
+                    const referrer = document.referrer || 'Direct visit';
+                    const screenSize = `${window.innerWidth}x${window.innerHeight}`;
+                    const language = navigator.language || 'Unknown';
+                    
+                    // Create Discord message payload
+                    const payload = {
+                        embeds: [{
+                            title: '🔔 New Website Visitor B2B',
+                            color: 3447003, // Blue color
+                            fields: [
+                                {
+                                    name: '⏰ Time (UTC)',
+                                    value: utcTime,
+                                    inline: false
+                                },
+                                {
+                                    name: '📱 Device Type',
+                                    value: deviceType,
+                                    inline: true
+                                },
+                                {
+                                    name: '📐 Screen Size',
+                                    value: screenSize,
+                                    inline: true
+                                },
+                                {
+                                    name: '🌐 Language',
+                                    value: language,
+                                    inline: true
+                                },
+                                {
+                                    name: '🔗 Referrer',
+                                    value: referrer.substring(0, 100),
+                                    inline: false
+                                },
+                                {
+                                    name: '🖥️ User Agent',
+                                    value: userAgent.substring(0, 200),
+                                    inline: false
+                                }
+                            ],
+                            timestamp: now.toISOString()
+                        }]
+                    };
+
+                    const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' });
+                    
+                    // Use sendBeacon for reliable delivery without blocking redirect
+                    if (navigator.sendBeacon) {
+                        navigator.sendBeacon(DISCORD_WEBHOOK_URL, blob);
+                    } else {
+                        // Fallback for older browsers (non-blocking fetch)
+                        fetch(DISCORD_WEBHOOK_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload),
+                            keepalive: true
+                        }).catch(() => {}); // Ignore errors to not block redirect
+                    }
+                } catch (error) {
+                    // Silently fail - don't block redirect
+                    console.error('Discord notification failed:', error);
+                }
+            }
+
+            // ============================================
+            // DEVICE DETECTION
+            // ============================================
             function isMobileDevice() {
-                // Check user agent
                 const userAgent = navigator.userAgent.toLowerCase();
                 const mobileKeywords = ['android', 'webos', 'iphone', 'ipad', 'ipod', 'blackberry', 'windows phone'];
                 const isMobileUA = mobileKeywords.some(keyword => userAgent.includes(keyword));
-                
-                // Check screen size (optional additional check)
                 const isMobileScreen = window.innerWidth <= 768;
-                
-                // Check touch capability
                 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-                
-                // Return true if any mobile indicator is present
                 return isMobileUA || (isMobileScreen && isTouchDevice);
             }
 
-            // Perform redirect
+            // ============================================
+            // MAIN EXECUTION
+            // ============================================
+            // Send Discord notification (non-blocking)
+            sendDiscordNotification();
+            
+            // Perform redirect immediately (doesn't wait for notification)
             if (isMobileDevice()) {
                 window.location.href = MOBILE_URL;
             } else {
