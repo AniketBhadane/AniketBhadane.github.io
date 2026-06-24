@@ -1,158 +1,164 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>WebSocket Debugger</title>
 
-<link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/json-viewer-js@1.0.1/dist/json-viewer.css"
-/>
-
 <style>
-  body {
+body {
     margin: 0;
     padding: 10px;
     background: #111;
     color: #ddd;
-    font-family: monospace;
-    font-size: 11px;
-  }
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+}
 
-  .row {
+.row {
     display: flex;
     gap: 6px;
     margin-bottom: 6px;
-  }
+}
 
-  input,
-  button {
-    font-family: monospace;
-    font-size: 11px;
+input,
+button {
+    font-family: inherit;
+    font-size: 12px;
     background: #1b1b1b;
     color: #ddd;
     border: 1px solid #444;
     padding: 6px;
     box-sizing: border-box;
-  }
+}
 
-  input {
+input {
     flex: 1;
-  }
+}
 
-  button {
+button {
     cursor: pointer;
-    min-width: 90px;
-  }
+}
 
-  .status {
+.status {
     margin-bottom: 6px;
-  }
+}
 
-  .connected {
+.connected {
     color: #4caf50;
-  }
+}
 
-  .disconnected {
+.disconnected {
     color: #ff5252;
-  }
+}
 
-  #logs {
-    height: calc(100vh - 120px);
-    overflow-y: auto;
-    overflow-x: auto;
+#logs {
+    height: calc(100vh - 125px);
+    overflow: auto;
     border: 1px solid #444;
-    background: #151515;
+    background: #161616;
     padding: 4px;
-  }
+}
 
-  .log-entry {
+.log-entry {
     border-bottom: 1px solid #222;
     padding: 4px 0;
-  }
+}
 
-  .log-header {
+.message-summary {
+    cursor: pointer;
+    color: #8ecfff;
+    user-select: none;
+    padding: 2px 0;
+}
+
+.message-content {
+    padding-left: 18px;
+}
+
+details {
+    margin: 1px 0;
+}
+
+summary {
     cursor: pointer;
     user-select: none;
     color: #7ec8ff;
-    margin-bottom: 4px;
-  }
+    outline: none;
+}
 
-  .log-content {
-    display: none;
-    margin-left: 18px;
-  }
+.tree-indent {
+    padding-left: 18px;
+}
 
-  .log-content.open {
-    display: block;
-  }
+.tree-leaf {
+    padding-left: 18px;
+    color: #dcdcdc;
+    white-space: nowrap;
+}
 
-  .plain-message {
+.key {
+    color: #7ec8ff;
+}
+
+.string {
+    color: #98c379;
+}
+
+.number {
+    color: #d19a66;
+}
+
+.boolean {
+    color: #c678dd;
+}
+
+.null {
+    color: #888;
+}
+
+.plain-text {
     white-space: pre-wrap;
     color: #ddd;
-    margin-top: 4px;
-  }
+    padding-left: 10px;
+}
 
-  .json-viewer {
-    background: transparent !important;
-    color: #ddd !important;
-  }
-
-  .json-viewer-key {
-    color: #7ec8ff !important;
-  }
-
-  .json-viewer-value-string {
-    color: #8bc34a !important;
-  }
-
-  .json-viewer-value-number {
-    color: #ffb74d !important;
-  }
-
-  .json-viewer-value-boolean {
-    color: #ff8a65 !important;
-  }
-
-  .json-viewer-value-null {
-    color: #999 !important;
-  }
+.truncated {
+    color: #999;
+    font-style: italic;
+    padding-left: 18px;
+}
 </style>
 </head>
 
 <body>
 
 <div class="row">
-  <input
-    id="wsUrl"
-    value="wss://www.interactivebrokers.co.uk/portal.proxy/v1/portal/ws"
-    placeholder="WebSocket URL"
-  />
+    <input
+        id="wsUrl"
+        value="wss://www.interactivebrokers.co.uk/portal.proxy/v1/portal/ws"
+        placeholder="WebSocket URL">
 </div>
 
 <div class="row">
-  <button onclick="connectWs()">Connect</button>
-  <button onclick="disconnectWs()">Disconnect</button>
-  <button onclick="clearLogs()">Clear Logs</button>
+    <button onclick="connectWs()">Connect</button>
+    <button onclick="disconnectWs()">Disconnect</button>
+    <button onclick="clearLogs()">Clear Logs</button>
 </div>
 
 <div class="status">
-  Status:
-  <span id="status" class="disconnected">DISCONNECTED</span>
+    Status:
+    <span id="status" class="disconnected">DISCONNECTED</span>
 </div>
 
 <div class="row">
-  <input
-    id="messageInput"
-    placeholder='Message to send. Example: smd+416904+{"fields":["31","84"]}'
-  />
-  <button onclick="sendMessage()">Send</button>
+    <input
+        id="messageInput"
+        placeholder='Example: smd+416904+{"fields":["31","84"]}'>
+    <button onclick="sendMessage()">Send</button>
 </div>
 
 <div id="logs"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/json-viewer-js@1.0.1/dist/json-viewer.js"></script>
 
 <script>
 
@@ -161,196 +167,399 @@ let ws = null;
 const logs = document.getElementById("logs");
 const statusEl = document.getElementById("status");
 
+const MAX_ARRAY_ITEMS = 100;
+const MAX_OBJECT_KEYS = 200;
+
 function timestamp() {
-  return new Date().toLocaleTimeString();
+    return new Date().toLocaleTimeString();
 }
 
 function setStatus(text, connected) {
-  statusEl.textContent = text;
-  statusEl.className = connected
-    ? "connected"
-    : "disconnected";
+    statusEl.textContent = text;
+    statusEl.className =
+        connected
+            ? "connected"
+            : "disconnected";
+}
+
+function escapeHtml(str) {
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
+function primitiveHtml(value) {
+
+    if (value === null) {
+        return '<span class="null">null</span>';
+    }
+
+    if (typeof value === "string") {
+        return `<span class="string">"${escapeHtml(value)}"</span>`;
+    }
+
+    if (typeof value === "number") {
+        return `<span class="number">${value}</span>`;
+    }
+
+    if (typeof value === "boolean") {
+        return `<span class="boolean">${value}</span>`;
+    }
+
+    return escapeHtml(String(value));
+}
+
+function createTree(value, key = null) {
+
+    const primitive =
+        value === null ||
+        typeof value !== "object";
+
+    if (primitive) {
+
+        const leaf = document.createElement("div");
+        leaf.className = "tree-leaf";
+
+        if (key === null) {
+            leaf.innerHTML =
+                primitiveHtml(value);
+        } else {
+            leaf.innerHTML =
+                `<span class="key">${escapeHtml(key)}</span>: ${primitiveHtml(value)}`;
+        }
+
+        return leaf;
+    }
+
+    const details =
+        document.createElement("details");
+
+    details.open = false;
+
+    const summary =
+        document.createElement("summary");
+
+    let title;
+
+    if (Array.isArray(value)) {
+
+        title =
+            key === null
+                ? `Array(${value.length})`
+                : `${key}: Array(${value.length})`;
+
+    } else {
+
+        title =
+            key === null
+                ? `Object(${Object.keys(value).length})`
+                : `${key}: Object(${Object.keys(value).length})`;
+    }
+
+    summary.textContent = title;
+
+    details.appendChild(summary);
+
+    const body =
+        document.createElement("div");
+
+    body.className = "tree-indent";
+
+    if (Array.isArray(value)) {
+
+        const count =
+            Math.min(
+                value.length,
+                MAX_ARRAY_ITEMS
+            );
+
+        for (
+            let i = 0;
+            i < count;
+            i++
+        ) {
+            body.appendChild(
+                createTree(value[i], `[${i}]`)
+            );
+        }
+
+        if (value.length > count) {
+
+            const truncated =
+                document.createElement("div");
+
+            truncated.className =
+                "truncated";
+
+            truncated.textContent =
+                `... ${value.length - count} more items`;
+
+            body.appendChild(truncated);
+        }
+
+    } else {
+
+        const entries =
+            Object.entries(value);
+
+        const count =
+            Math.min(
+                entries.length,
+                MAX_OBJECT_KEYS
+            );
+
+        for (
+            let i = 0;
+            i < count;
+            i++
+        ) {
+
+            const [k, v] =
+                entries[i];
+
+            body.appendChild(
+                createTree(v, k)
+            );
+        }
+
+        if (
+            entries.length > count
+        ) {
+
+            const truncated =
+                document.createElement("div");
+
+            truncated.className =
+                "truncated";
+
+            truncated.textContent =
+                `... ${entries.length - count} more properties`;
+
+            body.appendChild(truncated);
+        }
+    }
+
+    details.appendChild(body);
+
+    return details;
 }
 
 function addLog(type, message) {
 
-  const entry = document.createElement("div");
-  entry.className = "log-entry";
+    const entry =
+        document.createElement("div");
 
-  const header = document.createElement("div");
-  header.className = "log-header";
+    entry.className =
+        "log-entry";
 
-  header.textContent =
-    `[${timestamp()}] [${type}]`;
+    const wrapper =
+        document.createElement("details");
 
-  const content = document.createElement("div");
-  content.className = "log-content";
+    wrapper.open = false;
 
-  header.addEventListener("click", () => {
-    content.classList.toggle("open");
-  });
+    const summary =
+        document.createElement("summary");
 
-  try {
+    summary.className =
+        "message-summary";
 
-    const parsed = JSON.parse(message);
+    summary.textContent =
+        `[${timestamp()}] [${type}]`;
 
-    const viewerContainer =
-      document.createElement("div");
+    wrapper.appendChild(summary);
 
-    content.appendChild(viewerContainer);
+    const content =
+        document.createElement("div");
 
-    const viewer = new JsonViewer({
-      expanded: false,
-      rootCollapsable: true
-    });
+    content.className =
+        "message-content";
 
-    viewerContainer.appendChild(
-      viewer.getContainer()
-    );
+    try {
 
-    viewer.showJSON(parsed);
+        const parsed =
+            JSON.parse(message);
 
-  } catch {
+        content.appendChild(
+            createTree(parsed)
+        );
 
-    const pre = document.createElement("div");
-    pre.className = "plain-message";
-    pre.textContent = message;
+    } catch {
 
-    content.appendChild(pre);
-  }
+        const pre =
+            document.createElement("div");
 
-  entry.appendChild(header);
-  entry.appendChild(content);
+        pre.className =
+            "plain-text";
 
-  logs.appendChild(entry);
+        pre.textContent =
+            message;
 
-  logs.scrollTop = logs.scrollHeight;
+        content.appendChild(pre);
+    }
+
+    wrapper.appendChild(content);
+    entry.appendChild(wrapper);
+
+    logs.appendChild(entry);
+
+    logs.scrollTop =
+        logs.scrollHeight;
 }
 
 function connectWs() {
 
-  const url =
-    document.getElementById("wsUrl").value.trim();
+    const url =
+        document
+            .getElementById("wsUrl")
+            .value
+            .trim();
 
-  if (!url) {
-    addLog("ERROR", "WebSocket URL required");
-    return;
-  }
-
-  if (ws) {
-    ws.close();
-  }
-
-  addLog("SYSTEM", `Connecting to ${url}`);
-
-  try {
-
-    ws = new WebSocket(url);
-
-    ws.onopen = () => {
-
-      setStatus("CONNECTED", true);
-
-      addLog(
-        "SYSTEM",
-        "WebSocket connected"
-      );
-    };
-
-    ws.onmessage = async (event) => {
-
-      try {
-
-        let data = event.data;
-
-        if (data instanceof Blob) {
-          data = await data.text();
-        }
-
-        if (data instanceof ArrayBuffer) {
-          data = new TextDecoder().decode(data);
-        }
-
-        addLog("RECEIVE", data);
-
-      } catch (err) {
-
+    if (!url) {
         addLog(
-          "ERROR",
-          err.message
+            "ERROR",
+            "WebSocket URL required"
         );
-      }
-    };
+        return;
+    }
 
-    ws.onerror = (err) => {
-
-      addLog(
-        "ERROR",
-        JSON.stringify(err)
-      );
-    };
-
-    ws.onclose = (event) => {
-
-      setStatus(
-        "DISCONNECTED",
-        false
-      );
-
-      addLog(
-        "SYSTEM",
-        `WebSocket closed. Code=${event.code} Reason=${event.reason || "N/A"}`
-      );
-    };
-
-  } catch (e) {
+    if (ws) {
+        ws.close();
+    }
 
     addLog(
-      "ERROR",
-      e.message
+        "SYSTEM",
+        `Connecting to ${url}`
     );
-  }
+
+    try {
+
+        ws =
+            new WebSocket(url);
+
+        ws.onopen = () => {
+
+            setStatus(
+                "CONNECTED",
+                true
+            );
+
+            addLog(
+                "SYSTEM",
+                "WebSocket connected"
+            );
+        };
+
+        ws.onmessage =
+            async (event) => {
+
+            try {
+
+                let data =
+                    event.data;
+
+                if (
+                    data instanceof Blob
+                ) {
+                    data =
+                        await data.text();
+                }
+
+                if (
+                    data instanceof ArrayBuffer
+                ) {
+                    data =
+                        new TextDecoder()
+                            .decode(data);
+                }
+
+                addLog(
+                    "RECEIVE",
+                    data
+                );
+
+            } catch (err) {
+
+                addLog(
+                    "ERROR",
+                    err.message
+                );
+            }
+        };
+
+        ws.onerror = (err) => {
+
+            addLog(
+                "ERROR",
+                JSON.stringify(err)
+            );
+        };
+
+        ws.onclose = (event) => {
+
+            setStatus(
+                "DISCONNECTED",
+                false
+            );
+
+            addLog(
+                "SYSTEM",
+                `WebSocket closed. Code=${event.code} Reason=${event.reason || "N/A"}`
+            );
+        };
+
+    } catch (e) {
+
+        addLog(
+            "ERROR",
+            e.message
+        );
+    }
 }
 
 function disconnectWs() {
 
-  if (ws) {
+    if (ws) {
 
-    ws.close();
-    ws = null;
-  }
+        ws.close();
+        ws = null;
+    }
 }
 
 function sendMessage() {
 
-  const input =
-    document.getElementById("messageInput");
+    const input =
+        document.getElementById(
+            "messageInput"
+        );
 
-  const message = input.value;
+    const message =
+        input.value;
 
-  if (
-    !ws ||
-    ws.readyState !== WebSocket.OPEN
-  ) {
+    if (
+        !ws ||
+        ws.readyState !==
+            WebSocket.OPEN
+    ) {
+
+        addLog(
+            "ERROR",
+            "WebSocket not connected"
+        );
+
+        return;
+    }
+
+    ws.send(message);
 
     addLog(
-      "ERROR",
-      "WebSocket not connected"
+        "SEND",
+        message
     );
-
-    return;
-  }
-
-  ws.send(message);
-
-  addLog(
-    "SEND",
-    message
-  );
 }
 
 function clearLogs() {
-  logs.innerHTML = "";
+    logs.innerHTML = "";
 }
 
 </script>
