@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>WebSocket Debugger</title>
 
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/json-viewer-js@1.0.1/dist/json-viewer.css"
+/>
+
 <style>
   body {
     margin: 0;
@@ -21,7 +26,8 @@
     margin-bottom: 6px;
   }
 
-  input, textarea, button {
+  input,
+  button {
     font-family: monospace;
     font-size: 11px;
     background: #1b1b1b;
@@ -40,15 +46,6 @@
     min-width: 90px;
   }
 
-  textarea {
-    width: 100%;
-    height: calc(100vh - 120px);
-    resize: none;
-    white-space: pre;
-    overflow-wrap: normal;
-    overflow-x: auto;
-  }
-
   .status {
     margin-bottom: 6px;
   }
@@ -59,6 +56,67 @@
 
   .disconnected {
     color: #ff5252;
+  }
+
+  #logs {
+    height: calc(100vh - 120px);
+    overflow-y: auto;
+    overflow-x: auto;
+    border: 1px solid #444;
+    background: #151515;
+    padding: 4px;
+  }
+
+  .log-entry {
+    border-bottom: 1px solid #222;
+    padding: 4px 0;
+  }
+
+  .log-header {
+    cursor: pointer;
+    user-select: none;
+    color: #7ec8ff;
+    margin-bottom: 4px;
+  }
+
+  .log-content {
+    display: none;
+    margin-left: 18px;
+  }
+
+  .log-content.open {
+    display: block;
+  }
+
+  .plain-message {
+    white-space: pre-wrap;
+    color: #ddd;
+    margin-top: 4px;
+  }
+
+  .json-viewer {
+    background: transparent !important;
+    color: #ddd !important;
+  }
+
+  .json-viewer-key {
+    color: #7ec8ff !important;
+  }
+
+  .json-viewer-value-string {
+    color: #8bc34a !important;
+  }
+
+  .json-viewer-value-number {
+    color: #ffb74d !important;
+  }
+
+  .json-viewer-value-boolean {
+    color: #ff8a65 !important;
+  }
+
+  .json-viewer-value-null {
+    color: #999 !important;
   }
 </style>
 </head>
@@ -87,127 +145,215 @@
 <div class="row">
   <input
     id="messageInput"
-    placeholder='Message to send. Example: smd+416904+{"fields":["31","83"]}'
+    placeholder='Message to send. Example: smd+416904+{"fields":["31","84"]}'
   />
   <button onclick="sendMessage()">Send</button>
 </div>
 
-<textarea id="logs" readonly></textarea>
+<div id="logs"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/json-viewer-js@1.0.1/dist/json-viewer.js"></script>
 
 <script>
-  let ws = null;
 
-  const logs = document.getElementById("logs");
-  const statusEl = document.getElementById("status");
+let ws = null;
 
-  function timestamp() {
-    return new Date().toLocaleTimeString();
+const logs = document.getElementById("logs");
+const statusEl = document.getElementById("status");
+
+function timestamp() {
+  return new Date().toLocaleTimeString();
+}
+
+function setStatus(text, connected) {
+  statusEl.textContent = text;
+  statusEl.className = connected
+    ? "connected"
+    : "disconnected";
+}
+
+function addLog(type, message) {
+
+  const entry = document.createElement("div");
+  entry.className = "log-entry";
+
+  const header = document.createElement("div");
+  header.className = "log-header";
+
+  header.textContent =
+    `[${timestamp()}] [${type}]`;
+
+  const content = document.createElement("div");
+  content.className = "log-content";
+
+  header.addEventListener("click", () => {
+    content.classList.toggle("open");
+  });
+
+  try {
+
+    const parsed = JSON.parse(message);
+
+    const viewerContainer =
+      document.createElement("div");
+
+    content.appendChild(viewerContainer);
+
+    const viewer = new JsonViewer({
+      expanded: false,
+      rootCollapsable: true
+    });
+
+    viewerContainer.appendChild(
+      viewer.getContainer()
+    );
+
+    viewer.showJSON(parsed);
+
+  } catch {
+
+    const pre = document.createElement("div");
+    pre.className = "plain-message";
+    pre.textContent = message;
+
+    content.appendChild(pre);
   }
 
-  function log(type, message) {
-    logs.value += `[${timestamp()}] [${type}] ${message}\n`;
-    logs.scrollTop = logs.scrollHeight;
+  entry.appendChild(header);
+  entry.appendChild(content);
+
+  logs.appendChild(entry);
+
+  logs.scrollTop = logs.scrollHeight;
+}
+
+function connectWs() {
+
+  const url =
+    document.getElementById("wsUrl").value.trim();
+
+  if (!url) {
+    addLog("ERROR", "WebSocket URL required");
+    return;
   }
 
-  function setStatus(text, connected) {
-    statusEl.textContent = text;
-    statusEl.className = connected ? "connected" : "disconnected";
+  if (ws) {
+    ws.close();
   }
 
-  function connectWs() {
-    const url = document.getElementById("wsUrl").value.trim();
+  addLog("SYSTEM", `Connecting to ${url}`);
 
-    if (!url) {
-      log("ERROR", "WebSocket URL required");
-      return;
-    }
+  try {
 
-    if (ws) {
-      ws.close();
-    }
+    ws = new WebSocket(url);
 
-    log("SYSTEM", `Connecting to ${url}`);
+    ws.onopen = () => {
 
-    try {
-      ws = new WebSocket(url);
+      setStatus("CONNECTED", true);
 
-      ws.onopen = () => {
-        setStatus("CONNECTED", true);
-        log("SYSTEM", "WebSocket connected");
-      };
+      addLog(
+        "SYSTEM",
+        "WebSocket connected"
+      );
+    };
 
-      ws.onmessage = async (event) => {
-        try {
-          let data = event.data;
+    ws.onmessage = async (event) => {
 
-          // Blob → text
-          if (data instanceof Blob) {
-            data = await data.text();
-          }
+      try {
 
-          // ArrayBuffer → text
-          else if (data instanceof ArrayBuffer) {
-            data = new TextDecoder().decode(data);
-          }
+        let data = event.data;
 
-          // Pretty print JSON if possible
-          try {
-            const parsed = JSON.parse(data);
-            data = JSON.stringify(parsed, null, 2);
-          } catch {}
-
-          log("RECEIVE", data);
-
-        } catch (err) {
-          log("ERROR", err.message);
+        if (data instanceof Blob) {
+          data = await data.text();
         }
-      };
 
+        if (data instanceof ArrayBuffer) {
+          data = new TextDecoder().decode(data);
+        }
 
-      ws.onerror = (err) => {
-        log("ERROR", JSON.stringify(err));
-      };
+        addLog("RECEIVE", data);
 
-      ws.onclose = (event) => {
-        setStatus("DISCONNECTED", false);
+      } catch (err) {
 
-        log(
-          "SYSTEM",
-          `WebSocket closed. Code=${event.code} Reason=${event.reason || "N/A"}`
+        addLog(
+          "ERROR",
+          err.message
         );
-      };
+      }
+    };
 
-    } catch (e) {
-      log("ERROR", e.message);
-    }
+    ws.onerror = (err) => {
+
+      addLog(
+        "ERROR",
+        JSON.stringify(err)
+      );
+    };
+
+    ws.onclose = (event) => {
+
+      setStatus(
+        "DISCONNECTED",
+        false
+      );
+
+      addLog(
+        "SYSTEM",
+        `WebSocket closed. Code=${event.code} Reason=${event.reason || "N/A"}`
+      );
+    };
+
+  } catch (e) {
+
+    addLog(
+      "ERROR",
+      e.message
+    );
+  }
+}
+
+function disconnectWs() {
+
+  if (ws) {
+
+    ws.close();
+    ws = null;
+  }
+}
+
+function sendMessage() {
+
+  const input =
+    document.getElementById("messageInput");
+
+  const message = input.value;
+
+  if (
+    !ws ||
+    ws.readyState !== WebSocket.OPEN
+  ) {
+
+    addLog(
+      "ERROR",
+      "WebSocket not connected"
+    );
+
+    return;
   }
 
-  function disconnectWs() {
-    if (ws) {
-      ws.close();
-      ws = null;
-    }
-  }
+  ws.send(message);
 
-  function sendMessage() {
-    const input = document.getElementById("messageInput");
-    const message = input.value;
+  addLog(
+    "SEND",
+    message
+  );
+}
 
-    if (!ws || ws.readyState !== WebSocket.OPEN) {
-      log("ERROR", "WebSocket not connected");
-      return;
-    }
+function clearLogs() {
+  logs.innerHTML = "";
+}
 
-    ws.send(message);
-
-    log("SEND", message);
-  }
-
-  function clearLogs() {
-    logs.value = "";
-  }
 </script>
 
 </body>
 </html>
-
