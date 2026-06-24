@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WebSocket Debugger</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 10px;
+    background: #111;
+    color: #ddd;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+  }
+
+  .row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  input,
+  button {
+    font-family: inherit;
+    font-size: 12px;
+    background: #1b1b1b;
+    color: #ddd;
+    border: 1px solid #444;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  input {
+    flex: 1;
+  }
+
+  button {
+    cursor: pointer;
+    min-width: 90px;
+  }
+
+  .status {
+    margin-bottom: 6px;
+  }
+
+  .connected {
+    color: #4caf50;
+  }
+
+  .disconnected {
+    color: #ff5252;
+  }
+
+  #logs {
+    height: calc(100vh - 125px);
+    overflow: auto;
+    border: 1px solid #444;
+    background: #161616;
+    padding: 4px;
+  }
+
+  .log-entry {
+    border-bottom: 1px solid #222;
+  }
+
+  .log-entry:last-child {
+    border-bottom: none;
+  }
+
+  details {
+    margin: 0;
+  }
+
+  summary {
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    padding: 4px;
+    color: #8ecfff;
+  }
+
+  summary:hover {
+    background: #1d1d1d;
+  }
+
+  .message-content {
+    padding: 0 10px 10px 10px;
+  }
+
+  .message-text {
+    margin: 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-wrap: anywhere;
+    color: #dcdcdc;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .type-send summary {
+    color: #ffd166;
+  }
+
+  .type-receive summary {
+    color: #8ecfff;
+  }
+
+  .type-error summary {
+    color: #ff6b6b;
+  }
+
+  .type-system summary {
+    color: #95e06c;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="row">
+  <input
+    id="wsUrl"
+    value="wss://www.interactivebrokers.co.uk/portal.proxy/v1/portal/ws"
+    placeholder="WebSocket URL"
+  />
+</div>
+
+<div class="row">
+  <button onclick="connectWs()">Connect</button>
+  <button onclick="disconnectWs()">Disconnect</button>
+  <button onclick="clearLogs()">Clear Logs</button>
+</div>
+
+<div class="status">
+  Status:
+  <span id="status" class="disconnected">DISCONNECTED</span>
+</div>
+
+<div class="row">
+  <input
+    id="messageInput"
+    placeholder='Example: smd+416904+{"fields":["31","84"]}'
+  />
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<div id="logs"></div>
+
+<script>
+
+let ws = null;
+
+const logs = document.getElementById("logs");
+const statusEl = document.getElementById("status");
+
+function timestamp() {
+  return new Date().toLocaleTimeString();
+}
+
+function setStatus(text, connected) {
+  statusEl.textContent = text;
+  statusEl.className = connected
+    ? "connected"
+    : "disconnected";
+}
+
+function formatMessage(message) {
+
+  if (typeof message !== "string") {
+    return String(message);
+  }
+
+  const trimmed = message.trim();
+
+  // Pure JSON
+  if (
+    trimmed.startsWith("{") ||
+    trimmed.startsWith("[")
+  ) {
+    try {
+      return JSON.stringify(
+        JSON.parse(trimmed),
+        null,
+        2
+      );
+    } catch {}
+  }
+
+  // IBKR style:
+  // smd+416904+{"31":"624.55","84":"624.56"}
+  const lastPlus =
+    message.lastIndexOf("+");
+
+  if (lastPlus > 0) {
+
+    const prefix =
+      message.substring(
+        0,
+        lastPlus + 1
+      );
+
+    const payload =
+      message.substring(
+        lastPlus + 1
+      ).trim();
+
+    if (
+      payload.startsWith("{") ||
+      payload.startsWith("[")
+    ) {
+
+      try {
+
+        const parsed =
+          JSON.parse(payload);
+
+        return (
+          prefix +
+          JSON.stringify(
+            parsed,
+            null,
+            2
+          )
+        );
+
+      } catch {}
+    }
+  }
+
+  return message;
+}
+
+function addLog(type, message) {
+
+  const entry =
+    document.createElement("div");
+
+  entry.className =
+    "log-entry type-" +
+    type.toLowerCase();
+
+  const details =
+    document.createElement("details");
+
+  details.open = false;
+
+  const summary =
+    document.createElement("summary");
+
+  summary.textContent =
+    `[${timestamp()}] [${type}]`;
+
+  const content =
+    document.createElement("div");
+
+  content.className =
+    "message-content";
+
+  const pre =
+    document.createElement("pre");
+
+  pre.className =
+    "message-text";
+
+  pre.textContent =
+    formatMessage(message);
+
+  content.appendChild(pre);
+
+  details.appendChild(summary);
+  details.appendChild(content);
+
+  entry.appendChild(details);
+
+  logs.appendChild(entry);
+
+  logs.scrollTop =
+    logs.scrollHeight;
+}
+
+function connectWs() {
+
+  const url =
+    document
+      .getElementById("wsUrl")
+      .value
+      .trim();
+
+  if (!url) {
+
+    addLog(
+      "ERROR",
+      "WebSocket URL required"
+    );
+
+    return;
+  }
+
+  if (ws) {
+    ws.close();
+  }
+
+  addLog(
+    "SYSTEM",
+    `Connecting to ${url}`
+  );
+
+  try {
+
+    ws =
+      new WebSocket(url);
+
+    ws.onopen = () => {
+
+      setStatus(
+        "CONNECTED",
+        true
+      );
+
+      addLog(
+        "SYSTEM",
+        "WebSocket connected"
+      );
+    };
+
+    ws.onmessage =
+      async (event) => {
+
+      try {
+
+        let data =
+          event.data;
+
+        if (
+          data instanceof Blob
+        ) {
+          data =
+            await data.text();
+        }
+
+        if (
+          data instanceof ArrayBuffer
+        ) {
+          data =
+            new TextDecoder()
+              .decode(data);
+        }
+
+        addLog(
+          "RECEIVE",
+          data
+        );
+
+      } catch (err) {
+
+        addLog(
+          "ERROR",
+          err.message
+        );
+      }
+    };
+
+    ws.onerror = (err) => {
+
+      addLog(
+        "ERROR",
+        JSON.stringify(err)
+      );
+    };
+
+    ws.onclose = (event) => {
+
+      setStatus(
+        "DISCONNECTED",
+        false
+      );
+
+      addLog(
+        "SYSTEM",
+        `WebSocket closed. Code=${event.code} Reason=${event.reason || "N/A"}`
+      );
+    };
+
+  } catch (e) {
+
+    addLog(
+      "ERROR",
+      e.message
+    );
+  }
+}
+
+function disconnectWs() {
+
+  if (ws) {
+
+    ws.close();
+    ws = null;
+  }
+}
+
+function sendMessage() {
+
+  const input =
+    document.getElementById(
+      "messageInput"
+    );
+
+  const message =
+    input.value;
+
+  if (
+    !ws ||
+    ws.readyState !==
+      WebSocket.OPEN
+  ) {
+
+    addLog(
+      "ERROR",
+      "WebSocket not connected"
+    );
+
+    return;
+  }
+
+  ws.send(message);
+
+  addLog(
+    "SEND",
+    message
+  );
+}
+
+function clearLogs() {
+  logs.innerHTML = "";
+}
+
+document
+  .getElementById("messageInput")
+  .addEventListener(
+    "keydown",
+    function(event) {
+
+      if (
+        event.key === "Enter"
+      ) {
+        sendMessage();
+      }
+    }
+  );
+
+</script>
+
+</body>
+</html>
