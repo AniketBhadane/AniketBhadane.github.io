@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>WebSocket Debugger</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 10px;
+    background: #111;
+    color: #ddd;
+    font-family: monospace;
+    font-size: 11px;
+  }
+
+  .row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  input, textarea, button {
+    font-family: monospace;
+    font-size: 11px;
+    background: #1b1b1b;
+    color: #ddd;
+    border: 1px solid #444;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  input {
+    flex: 1;
+  }
+
+  button {
+    cursor: pointer;
+    min-width: 90px;
+  }
+
+  textarea {
+    width: 100%;
+    height: calc(100vh - 120px);
+    resize: none;
+    white-space: pre;
+    overflow-wrap: normal;
+    overflow-x: auto;
+  }
+
+  .status {
+    margin-bottom: 6px;
+  }
+
+  .connected {
+    color: #4caf50;
+  }
+
+  .disconnected {
+    color: #ff5252;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="row">
+  <input
+    id="wsUrl"
+    value="wss://www.interactivebrokers.co.uk/portal.proxy/v1/portal/ws"
+    placeholder="WebSocket URL"
+  />
+</div>
+
+<div class="row">
+  <button onclick="connectWs()">Connect</button>
+  <button onclick="disconnectWs()">Disconnect</button>
+  <button onclick="clearLogs()">Clear Logs</button>
+</div>
+
+<div class="status">
+  Status:
+  <span id="status" class="disconnected">DISCONNECTED</span>
+</div>
+
+<div class="row">
+  <input
+    id="messageInput"
+    placeholder='Message to send. Example: smd+416904+{"fields":["31","83"]}'
+  />
+  <button onclick="sendMessage()">Send</button>
+</div>
+
+<textarea id="logs" readonly></textarea>
+
+<script>
+  let ws = null;
+
+  const logs = document.getElementById("logs");
+  const statusEl = document.getElementById("status");
+
+  function timestamp() {
+    return new Date().toLocaleTimeString();
+  }
+
+  function log(type, message) {
+    logs.value += `[${timestamp()}] [${type}] ${message}\n`;
+    logs.scrollTop = logs.scrollHeight;
+  }
+
+  function setStatus(text, connected) {
+    statusEl.textContent = text;
+    statusEl.className = connected ? "connected" : "disconnected";
+  }
+
+  function connectWs() {
+    const url = document.getElementById("wsUrl").value.trim();
+
+    if (!url) {
+      log("ERROR", "WebSocket URL required");
+      return;
+    }
+
+    if (ws) {
+      ws.close();
+    }
+
+    log("SYSTEM", `Connecting to ${url}`);
+
+    try {
+      ws = new WebSocket(url);
+
+      ws.onopen = () => {
+        setStatus("CONNECTED", true);
+        log("SYSTEM", "WebSocket connected");
+      };
+
+      ws.onmessage = async (event) => {
+        try {
+          let data = event.data;
+
+          // Blob → text
+          if (data instanceof Blob) {
+            data = await data.text();
+          }
+
+          // ArrayBuffer → text
+          else if (data instanceof ArrayBuffer) {
+            data = new TextDecoder().decode(data);
+          }
+
+          // Pretty print JSON if possible
+          try {
+            const parsed = JSON.parse(data);
+            data = JSON.stringify(parsed, null, 2);
+          } catch {}
+
+          log("RECEIVE", data);
+
+        } catch (err) {
+          log("ERROR", err.message);
+        }
+      };
+
+
+      ws.onerror = (err) => {
+        log("ERROR", JSON.stringify(err));
+      };
+
+      ws.onclose = (event) => {
+        setStatus("DISCONNECTED", false);
+
+        log(
+          "SYSTEM",
+          `WebSocket closed. Code=${event.code} Reason=${event.reason || "N/A"}`
+        );
+      };
+
+    } catch (e) {
+      log("ERROR", e.message);
+    }
+  }
+
+  function disconnectWs() {
+    if (ws) {
+      ws.close();
+      ws = null;
+    }
+  }
+
+  function sendMessage() {
+    const input = document.getElementById("messageInput");
+    const message = input.value;
+
+    if (!ws || ws.readyState !== WebSocket.OPEN) {
+      log("ERROR", "WebSocket not connected");
+      return;
+    }
+
+    ws.send(message);
+
+    log("SEND", message);
+  }
+
+  function clearLogs() {
+    logs.value = "";
+  }
+</script>
+
+</body>
+</html>
+
