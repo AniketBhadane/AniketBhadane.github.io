@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IBKR Automated Option Chain</title>
+
+<style>
+  body {
+    margin: 0;
+    padding: 10px;
+    background: #111;
+    color: #ddd;
+    font-family: Consolas, Monaco, monospace;
+    font-size: 12px;
+  }
+
+  .row {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+
+  input, button {
+    font-family: inherit;
+    font-size: 12px;
+    background: #1b1b1b;
+    color: #ddd;
+    border: 1px solid #444;
+    padding: 6px;
+    box-sizing: border-box;
+  }
+
+  input {
+    flex: 1;
+  }
+
+  button {
+    cursor: pointer;
+    min-width: 90px;
+  }
+
+  button:hover {
+    background: #2a2a2a;
+  }
+
+  .status {
+    margin-bottom: 12px;
+    font-weight: bold;
+  }
+
+  .connected { color: #4caf50; }
+  .disconnected { color: #ff5252; }
+
+  .container {
+    display: flex;
+    gap: 15px;
+    height: calc(100vh - 110px);
+  }
+
+  .table-container {
+    flex: 3;
+    overflow: auto;
+    border: 1px solid #444;
+    background: #161616;
+  }
+
+  .logs-container {
+    flex: 2;
+    overflow: auto;
+    border: 1px solid #444;
+    background: #161616;
+    padding: 4px;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+  }
+
+  th, td {
+    padding: 8px;
+    border-bottom: 1px solid #222;
+  }
+
+  th {
+    background-color: #222;
+    color: #8ecfff;
+    position: sticky;
+    top: 0;
+  }
+
+  tr:hover {
+    background-color: #1d1d1d;
+  }
+
+  .strike-cell {
+    font-weight: bold;
+    color: #ffd166;
+    background-color: #1a1a1a;
+    vertical-align: middle;
+  }
+
+  .bid-cell { color: #8ecfff; }
+  .ask-cell { color: #ff8c8c; }
+  .delta-cell { color: #c9a3e2; }
+
+  .group-divider-left {
+    border-left: 2px solid #444;
+  }
+
+  .atm-highlight {
+    background-color: #d68c00 !important;
+    color: #fff !important;
+    text-shadow: 0 0 4px rgba(0,0,0,0.6);
+  }
+
+  .price-cell {
+    color: #a3e2c9;
+    font-weight: bold;
+  }
+
+  .sub-metrics {
+    font-size: 11px;
+    margin-top: 4px;
+    color: #aaa;
+  }
+
+  .log-entry {
+    border-bottom: 1px solid #222;
+    padding: 4px 2px;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+
+  .type-send { color: #ffd166; }
+  .type-receive { color: #8ecfff; }
+  .type-system { color: #95e06c; }
+  .type-error { color: #ff6b6b; }
+</style>
+</head>
+
+<body>
+
+<div class="row">
+  <input
+    id="wsUrl"
+    value="wss://www.interactivebrokers.co.uk/portal.proxy/v1/portal/ws"
+    placeholder="WebSocket URL"
+  />
+</div>
+
+<div class="row">
+  <button onclick="connectWs()">Connect</button>
+  <button onclick="disconnectWs()">Disconnect</button>
+  <button onclick="clearLogs()">Clear Logs</button>
+  <span style="margin-left:20px; align-self:center;">SPY Spot: <span id="spySpotDisplay" style="color:#a3e2c9; font-weight:bold;">—</span></span>
+</div>
+
+<div class="status">
+  Status: <span id="status" class="disconnected">DISCONNECTED</span>
+</div>
+
+<div class="container">
+  <div class="table-container">
+    <table id="optionChainTable">
+      <thead>
+        <tr>
+          <th>CALLS</th>
+          <th>STRIKE</th>
+          <th class="group-divider-left">PUTS</th>
+        </tr>
+        <tr>
+          <th>Last <br><span style="font-size:10px; color:#aaa;">Bid / Ask / Delta</span></th>
+          <th></th>
+          <th class="group-divider-left">Last <br><span style="font-size:10px; color:#aaa;">Bid / Ask / Delta</span></th>
+        </tr>
+      </thead>
+      <tbody id="optionChainBody">
+        <tr>
+          <td colspan="3" style="color: #666; padding: 20px;">Connect to populate option chain data...</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="logs-container" id="logs"></div>
+</div>
+
+<script>
+let ws = null;
+const logs = document.getElementById("logs");
+const statusEl = document.getElementById("status");
+const chainBody = document.getElementById("optionChainBody");
+const spotDisplay = document.getElementById("spySpotDisplay");
+
+let optionChainData = {};
+let spySpotPrice = null;
+
+// LEG_BY_LEG table column layout once leg_by_leg_columns = ["LAST","BID","ASK","GREEK_DELTA"]:
+// A=Call Last  B=Call Bid  C=Call Ask  D=Call Delta  E=Strike
+// F=Put Last   G=Put Bid   H=Put Ask   I=Put Delta
+const CALL_COLS = { A: "last", B: "bid", C: "ask", D: "delta" };
+const PUT_COLS  = { F: "last", G: "bid", H: "ask", I: "delta" };
+
+function emptySide() {
+  return { last: null, bid: null, ask: null, delta: null };
+}
+
+function timestamp() {
+  return new Date().toLocaleTimeString();
+}
+
+function setStatus(text, connected) {
+  statusEl.textContent = text;
+  statusEl.className = connected ? "connected" : "disconnected";
+}
+
+function addLog(type, message) {
+  const entry = document.createElement("div");
+  entry.className = "log-entry type-" + type.toLowerCase();
+  
+  let formattedMessage = message;
+  if (typeof message === 'object') {
+    try {
+      formattedMessage = JSON.stringify(message, null, 2);
+    } catch(e) {
+      formattedMessage = String(message);
+    }
+  }
+  
+  entry.textContent = `[${timestamp()}] [${type}]\n${formattedMessage}`;
+  logs.appendChild(entry);
+  logs.scrollTop = logs.scrollHeight;
+}
+
+function connectWs() {
+  const url = document.getElementById("wsUrl").value.trim();
+  if (!url) {
+    addLog("ERROR", "WebSocket URL required");
+    return;
+  }
+
+  if (ws) ws.close();
+  optionChainData = {}; 
+  spySpotPrice = null;
+  spotDisplay.textContent = "—";
+  addLog("SYSTEM", `Connecting to ${url}`);
+
+  try {
+    ws = new WebSocket(url);
+
+    ws.onopen = () => {
+      setStatus("CONNECTED", true);
+      addLog("SYSTEM", "WebSocket connected. Executing auto handshake protocol...");
+      sendSequence();
+    };
+
+    ws.onmessage = async (event) => {
+      try {
+        let data = event.data;
+        if (data instanceof Blob) data = await data.text();
+        if (data instanceof ArrayBuffer) data = new TextDecoder().decode(data);
+
+        addLog("RECEIVE", data);
+        processIncomingFrame(data);
+
+      } catch (err) {
+        addLog("ERROR", "Parsing error: " + err.message);
+      }
+    };
+
+    ws.onerror = (err) => {
+      addLog("ERROR", "WebSocket Error observed");
+    };
+
+    ws.onclose = (event) => {
+      setStatus("DISCONNECTED", false);
+      addLog("SYSTEM", `WebSocket closed. Code=${event.code}`);
+    };
+
+  } catch (e) {
+    addLog("ERROR", e.message);
+  }
+}
+
+function disconnectWs() {
+  if (ws) {
+    ws.close();
+    ws = null;
+  }
+}
+
+function autoSend(payload) {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    ws.send(payload);
+    addLog("SEND", payload);
+  }
+}
+
+function sendSequence() {
+  autoSend("sor+{}");
+
+  setTimeout(() => {
+    const shsPayload = {
+      "UCO": "756733",
+      "UST": "STK",
+      "SMB": "SPY",
+      "UEX": "SMART",
+      "STY": "OPT",
+      "STN": {
+        "context": {
+          "settings": {
+            "time_period": "MAX",
+            "include_flex": true,
+            "strikes": "all",
+            "increments": "strikes",
+            "inverse_spreads": [],
+            "leg_by_leg_columns": ["LAST", "BID", "ASK", "GREEK_DELTA"]
+          },
+          "center": { "x": 1, "y": 76 },
+          "current_expiration": "20260624-SPY-0", 
+          "increments": "strikes",
+          "selected_strategy": "leg_by_leg",
+          "leg_exchange": "SMART"
+        }
+      }
+    };
+    autoSend("shs+cmb+" + JSON.stringify(shsPayload));
+  }, 500);
+
+  setTimeout(() => {
+    const inpPayload = {
+      "action": "user_input",
+      "data": {
+        "user_action": "navigate",
+        "context": {
+          "display_segment": [{
+            "table":"LEG_BY_LEG",
+            "top_left":"A1",
+            "bottom_right":"C200"
+          }]
+        }
+      }
+    };
+    autoSend("inp+cmb+" + JSON.stringify(inpPayload));
+  }, 800);
+}
+
+function updateCell(address, fields) {
+  const match = /^([A-I])(\d+)$/.exec(address);
+  if (!match) return false;
+
+  const col = match[1];
+  const row = match[2];
+
+  if (!optionChainData[row]) {
+    optionChainData[row] = { strike: null, call: emptySide(), put: emptySide() };
+  }
+  const entry = optionChainData[row];
+
+  let updated = false;
+
+  fields.forEach(field => {
+    const id = field.id;
+    const raw = field.display_value;
+    if (raw === undefined || raw === null) return;
+    const cleanValue = raw.replace(/^C/, '');
+
+    if (col === "E") {
+      if (id === "STRIKE") {
+        entry.strike = cleanValue;
+        updated = true;
+      }
+      return;
+    }
+
+    const callKey = CALL_COLS[col];
+    const putKey = PUT_COLS[col];
+
+    if (callKey) {
+      if ((callKey === "last" && id === "LAST") ||
+          (callKey === "bid" && id === "BID") ||
+          (callKey === "ask" && id === "ASK") ||
+          (callKey === "delta" && id === "GREEK_DELTA")) {
+        entry.call[callKey] = cleanValue;
+        updated = true;
+      }
+    } else if (putKey) {
+      if ((putKey === "last" && id === "LAST") ||
+          (putKey === "bid" && id === "BID") ||
+          (putKey === "ask" && id === "ASK") ||
+          (putKey === "delta" && id === "GREEK_DELTA")) {
+        entry.put[putKey] = cleanValue;
+        updated = true;
+      }
+    }
+  });
+
+  return updated;
+}
+
+function processIncomingFrame(rawMessage) {
+  let jsonString = rawMessage.trim();
+
+  if (!jsonString.startsWith("{") && jsonString.includes("+")) {
+    const jsonStartIndex = jsonString.indexOf("{");
+    if (jsonStartIndex !== -1) {
+      jsonString = jsonString.substring(jsonStartIndex);
+    } else {
+      return;
+    }
+  }
+
+  try {
+    const parsed = JSON.parse(jsonString);
+    let datasetAltered = false;
+
+    if (
+      parsed.action === "content" &&
+      parsed.data &&
+      parsed.data.context &&
+      parsed.data.context.tables
+    ) {
+      const legByLegTable = parsed.data.context.tables.find(
+        t => t.table_id === "LEG_BY_LEG"
+      );
+
+      if (legByLegTable && legByLegTable.rows) {
+        let maxRowId = 0;
+
+        legByLegTable.rows.forEach(row => {
+          const rowId = row.id;
+          if (!optionChainData[rowId]) {
+            optionChainData[rowId] = { strike: null, call: emptySide(), put: emptySide() };
+          }
+          
+          // Track down the maximum row ID dynamically
+          const numericId = parseInt(rowId, 10);
+          if (numericId > maxRowId) {
+            maxRowId = numericId;
+          }
+        });
+
+        datasetAltered = true;
+
+        // DYNAMIC FIX: Request from A0 to the absolute last calculated row index
+        autoSend(
+          'inp+cmb+' +
+          JSON.stringify({
+            action: "user_input",
+            data: {
+              user_action: "navigate",
+              context: {
+                display_segment: [{
+                  table: "LEG_BY_LEG",
+                  top_left: "A0",
+                  bottom_right: `C${maxRowId}`
+                }]
+              }
+            }
+          })
+        );
+      }
+    }
+
+    if (parsed.data && parsed.data.updates && parsed.data.updates.cells) {
+      const cells = parsed.data.updates.cells;
+
+      cells.forEach(cell => {
+        if (cell.table_id === "HEADER" && cell.address === "A1") {
+          const field = cell.fields?.[0];
+          if (field && field.display_value) {
+            spySpotPrice = parseFloat(field.display_value.replace(/^C/, '')) || null;
+            spotDisplay.textContent = field.display_value;
+            datasetAltered = true;
+          }
+          return;
+        }
+
+        if (cell.table_id !== "LEG_BY_LEG") return;
+
+        const fields = cell.fields;
+        if (!fields || !fields.length) return;
+
+        const updated = updateCell(cell.address, fields);
+        if (updated) datasetAltered = true;
+      });
+    }
+
+    if (datasetAltered) {
+      renderChainMatrix();
+    }
+  } catch (error) {
+    // Intercept exceptions safely
+  }
+}
+
+function renderChainMatrix() {
+  const rowIndices = Object.keys(optionChainData)
+    .filter(idx => optionChainData[idx].strike !== null)
+    .sort((a, b) => {
+      const strikeA = parseFloat(optionChainData[a].strike) || 0;
+      const strikeB = parseFloat(optionChainData[b].strike) || 0;
+      return strikeA - strikeB;
+    });
+
+  if (rowIndices.length === 0) {
+    chainBody.innerHTML = `<tr><td colspan="3" style="color: #666; padding: 20px;">Rows initialized. Streaming data window requested...</td></tr>`;
+    return;
+  }
+
+  let closestIdx = null;
+  if (spySpotPrice !== null) {
+    let minDifference = Infinity;
+    rowIndices.forEach(idx => {
+      const currentStrike = parseFloat(optionChainData[idx].strike) || 0;
+      const difference = Math.abs(currentStrike - spySpotPrice);
+      if (difference < minDifference) {
+        minDifference = difference;
+        closestIdx = idx;
+      }
+    });
+  }
+
+  const fmt = v => (v === null || v === undefined || v === "") ? "—" : v;
+
+  let matrixHtml = "";
+  rowIndices.forEach(idx => {
+    const item = optionChainData[idx];
+    const c = item.call;
+    const p = item.put;
+
+    const isAtm = (idx === closestIdx);
+    const highlightClass = isAtm ? " atm-highlight" : "";
+    const strikeDisplay = isAtm ? `➔ ${item.strike}` : item.strike;
+
+    matrixHtml += `
+      <tr>
+        <td>
+          <div class="price-cell">${fmt(c.last)}</div>
+          <div class="sub-metrics">
+            <span class="bid-cell">${fmt(c.bid)}</span> / 
+            <span class="ask-cell">${fmt(c.ask)}</span> / 
+            <span class="delta-cell">${fmt(c.delta)}</span>
+          </div>
+        </td>
+        <td class="strike-cell${highlightClass}">${strikeDisplay}</td>
+        <td class="group-divider-left">
+          <div class="price-cell">${fmt(p.last)}</div>
+          <div class="sub-metrics">
+            <span class="bid-cell">${fmt(p.bid)}</span> / 
+            <span class="ask-cell">${fmt(p.ask)}</span> / 
+            <span class="delta-cell">${fmt(p.delta)}</span>
+          </div>
+        </td>
+      </tr>
+    `;
+  });
+
+  chainBody.innerHTML = matrixHtml;
+}
+
+function clearLogs() {
+  logs.innerHTML = "";
+}
+</script>
+
+</body>
+</html>
