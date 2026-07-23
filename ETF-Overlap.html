@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ETF Holdings Overlap Finder</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    margin: 20px;
+    background: #f5f6f8;
+    color: #222;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.stats {
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+}
+
+.column {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    min-width: 0;
+}
+
+.column-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-size: 13px;
+}
+
+.column-title {
+    font-weight: bold;
+}
+
+.include-label {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+}
+
+textarea {
+    width: 100%;
+    height: 220px;
+    resize: vertical;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    font-size: 13px;
+}
+
+.overlap-info {
+    margin-top: 8px;
+    margin-bottom: 10px;
+    font-size: 12px;
+    line-height: 1.7;
+    min-height: 48px;
+    color: #444;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+td {
+    padding: 4px 6px;
+    border-bottom: 1px solid #eee;
+}
+
+td:first-child {
+    font-weight: 600;
+}
+
+td:last-child {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.symbol-match {
+    border-radius: 4px;
+}
+
+.excluded {
+    opacity: 0.6;
+}
+</style>
+</head>
+<body>
+
+<h2>ETF Holdings Overlap Finder</h2>
+
+<div class="stats" id="stats">
+    Paste ETF holdings into one or more columns.
+</div>
+
+<div class="container" id="container"></div>
+
+<script>
+
+const NUM_COLUMNS = 5;
+
+const COLORS = [
+    "#8ec5ff","#ffb3b3","#b8f5b8","#ffe4a3","#d8b4ff",
+    "#ffcc99","#9ff0f0","#ffc2e2","#d4ff99","#c7d2fe",
+    "#fca5a5","#86efac","#fde68a","#a5b4fc","#fdba74",
+    "#67e8f9","#f9a8d4","#bef264","#fcd34d","#93c5fd",
+    "#f0abfc","#fda4af","#a7f3d0","#bfdbfe","#ddd6fe",
+    "#fed7aa","#fef08a","#bbf7d0","#bae6fd","#fecaca",
+    "#fde2e4","#d8f3dc","#dbeafe","#fef3c7","#ede9fe",
+    "#ffedd5","#dcfce7","#cffafe","#fae8ff","#fce7f3"
+];
+
+const state = [];
+
+const container = document.getElementById("container");
+
+for(let i=0;i<NUM_COLUMNS;i++){
+
+    const column = document.createElement("div");
+    column.className = "column";
+
+    const header = document.createElement("div");
+    header.className = "column-header";
+
+    const title = document.createElement("div");
+    title.className = "column-title";
+    title.textContent = `C${i+1}`;
+
+    const label = document.createElement("label");
+    label.className = "include-label";
+
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = true;
+
+    label.appendChild(checkbox);
+    label.appendChild(document.createTextNode("Include"));
+
+    header.appendChild(title);
+    header.appendChild(label);
+
+    const textarea = document.createElement("textarea");
+
+    const overlapDiv = document.createElement("div");
+    overlapDiv.className = "overlap-info";
+
+    const table = document.createElement("table");
+
+    column.appendChild(header);
+    column.appendChild(textarea);
+    column.appendChild(overlapDiv);
+    column.appendChild(table);
+
+    container.appendChild(column);
+
+    state.push({
+        textarea,
+        checkbox,
+        overlapDiv,
+        table,
+        column
+    });
+
+    textarea.addEventListener("input", processAll);
+    checkbox.addEventListener("change", processAll);
+}
+
+function normalizeSymbol(symbol){
+    return symbol
+        .trim()
+        .split(/\s+/)[0]
+        .toUpperCase();
+}
+
+function parseLine(line){
+
+    const trimmed = line.trim();
+
+    if(!trimmed) return null;
+
+    const match = trimmed.match(/^(.*?)\s+([\d.]+)\s*%?\s*$/);
+
+    if(!match) return null;
+
+    const symbol = match[1].trim();
+    const weightText = match[2];
+    const weightValue = parseFloat(match[2]);
+
+    return {
+        symbol,
+        weightText,
+        weightValue,
+        normalized: normalizeSymbol(symbol)
+    };
+}
+
+function parseHoldings(text){
+
+    const rows = [];
+
+    text.split(/\r?\n/).forEach(line => {
+
+        const row = parseLine(line);
+
+        if(row){
+            rows.push(row);
+        }
+
+    });
+
+    return rows;
+}
+
+function processAll(){
+
+    state.forEach(col => {
+
+        col.holdings = parseHoldings(
+            col.textarea.value
+        );
+
+        col.column.classList.toggle(
+            "excluded",
+            !col.checkbox.checked
+        );
+
+    });
+
+    const includedColumns = state.filter(
+        c => c.checkbox.checked &&
+             c.holdings.length > 0
+    );
+
+    const symbolCounts = {};
+
+    includedColumns.forEach(col => {
+
+        const uniqueSymbols = new Set(
+            col.holdings.map(h => h.normalized)
+        );
+
+        uniqueSymbols.forEach(sym => {
+            symbolCounts[sym] =
+                (symbolCounts[sym] || 0) + 1;
+        });
+
+    });
+
+    const overlappingSymbols = Object.keys(symbolCounts)
+        .filter(sym => symbolCounts[sym] >= 2)
+        .sort();
+
+    const colorMap = {};
+
+    overlappingSymbols.forEach((sym,index)=>{
+        colorMap[sym] =
+            COLORS[index % COLORS.length];
+    });
+
+    // Overlap percentages
+
+    for(let i=0;i<NUM_COLUMNS;i++){
+
+        const current = state[i];
+
+        if(current.holdings.length === 0){
+
+            current.overlapDiv.innerHTML = "";
+            continue;
+        }
+
+        if(!current.checkbox.checked){
+
+            current.overlapDiv.innerHTML =
+                "<i>Excluded from comparison</i>";
+            continue;
+        }
+
+        const currentTotalWeight =
+            current.holdings.reduce(
+                (sum,h)=>sum+h.weightValue,
+                0
+            );
+
+        const overlapResults = [];
+
+        for(let j=0;j<NUM_COLUMNS;j++){
+
+            if(i===j) continue;
+
+            const other = state[j];
+
+            if(
+                !other.checkbox.checked ||
+                other.holdings.length===0
+            ){
+                continue;
+            }
+
+            const otherSet = new Set(
+                other.holdings.map(
+                    h => h.normalized
+                )
+            );
+
+            let overlapWeight = 0;
+
+            current.holdings.forEach(h => {
+
+                if(otherSet.has(h.normalized)){
+                    overlapWeight += h.weightValue;
+                }
+
+            });
+
+            const pct =
+                currentTotalWeight > 0
+                ? (
+                    overlapWeight /
+                    currentTotalWeight *
+                    100
+                  ).toFixed(1)
+                : "0.0";
+
+            overlapResults.push(
+                `<b>C${j+1}</b>: ${pct}%`
+            );
+        }
+
+        current.overlapDiv.innerHTML =
+            overlapResults.join(" | ");
+    }
+
+    // Render tables
+
+    state.forEach(col => {
+
+        const matchingRows = [];
+        const nonMatchingRows = [];
+
+        col.holdings.forEach(row => {
+
+            const isMatch =
+                col.checkbox.checked &&
+                colorMap[row.normalized];
+
+            if(isMatch){
+                matchingRows.push(row);
+            }else{
+                nonMatchingRows.push(row);
+            }
+
+        });
+
+        matchingRows.sort((a,b)=>{
+
+            return (
+                overlappingSymbols.indexOf(a.normalized)
+                -
+                overlappingSymbols.indexOf(b.normalized)
+            );
+
+        });
+
+        const finalRows = [
+            ...matchingRows,
+            ...nonMatchingRows
+        ];
+
+        renderTable(
+            col.table,
+            finalRows,
+            colorMap,
+            col.checkbox.checked
+        );
+
+    });
+
+    document.getElementById("stats").textContent =
+        `${overlappingSymbols.length} overlapping symbols found across included columns`;
+}
+
+function renderTable(
+    table,
+    rows,
+    colorMap,
+    isIncluded
+){
+
+    table.innerHTML = "";
+
+    const tbody =
+        document.createElement("tbody");
+
+    rows.forEach(row => {
+
+        const tr =
+            document.createElement("tr");
+
+        const tdSymbol =
+            document.createElement("td");
+
+        const tdWeight =
+            document.createElement("td");
+
+        tdSymbol.textContent =
+            row.symbol;
+
+        tdWeight.textContent =
+            row.weightText + "%";
+
+        if(
+            isIncluded &&
+            colorMap[row.normalized]
+        ){
+            tdSymbol.style.backgroundColor =
+                colorMap[row.normalized];
+
+            tdSymbol.className =
+                "symbol-match";
+        }
+
+        tr.appendChild(tdSymbol);
+        tr.appendChild(tdWeight);
+
+        tbody.appendChild(tr);
+
+    });
+
+    table.appendChild(tbody);
+}
+
+processAll();
+
+</script>
+
+</body>
+</html>
