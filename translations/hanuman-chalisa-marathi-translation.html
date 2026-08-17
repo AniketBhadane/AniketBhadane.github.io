@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>हनुमान चालीसा: सोपे मराठी भाषांतर</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:          #121314;
+    --surface:     #181818;
+    --surface2:    #1c1c1c;
+    --border:      rgba(255,255,255,0.05);
+    --border2:     #313131;
+    --sanskrit:    #e4dbc6;
+    --marathi:     #BCBEBF;
+    --ref:         #98918a;
+    --muted:       #504940;
+    --muted2:      #736960;
+    --gold:        #b89b4a;
+    --gold-dim:    rgba(200,168,75,0.11);
+    --gold-border: rgba(200,168,75,0.25);
+    --accent:      #9a7438;
+    --switch-on:   #7a5e28;
+    --header-h:    50px;
+    --max-w:       1120px;
+    --col-gap:     1.7rem;
+    --v-gap:       1.25rem;
+    --font-main:   "Noto Serif Devanagari", serif;
+    --font-ui:     "Noto Sans Devanagari", sans-serif;
+    --fs-marathi:  1.13rem;
+    --fs-sanskrit: 0.99rem;
+    --fs-ref:      0.95rem;
+    --lh-marathi:  1.88;
+    --lh-sanskrit: 1.82;
+  }
+
+  /* page width follows how many text columns are visible */
+  body.hide-orig, body.hide-ref { --max-w: 920px; }
+  body.hide-orig.hide-ref { --max-w: 800px; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--marathi);
+    font-family: var(--font-main);
+    font-size: var(--fs-marathi);
+    line-height: var(--lh-marathi);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.55;
+  }
+
+  /* ─── Sticky nav ──────────────────────────────── */
+  #sticky-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: rgba(12,12,12,0.93);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+  }
+  #sticky-nav.hidden { transform: translateY(-100%); }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    width: 100%;
+    max-width: var(--max-w);
+    padding: 0 1.25rem;
+  }
+
+  .nav-label {
+    color: var(--muted2);
+    font-family: var(--font-ui);
+    font-size: 0.69rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  #section-select {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    color: var(--marathi);
+    font-family: var(--font-main);
+    font-size: 0.87rem;
+    padding: 0.27rem 0.52rem;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    flex: 1;
+    max-width: 225px;
+    transition: border-color 0.2s;
+  }
+  #section-select:hover, #section-select:focus { border-color: var(--accent); }
+  #section-select option { background: #1c1c1c; }
+
+  .nav-spacer { flex: 1; }
+  .nav-switches { display: flex; align-items: center; gap: 1.1rem; }
+
+  /* ── Pill switch ──────────────────────────────── */
+  .switch-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.52rem;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+  }
+  .switch-wrap:focus-visible .switch-track {
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .switch-text {
+    color: var(--muted2);
+    font-family: var(--font-ui);
+    font-size: 0.69rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .switch-wrap:hover .switch-text { color: var(--gold); }
+
+  .switch-track {
+    position: relative;
+    width: 34px; height: 19px;
+    background: var(--border2);
+    border-radius: 10px;
+    transition: background 0.22s;
+    flex-shrink: 0;
+  }
+  .switch-track.on { background: var(--switch-on); }
+
+  .switch-thumb {
+    position: absolute;
+    top: 2.5px; left: 2.5px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #777;
+    transition: transform 0.22s cubic-bezier(0.4,0,0.2,1), background 0.22s;
+    pointer-events: none;
+  }
+  .switch-track.on .switch-thumb {
+    transform: translateX(15px);
+    background: #dcc880;
+  }
+
+  /* ─── Page ────────────────────────────────────── */
+  #page {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: calc(var(--header-h) + 2rem) 1.25rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── Header ──────────────────────────────────── */
+  .site-header {
+    text-align: center;
+    margin-bottom: 2.2rem;
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-bottom: 1.1rem;
+  }
+  .om { font-size: 1.55rem; color: var(--gold); opacity: 0.75; }
+
+  .site-title {
+    font-size: clamp(1.28rem, 3.7vw, 1.6rem);
+    font-weight: 600;
+    color: #ece4ce;
+    line-height: 1.45;
+    margin-bottom: 0.32rem;
+  }
+
+  .site-subtitle-en {
+    font-family: var(--font-ui);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    opacity: 0.82;
+  }
+
+  .site-desc {
+    color: var(--muted2);
+    line-height: 1.72;
+    max-width: 560px;
+    margin: 0 auto 0.75rem;
+  }
+
+  /* ─── Prompt ──────────────────────────────────── */
+  .prompt-section {
+    margin-top: 0.75rem;
+    text-align: left;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #prompt-toggle-btn {
+    background: none; border: none;
+    color: var(--muted);
+    font-family: var(--font-ui);
+    font-size: 0.71rem;
+    cursor: pointer;
+    padding: 0.18rem 0;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: transparent;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+  #prompt-toggle-btn:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+  .prompt-arrow {
+    display: inline-block; font-size: 0.58rem;
+    transition: transform 0.22s;
+  }
+  #prompt-toggle-btn[aria-expanded="true"] .prompt-arrow { transform: rotate(90deg); }
+
+  #prompt-panel {
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.36s cubic-bezier(0.4,0,0.2,1), opacity 0.26s;
+  }
+  #prompt-panel.open { max-height: 400px; opacity: 1; }
+
+  .prompt-inner {
+    margin-top: 0.45rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 4px; overflow: hidden;
+  }
+  .prompt-inner pre {
+    font-family: "Menlo", "Courier New", monospace;
+    font-size: 0.69rem; line-height: 1.6;
+    color: #857a6a;
+    padding: 0.85rem 1.05rem;
+    overflow: auto; max-height: 320px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+
+  /* ─── Section ─────────────────────────────────── */
+  .chapter-block { margin-bottom: 2.5rem; }
+
+  .chapter-heading {
+    display: flex; align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.3rem;
+    padding-top: 0.3rem;
+  }
+  .chapter-num {
+    font-size: 1.8rem; font-weight: 300;
+    color: var(--gold); opacity: 0.26;
+    line-height: 1; flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .chapter-title-wrap { flex: 1; }
+  .chapter-name {
+    font-size: 1.02rem; font-weight: 500;
+    color: #d5ccb5; line-height: 1.4;
+  }
+
+  /* ─── Verse ───────────────────────────────────── */
+  .verse {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr 1fr 1fr;
+    gap: 0 var(--col-gap);
+    margin-bottom: var(--v-gap);
+    padding-bottom: var(--v-gap);
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .verse:last-child { border-bottom: none; }
+
+  .verse-num-col {
+    padding-top: 0.22em;
+    text-align: center;
+  }
+  .vnum {
+    display: block;
+    font-size: 0.6rem;
+    font-family: var(--font-ui);
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    padding: 0.1rem 0.32rem;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    opacity: 0.75;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.6;
+  }
+
+  /* Column visibility — grid collapses as columns are hidden */
+  body.hide-orig .orig-col { display: none; }
+  body.hide-ref  .ref-col  { display: none; }
+  body.hide-orig .verse,
+  body.hide-ref  .verse { grid-template-columns: 2.6rem 1fr 1fr; }
+  body.hide-orig.hide-ref .verse { grid-template-columns: 2.6rem 1fr; }
+  body.hide-orig.hide-ref .marathi-col { max-width: 520px; }
+
+  /* Original verse — secondary, slightly dimmed */
+  .orig-col {
+    color: var(--sanskrit);
+    font-size: var(--fs-sanskrit);
+    line-height: var(--lh-sanskrit);
+    opacity: 0.68;
+    transition: opacity 0.18s;
+  }
+  .orig-col:hover { opacity: 0.9; }
+
+  /* Marathi — primary reading */
+  .marathi-col {
+    color: var(--marathi);
+    font-size: var(--fs-marathi);
+    line-height: var(--lh-marathi);
+  }
+
+  /* Reference translation — clearly secondary */
+  .ref-col {
+    color: var(--ref);
+    font-size: var(--fs-ref);
+    line-height: 1.8;
+    padding-left: 1.15rem;
+    border-left: 1px solid var(--border2);
+  }
+
+  /* Column legend */
+  .verse-legend {
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 0.45rem;
+    margin-bottom: 1rem;
+  }
+  .verse-legend > div {
+    font-family: var(--font-ui);
+    font-size: 0.62rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.5;
+    opacity: 1;
+  }
+  .verse-legend .ref-col { border-left-color: var(--border); }
+
+  /* ─── Note ────────────────────────────────────── */
+  .note-section { margin-bottom: 1.15rem; }
+
+  .note-toggle-btn {
+    background: none; border: none;
+    color: var(--sanskrit);
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0.18rem 0;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    text-align: left;
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: transparent;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+  .note-toggle-btn:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+  .note-toggle-btn .note-arrow {
+    display: inline-block; font-size: 0.58rem;
+    flex-shrink: 0;
+    transition: transform 0.22s;
+  }
+  .note-toggle-btn[aria-expanded="true"] .note-arrow { transform: rotate(90deg); }
+
+  .note-panel {
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.36s cubic-bezier(0.4,0,0.2,1), opacity 0.26s;
+  }
+  .note-panel.open { max-height: 10000px; opacity: 1; }
+
+  .note-inner {
+    margin-top: 0.45rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    max-width: 720px;
+  }
+  .note-inner p {
+    font-size: 0.9rem;
+    color: var(--sanskrit);
+    line-height: 1.8;
+  }
+  .note-inner p + p { margin-top: 0.7rem; }
+  .note-inner .note-item {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--sanskrit);
+    line-height: 1.8;
+  }
+  .note-inner .note-key { color: var(--gold); }
+
+  /* ─── Mobile ──────────────────────────────────── */
+  @media (max-width: 700px) {
+    :root {
+      --fs-marathi: 1.04rem;
+      --fs-sanskrit: 0.94rem;
+      --fs-ref: 0.9rem;
+      --v-gap: 1.1rem;
+      --col-gap: 0.9rem;
+    }
+
+    .verse-num-col { display: none; }
+    .verse-legend { display: none; }
+
+    /* Everything stacks: original, then simple Marathi, then reference */
+    .verse,
+    body.hide-orig .verse,
+    body.hide-ref .verse,
+    body.hide-orig.hide-ref .verse { grid-template-columns: 1fr; }
+
+    .orig-col    { grid-column: 1; grid-row: 1; }
+    .marathi-col { grid-column: 1; grid-row: 2; }
+    .ref-col     {
+      grid-column: 1; grid-row: 3;
+      border-left: none; padding-left: 0;
+      border-top: 1px dashed var(--border2);
+      padding-top: 0.65rem; margin-top: 0.6rem;
+    }
+    body.hide-orig .marathi-col { grid-row: 1; max-width: 100%; }
+    body.hide-orig .ref-col { grid-row: 2; }
+    body.hide-orig.hide-ref .marathi-col { max-width: 100%; }
+
+    .nav-inner { gap: 0.55rem; }
+    .nav-label { display: none; }
+    .nav-switches { gap: 0.7rem; }
+    #section-select { max-width: 125px; font-size: 0.8rem; }
+    .switch-text { font-size: 0.58rem; }
+    .switch-track { width: 30px; height: 17px; }
+    .switch-thumb { width: 12px; height: 12px; }
+    .switch-track.on .switch-thumb { transform: translateX(13px); }
+  }
+
+  /* ─── Scrollbar ───────────────────────────────── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  ::selection { background: rgba(200,168,75,0.18); color: #f0e8d0; }
+</style>
+</head>
+<body>
+
+<nav id="sticky-nav" role="navigation" aria-label="Section navigation">
+  <div class="nav-inner">
+    <label class="nav-label" for="section-select">भाग</label>
+    <select id="section-select" aria-label="Jump to section">
+      <option value="">— भाग निवडा —</option>
+      <option value="section-doha-start">सुरुवातीचे दोहे</option>
+      <option value="section-chaupai">चौपाई</option>
+      <option value="section-doha-end">शेवटचा दोहा</option>
+    </select>
+    <div class="nav-spacer"></div>
+    <div class="nav-switches">
+      <div class="switch-wrap" id="orig-toggle" role="button" tabindex="0"
+           aria-pressed="false" aria-label="Toggle original verse column">
+        <span class="switch-text">मूळ पाठ</span>
+        <div class="switch-track" id="orig-track">
+          <span class="switch-thumb"></span>
+        </div>
+      </div>
+      <div class="switch-wrap" id="ref-toggle" role="button" tabindex="0"
+           aria-pressed="true" aria-label="Toggle reference translation column">
+        <span class="switch-text">संदर्भ</span>
+        <div class="switch-track on" id="ref-track">
+          <span class="switch-thumb"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="page">
+  <header class="site-header">
+    <div class="header-ornament">
+      <span class="om">ॐ</span>
+    </div>
+    <h1 class="site-title">हनुमान चालीसा: सोपे मराठी भाषांतर</h1>
+    <p class="site-subtitle-en">Hanuman Chalisa · Simple Marathi Translation</p>
+    <p class="site-desc">
+      गोस्वामी तुलसीदासांनी लिहिलेल्या हनुमान चालीसाचे सोपे मराठी भाषांतर.
+      अर्थ जसा आहे तसाच ठेवून, अगदी सोप्या रोजच्या मराठीत लिहिले आहे.
+      सोबत तुलना करण्यासाठी इंटरनेटवर मिळणारे प्रचलित मराठी भाषांतर "संदर्भ" या स्तंभात
+      जसे आहे तसे दिले आहे. वरच्या दोन स्विचने मूळ पाठ आणि संदर्भ स्तंभ दाखवता किंवा लपवता येतात.
+    </p>
+    <div class="prompt-section">
+      <button id="prompt-toggle-btn" aria-expanded="false" aria-controls="prompt-panel">
+        <span class="prompt-arrow">▶</span> View sample prompt
+      </button>
+      <div id="prompt-panel" role="region" aria-labelledby="prompt-toggle-btn">
+        <div class="prompt-inner"><pre>
+You are translating original verses into VERY SIMPLE modern Marathi.
+
+PRIMARY GOAL:
+- Preserve EXACT meaning of the original
+- Make Marathi easy enough for a beginner
+
+Understand the verse properly (grammar, meaning, context)
+Break the verse into (internal, do not output):
+1. Sandhi split
+2. Word-by-word meaning (no interpretation)
+3. Simple English literal meaning
+
+Output only final marathi translation. format for each verse: Marathi translation [verse number - on same line, not next]
+
+RULES:
+- Use spoken, everyday Marathi
+- A 10-12 year old should understand easily
+- Do NOT use difficult or Sanskrit-heavy Marathi
+- Do NOT add explanation or philosophy
+- Do NOT remove or add meaning
+- Slightly expand only if needed for clarity
+- If ambiguity exists, choose the most contextual meaning.
+- Do NOT summarize or interpret.
+
+SIMPLICITY RULE:
+- Avoid abstract words
+- Replace difficult words with short, clear phrases
+
+STRICTLY AVOID:
+- Words like: "स्वरूप", "तत्त्व", "भाव", "रूपता"
+- Long Sanskrit compound words
+
+STYLE:
+- Use natural Marathi like:
+  "मध्ये आहे", "तयार हो", "मिळेल", "टिकून आहे"
+- Prefer clarity over literal structure
+
+CONSISTENCY:
+- Use consistent meanings for key terms
+- Keep tone uniform across verses
+
+FINAL STEP (MANDATORY):
+- Recheck output
+- Simplify any difficult words again
+        </pre></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="note-section">
+    <button class="note-toggle-btn" aria-expanded="false" aria-controls="about-panel">
+      <span class="note-arrow">▶</span> हनुमान चालीसा बद्दल थोडक्यात
+    </button>
+    <div class="note-panel" id="about-panel" role="region">
+      <div class="note-inner">
+        <p>हनुमान चालीसा गोस्वामी तुलसीदासांनी अवधी भाषेत लिहिली आहे. यात सुरुवातीला दोन दोहे, मग चाळीस चौपाया आणि शेवटी एक दोहा असे मिळून ४३ भाग येतात. 'चालीसा' हे नाव चाळीस चौपायांवरून आले आहे. यात हनुमानाची ताकद, त्याची रामावरची भक्ती आणि त्याने रामासाठी केलेली कामे सांगितली आहेत.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-section">
+    <button class="note-toggle-btn" aria-expanded="false" aria-controls="siddhi-panel">
+      <span class="note-arrow">▶</span> आठ सिद्धी आणि नऊ निधी म्हणजे काय? (श्लोक ३१)
+    </button>
+    <div class="note-panel" id="siddhi-panel" role="region">
+      <div class="note-inner">
+        <p>सिद्धी म्हणजे साधनेने मिळणारी खास ताकद. आठ सिद्धी अशा —</p>
+        <p>
+          <span class="note-item"><span class="note-key">१. अणिमा</span> — खूप लहान होणे; कोणालाही न दिसणे आणि कुठेही शिरणे.</span>
+          <span class="note-item"><span class="note-key">२. महिमा</span> — हवे तेवढे मोठे होणे.</span>
+          <span class="note-item"><span class="note-key">३. गरिमा</span> — हवे तेवढे वजनदार होणे.</span>
+          <span class="note-item"><span class="note-key">४. लघिमा</span> — हवे तेवढे हलके होणे.</span>
+          <span class="note-item"><span class="note-key">५. प्राप्ती</span> — हवी असलेली गोष्ट मिळवणे.</span>
+          <span class="note-item"><span class="note-key">६. प्राकाम्य</span> — मनात येईल तेव्हा जमिनीत शिरणे किंवा आकाशात उडणे.</span>
+          <span class="note-item"><span class="note-key">७. ईशित्व</span> — सगळ्यांवर सत्ता चालवण्याची ताकद.</span>
+          <span class="note-item"><span class="note-key">८. वशित्व</span> — दुसऱ्यांना आपल्या ताब्यात ठेवणे.</span>
+        </p>
+        <p>निधी म्हणजे खजिना. नऊ निधींची नावे अशी — पद्म, महापद्म, शंख, मकर, कच्छप, मुकुंद, कुंद, नील आणि खर्व.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-section">
+    <button class="note-toggle-btn" aria-expanded="false" aria-controls="surya-panel">
+      <span class="note-arrow">▶</span> "जुग सहस्र जोजन" — सूर्य किती दूर? (श्लोक १८)
+    </button>
+    <div class="note-panel" id="surya-panel" role="region">
+      <div class="note-inner">
+        <p>मूळ ओळ आहे "जुग सहस्र जोजन पर भानू" — म्हणजे "सूर्य जुग-सहस्र-योजने दूर आहे". तुलसीदासांच्या ओळीत एवढाच अर्थ आहे की सूर्य खूप खूप दूर आहे. म्हणून वरच्या भाषांतरात तसाच सोपा अर्थ ठेवला आहे.</p>
+        <p>पण बरेच लोक याचा हिशोब असा करतात: एक युग म्हणजे १२,००० आणि सहस्र म्हणजे १,००० — म्हणजे १२,००० × १,००० = १,२०,००,००० योजने. एक योजन सुमारे ८ मैल धरला, तर हे अंतर सुमारे ९ कोटी ६० लाख मैल होते. पृथ्वी आणि सूर्य यांतील खरे अंतर सुमारे ९ कोटी ३० लाख मैल आहे, म्हणून हा हिशोब लोकांना आवडतो. लक्षात ठेवा, ही जुळणी नंतरच्या काळात लावलेली आहे; मूळ ओळीत आकडेमोड नाही.</p>
+        <p>संदर्भ स्तंभात हा हिशोब गोंधळात टाकणारा लिहिला आहे ("हजार युग… दोन हजार योजन"), म्हणून तो येथे नीट दिला आहे.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-section">
+    <button class="note-toggle-btn" aria-expanded="false" aria-controls="names-panel">
+      <span class="note-arrow">▶</span> काही नावे आणि शब्द थोडक्यात
+    </button>
+    <div class="note-panel" id="names-panel" role="region">
+      <div class="note-inner">
+        <p>
+          <span class="note-item"><span class="note-key">कपीस (कपीश)</span> — माकडांचा राजा.</span>
+          <span class="note-item"><span class="note-key">बजरंगी</span> — वज्र + अंग, म्हणजे वज्रासारखे मजबूत शरीर असलेला.</span>
+          <span class="note-item"><span class="note-key">मूंज</span> — एक प्रकारचे गवत; त्याच्या दोऱ्याचे जानवे केले जाते.</span>
+          <span class="note-item"><span class="note-key">शंकर सुवन</span> — "सुवन" म्हणजे मुलगा, म्हणून शब्दशः अर्थ "शंकराचा मुलगा". पण बरेच लोक हनुमानाला शंकराचा अवतार मानतात, म्हणून काही भाषांतरांत "शंकराचे अवतार" असे लिहिलेले दिसते. दोन्ही अर्थ प्रचारात आहेत.</span>
+          <span class="note-item"><span class="note-key">सहस बदन</span> — हजार तोंडे असलेला, म्हणजे शेषनाग.</span>
+          <span class="note-item"><span class="note-key">सनकादिक</span> — सनक, सनंदन, सनातन आणि सनत्कुमार हे ब्रह्मदेवाचे चार ऋषी-मुलगे.</span>
+          <span class="note-item"><span class="note-key">अहीसा</span> — सापांचा राजा, म्हणजे शेषनाग.</span>
+          <span class="note-item"><span class="note-key">चार युगे</span> — सत्ययुग, त्रेतायुग, द्वापरयुग आणि कलियुग.</span>
+          <span class="note-item"><span class="note-key">रघुबर पुर</span> — रामाची नगरी, म्हणजे देवाचे घर (वैकुंठ).</span>
+          <span class="note-item"><span class="note-key">गौरीसा</span> — गौरीचा पती, म्हणजे शंकर.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <main id="content" aria-label="Hanuman Chalisa verses"></main>
+</div>
+
+<script>
+/* ══ DATA ══════════════════════════════════════════
+   mar = सोपे मराठी भाषांतर (या पानाचे)
+   ref = इंटरनेटवर मिळणारे प्रचलित मराठी भाषांतर, जसे आहे तसे
+   ══════════════════════════════════════════════════ */
+const SECTIONS = [
+  { id:'doha-start', num:'॥',  name:'सुरुवातीचे दोहे' },
+  { id:'chaupai',    num:'४०', name:'चौपाई' },
+  { id:'doha-end',   num:'॥',  name:'शेवटचा दोहा' }
+];
+
+const VERSES = [
+{ sec:'doha-start', n:'दोहा १', id:'doha-1',
+  orig:`श्रीगुरु चरन सरोज रज\nनिज मनु मुकुरु सुधारि ।\nबरनउँ रघुबर बिमल जसु\nजो दायकु फल चारि ॥`,
+  mar:`माझ्या गुरूंच्या पायांची धूळ घेऊन मी माझ्या मनाचा आरसा साफ करतो. आणि मग श्रीरामाची पवित्र कीर्ती सांगतो, जी माणसाला चारही चांगली फळे देते — धर्म, पैसा, इच्छा पूर्ण होणे आणि मोक्ष म्हणजे जन्म-मरणातून सुटका.`,
+  ref:`श्री गुरु महाराजांच्या चरण कमळांच्या धुळीने आपल्या मन रुपी आरशाला पवित्र करून श्री रघुवीरांचे निर्मल यशाचे वर्णन करत आहोत, जे की चारी फल धर्म, अर्थ, काम आणि मोक्ष प्रदान करणारे आहे.` },
+
+{ sec:'doha-start', n:'दोहा २', id:'doha-2',
+  orig:`बुद्धिहीन तनु जानिके\nसुमिरौं पवन-कुमार ।\nबल बुधि बिद्या देहु मोहिं\nहरहु कलेस बिकार ॥`,
+  mar:`मला काही समजत नाही, हे ओळखून मी वाऱ्याच्या मुलाची (हनुमानाची) आठवण काढतो. हे हनुमाना, मला ताकद, बुद्धी आणि ज्ञान दे, आणि माझे दुःख व माझ्या वाईट सवयी दूर कर.`,
+  ref:`हे पवन कुमार! मी आपलं सुमिरन करतो. माझं शरीर आणि बुद्धी निर्बल असल्याचं आपण तर जाणतात. मला शारीरिक बल, सद्बुद्धी आणि ज्ञान देऊन माझे दु:ख आणि दोषांचे नाश करावे.` },
+
+{ sec:'chaupai', n:'१', id:'1',
+  orig:`जय हनुमान ज्ञान गुन सागर ।\nजय कपीस तिहुँ लोक उजागर ॥`,
+  mar:`हनुमाना, तुझा जयजयकार! तू ज्ञानाचा आणि चांगल्या गुणांचा समुद्र आहेस. माकडांच्या राजा, तुझा जयजयकार! तिन्ही लोकांमध्ये तू प्रसिद्ध आहेस.`,
+  ref:`श्री हनुमान जी! आपला विजय असो. आपलं ज्ञान आणि गुण अथाह आहे. हे कपीश्वर! आपली जय असो. तिन्ही लोक, स्वर्ग लोक, भूलोक आणि पाताल लोकात आपली कीर्ती आहे.` },
+
+{ sec:'chaupai', n:'२', id:'2',
+  orig:`रामदूत अतुलित बल धामा ।\nअंजनि-पुत्र पवनसुत नामा ॥`,
+  mar:`तू रामाचा दूत आहेस आणि मोजता येणार नाही इतकी ताकद तुझ्याकडे आहे. अंजनीचा मुलगा आणि वाऱ्याचा मुलगा, अशी तुझी नावे आहेत.`,
+  ref:`हे पवनसुत अंजनी नंदन! आपल्यासारखे दुसरे शक्तिशाली कोणी नाही.` },
+
+{ sec:'chaupai', n:'३', id:'3',
+  orig:`महाबीर बिक्रम बजरंगी ।\nकुमति निवार सुमति के संगी ॥`,
+  mar:`तू खूप शूर आणि पराक्रमी आहेस. तुझे शरीर वज्रासारखे मजबूत आहे. तू वाईट विचार दूर करतोस आणि चांगल्या विचारांचा सोबती आहेस.`,
+  ref:`हे महावीर बजरंग बली! आपणात विशेष पराक्रम आहे. आपण अशुद्ध बुद्धी दूर करणारे आणि शुद्ध बुद्धी प्रदान करणारे आहात.` },
+
+{ sec:'chaupai', n:'४', id:'4',
+  orig:`कंचन बरन बिराज सुबेसा ।\nकानन कुंडल कुंचित केसा ॥`,
+  mar:`तुझा रंग सोन्यासारखा आहे आणि सुंदर कपड्यांत तू शोभून दिसतोस. तुझ्या कानात कुंडले आहेत आणि तुझे केस कुरळे आहेत.`,
+  ref:`आपण सोनेरी रंग, सुंदर कपडे, कानात कुंडल आणि कुरळे केसांनी सुशोभित आहात.` },
+
+{ sec:'chaupai', n:'५', id:'5',
+  orig:`हाथ बज्र औ ध्वजा बिराजै ।\nकाँधे मूँज जनेऊ साजै ॥`,
+  mar:`तुझ्या हातात गदा आणि झेंडा शोभून दिसतो. तुझ्या खांद्यावर मुंज गवताचे जानवे सुंदर दिसते.`,
+  ref:`आपल्या हातात बज्र आणि ध्वजा आहे आणि खांद्यावर मुंजीच्या जानव्याची शोभा आहे.` },
+
+{ sec:'chaupai', n:'६', id:'6',
+  orig:`संकर सुवन केसरीनंदन ।\nतेज प्रताप महा जग बंदन ॥`,
+  mar:`तू शंकराचा मुलगा आणि केसरीचा मुलगा आहेस. तुझे तेज आणि पराक्रम इतका मोठा आहे की सगळे जग तुला नमस्कार करते.`,
+  ref:`शंकराचे अवतार! हे केशरी नंदन आपल्या पराक्रम आणि महान यशाची संसार भरात वंदना होते.` },
+
+{ sec:'chaupai', n:'७', id:'7',
+  orig:`बिद्यावान गुनी अति चातुर ।\nराम काज करिबे को आतुर ॥`,
+  mar:`तू ज्ञानी, गुणी आणि खूप हुशार आहेस. रामाचे काम करण्यासाठी तू नेहमी उत्सुक असतोस.`,
+  ref:`आपण प्रकांड विद्येचे ज्ञाता आहात, गुणवान आणि अत्यंत कार्य कुशल होऊन श्री रामाचे काम करण्यास उत्सुक असतात.` },
+
+{ sec:'chaupai', n:'८', id:'8',
+  orig:`प्रभु चरित्र सुनिबे को रसिया ।\nराम लखन सीता मन बसिया ॥`,
+  mar:`रामाच्या गोष्टी ऐकायला तुला खूप आवडते. राम, लक्ष्मण आणि सीता तुझ्या मनात राहतात.`,
+  ref:`आपण श्री राम चरित ऐकण्यात रस घेता. श्रीराम, सीता आणि लक्ष्मण आपल्या हृद्यात वास करतात.` },
+
+{ sec:'chaupai', n:'९', id:'9',
+  orig:`सूक्ष्म रूप धरि सियहिं दिखावा ।\nबिकट रूप धरि लंक जरावा ॥`,
+  mar:`तू खूप लहान रूप घेऊन सीतेला दिसलास. आणि भयानक मोठे रूप घेऊन लंका जाळलीस.`,
+  ref:`आपण आपलं लहानसा रूप धारण करून सीतेला दाखवले आणि भयावह रूप घेऊन लंकेला दहन केले.` },
+
+{ sec:'chaupai', n:'१०', id:'10',
+  orig:`भीम रूप धरि असुर सँहारे ।\nरामचंद्र के काज सँवारे ॥`,
+  mar:`भीतीदायक मोठे रूप घेऊन तू राक्षसांना मारलेस आणि रामाची कामे नीट पूर्ण केलीस.`,
+  ref:`आपण विक्राळ रूप घेऊन राक्षसांचे वध केले आणि श्री रामचंद्रांच्या उद्देश्यांना यश मिळवून दिले.` },
+
+{ sec:'chaupai', n:'११', id:'11',
+  orig:`लाय सजीवन लखन जियाये ।\nश्रीरघुबीर हरषि उर लाये ॥`,
+  mar:`तू संजीवनी नावाची औषधी वनस्पती आणून लक्ष्मणाला जिवंत केलेस. त्यामुळे आनंदी होऊन रामाने तुला छातीशी धरले.`,
+  ref:`आपण संजीवनी बुटी आणून लक्ष्मणाचे प्राण वाचवले ज्याने आनंदी होऊन श्रीरामाने आपल्याला हृदयाशी लावले.` },
+
+{ sec:'chaupai', n:'१२', id:'12',
+  orig:`रघुपति कीन्ही बहुत बड़ाई ।\nतुम मम प्रिय भरतहि सम भाई ॥`,
+  mar:`रामाने तुझे खूप कौतुक केले आणि म्हणाला, "तू मला भरतासारखाच आवडता भाऊ आहेस."`,
+  ref:`श्री रामचंद्राने आपली खूप प्रशंसा केली आणि म्हटले की तुम्ही माझ्या भरत सारख्या भावाप्रमाणे आहात.` },
+
+{ sec:'chaupai', n:'१३', id:'13',
+  orig:`सहस बदन तुम्हरो जस गावैं ।\nअस कहि श्रीपति कंठ लगावैं ॥`,
+  mar:`"हजार तोंडे असलेला शेषनाग सुद्धा तुझी कीर्ती गातो," असे म्हणून रामाने तुला मिठी मारली.`,
+  ref:`श्रीरामाने आपल्या हे म्हणत हृदयाशी लावले की तुमचं यश हजार मुखाने गाजवण्यासारखे सारखे आहे.` },
+
+{ sec:'chaupai', n:'१४', id:'14',
+  orig:`सनकादिक ब्रह्मादि मुनीसा ।\nनारद सारद सहित अहीसा ॥`,
+  mar:`सनक वगैरे ऋषी, ब्रह्मदेव, मोठे मुनी, नारद, सरस्वती आणि शेषनाग सुद्धा तुझी कीर्ती गातात.`,
+  ref:`श्री सनक, श्री सनातन, श्री सनन्दन, श्री सनत्कुमार आदि मुनी ब्रह्मा आदि देवता नारद, सरस्वती, शेषनाग सर्व आपले गुणगान करतात.` },
+
+{ sec:'chaupai', n:'१५', id:'15',
+  orig:`जम कुबेर दिगपाल जहाँ ते ।\nकबि कोबिद कहि सके कहाँ ते ॥`,
+  mar:`यम, कुबेर आणि सर्व दिशांचे रक्षक सुद्धा तुझी कीर्ती गातात. मग कवी आणि शिकलेले लोक ती पूर्णपणे कशी सांगू शकतील?`,
+  ref:`यमराज, कुबेर इतर सर्व दिशांचे रक्षक, कवी, विद्वान, पंडित किंवा कोणीही आपल्या यशाचे पूर्णतः वर्णन करू शकत नाही.` },
+
+{ sec:'chaupai', n:'१६', id:'16',
+  orig:`तुम उपकार सुग्रीवहिं कीन्हा ।\nराम मिलाय राज पद दीन्हा ॥`,
+  mar:`तू सुग्रीवावर उपकार केलास. त्याला रामाशी भेटवून दिले आणि त्याला राजाची जागा मिळवून दिली.`,
+  ref:`आपण श्रीरामाशी सुग्रीवाची भेट करून उपकार केले, ज्यामुळे ते राजा झाले.` },
+
+{ sec:'chaupai', n:'१७', id:'17',
+  orig:`तुम्हरो मंत्र बिभीषन माना ।\nलंकेस्वर भए सब जग जाना ॥`,
+  mar:`बिभीषणाने तुझा सल्ला ऐकला आणि तो लंकेचा राजा झाला, हे सगळ्या जगाला माहीत आहे.`,
+  ref:`आपल्या उपदेशांचे विभीषणाने पालन केलं ज्याने ते लंकेचे राजा झाले, हे सर्व जगाला माहिती आहे.` },
+
+{ sec:'chaupai', n:'१८', id:'18',
+  orig:`जुग सहस्र जोजन पर भानू ।\nलील्यो ताहि मधुर फल जानू ॥`,
+  mar:`सूर्य हजारो योजने दूर आहे. पण तू त्याला गोड फळ समजून गिळून टाकले.`,
+  ref:`सूर्य अती दूर इतक्या अंतरावर आहे की तेथे पोहचण्यास हजार युग लागतात. अशा दोन हजार योजनांच्या अंतरावर स्थित सूर्याला आपण एक गोड फळ म्हणून गिळून गेला.` },
+
+{ sec:'chaupai', n:'१९', id:'19',
+  orig:`प्रभु मुद्रिका मेलि मुख माहीं ।\nजलधि लाँघि गये अचरज नाहीं ॥`,
+  mar:`रामाची अंगठी तोंडात ठेवून तू समुद्र ओलांडून गेलास. यात नवल वाटण्यासारखे काही नाही.`,
+  ref:`आपण श्री रामचंद्राची अंगठी मुखात ठेवून समुद्र पार केलं, यात आश्चर्य करण्यासारखं नाही.` },
+
+{ sec:'chaupai', n:'२०', id:'20',
+  orig:`दुर्गम काज जगत के जेते ।\nसुगम अनुग्रह तुम्हरे तेते ॥`,
+  mar:`जगातील जेवढी कठीण कामे आहेत, ती सर्व तुझ्या कृपेने सोपी होतात.`,
+  ref:`संसारात जितकेही अवघड काम असलं तरी ते आपल्या कृपेने सोपं होऊन जातं.` },
+
+{ sec:'chaupai', n:'२१', id:'21',
+  orig:`राम दुआरे तुम रखवारे ।\nहोत न आज्ञा बिनु पैसारे ॥`,
+  mar:`रामाच्या दारावर तू पहारा देतोस. तुझ्या परवानगीशिवाय कोणालाही आत जाता येत नाही.`,
+  ref:`श्री रामचंद्राचे दारावरील आपण राखणदार आहात, ज्यांच्या आज्ञेशिवाय कोणालाही आत प्रवेश मिळू शकत नाही अर्थात आपल्या प्रसन्न केल्याशिवाय राम कृपा दुर्लभ आहे.` },
+
+{ sec:'chaupai', n:'२२', id:'22',
+  orig:`सब सुख लहै तुम्हारी सरना ।\nतुम रक्षक काहू को डर ना ॥`,
+  mar:`जो तुझ्या आश्रयाला येतो, त्याला सर्व सुख मिळते. तू रक्षण करत असल्यावर कोणाचीही भीती उरत नाही.`,
+  ref:`आपल्या शरणी येणारा प्रत्येक भक्त आनंद प्राप्त करतं, आणि आपण रक्षा करणारे असल्यावर भीती राहत नाही.` },
+
+{ sec:'chaupai', n:'२३', id:'23',
+  orig:`आपन तेज सम्हारो आपै ।\nतीनों लोक हाँक ते काँपै ॥`,
+  mar:`तुझी ताकद इतकी मोठी आहे की ती तूच आवरून धरू शकतोस, दुसरा कोणी नाही. तू हाक मारलीस तर तिन्ही लोक भीतीने कापतात.`,
+  ref:`आपल्याशिवाय आपला वेग कोणीही थांबवू शकत नाही, आपल्या गर्जनाने तिन्ही लोक थरथर कापतात.` },
+
+{ sec:'chaupai', n:'२४', id:'24',
+  orig:`भूत पिसाच निकट नहिं आवै ।\nमहाबीर जब नाम सुनावै ॥`,
+  mar:`"महावीर" असे तुझे नाव घेतले, की भूत आणि पिशाच्च जवळ येत नाहीत.`,
+  ref:`जेथे महावीर हनुमानाचे नाव घेतलं जातं तेथे भूत-पिश्शाच जवळ देखील फिरकत नाही.` },
+
+{ sec:'chaupai', n:'२५', id:'25',
+  orig:`नासै रोग हरै सब पीरा ।\nजपत निरंतर हनुमत बीरा ॥`,
+  mar:`जो नेहमी "वीर हनुमान" असे नाव घेत राहतो, त्याचे आजार नाहीसे होतात आणि सर्व वेदना दूर होतात.`,
+  ref:`वीर हनुमान ! आपला निरंतर जप केल्याने सर्व रोग दूर होतात आणि सर्व पीडा नाहीश्या होतात.` },
+
+{ sec:'chaupai', n:'२६', id:'26',
+  orig:`संकट तें हनुमान छुड़ावै ।\nमन क्रम बचन ध्यान जो लावै ॥`,
+  mar:`जो मनाने, कामाने आणि बोलण्याने हनुमानाचे ध्यान करतो, त्याला हनुमान संकटातून सोडवतो.`,
+  ref:`हे हनुमान ! विचार, कर्म आणि बोलण्यात ज्यांचं लक्ष आपल्यात असतं त्यांना आपण सर्व संकटांपासून मुक्त करतात.` },
+
+{ sec:'chaupai', n:'२७', id:'27',
+  orig:`सब पर राम तपस्वी राजा ।\nतिन के काज सकल तुम साजा ॥`,
+  mar:`तप करणारा राजा राम सर्वांच्या वर आहे. त्याची सगळी कामे तूच पूर्ण केलीस.`,
+  ref:`तपस्वी राजा श्री रामचंद्र सर्वश्रेष्ठ आहे त्यांच्या प्रत्येक कार्याला आपण सोपं केलं आहे.` },
+
+{ sec:'chaupai', n:'२८', id:'28',
+  orig:`और मनोरथ जो कोई लावै ।\nसोइ अमित जीवन फल पावै ॥`,
+  mar:`जो कोणी तुझ्याकडे दुसरी काही इच्छा घेऊन येतो, त्याला आयुष्यात मोजता येणार नाही इतके मोठे फळ मिळते.`,
+  ref:`ज्यांच्यावर आपली कृपा असते, त्यांच्या इच्छेला अशा प्रकारे फल प्राप्ती होते ज्यांची मर्यादा सांगता येऊ शकतं नाही.` },
+
+{ sec:'chaupai', n:'२९', id:'29',
+  orig:`चारों जुग परताप तुम्हारा ।\nहै परसिद्ध जगत उजियारा ॥`,
+  mar:`चारही युगांमध्ये तुझा पराक्रम गाजतो. तू प्रसिद्ध आहेस आणि तुझ्यामुळे सगळ्या जगात प्रकाश आहे.`,
+  ref:`चारी युगांमध्ये सतयुग, त्रेता, द्वापर आणि कलियुगात आपलं यश पसरलेलं आहे, जगात आपली कीर्ती सर्वत्र प्रकाशमान आहे.` },
+
+{ sec:'chaupai', n:'३०', id:'30',
+  orig:`साधु संत के तुम रखवारे ।\nअसुर निकंदन राम दुलारे ॥`,
+  mar:`तू चांगल्या आणि संत माणसांचे रक्षण करतोस. तू राक्षसांचा नाश करतोस आणि रामाचा लाडका आहेस.`,
+  ref:`हे श्रीरामाचे लाडके! आपण सज्जनांची रक्षा करतात आणि दुष्टांचा विनाश.` },
+
+{ sec:'chaupai', n:'३१', id:'31',
+  orig:`अष्ट सिद्धि नौ निधि के दाता ।\nअस बर दीन जानकी माता ॥`,
+  mar:`आठ सिद्धी आणि नऊ निधी म्हणजे नऊ मोठे खजिने देणारा तू आहेस. सीतामातेने तुला असे वरदान दिले आहे.`,
+  ref:`आपल्याला देवी जानकीकडून असे वरदान प्राप्त आहे, ज्याने आपण कोणालाही आठ सिद्धी आणि नऊ निधी देऊ शकतात.` },
+
+{ sec:'chaupai', n:'३२', id:'32',
+  orig:`राम रसायन तुम्हरे पासा ।\nसदा रहो रघुपति के दासा ॥`,
+  mar:`रामाच्या भक्तीचे औषध तुझ्याजवळ आहे. तू नेहमी रामाचा सेवक म्हणूनच राहतोस.`,
+  ref:`आपण निरंतर श्री रघुनाथाच्या शरणात राहतात, ज्यामुळे आपल्याकडे वृद्धापकाळ आणि असाध्य आजारापणाला नाश करण्यासाठी राम नाम औषधी आहे.` },
+
+{ sec:'chaupai', n:'३३', id:'33',
+  orig:`तुम्हरे भजन राम को पावै ।\nजनम जनम के दुख बिसरावै ॥`,
+  mar:`तुझे भजन केल्याने माणसाला राम मिळतो आणि त्याचे जन्मोजन्मीचे दुःख विसरले जाते.`,
+  ref:`आपलं भजन केल्याने श्री राम प्राप्त होतात आणि जन्म जन्मांतराचे दु:ख दूर होतात.` },
+
+{ sec:'chaupai', n:'३४', id:'34',
+  orig:`अंत काल रघुबर पुर जाई ।\nजहाँ जन्म हरिभक्त कहाई ॥`,
+  mar:`मरणाच्या वेळी तो रामाच्या नगरीत (वैकुंठात) जातो. आणि पुढे जन्म झाला, तर तो देवाचा भक्त म्हणून ओळखला जातो.`,
+  ref:`आपल्या शरणात राहूनच अंतिम काळात श्री रघुनाथ धाम, अर्थात वैकुंठात जाता येऊ शकतं आणि जिथे जन्म मात्र हरि भक्तच्या रूपात मिळतो.` },
+
+{ sec:'chaupai', n:'३५', id:'35',
+  orig:`और देवता चित्त न धरई ।\nहनुमत सेइ सर्ब सुख करई ॥`,
+  mar:`दुसऱ्या कोणत्याही देवाला मनात न ठेवता जो फक्त हनुमानाची सेवा करतो, त्याला सर्व सुख मिळते.`,
+  ref:`हे हनुमान ! आपली सेवा केल्याने सर्व प्रकाराचे सुख प्राप्त होतात, मग इतर देवतांची गरज भासत नाही.` },
+
+{ sec:'chaupai', n:'३६', id:'36',
+  orig:`संकट कटै मिटै सब पीरा ।\nजो सुमिरै हनुमत बलबीरा ॥`,
+  mar:`जो ताकदवान आणि शूर हनुमानाची आठवण काढतो, त्याचे संकट दूर होते आणि सर्व वेदना संपतात.`,
+  ref:`हे वीर हनुमान ! आपलं स्मरण केल्याने सर्व संकट आणि वेदना नाहीश्या होतात.` },
+
+{ sec:'chaupai', n:'३७', id:'37',
+  orig:`जय जय जय हनुमान गोसाईं ।\nकृपा करहु गुरुदेव की नाईं ॥`,
+  mar:`हे हनुमान स्वामी, तुझा जयजयकार, जयजयकार, जयजयकार! गुरू करतात तशी माझ्यावर कृपा कर.`,
+  ref:`हे स्वामी हनुमान ! आपली जय असो, जय असो, जय असो! आपली माझ्यावर कृपालु श्री गुरुसमान कृपा असावी.` },
+
+{ sec:'chaupai', n:'३८', id:'38',
+  orig:`जो सत बार पाठ कर कोई ।\nछूटहि बंदि महा सुख होई ॥`,
+  mar:`जो कोणी हे शंभर वेळा वाचतो, तो बंधनातून सुटतो आणि त्याला खूप मोठा आनंद मिळतो.`,
+  ref:`शंभर वेळा हनुमान चालीसा पाठ केल्याने सर्व बंधनातून मुक्ती मिळेल आणि परमानंद मिळेल.` },
+
+{ sec:'chaupai', n:'३९', id:'39',
+  orig:`जो यह पढ़ै हनुमान चालीसा ।\nहोय सिद्धि साखी गौरीसा ॥`,
+  mar:`जो ही हनुमान चालीसा वाचतो, त्याचे काम पूर्ण होते. याला शंकर स्वतः साक्षी आहेत.`,
+  ref:`भगवान शंकर साक्षी आहे की याचे पाठ केल्याने सर्व मनोकामना पूर्ण होतील, निश्चित यश प्राप्ती होईल.` },
+
+{ sec:'chaupai', n:'४०', id:'40',
+  orig:`तुलसीदास सदा हरि चेरा ।\nकीजै नाथ हृदय महँ डेरा ॥`,
+  mar:`तुलसीदास नेहमी देवाचा सेवक आहे. हे हनुमाना, तू माझ्या मनात मुक्काम कर.`,
+  ref:`हे नाथ हनुमान ! तुलसीदास सदा श्रीरामाचे दास आहे. म्हणून आपण त्यांच्या हृदयात वास करा.` },
+
+{ sec:'doha-end', n:'दोहा', id:'doha-3',
+  orig:`पवनतनय संकट हरन\nमंगल मूरति रूप ।\nराम लखन सीता सहित\nहृदय बसहु सुर भूप ॥`,
+  mar:`हे वाऱ्याच्या मुला, तू संकट दूर करतोस आणि तुझे दर्शन शुभ आहे. हे देवांच्या राजा, राम, लक्ष्मण आणि सीतेसह तू माझ्या मनात राहा.`,
+  ref:`हे संकट मोचन पवन कुमार! आपण आनंद मंगळ स्वरूप आहात। हे देवराज! आपण श्रीराम, सीता आणि लक्ष्मणासह माझ्या हृदयात राहावे हीच इच्छा.` }
+];
+
+/* ══ RENDER ═════════════════════════════════════════ */
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const brk = s => esc(s).split('\n').join('<br>');
+
+function render() {
+  let html = '';
+  for (const sec of SECTIONS) {
+    const rows = VERSES.filter(v => v.sec === sec.id);
+    if (!rows.length) continue;
+
+    html += `<section class="chapter-block" id="section-${sec.id}" aria-labelledby="ct-${sec.id}">
+      <div class="chapter-heading">
+        <span class="chapter-num" aria-hidden="true">${sec.num}</span>
+        <div class="chapter-title-wrap"><h2 class="chapter-name" id="ct-${sec.id}">${sec.name}</h2></div>
+      </div>`;
+
+    if (rows.length > 1) {
+      html += `<div class="verse verse-legend" aria-hidden="true">
+        <div class="verse-num-col"></div>
+        <div class="orig-col">मूळ पाठ</div>
+        <div class="marathi-col">सोपे मराठी</div>
+        <div class="ref-col">संदर्भ भाषांतर</div>
+      </div>`;
+    }
+
+    for (const v of rows) {
+      html += `<article class="verse" id="verse-${v.id}" aria-label="Verse ${v.n}">
+        <div class="verse-num-col"><span class="vnum">${esc(v.n)}</span></div>
+        <div class="orig-col" lang="hi">${brk(v.orig)}</div>
+        <div class="marathi-col" lang="mr">${esc(v.mar)}</div>
+        <div class="ref-col" lang="mr">${esc(v.ref)}</div>
+      </article>`;
+    }
+
+    html += `</section>`;
+  }
+  document.getElementById('content').innerHTML = html;
+}
+render();
+
+/* ══ CONTROLS ═══════════════════════════════════════ */
+document.getElementById('section-select').addEventListener('change', function() {
+  if (!this.value) return;
+  document.getElementById(this.value)?.scrollIntoView({behavior:'smooth'});
+  this.value = '';
+});
+
+/* Column toggles */
+function makeToggle(togId, trackId, bodyClass, startOn) {
+  const togEl = document.getElementById(togId);
+  const trackEl = document.getElementById(trackId);
+  let on = startOn;
+  function set(v) {
+    on = v;
+    trackEl.classList.toggle('on', on);
+    togEl.setAttribute('aria-pressed', String(on));
+    document.body.classList.toggle(bodyClass, !on);
+  }
+  set(startOn);
+  togEl.addEventListener('click', () => set(!on));
+  togEl.addEventListener('keydown', e => {
+    if (e.key==='Enter'||e.key===' ') { e.preventDefault(); set(!on); }
+  });
+}
+makeToggle('orig-toggle', 'orig-track', 'hide-orig', false);
+makeToggle('ref-toggle',  'ref-track',  'hide-ref',  true);
+
+/* Scroll hide/show nav */
+(function(){
+  const nav = document.getElementById('sticky-nav');
+  let last = 0, tick = false;
+  window.addEventListener('scroll', () => {
+    if (tick) return; tick = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (y > last+8 && y > 80) nav.classList.add('hidden');
+      else if (y < last-5) nav.classList.remove('hidden');
+      last = y; tick = false;
+    });
+  }, {passive:true});
+})();
+
+/* Prompt panel */
+(function(){
+  const btn = document.getElementById('prompt-toggle-btn');
+  const panel = document.getElementById('prompt-panel');
+  btn.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+})();
+
+/* Note panels */
+document.querySelectorAll('.note-toggle-btn').forEach(btn => {
+  const panel = document.getElementById(btn.getAttribute('aria-controls'));
+  btn.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+});
+</script>
+</body>
+</html>

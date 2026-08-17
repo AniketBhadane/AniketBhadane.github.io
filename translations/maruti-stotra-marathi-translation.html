@@ -1,0 +1,945 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>मारुती स्तोत्र: सोपे मराठी भाषांतर</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:          #121314;
+    --surface:     #181818;
+    --surface2:    #1c1c1c;
+    --border:      rgba(255,255,255,0.05);
+    --border2:     #313131;
+    --sanskrit:    #e4dbc6;
+    --marathi:     #BCBEBF;
+    --ref:         #98918a;
+    --muted:       #504940;
+    --muted2:      #736960;
+    --gold:        #b89b4a;
+    --gold-dim:    rgba(200,168,75,0.11);
+    --gold-border: rgba(200,168,75,0.25);
+    --accent:      #9a7438;
+    --switch-on:   #7a5e28;
+    --header-h:    50px;
+    --max-w:       1120px;
+    --col-gap:     1.7rem;
+    --v-gap:       1.25rem;
+    --font-main:   "Noto Serif Devanagari", serif;
+    --font-ui:     "Noto Sans Devanagari", sans-serif;
+    --fs-marathi:  1.13rem;
+    --fs-sanskrit: 0.99rem;
+    --fs-ref:      0.95rem;
+    --lh-marathi:  1.88;
+    --lh-sanskrit: 1.82;
+  }
+
+  /* page width follows how many text columns are visible */
+  body.hide-orig, body.hide-ref { --max-w: 920px; }
+  body.hide-orig.hide-ref { --max-w: 800px; }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--marathi);
+    font-family: var(--font-main);
+    font-size: var(--fs-marathi);
+    line-height: var(--lh-marathi);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.55;
+  }
+
+  /* ─── Sticky nav ──────────────────────────────── */
+  #sticky-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--header-h);
+    background: rgba(12,12,12,0.93);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.28s cubic-bezier(0.4,0,0.2,1);
+  }
+  #sticky-nav.hidden { transform: translateY(-100%); }
+
+  .nav-inner {
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+    width: 100%;
+    max-width: var(--max-w);
+    padding: 0 1.25rem;
+  }
+
+  .nav-label {
+    color: var(--muted2);
+    font-family: var(--font-ui);
+    font-size: 0.69rem;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  #section-select {
+    background: var(--surface2);
+    border: 1px solid var(--border2);
+    color: var(--marathi);
+    font-family: var(--font-main);
+    font-size: 0.87rem;
+    padding: 0.27rem 0.52rem;
+    border-radius: 4px;
+    cursor: pointer;
+    outline: none;
+    flex: 1;
+    max-width: 190px;
+    transition: border-color 0.2s;
+  }
+  #section-select:hover, #section-select:focus { border-color: var(--accent); }
+  #section-select option { background: #1c1c1c; }
+
+  .nav-spacer { flex: 1; }
+  .nav-switches { display: flex; align-items: center; gap: 1.1rem; }
+
+  /* ── Pill switch ──────────────────────────────── */
+  .switch-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.52rem;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+  }
+  .switch-wrap:focus-visible .switch-track {
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+
+  .switch-text {
+    color: var(--muted2);
+    font-family: var(--font-ui);
+    font-size: 0.69rem;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    transition: color 0.2s;
+  }
+  .switch-wrap:hover .switch-text { color: var(--gold); }
+
+  .switch-track {
+    position: relative;
+    width: 34px; height: 19px;
+    background: var(--border2);
+    border-radius: 10px;
+    transition: background 0.22s;
+    flex-shrink: 0;
+  }
+  .switch-track.on { background: var(--switch-on); }
+
+  .switch-thumb {
+    position: absolute;
+    top: 2.5px; left: 2.5px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: #777;
+    transition: transform 0.22s cubic-bezier(0.4,0,0.2,1), background 0.22s;
+    pointer-events: none;
+  }
+  .switch-track.on .switch-thumb {
+    transform: translateX(15px);
+    background: #dcc880;
+  }
+
+  /* ─── Page ────────────────────────────────────── */
+  #page {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: calc(var(--header-h) + 2rem) 1.25rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── Header ──────────────────────────────────── */
+  .site-header {
+    text-align: center;
+    margin-bottom: 2.2rem;
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .header-ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+    margin-bottom: 1.1rem;
+  }
+  .om { font-size: 1.55rem; color: var(--gold); opacity: 0.75; }
+
+  .site-title {
+    font-size: clamp(1.28rem, 3.7vw, 1.6rem);
+    font-weight: 600;
+    color: #ece4ce;
+    line-height: 1.45;
+    margin-bottom: 0.32rem;
+  }
+
+  .site-subtitle-en {
+    font-family: var(--font-ui);
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    opacity: 0.82;
+  }
+
+  .site-desc {
+    color: var(--muted2);
+    line-height: 1.72;
+    max-width: 560px;
+    margin: 0 auto 0.75rem;
+  }
+
+  /* ─── Prompt ──────────────────────────────────── */
+  .prompt-section {
+    margin-top: 0.75rem;
+    text-align: left;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #prompt-toggle-btn {
+    background: none; border: none;
+    color: var(--muted);
+    font-family: var(--font-ui);
+    font-size: 0.71rem;
+    cursor: pointer;
+    padding: 0.18rem 0;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: transparent;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+  #prompt-toggle-btn:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+  .prompt-arrow {
+    display: inline-block; font-size: 0.58rem;
+    transition: transform 0.22s;
+  }
+  #prompt-toggle-btn[aria-expanded="true"] .prompt-arrow { transform: rotate(90deg); }
+
+  #prompt-panel {
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.36s cubic-bezier(0.4,0,0.2,1), opacity 0.26s;
+  }
+  #prompt-panel.open { max-height: 400px; opacity: 1; }
+
+  .prompt-inner {
+    margin-top: 0.45rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 4px; overflow: hidden;
+  }
+  .prompt-inner pre {
+    font-family: "Menlo", "Courier New", monospace;
+    font-size: 0.69rem; line-height: 1.6;
+    color: #857a6a;
+    padding: 0.85rem 1.05rem;
+    overflow: auto; max-height: 320px;
+    white-space: pre-wrap; word-break: break-word;
+  }
+
+  /* ─── Section ─────────────────────────────────── */
+  .chapter-block { margin-bottom: 2.5rem; }
+
+  .chapter-heading {
+    display: flex; align-items: center;
+    gap: 0.85rem;
+    margin-bottom: 1.3rem;
+    padding-top: 0.3rem;
+  }
+  .chapter-num {
+    font-size: 1.8rem; font-weight: 300;
+    color: var(--gold); opacity: 0.26;
+    line-height: 1; flex-shrink: 0;
+    font-variant-numeric: tabular-nums;
+  }
+  .chapter-title-wrap { flex: 1; }
+  .chapter-name {
+    font-size: 1.02rem; font-weight: 500;
+    color: #d5ccb5; line-height: 1.4;
+  }
+
+  /* ─── Verse ───────────────────────────────────── */
+  .verse {
+    display: grid;
+    grid-template-columns: 2.6rem 1fr 1fr 1fr;
+    gap: 0 var(--col-gap);
+    margin-bottom: var(--v-gap);
+    padding-bottom: var(--v-gap);
+    border-bottom: 1px solid var(--border);
+    align-items: start;
+  }
+  .verse:last-child { border-bottom: none; }
+
+  .verse-num-col {
+    padding-top: 0.22em;
+    text-align: center;
+  }
+  .vnum {
+    display: block;
+    font-size: 0.6rem;
+    font-family: var(--font-ui);
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    padding: 0.1rem 0.32rem;
+    border-radius: 3px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    opacity: 0.75;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.6;
+  }
+
+  /* Column visibility — grid collapses as columns are hidden */
+  body.hide-orig .orig-col { display: none; }
+  body.hide-ref  .ref-col  { display: none; }
+  body.hide-orig .verse,
+  body.hide-ref  .verse { grid-template-columns: 2.6rem 1fr 1fr; }
+  body.hide-orig.hide-ref .verse { grid-template-columns: 2.6rem 1fr; }
+  body.hide-orig.hide-ref .marathi-col { max-width: 520px; }
+
+  /* Original verse — secondary, slightly dimmed */
+  .orig-col {
+    color: var(--sanskrit);
+    font-size: var(--fs-sanskrit);
+    line-height: var(--lh-sanskrit);
+    opacity: 0.68;
+    transition: opacity 0.18s;
+  }
+  .orig-col:hover { opacity: 0.9; }
+
+  /* Marathi — primary reading */
+  .marathi-col {
+    color: var(--marathi);
+    font-size: var(--fs-marathi);
+    line-height: var(--lh-marathi);
+  }
+
+  /* Reference translation — clearly secondary */
+  .ref-col {
+    color: var(--ref);
+    font-size: var(--fs-ref);
+    line-height: 1.8;
+    padding-left: 1.15rem;
+    border-left: 1px solid var(--border2);
+  }
+  .ref-num {
+    display: inline-block;
+    font-family: var(--font-ui);
+    font-size: 0.57rem;
+    color: var(--muted);
+    border: 1px solid var(--border2);
+    border-radius: 3px;
+    padding: 0 0.3rem;
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.04em;
+    line-height: 1.7;
+  }
+  .ref-missing {
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-style: italic;
+  }
+
+  /* Per-verse विवरण, folded away so rows stay short */
+  .ref-col details { margin-top: 0.55rem; }
+  .ref-col summary {
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-ui);
+    font-size: 0.66rem;
+    letter-spacing: 0.05em;
+    color: var(--muted);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.32rem;
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: transparent;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+  .ref-col summary::-webkit-details-marker { display: none; }
+  .ref-col summary::marker { content: ''; }
+  .ref-col summary::before {
+    content: '▶';
+    display: inline-block;
+    font-size: 0.5rem;
+    transition: transform 0.2s;
+  }
+  .ref-col details[open] summary::before { transform: rotate(90deg); }
+  .ref-col summary:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+  .ref-vivaran {
+    font-size: 0.86rem;
+    line-height: 1.78;
+    color: var(--muted2);
+    margin-top: 0.5rem;
+    padding-left: 0.65rem;
+    border-left: 1px solid var(--border);
+  }
+
+  /* Column legend */
+  .verse-legend {
+    border-bottom: 1px solid var(--border2);
+    padding-bottom: 0.45rem;
+    margin-bottom: 1rem;
+  }
+  .verse-legend > div {
+    font-family: var(--font-ui);
+    font-size: 0.62rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.5;
+    opacity: 1;
+  }
+  .verse-legend .ref-col { border-left-color: var(--border); }
+
+  /* ─── Note ────────────────────────────────────── */
+  .note-section { margin-bottom: 1.15rem; }
+
+  .note-toggle-btn {
+    background: none; border: none;
+    color: var(--sanskrit);
+    font-family: var(--font-ui);
+    font-size: 0.95rem;
+    cursor: pointer;
+    padding: 0.18rem 0;
+    letter-spacing: 0.04em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.38rem;
+    text-align: left;
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: transparent;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+  .note-toggle-btn:hover {
+    color: var(--accent);
+    text-decoration-color: var(--accent);
+  }
+  .note-toggle-btn .note-arrow {
+    display: inline-block; font-size: 0.58rem;
+    flex-shrink: 0;
+    transition: transform 0.22s;
+  }
+  .note-toggle-btn[aria-expanded="true"] .note-arrow { transform: rotate(90deg); }
+
+  .note-panel {
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.36s cubic-bezier(0.4,0,0.2,1), opacity 0.26s;
+  }
+  .note-panel.open { max-height: 10000px; opacity: 1; }
+
+  .note-inner {
+    margin-top: 0.45rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--accent);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    max-width: 720px;
+  }
+  .note-inner p {
+    font-size: 0.9rem;
+    color: var(--sanskrit);
+    line-height: 1.8;
+  }
+  .note-inner p + p { margin-top: 0.7rem; }
+  .note-inner .note-item {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--sanskrit);
+    line-height: 1.8;
+  }
+  .note-inner .note-key { color: var(--gold); }
+
+  /* ─── Closing line ────────────────────────────── */
+  .closing-line {
+    margin-top: 1.6rem;
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.72;
+    font-size: 0.92rem;
+    line-height: 1.9;
+  }
+  .closing-line .closing-mar {
+    display: block;
+    color: var(--muted2);
+    font-size: 0.85rem;
+    margin-top: 0.35rem;
+  }
+
+  /* ─── Mobile ──────────────────────────────────── */
+  @media (max-width: 700px) {
+    :root {
+      --fs-marathi: 1.04rem;
+      --fs-sanskrit: 0.94rem;
+      --fs-ref: 0.9rem;
+      --v-gap: 1.1rem;
+      --col-gap: 0.9rem;
+    }
+
+    .verse-num-col { display: none; }
+    .verse-legend { display: none; }
+
+    /* Everything stacks: original, then simple Marathi, then reference */
+    .verse,
+    body.hide-orig .verse,
+    body.hide-ref .verse,
+    body.hide-orig.hide-ref .verse { grid-template-columns: 1fr; }
+
+    .orig-col    { grid-column: 1; grid-row: 1; }
+    .marathi-col { grid-column: 1; grid-row: 2; }
+    .ref-col     {
+      grid-column: 1; grid-row: 3;
+      border-left: none; padding-left: 0;
+      border-top: 1px dashed var(--border2);
+      padding-top: 0.65rem; margin-top: 0.6rem;
+    }
+    body.hide-orig .marathi-col { grid-row: 1; max-width: 100%; }
+    body.hide-orig .ref-col { grid-row: 2; }
+    body.hide-orig.hide-ref .marathi-col { max-width: 100%; }
+
+    .nav-inner { gap: 0.55rem; }
+    .nav-label { display: none; }
+    .nav-switches { gap: 0.7rem; }
+    #section-select { max-width: 125px; font-size: 0.8rem; }
+    .switch-text { font-size: 0.58rem; }
+    .switch-track { width: 30px; height: 17px; }
+    .switch-thumb { width: 12px; height: 12px; }
+    .switch-track.on .switch-thumb { transform: translateX(13px); }
+  }
+
+  /* ─── Scrollbar ───────────────────────────────── */
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  ::selection { background: rgba(200,168,75,0.18); color: #f0e8d0; }
+</style>
+</head>
+<body>
+
+<nav id="sticky-nav" role="navigation" aria-label="Verse navigation">
+  <div class="nav-inner">
+    <label class="nav-label" for="section-select">श्लोक</label>
+    <select id="section-select" aria-label="Jump to verse">
+      <option value="">— श्लोक निवडा —</option>
+    </select>
+    <div class="nav-spacer"></div>
+    <div class="nav-switches">
+      <div class="switch-wrap" id="orig-toggle" role="button" tabindex="0"
+           aria-pressed="false" aria-label="Toggle original verse column">
+        <span class="switch-text">मूळ पाठ</span>
+        <div class="switch-track" id="orig-track">
+          <span class="switch-thumb"></span>
+        </div>
+      </div>
+      <div class="switch-wrap" id="ref-toggle" role="button" tabindex="0"
+           aria-pressed="true" aria-label="Toggle reference translation column">
+        <span class="switch-text">संदर्भ</span>
+        <div class="switch-track on" id="ref-track">
+          <span class="switch-thumb"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="page">
+  <header class="site-header">
+    <div class="header-ornament">
+      <span class="om">ॐ</span>
+    </div>
+    <h1 class="site-title">मारुती स्तोत्र: सोपे मराठी भाषांतर</h1>
+    <p class="site-subtitle-en">Bhimrupi Maruti Stotra · Simple Marathi Translation</p>
+    <p class="site-desc">
+      समर्थ रामदासांनी लिहिलेल्या "भीमरूपी महारुद्रा" या मारुती स्तोत्राचे सोपे मराठी भाषांतर.
+      मूळ शब्द जुने आणि कठीण आहेत, म्हणून अर्थ जसा आहे तसाच ठेवून अगदी सोप्या रोजच्या मराठीत लिहिले आहे.
+      सोबत तुलना करण्यासाठी इंटरनेटवर मिळणारे प्रचलित मराठी भाषांतर "संदर्भ" या स्तंभात जसे आहे तसे दिले आहे;
+      त्यातील विस्तृत विवरण प्रत्येक श्लोकाखाली घडी घालून ठेवले आहे.
+      वरच्या दोन स्विचने मूळ पाठ आणि संदर्भ स्तंभ दाखवता किंवा लपवता येतात.
+    </p>
+    <div class="prompt-section">
+      <button id="prompt-toggle-btn" aria-expanded="false" aria-controls="prompt-panel">
+        <span class="prompt-arrow">▶</span> View sample prompt
+      </button>
+      <div id="prompt-panel" role="region" aria-labelledby="prompt-toggle-btn">
+        <div class="prompt-inner"><pre>
+You are translating original verses into VERY SIMPLE modern Marathi.
+
+PRIMARY GOAL:
+- Preserve EXACT meaning of the original
+- Make Marathi easy enough for a beginner
+
+Understand the verse properly (grammar, meaning, context)
+Break the verse into (internal, do not output):
+1. Sandhi split
+2. Word-by-word meaning (no interpretation)
+3. Simple English literal meaning
+
+Output only final marathi translation. format for each verse: Marathi translation [verse number - on same line, not next]
+
+RULES:
+- Use spoken, everyday Marathi
+- A 10-12 year old should understand easily
+- Do NOT use difficult or Sanskrit-heavy Marathi
+- Do NOT add explanation or philosophy
+- Do NOT remove or add meaning
+- Slightly expand only if needed for clarity
+- If ambiguity exists, choose the most contextual meaning.
+- Do NOT summarize or interpret.
+
+SIMPLICITY RULE:
+- Avoid abstract words
+- Replace difficult words with short, clear phrases
+
+STRICTLY AVOID:
+- Words like: "स्वरूप", "तत्त्व", "भाव", "रूपता"
+- Long Sanskrit compound words
+
+STYLE:
+- Use natural Marathi like:
+  "मध्ये आहे", "तयार हो", "मिळेल", "टिकून आहे"
+- Prefer clarity over literal structure
+
+CONSISTENCY:
+- Use consistent meanings for key terms
+- Keep tone uniform across verses
+
+FINAL STEP (MANDATORY):
+- Recheck output
+- Simplify any difficult words again
+        </pre></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="note-section">
+    <button class="note-toggle-btn" aria-expanded="false" aria-controls="about-panel">
+      <span class="note-arrow">▶</span> हे स्तोत्र कोणाचे आणि कशाबद्दल आहे?
+    </button>
+    <div class="note-panel" id="about-panel" role="region">
+      <div class="note-inner">
+        <p>हे स्तोत्र समर्थ रामदासांनी लिहिले आहे. याला "भीमरूपी महारुद्र स्तोत्र" किंवा "संकटनिरसन मारुती स्तोत्र" असेही म्हणतात. पहिल्या तेरा श्लोकांत हनुमानाची नावे, त्याचे रूप, त्याची ताकद आणि त्याचा वेग सांगितला आहे. चौदाव्या आणि पंधराव्या श्लोकात हे स्तोत्र म्हटल्याने काय मिळते ते सांगितले आहे. शेवटच्या दोन श्लोकांत स्तोत्राची माहिती आणि हनुमानाच्या दर्शनाचे फळ सांगितले आहे.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-section">
+    <button class="note-toggle-btn" aria-expanded="false" aria-controls="names-panel">
+      <span class="note-arrow">▶</span> काही नावे आणि शब्द थोडक्यात
+    </button>
+    <div class="note-panel" id="names-panel" role="region">
+      <div class="note-inner">
+        <p>
+          <span class="note-item"><span class="note-key">भीमरूपी</span> — भीम म्हणजे भव्य, खूप मोठे. म्हणजे मोठे आणि भीतीदायक रूप असलेला.</span>
+          <span class="note-item"><span class="note-key">महारुद्र</span> — रुद्र म्हणजे शंकराचे एक रूप. हनुमानाला शंकराचा सर्वात मोठा अवतार मानले जाते.</span>
+          <span class="note-item"><span class="note-key">वज्र हनुमान</span> — दोन अर्थ सांगितले जातात. एक — त्याचे शरीर वज्रासारखे मजबूत आहे (वरच्या भाषांतरात हाच घेतला आहे). दुसरा — लहानपणी त्याने सूर्य गिळला तेव्हा इंद्राने आपले वज्र त्याच्या हनुवटीवर मारले; "हनु" म्हणजे हनुवटी, त्यावरूनच "हनुमान" हे नाव आले.</span>
+          <span class="note-item"><span class="note-key">मारुती / मरुत्</span> — मरुत् हे वाऱ्याचे एक नाव. वाऱ्याचा मुलगा म्हणून मारुती.</span>
+          <span class="note-item"><span class="note-key">प्रभंजन</span> — जोरदार वादळ; हेही वायुदेवाचे एक नाव आहे.</span>
+          <span class="note-item"><span class="note-key">वनारी</span> — वन + अरी, म्हणजे जंगलाचा शत्रू. लंकेत त्याने रावणाच्या बागा उधळून टाकल्या, त्यावरून हे नाव.</span>
+          <span class="note-item"><span class="note-key">पातालदेवता</span> — पाताळात राहणारे अहिरावण आणि महिरावण हे रावणाचे मित्र असलेले राक्षस.</span>
+          <span class="note-item"><span class="note-key">सात लोक</span> — भू, भुवः, स्वः, महः, जनः, तपः आणि सत्यम्. या सगळ्यांचा मालक म्हणून "लोकनाथ".</span>
+          <span class="note-item"><span class="note-key">काळाग्नी, काळरुद्राग्नी</span> — जग जाळून टाकणाऱ्या दोन भयंकर आगी; यमाचे दूत मानले जातात.</span>
+          <span class="note-item"><span class="note-key">आंवाळे</span> — आवळे. म्हणजे ब्रह्मांडे आवळ्याच्या फळांसारखी लहान वाटतील, एवढे मोठे दात.</span>
+          <span class="note-item"><span class="note-key">कांसोटी</span> — धोतराचा कमरेला खोचलेला भाग; काही ठिकाणी याला सोन्याची कौपीन म्हटले आहे.</span>
+          <span class="note-item"><span class="note-key">किंकिणी</span> — छोटे घुंगरू.</span>
+          <span class="note-item"><span class="note-key">मेरू, मंदार</span> — पुराणांत सांगितलेले दोन खूप मोठे पर्वत.</span>
+          <span class="note-item"><span class="note-key">द्रोणागिरी</span> — संजीवनी वनस्पती असलेला उत्तरेकडचा पर्वत, जो हनुमानाने उपटून आणला.</span>
+          <span class="note-item"><span class="note-key">शून्यमंडळ</span> — आकाशाच्या पलीकडची पूर्ण रिकामी जागा.</span>
+          <span class="note-item"><span class="note-key">समंध</span> — एक प्रकारची बाधा; भूत-प्रेतासारखीच मानली जाते.</span>
+          <span class="note-item"><span class="note-key">मंडणू</span> — शोभा, दागिना. म्हणजे माकडांच्या कुळाची शोभा.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="note-section">
+    <button class="note-toggle-btn" aria-expanded="false" aria-controls="variant-panel">
+      <span class="note-arrow">▶</span> काही ओळींचे दुसरे अर्थ आणि दुसरे पाठ
+    </button>
+    <div class="note-panel" id="variant-panel" role="region">
+      <div class="note-inner">
+        <p>जुन्या स्तोत्रांचे शब्द छापताना थोडे बदलतात. खाली मोठे फरक दिले आहेत, म्हणजे संदर्भ स्तंभ वाचताना गोंधळ होणार नाही.</p>
+        <p>
+          <span class="note-item"><span class="note-key">श्लोक २ — "दूत" की "धूर्त"?</span> काही पुस्तकांत "दूत वैष्णव गायका" असे आहे, म्हणजे रामाचा दूत. काहींत "धूर्त वैष्णव गायका" असे आहे, म्हणजे व्यवहारात हुशार, ज्याला कोणी फसवू शकत नाही. वरच्या भाषांतरात "दूत" घेतला आहे; संदर्भ स्तंभात "धूर्त" घेतला आहे.</span>
+          <span class="note-item"><span class="note-key">श्लोक २ — "दुःखहारी" / "शोकहर्ता"</span> दोन्हींचा अर्थ जवळपास एकच — दुःख दूर करणारा.</span>
+          <span class="note-item"><span class="note-key">श्लोक ५ — "ध्वजांगें उचली बाहो"</span> एक अर्थ — झेंड्यासारखा हात वर उचलून (वरच्या भाषांतरात हाच). दुसरा अर्थ — रामाचा विजयी झेंडा हातात धरून सैन्याच्या पुढे धावला.</span>
+          <span class="note-item"><span class="note-key">श्लोक ४ — पुण्यवंता, पुण्यशीला, पावना</span> काही जाणकार या तिघांचे वाटप असे करतात — शरीराने पवित्र, बोलण्याने पवित्र आणि मनाने पवित्र.</span>
+          <span class="note-item"><span class="note-key">श्लोक ७ — घंटा आणि घुंगरू कुठे?</span> काहींच्या मते ते कमरेच्या पट्ट्यावर आहेत, तर काहींच्या मते पायातील नूपुरांमध्ये आहेत.</span>
+          <span class="note-item"><span class="note-key">श्लोक १३ — "आरक्त देखिलें डोळां"</span> हा लहानपणीचा प्रसंग आहे — पाळण्यात असताना त्याने लाल सूर्य पाहिला आणि फळ समजून गिळला. काही भाषांतरांत "त्याचे डोळे रागाने लाल झाले" असा अर्थ घेतला जातो, पण ओळीतील रचना पाहता पहिला अर्थ जास्त योग्य वाटतो, म्हणून तोच घेतला आहे.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <main id="content" aria-label="Maruti Stotra verses"></main>
+</div>
+
+<script>
+/* ══ DATA ══════════════════════════════════════════
+   orig = मूळ पाठ
+   mar  = सोपे मराठी भाषांतर (या पानाचे)
+   ref  = इंटरनेटवर मिळणारे प्रचलित मराठी भाषांतर (अर्थ), जसे आहे तसे
+   viv  = त्याच पानावरील विवरण, जसे आहे तसे
+   refn = संदर्भ पानावरील श्लोक क्रमांक (आपल्यापेक्षा वेगळा असेल तेव्हाच)
+   ══════════════════════════════════════════════════ */
+const VERSES = [
+{ n:'१', id:'1',
+  orig:`भीमरूपी महारुद्रा वज्र हनुमान मारुती ।\nवनारी अंजनीसूता रामदूता प्रभंजना ॥१॥`,
+  mar:`तुझे रूप भीतीदायक आणि खूप मोठे आहे. तू महारुद्र आहेस, वज्रासारखा मजबूत हनुमान आहेस, मारुती आहेस. तू जंगले उधळून टाकणारा, अंजनीचा मुलगा, रामाचा दूत आणि वादळासारखा जोरदार आहेस.`,
+  ref:`हे हनुमंता, आपण भीमरूप, महारुद्र, वजहनुमान, मारुती, वनाचे शत्रु, माता अंजनीचे पुत्र प्रभू रामचंद्रांचे दूत आणि प्रभंजन आहात.`,
+  viv:`भीम म्हणजे भव्य अथवा विशाल. हनुमंत भव्य आणि विशाल आहेत म्हणून त्यांना 'भीमरूपी' म्हटले आहे. भगवान शंकराने रामाच्या सेवेसाठी अनेक अवतार घेतले. त्या प्रत्येक अवताराला रुद्र म्हणतात. त्यांतील हनुमंताचा अवतार सर्वांत महत्त्वाचा म्हणून 'महारुद्र' होय. बालपणी हनुमंताने सूर्य गिळला तेव्हा इंद्राने आपल्या वज्राने त्याच्या हनुवटीला आघात करून सूर्यबिंबाची सुटका केली म्हणून हनुमंताला 'वजहनुमान' म्हणतात. मरुत् हे वायूचे एक नाव आहे. हनुमंत वायुपुत्र असल्यामुळे त्यांना मारुती म्हणतात. लंकेत हनुमंताने रावणाच्या वनांचा विध्वंस केला म्हणून त्याला 'वनारी' म्हणतात. अंजनीदेवीचे पुत्र असल्यामुळे अंजनीसुत म्हणतात. सीतेचा शोध घेणे, रावणवधाची बातमी सीतेला सांगणे, राम अयोध्येत येत असल्याचा निरोप भरताला सांगणे अशा सर्व महत्त्वाच्या प्रसंगी प्रभू रामचंद्रांनी दूत म्हणून हनुमंताला पाठविले म्हणून ते 'रामदूत' आहेत. प्रभंजन हे वायुदेवांचेच एक नाव आहे. म्हणून हनुमंताला हाक मारताना 'प्रभंजना' असे संबोधिले. ही आठही विशेषणे हनुमंताची असून या विविध नावांनी समर्थ हनुमंताला साकडे घालीत आहेत.` },
+
+{ n:'२', id:'2',
+  orig:`महाबळी प्राणदाता सकळां उठवी बळें ।\nसौख्यकारी दुःखहारी दूत वैष्णव गायका ॥२॥`,
+  mar:`तू खूप ताकदवान आहेस आणि प्राण देणारा आहेस. तू तुझ्या ताकदीने झोपलेल्यांना उठवतोस. तू सुख देतोस आणि दुःख दूर करतोस. तू रामाचा दूत आहेस आणि देवाचे गुणगान गाणारा भक्त आहेस.`,
+  ref:`हे हनुमंता, आपण महाबळी आणि प्राणदाता असून झोपलेल्यांना जबरदस्तीने उठवता. आपण लोकांना सुख देणारे असून लोकांच्या दुःखाचे हरण करणारे आहात. आपण धूर्त, विष्णुस्वरूप आणि उत्तम गाणारे आहात.`,
+  viv:`आपल्या बळाची कुणाशीच तुलना करता येत नाही, म्हणून आपण 'महाबळी' आहात. रामरावण युद्धात लक्ष्मण बेशुद्ध पडला असता हनुमंताने संजीवनी वनस्पती आणून त्याचे प्राण वाचविले, म्हणून 'प्राणदाता' असे हनुमंताला संबोधिले. सकाळी युद्धसमयी हनुमंत सगळ्या वानरांना जबरदस्तीने उठवितो आणि युद्धाची प्रेरणा देतो. हनुमंताच्या कृपेने माणसाचा संसार सुखाचा होतो आणि त्याची संसारदुःखे नष्ट होतात. हनुमंताजवळ व्यवहारचातुर्य असल्यामुळे त्याला कुणीही फसवू शकणार नाही, म्हणून त्याला 'धूर्त' असे म्हटले. वैष्णव शब्दाचा विष्णुस्वरूप असा एक अर्थ होतो तर विष्णुभक्त असा दुसरा अर्थ होतो. रामचंद्र हे विष्णूचा अवतार असून हनुमान त्यांचे परमभक्त आहेत. म्हणून त्यांना 'वैष्णव' म्हटले आहे. ते निरंतर रामचरित्राचे गायन करतात म्हणून त्यांना 'गायका' अशी हाक मारली. विविध विशेषणांचा वापर करून समर्थ हनुमंताला आळवीत आहेत.` },
+
+{ n:'३', id:'3',
+  orig:`दीननाथा हरीरूपा सुंदरा जगदंतरा ।\nपातालदेवता हंता भव्यसिंदूरलेपना ॥३॥`,
+  mar:`तू गरीब आणि दुबळ्यांचा सांभाळ करतोस. तू हरीसारखाच आहेस, तू सुंदर आहेस आणि सगळ्या जगाच्या आत आहेस. पाताळातील अहिरावण आणि महिरावण या राक्षसांना मारणारा तू आहेस, आणि तुझ्या अंगावर सुंदर शेंदूर लावलेला आहे.`,
+  ref:`हे हनुमंता आपण दिनानाथ, हरीरूप, अतिशय सुंदर असून सर्व जगताच्या अंतर्यामी आहात. अहीरावण आणि महीरावण या पाताळातील देवतांना आपण ठार केलेत. आपल्या सर्वांगाला शेंदूर लावल्यावर आपण भव्य दिसता.`,
+  viv:`जे गरीब आहेत, शरणागत आहेत त्यांना हनुमंत आधार देतात. म्हणून त्यांना 'दिनानाथ' म्हटले. हनुमंत दिसायला अतिशय सुंदर आहेत. त्यांचे सौंदर्य चित्ताचे हरण करते म्हणून त्यांना 'हरीरूप' असे संबोधिले. हनुमंत श्वासोच्छ्वासाच्या रूपाने सगळ्या जगताच्या अंतर्यामी वास करून आहेत. अहीरावण आणि महीरावण हे दोन्ही राक्षस रावणाचे मित्र होते. त्यांचा वध करून हनुमंताने रामचंद्रांच्या विजयाचा मार्ग निष्कंटक बनवला. हनुमंताला शेंदूर वहाण्याची पद्धत आजही आहे. शेंदरी रंग भगव्या रंगाला जवळचा असून त्यागाचे प्रतीक आहे आणि हनुमंताचे जीवन म्हणजे मूर्तिमंत त्याग आहे.` },
+
+{ n:'४', id:'4',
+  orig:`लोकनाथा जगन्नाथा प्राणनाथा पुरातना ।\nपुण्यवंता पुण्यशीला पावना परितोषका ॥४॥`,
+  mar:`तू सगळ्या लोकांचा मालक, जगाचा मालक आणि प्राणांचा मालक आहेस. तू खूप जुना म्हणजे कायम असणारा आहेस. तू पुण्यवान आहेस, तुझे वागणे चांगले आहे, तू सगळ्यांना पवित्र करतोस आणि सगळ्यांना खुश करतोस.`,
+  ref:`हे हनुमंता, आपण लोकनाथ आहात, जगन्नाथ आहात आणि प्राणनाथही आहात. आपण अत्यंत पुरातन आहात. आपण पुण्यवन्त, पुण्यशील आणि पवित्र असून भक्तांना तृप्त करता.`,
+  viv:`भू, भुवः स्वः, महः, जनः, तपः आणि सत्यम् हे सातही लोक वायूच्या सत्तेवर जगतात. म्हणून हनुमंताला 'लोकनाथ' म्हटले आहे. ज्या जगात आपण रहात आहोत त्या जगातील साऱ्या जीवांना वायुतत्त्वाचाच आधार आहे म्हणून हनुमान 'जगन्नाथ' आहेत. आपल्यामध्ये जी प्राणशक्ती आहे ती हनुमंताचीच असल्यामुळे हनुमंत आपल्या प्राणाचे नाथ आहेत. महावीर हनुमान हे चिरंतन ब्रह्मतत्त्व असल्यामुळे त्यांना 'पुरातन' या शब्दाने संबोधिले आहे. पावित्र्य तीन प्रकारचे असते. १) कायिक, २) वाचिक, ३) मानसिक. हनुमंत पुण्यवन्त आहेत, म्हणजे शरीराने पवित्र आहेत. ते पुण्यशील आहेत याचा अर्थ त्यांची वाणी पवित्र आहे. हनुमंत मनाने देखील पवित्र आहेत म्हणून त्यांना पावन म्हटले आहे. भक्तांच्या इच्छा पूर्ण करून ते त्यांना संतोष देतात म्हणून त्यांना 'परितोषका' अशी हाक समर्थ मारतात.` },
+
+{ n:'५', id:'5',
+  orig:`ध्वजांगें उचली बाहो आवेशें लोटला पुढी ।\nकाळाग्नी काळरुद्राग्नी देखतां कापती भयें ॥५॥`,
+  mar:`झेंड्यासारखा हात वर उचलून तू जोरात पुढे धावलास. तुला पाहून काळाची आग आणि काळरुद्राची आग सुद्धा भीतीने कापायला लागते.`,
+  ref:`रामचंद्रांचा विजयी ध्वज आपल्या हातात धरून आपण मोठ्या आवेशात सर्व सैन्याच्या पुढे निघालात. आपले हे रौद्र रूप पाहून काळाग्नि आणि काळरुद्राग्नि देखील आपण मरणार या भीतीने थरथर कापू लागतात.`,
+  viv:`युद्धामध्ये ध्वजाची तुकडी महत्त्वाची समजली जाते. ध्वज खाली पडता कामा नये म्हणून ध्वजाची जबाबदारी अत्यंत पराक्रमी माणसाकडे सोपविली जाते. रामचंद्रांच्या सैन्यात ही धुरा हनुमंताने सांभाळली. प्रभूंच्या शत्रूचे निर्दालन करायचे म्हटले की, हनुमंतांना आवेश चढतो. हनुमंताचा हा आवेश एवढा महाभयंकर प्रलयंकारी असतो की, अशा वेळी कोणालाही 'आता आपले काही खरे नाही, आता आपण जगत नाही' अशी भीती निर्माण होते. माणसांना ग्रासणारे काळाग्नि आणि काळरुद्राग्नि हे यमाचे दूतही हनुमंताला घाबरतात.` },
+
+{ n:'६', id:'6',
+  orig:`ब्रह्मांडें माईलीं नेणों आंवाळे दंतपंगती ।\nनेत्राग्नी चालिल्या ज्वाळा भ्रुकुटी ताठिल्या बळें ॥६॥`,
+  mar:`तुझ्या दातांच्या रांगा इतक्या मोठ्या आहेत की त्यांत कितीतरी ब्रह्मांडे आवळ्यांसारखी सहज मावतील. तुझ्या डोळ्यांतून आगीच्या ज्वाळा निघत आहेत आणि तुझ्या भुवया जोराने ताठ झाल्या आहेत.`,
+  ref:`हे हनुमंता, युद्धप्रसंगी रागाच्या भरात आपण जेव्हा दात-ओठ खाता तेव्हा सगळे ब्रह्मांड आपल्या मुखात मावेल असे वाटू लागते. क्रोधाने आपण आपल्या भिवया ताणून धरता तेव्हा आपल्या संतप्त नेत्रांतून जणू तांबड्या ज्वाळा बाहेर पडत असतात.`,
+  viv:`रामचंद्रांचे विरोधक पाहिले की मारुतराय संतापतात. त्यांच्या क्रोधाचे भयानक वर्णन समर्थ करतात. विश्वरूप दर्शनप्रसंगी सगळे ब्रह्मांड भगवान श्रीकृष्णांच्या कराल दाढेखाली भरईले जाताना अर्जुनाने पाहिले. युद्धावर निघालेल्या हनुमंताचे ध्यान पाहून समर्थाना हनुमंतामध्ये श्रीकृष्णासारखे अक्राळ-विक्राळ स्वरूप दिसले. हनुमंताचे डोळे क्रोधाने लाल झाले असल्यामुळे त्याला रावणाच्या उद्यानातील पांढऱ्या जास्वंदाची फुले तांबडी दिसली होती, असा स्पष्ट उल्लेख समर्थ चरित्रात येऊन जातो. भक्तासाठी मात्र हनुमान सौम्य आणि सोज्वळ रूप घेतात, त्याचे वर्णन पुढील श्लोकात आढळते.` },
+
+{ n:'७', id:'7',
+  orig:`पुच्छ तें मुरडिलें माथां किरीटी कुंडलें बरीं ।\nसुवर्ण कटी कांसोटी घंटा किंकिणी नागरा ॥७॥`,
+  mar:`तुझी शेपटी वळवून डोक्यावर घेतली आहे. डोक्यावर मुकुट आणि कानात सुंदर कुंडले आहेत. कमरेला सोन्याचा कासोटा आहे आणि त्यावर घंटा व छोटे घुंगरू सुंदर वाजत आहेत.`,
+  ref:`आपण आपली शेपटी व्यवस्थित वळवून मस्तकाजवळ आणून ठेवली आहे. या शेपटीच्या पार्श्वभूमीवर आपल्या मस्तकावरील मुकुट आणि कानांतील कुंडले शोभून दिसतात. आपल्या कमरेला सोन्याची कौपिन झळकते आहे, तर चरणांमध्ये असलेल्या नूपुरांमधील घंटा चालताना किणकिण वाजत असतात.`,
+  viv:`हनुमंताचे सारे बल त्याच्या शेपटीमध्ये आहे. एखाद्या विजयी ध्वजाप्रमाणे सर्वांना दिसण्यासाठी शेपूट मुद्दाम मस्तकाच्या वर आणून ठेवले आहे. कर्णाच्या छातीवर ज्याप्रमाणे जन्मतःच सोन्याचे कवच आणि कानात सोन्याची कुंडले होती त्याप्रमाणे हनुमंताची सोन्याची कौपिन जन्मतःच स्वयंभू आहे. चरणातील नूपुरांचा घंटानाद पावलोगणिक भक्तांना रक्षणाचे आश्वासन देत रहातो.` },
+
+{ n:'८', id:'8',
+  orig:`ठकारे पर्वता ऐसा नेटका सडपातळू ।\nचपळांग पाहतां मोठें महाविद्युल्लतेपरी ॥८॥`,
+  mar:`तू पर्वतासारखा उंच आणि भक्कम उभा दिसतोस, तरी तुझे शरीर नीटनेटके आणि सडपातळ आहे. तुझे शरीर पाहताच कळते की ते मोठ्या विजेसारखे चपळ आहे.`,
+  ref:`हे हनुमंता, आपण मुळात सडपातळ असून आपले शरीरसौष्ठव प्रमाणबध्द आहे. मात्र युद्धसमयी आपण जेव्हा विराट रूप धारण करता तेव्हा एखादा पर्वतच समोर उभा ठाकला आहे असे वाटू लागते. एखाद्या विद्युल्लतेप्रमाणे आपले शरीर चपळ आहे.`,
+  viv:`महावीर हनुमंतांना अष्टसिध्दी प्राप्त आहेत. त्यामुळे ते केव्हाही अत्यंत लघुरूप किंवा प्रचंड विशाल रूप धारण करू शकतात. सर्वप्रथम लंकेत प्रवेश करताना हनुमंताने माशीएवढे लघुरूप धारण केले होते तर सुरसी नामक राक्षसिणीने हनुमंताला गिळण्याचा प्रयत्न केला तेव्हा ते पर्वतासारखे मोठे झाले. शारीरिक चापल्य हा युद्धकलेतील अपरिहार्य गुण आहे. लड्डू माणूस चपळ नसतो. हनुमंत नेटके सडपातळ असल्यामुळे डोळ्याचे पाते लवते ना लवते तोच एखादी क्रिया करतात. विजेचा अंदाज करता येत नाही, त्याप्रमाणे शत्रूला हनुमंताच्या हालचालीचा अंदाज करता येत नाही.` },
+
+{ n:'९', id:'9',
+  orig:`कोटिच्या कोटि उड्डाणें झेपावे उत्तरेकडे ।\nमंदाद्रीसारिखा द्रोणू क्रोधें उत्पाटिला बळें ॥९॥`,
+  mar:`तू कोट्यवधी उड्डाणे घेत उत्तरेकडे झेपावतोस. मंदार पर्वतासारखा मोठा द्रोणागिरी पर्वत तू रागाने आणि ताकदीने उपटून काढलास.`,
+  ref:`आपल्या लीलाचरित्रात आपल्या उड्डाणाचे असंख्य प्रसंग आहेत आणि नाना प्रकार आहेत. विशेषतः लक्ष्मण बेशुद्ध पडल्यावर आपण उत्तरेकडे झेपावलात तेव्हा रागाच्या भरात मंदराचलासारखा द्रोणागिरी पर्वत आपण मुळासकट उपटून काढला तो प्रसंग मोठा विलक्षण म्ह लागेल.`,
+  viv:`हनुमत् चरित्रात त्याचे पुच्छ हा जसा समर्थांच्या कौतुकाचा विषय आहे तसेच त्याचे उड्डाण देखील अद्भुत आहे. हनुमंताला तरुणपणी ऋषींच्या शापामुळे स्वसामर्थ्याचे विस्मरण झाले होते, तेव्हा जांबुवंताने त्याची अस्मिता जागी केली. त्या वेळेस त्याने लंकेत केलेले उड्डाण मोठे अविस्मरणीय ठरले. गरुडापेक्षाही हनुमंताची गती जास्त असून युद्धकांडात समर्थ हनुमंताच्या उड्डाणाचे वारंवार वर्णन करीत रहातात.` },
+
+{ n:'१०', id:'10',
+  orig:`आणिला मागुतीं नेला आला गेला मनोगती ।\nमनासी टाकिलें मागें गतीसी तूळणा नसे ॥१०॥`,
+  mar:`तो पर्वत तू आणलास आणि परत नेऊन ठेवलास. मनाच्या वेगाने तू आलास आणि गेलास. तू मनालाही मागे टाकलेस; तुझ्या वेगाची कोणाशी तुलनाच होऊ शकत नाही.`,
+  ref:`आपले आश्चर्य हे की, आपण लंकेत आणलेला द्रोणागिरी पर्वत परत उत्तरेकडे जागेवर नेऊन ठेवला. दोन वेळा आपण उत्तरेचा प्रवास मनाच्या चपळाईने केला. वस्तुतः ज्यांनी आपली गती पाहिली त्यांच्या ध्यानात येईल की, आपल्या उड्डाणाची गती मनाला मागे टाकणारी आहे. त्यामुळे आपल्या गतीशी तुलना करता येईल अशी एकही वस्तू जगात नाही.`,
+  viv:`हनुमंत देहाने जसे नेटके आहेत तसे त्यांचे वागणे देखील नेटके आहे. काम झाल्यावर वस्तू जेथून घेतली त्याच जागेवर तशीच ठेवून देण्याचा त्यांचा कटाक्ष दिसतो. म्हणून द्रोणागिरी पर्वत परत त्यांनी जागेवर नेऊन ठेवला. ब्रह्मांडात असा बराच भाग आहे की, जिथे मन पोहोचू शकत नाही. मात्र जिथे मन पोहोचत नाही तिथे हनुमंत जाऊ शकतात. परब्रह्माला ज्याप्रमाणे आकाशाची उपमा सर्वात सूक्ष्म म्हणून दिली जाते त्याप्रमाणे हनुमंताच्या गतीला मनाची उपमा त्यातल्या त्यात चपळ म्हणून दिली जाते. याचा अर्थ ती उपमा परिपूर्ण आहे असा नव्हे.` },
+
+{ n:'११', id:'11',
+  orig:`अणूपासोनि ब्रह्मांडा येवढा होत जात असे ।\nतयासी तुळणा कोठें मेरुमांदार धाकुटे ॥११॥`,
+  mar:`तू अणूएवढा लहान होतोस आणि ब्रह्मांडाएवढा मोठाही होतोस. अशा तुझी तुलना कोणाशी करावी? मेरू आणि मंदार हे मोठे पर्वत सुद्धा तुझ्यापुढे लहान आहेत.`,
+  ref:`हे हनुमंता, आपण अणूपासून ब्रह्मांडाएवढे मोठे होत जाता. आपल्या या विशाल रूपाला तुलनाच नाही. विशालतेबद्दल प्रसिद्ध असलेले मेरू आणि मंदार हे पर्वत आपल्यापुढे चिमुकले वाटू लागतात.`,
+  viv:`विष्णुपुराणात मेरु आणि मंदार या पर्वतांच्या विशालतेचे वर्णन आहे. महर्षी वाल्मिकींनी रामायणात हनुमंताच्या विशालतेची तुलना मेरु आणि मंदार यांच्याशी केली. पण समर्थांच्या मते हनुमंताच्या तुलनेने मेरु आणि मंदार हे दोन्ही पर्वत लहान आहेत. उपनिषदामध्ये आत्म्याचे वर्णन करताना अणूहून लहान आणि महानाहून महान असे केले आहे. मारुतीराय आत्मस्वरूप असल्यामुळे अत्यंत सूक्ष्म आणि सर्वव्यापी होऊ शकतात.` },
+
+{ n:'१२', id:'12',
+  orig:`ब्रह्मांडाभोंवते वेढे वज्रपुच्छें करूं शके ।\nतयासि तुळणा कैंची ब्रह्मांडीं पाहतां नसे ॥१२॥`,
+  mar:`तुझ्या वज्रासारख्या शेपटीने तू पूर्ण ब्रह्मांडाभोवती वेढे घालू शकतोस. तुझ्या तोडीचे शोधले, तरी या ब्रह्मांडात कोणीही सापडत नाही.`,
+  ref:`हे हनुमंता, आपले वज्रपुच्छ एवढे लांब होऊ शकते की, त्या द्वारे अवघ्या ब्रह्मांडाला गुंडाळता येईल. अशा परिस्थितीत संपूर्ण ब्रह्मांडात असा एकही शोधून सापडणार नाही, की ज्याच्याशी आपल्या वज्रपुच्छाची तुलना करता येईल.`,
+  viv:`हनुमंत वज्रकाय असल्यामुळे त्यांच्या शेपटीत विलक्षण सामर्थ्य आहे. ते आपल्या पुच्छाने वाटेल तो पराक्रम करू शकतात. याचे प्रत्यंतर राम-रावण युद्ध प्रसंगी आले. गदेने एका वेळी एकाच माणसाला मारता येते. परंतु हनुमंतांची शेपटी ब्रह्मांडव्यापी असल्यामुळे ते हजारो राक्षसांना एकाच वेळी धरून आपटतात आणि मुक्ती देतात. वज्रपुच्छ ब्रह्मांडव्यापी आहे याचा सूक्ष्म अर्थ असा की, हनुमंत परब्रह्मस्वरूप असल्यामुळे त्यांनी आपल्या सूक्ष्म शक्तीने सारे ब्रह्मांड व्यापले आहे. ज्या प्रमाणे कोशातील किडा आपल्या तंतूने स्वतःला वेढून घेतो त्याप्रमाणे हनुमंत आपल्या पुच्छा ब्रह्मांड वेढून टाकतात.` },
+
+{ n:'१३', id:'13',
+  orig:`आरक्त देखिलें डोळां ग्रासिलें सूर्यमंडळा ।\nवाढतां वाढतां वाढे भेदिलें शून्यमंडळा ॥१३॥`,
+  mar:`तू आपल्या डोळ्यांनी लाल सूर्य पाहिला आणि त्याला गिळून टाकले. तू वाढत वाढत इतका वाढलास की आकाशाच्या पोकळीच्या पलीकडे जाऊन पोहोचलास.`,
+  ref:`हे भगवंता, आपणास पाळण्यात ठेवून अंजनीमाता बाहेर गेली असता आपण आरक्तवर्ण सूर्यबिंब पाहिले. फळ समजून आपण ते गिळले. सूर्यबिंब गिळण्यासाठी आपल्याला खूप मोठे व्हावे लागले. मोठे होत असताना आपण वाढत वाढत सूर्यमंडळ ग्रासून टाकले.`,
+  viv:`हनुमंताच्या बालपणीची ही कथा सर्वश्रुत आहे. अंजनीमातेच्या दुधाचा प्रभावच एवढा विलक्षण होता की, त्यामुळे सूर्यमंडळ ग्रासण्याची ताकद आपल्यामध्ये बालपणीच आली. शून्यमंडळ भेदले याचा आध्यात्मिक अर्थ असा की, बालपणीच हनुमंत ज्ञानस्वरूप असल्यामुळे त्यांनी शून्यवादाचा निरास केला. अनेक साधक ब्रह्मचिंतन करताना शून्यवादात अडकण्याची शक्यता असते. मात्र हनुमंतांनी रामचंद्रांच्या सगुण भक्तीची कास धरल्यामुळे ते शून्यवादात अडकले नाहीत.` },
+
+{ n:'१४', id:'14',
+  orig:`धनधान्यपशुवृद्धी पुत्रपौत्र समग्रही ।\nपावती रूपविद्यादी स्तोत्रपाठें करूनियां ॥१४॥`,
+  mar:`हे स्तोत्र म्हटल्याने माणसाला पैसा, धान्य, गुरे आणि मुले-नातवंडे हे सर्व वाढून मिळते. तसेच त्याला चांगले रूप आणि ज्ञान सुद्धा मिळते.`,
+  ref:``,
+  viv:`` },
+
+{ n:'१५', id:'15', refn:'१४',
+  orig:`भूतप्रेतसमंधादी रोगव्याधी समस्तही ।\nनासती तूटती चिंता आनंदे भीमदर्शने ॥१५॥`,
+  mar:`भूत, प्रेत, समंध असे सगळे आणि सर्व आजार नाहीसे होतात. हनुमानाचे दर्शन घेतल्याने आनंद होतो आणि सगळी काळजी संपते.`,
+  ref:`हे हनुमंता, आपल्या भव्य दर्शनाचा लाभ असा विलक्षण आहे की, त्या द्वारे सर्व शारीरिक आणि मानसिक आजार, सर्व प्रकारची काळजी एवढेच नव्हे तर भूत, प्रेत, समंध यांच्याद्वारे होणारा त्रास कायमचा नाहीसा होऊन भक्ताला आनंदाची प्राप्ती होते.`,
+  viv:`रावण हा अघोरी विद्येचा स्वामी असल्यामुळे सीतेला भूत, पिशाच्च, समंध, ग्रह-नक्षत्र, जारण-मारण अशा भीषण प्रयोगाद्वारे घाबरवून टाकीत होता. अनेकदा सीतामातेच्या मनात आत्महत्येचे विचार येत होते. हनुमंताच्या दर्शनानंतर सीतेचा अघोरी विद्येपासून होणारा सर्व त्रास थांबला. तसेच 'राम-लक्ष्मण' सध्या कुठे आहेत? कसे आहेत? ही चिंता नाहीशी झाली. म्हणून रोज सकाळी हनुमंताच्या मंदिरात जाऊन मारुतीचे दर्शन घ्यावे असा शास्त्राचा संकेत आहे. लहान मुलांना बाहेरची बाधा होऊ नये म्हणून रोज भीमरूपी स्तोत्र म्हणायला सांगितले जाते.` },
+
+{ n:'१६', id:'16', refn:'१५',
+  orig:`हे धरा पंधराश्लोकी लाभली शोभली बरी ।\nदृढदेहो निसंदेहो संख्या चंद्रकळागुणें ॥१६॥`,
+  mar:`हे पंधरा श्लोकांचे स्तोत्र मिळाले आहे, ते नीट लक्षात ठेवा. ते खूप चांगले आणि शोभून दिसणारे आहे. हे म्हटल्याने शरीर मजबूत होते, यात शंका नाही. या श्लोकाबरोबर श्लोकांची संख्या चंद्राच्या कलांएवढी म्हणजे सोळा होते.`,
+  ref:`हे हनुमंता, हे पंधरा श्लोक म्हणजे चंद्राच्या प्रतिपदा ते पौर्णिमा अशा पंधरा कला आहेत. पंधरा श्लोकांद्वारे आपले केलेले हे स्तवन आम्हाला चांगले लाभदायी ठरले. त्यामुळे आमचे शरीर सुदृढ झाले आणि मन निःशंक झाले.`,
+  viv:`वस्तुतः चंद्राच्या अमावस्या ते पौर्णिमा अशा सोळा कला आहेत. हनुमंत ब्रह्मरूप असल्याने या सोळा कलांच्या अतीत अशी सतरावी जीवनकला आहेत. लौकिकदृष्ट्या त्यांचा जन्म पौर्णिमेला झाला असल्यामुळे पंधरा कलांचा हा पुष्पहार समर्थ हनुमंताला वहातात. आपण जर नियमितत्रणे या स्तोत्राचे पठण केले तर आपणासही हनुमंताच्या कृपेने उत्तम प्रकारचे शारीरिक आणि मानसिक आरोग्य प्राप्त होईल.` },
+
+{ n:'१७', id:'17', refn:'१६',
+  orig:`रामदासी अग्रगण्यू कपिकुळासि मंडणू ।\nरामरूपी अंतरात्मा दर्शने दोष नासती ॥१७॥`,
+  mar:`रामाच्या सेवकांमध्ये तू सर्वात पुढे आहेस आणि माकडांच्या कुळाची शोभा आहेस. तुझ्या मनात राम भरून राहिला आहे. तुझे दर्शन घेतल्याने सगळे दोष नाहीसे होतात.`,
+  ref:`हे हनुमंता, समस्त रामभक्तांमध्ये आपण सर्वश्रेष्ठ आहात. आपल्यामुळे वानरकुळाला प्रतिष्ठा मिळाली. आपण रामस्वरूप असून सर्वांच्या अंतर्यामी आहात. आपल्या दर्शनाने समस्त दोषांचा परिहार होतो.`,
+  viv:`रामायणात रामभक्तांची मोठी यादी करता येईल. महाराज दशरथ, कौसल्यामाता, सीता, लक्ष्मण, भरत, गुह, सुग्रीव, बिभीषण आणि हनुमान. पण या सर्व रामभक्तांमध्ये हनुमंताचे स्थान सर्वश्रेष्ठ आहे. हनुमंताची जेवढी मंदिरे आढळतात तेवढी अन्य कुणाही रामभक्ताची नाहीत. प्रवासात, विशेषतः शनिवारी एखादे वानर दिसले की आपण मारुतीरायाचे दर्शन झाले असे म्हणतो. हनुमंतामुळे वानर जातीचे महत्त्व वाढले. माणूस नराचा नारायण तर होऊ शकतोच पण वानरही नारायणस्वरूप होऊ शकते हे हनुमंताने सिद्ध केले. सतत रामचिंतनाने हनुमंत रामस्वरूप झाले, तर प्राणस्पंदनांच्या रूपाने आपणा सर्वांचा ते अंतरात्मा ठरले. रोज अशा प्रकारच्या दिव्य हनुमंताचे दर्शन घेतल्यास आपले सारे दोष नाहीसे होतात.` }
+];
+
+/* ══ RENDER ═════════════════════════════════════════ */
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const brk = s => esc(s).split('\n').join('<br>');
+
+function render() {
+  let html = `<section class="chapter-block" id="section-stotra" aria-labelledby="ct-stotra">
+    <div class="chapter-heading">
+      <span class="chapter-num" aria-hidden="true">१७</span>
+      <div class="chapter-title-wrap"><h2 class="chapter-name" id="ct-stotra">श्री मारुती स्तोत्र · भीमरूपी महारुद्रा</h2></div>
+    </div>
+    <div class="verse verse-legend" aria-hidden="true">
+      <div class="verse-num-col"></div>
+      <div class="orig-col">मूळ पाठ</div>
+      <div class="marathi-col">सोपे मराठी</div>
+      <div class="ref-col">संदर्भ भाषांतर</div>
+    </div>`;
+
+  for (const v of VERSES) {
+    let refHtml;
+    if (!v.ref) {
+      refHtml = `<span class="ref-missing">हा श्लोक संदर्भ पानावर दिलेला नाही.</span>`;
+    } else {
+      refHtml = (v.refn ? `<span class="ref-num">संदर्भ क्र. ${esc(v.refn)}</span><br>` : '')
+        + esc(v.ref)
+        + (v.viv ? `<details><summary>विवरण</summary><div class="ref-vivaran">${esc(v.viv)}</div></details>` : '');
+    }
+
+    html += `<article class="verse" id="verse-${v.id}" aria-label="Verse ${v.n}">
+      <div class="verse-num-col"><span class="vnum">${esc(v.n)}</span></div>
+      <div class="orig-col" lang="mr">${brk(v.orig)}</div>
+      <div class="marathi-col" lang="mr">${esc(v.mar)}</div>
+      <div class="ref-col" lang="mr">${refHtml}</div>
+    </article>`;
+  }
+
+  html += `<div class="closing-line">
+      ॥ इति श्रीरामदासकृतं संकटनिरसनं मारुतिस्तोत्रं संपूर्णम् ॥
+      <span class="closing-mar">अशा प्रकारे समर्थ रामदासांनी लिहिलेले, संकट दूर करणारे मारुती स्तोत्र पूर्ण झाले.</span>
+    </div></section>`;
+
+  document.getElementById('content').innerHTML = html;
+}
+render();
+
+/* ══ CONTROLS ═══════════════════════════════════════ */
+(function(){
+  const sel = document.getElementById('section-select');
+  for (const v of VERSES) {
+    const opt = document.createElement('option');
+    opt.value = 'verse-' + v.id;
+    opt.textContent = `श्लोक ${v.n}`;
+    sel.appendChild(opt);
+  }
+  sel.addEventListener('change', function() {
+    if (!this.value) return;
+    document.getElementById(this.value)?.scrollIntoView({behavior:'smooth', block:'center'});
+    this.value = '';
+  });
+})();
+
+/* Column toggles */
+function makeToggle(togId, trackId, bodyClass, startOn) {
+  const togEl = document.getElementById(togId);
+  const trackEl = document.getElementById(trackId);
+  let on = startOn;
+  function set(v) {
+    on = v;
+    trackEl.classList.toggle('on', on);
+    togEl.setAttribute('aria-pressed', String(on));
+    document.body.classList.toggle(bodyClass, !on);
+  }
+  set(startOn);
+  togEl.addEventListener('click', () => set(!on));
+  togEl.addEventListener('keydown', e => {
+    if (e.key==='Enter'||e.key===' ') { e.preventDefault(); set(!on); }
+  });
+}
+makeToggle('orig-toggle', 'orig-track', 'hide-orig', false);
+makeToggle('ref-toggle',  'ref-track',  'hide-ref',  true);
+
+/* Scroll hide/show nav */
+(function(){
+  const nav = document.getElementById('sticky-nav');
+  let last = 0, tick = false;
+  window.addEventListener('scroll', () => {
+    if (tick) return; tick = true;
+    requestAnimationFrame(() => {
+      const y = window.scrollY;
+      if (y > last+8 && y > 80) nav.classList.add('hidden');
+      else if (y < last-5) nav.classList.remove('hidden');
+      last = y; tick = false;
+    });
+  }, {passive:true});
+})();
+
+/* Prompt panel */
+(function(){
+  const btn = document.getElementById('prompt-toggle-btn');
+  const panel = document.getElementById('prompt-panel');
+  btn.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+})();
+
+/* Note panels */
+document.querySelectorAll('.note-toggle-btn').forEach(btn => {
+  const panel = document.getElementById(btn.getAttribute('aria-controls'));
+  btn.addEventListener('click', () => {
+    const open = panel.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+  });
+});
+</script>
+</body>
+</html>
