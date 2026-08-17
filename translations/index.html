@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>सोपे मराठी भाषांतर</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Devanagari:wght@300;400;500;600&family=Noto+Sans+Devanagari:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --bg:          #121314;
+    --surface:     #181818;
+    --border:      rgba(255,255,255,0.05);
+    --border2:     #313131;
+    --marathi:     #BCBEBF;
+    --muted:       #504940;
+    --muted2:      #736960;
+    --gold:        #b89b4a;
+    --gold-dim:    rgba(200,168,75,0.11);
+    --gold-border: rgba(200,168,75,0.25);
+    --accent:      #9a7438;
+    --max-w:       620px;
+    --font-main:   "Noto Serif Devanagari", serif;
+    --font-ui:     "Noto Sans Devanagari", sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 16px; }
+
+  body {
+    background: var(--bg);
+    color: var(--marathi);
+    font-family: var(--font-main);
+    font-size: 1.13rem;
+    line-height: 1.88;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 0; opacity: 0.55;
+  }
+
+  #page {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 4.5rem 1.25rem 5rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ─── Header ──────────────────────────────────── */
+  .site-header {
+    text-align: center;
+    margin-bottom: 2.6rem;
+    padding-bottom: 1.8rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .om {
+    display: block;
+    font-size: 1.55rem;
+    color: var(--gold);
+    opacity: 0.75;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+  .site-title {
+    font-size: clamp(1.28rem, 3.7vw, 1.6rem);
+    font-weight: 600;
+    color: #ece4ce;
+    line-height: 1.45;
+    margin-bottom: 0.32rem;
+  }
+  .site-subtitle-en {
+    font-family: var(--font-ui);
+    font-weight: 400;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    color: var(--marathi);
+    opacity: 0.82;
+    margin-bottom: 1rem;
+  }
+  .site-desc {
+    color: var(--muted2);
+    line-height: 1.72;
+    font-size: 0.95rem;
+  }
+
+  /* ─── List ────────────────────────────────────── */
+  .toc { list-style: none; }
+  .toc li + li { margin-top: 0.85rem; }
+
+  .toc a {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 2px solid var(--border2);
+    border-radius: 4px;
+    padding: 1.05rem 1.25rem;
+    text-decoration: none;
+    color: inherit;
+    transition: border-left-color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .toc a:hover, .toc a:focus-visible {
+    border-left-color: var(--accent);
+    border-color: var(--gold-border);
+    background: #1c1c1c;
+    outline: none;
+  }
+
+  .toc-num {
+    font-family: var(--font-ui);
+    font-size: 0.6rem;
+    color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid var(--gold-border);
+    border-radius: 3px;
+    padding: 0.1rem 0.34rem;
+    opacity: 0.75;
+    flex-shrink: 0;
+    line-height: 1.6;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .toc-body { flex: 1; }
+  .toc-name {
+    font-size: 1.08rem;
+    font-weight: 500;
+    color: #d5ccb5;
+    line-height: 1.5;
+  }
+  .toc-en {
+    display: block;
+    font-family: var(--font-ui);
+    font-size: 0.72rem;
+    letter-spacing: 0.07em;
+    color: var(--muted2);
+    line-height: 1.7;
+  }
+  .toc-meta {
+    display: block;
+    font-size: 0.86rem;
+    color: var(--muted2);
+    line-height: 1.7;
+    margin-top: 0.3rem;
+  }
+  .toc-arrow {
+    color: var(--muted);
+    font-size: 0.7rem;
+    flex-shrink: 0;
+    transition: color 0.2s, transform 0.2s;
+  }
+  .toc a:hover .toc-arrow { color: var(--gold); transform: translateX(2px); }
+
+  .foot {
+    margin-top: 2.6rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.86rem;
+    color: var(--muted2);
+    line-height: 1.75;
+  }
+  .foot a { color: var(--muted2); text-decoration-color: var(--muted); text-underline-offset: 3px; }
+  .foot a:hover { color: var(--gold); text-decoration-color: var(--gold); }
+
+  @media (max-width: 600px) {
+    #page { padding: 3rem 1.1rem 4rem; }
+    .toc a { padding: 0.9rem 1rem; gap: 0.75rem; }
+    .toc-num { display: none; }
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  ::selection { background: rgba(200,168,75,0.18); color: #f0e8d0; }
+</style>
+</head>
+<body>
+
+<div id="page">
+  <header class="site-header">
+    <span class="om">ॐ</span>
+    <h1 class="site-title">सोपे मराठी भाषांतर</h1>
+    <p class="site-subtitle-en">Simple Marathi Translations</p>
+    <p class="site-desc">
+      संस्कृत आणि जुन्या मराठीतील श्लोकांचे सोपे मराठी भाषांतर.
+      अर्थ जसा आहे तसाच ठेवून, अगदी सोप्या रोजच्या मराठीत लिहिले आहे.
+    </p>
+  </header>
+
+  <ul class="toc">
+    <li>
+      <a href="bhagavad-gita-marathi-translation.html">
+        <span class="toc-num">०१</span>
+        <span class="toc-body">
+          <span class="toc-name">श्रीमद भगवद्गीता</span>
+          <span class="toc-en">Shrimad Bhagavad Gita</span>
+          <span class="toc-meta">१८ अध्याय · ७०० श्लोक · संस्कृत श्लोकांसह</span>
+        </span>
+        <span class="toc-arrow" aria-hidden="true">▶</span>
+      </a>
+    </li>
+    <li>
+      <a href="hanuman-chalisa-marathi-translation.html">
+        <span class="toc-num">०२</span>
+        <span class="toc-body">
+          <span class="toc-name">हनुमान चालीसा</span>
+          <span class="toc-en">Hanuman Chalisa</span>
+          <span class="toc-meta">२ दोहे · ४० चौपाई · १ दोहा · मूळ पाठ आणि संदर्भ भाषांतरासह</span>
+        </span>
+        <span class="toc-arrow" aria-hidden="true">▶</span>
+      </a>
+    </li>
+    <li>
+      <a href="maruti-stotra-marathi-translation.html">
+        <span class="toc-num">०३</span>
+        <span class="toc-body">
+          <span class="toc-name">मारुती स्तोत्र · भीमरूपी महारुद्रा</span>
+          <span class="toc-en">Bhimrupi Maruti Stotra</span>
+          <span class="toc-meta">१७ श्लोक · मूळ पाठ, संदर्भ भाषांतर आणि विवरणासह</span>
+        </span>
+        <span class="toc-arrow" aria-hidden="true">▶</span>
+      </a>
+    </li>
+  </ul>
+
+  <p class="foot">
+    प्रत्येक पानावर मूळ पाठ दाखवण्यासाठी किंवा लपवण्यासाठी वरच्या बाजूला स्विच आहे.
+    <br>
+    <a href="../index.html">← मुख्य पानावर परत</a>
+  </p>
+</div>
+
+</body>
+</html>
