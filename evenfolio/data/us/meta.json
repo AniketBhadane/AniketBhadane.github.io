@@ -1,0 +1,1 @@
+{"asOf": "2026-09-11", "generatedAt": "2026-09-12T11:03:50+00:00", "etfs": 5655, "universe": 5658, "withFacts": 4970, "categoryBenchmarks": 117, "source": "Asset classes from etf_asset_classes.csv; facts and adjusted prices via Yahoo Finance (yfinance)"}

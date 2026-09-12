@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,7094,e=>{"use strict";var t=e.i(43476),r=e.i(19587),i=e.i(69033),o=e.i(77618);e.s(["CompareEtfsPanel",0,function(){return(0,t.jsx)(i.MarketContext.Provider,{value:r.US_ETF_MARKET,children:(0,t.jsx)(o.ComparePanel,{})})}])}]);

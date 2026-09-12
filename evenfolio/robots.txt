@@ -1,0 +1,15 @@
+User-Agent: *
+Allow: /
+Disallow: /*?*sort=
+Disallow: /*?*q=
+Disallow: /*?*amc=
+Disallow: /*?*category=
+Disallow: /*?*f=
+Disallow: /*?*c=
+Disallow: /*?*s=
+Disallow: /*?*m=
+Disallow: /*?*p=
+Disallow: /*?*w=
+Disallow: /*?*plan=
+
+Sitemap: https://evenfolio.com/sitemap.xml
