@@ -1,0 +1,1 @@
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,94644,t=>{"use strict";var e=t.i(43476),o=t.i(39373),i=t.i(91997),s=t.i(94124);t.s(["UsStocksPanel",0,function(){return(0,e.jsx)(i.StocksMarketContext.Provider,{value:o.US_STOCKS_MARKET,children:(0,e.jsx)(s.StocksPanel,{})})}])}]);
